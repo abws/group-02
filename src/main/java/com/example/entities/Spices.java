@@ -1,12 +1,20 @@
-package com.example.domain;
+package com.example.entities;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Spices {
-	
+	@Id
 	private String name;
 	private String description;
-	private Float price;
+	private Double price;
+	@OneToMany
+	@JoinColumn
 	private List<Spices> complimentarySpices;
 	private String picture;
 	
@@ -37,10 +45,10 @@ public class Spices {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	public Float getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-	public void setPrice(Float price) {
-		this.price = price;
+	public void setPrice(double d) {
+		this.price = d;
 	}
 }
