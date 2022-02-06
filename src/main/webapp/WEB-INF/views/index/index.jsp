@@ -9,6 +9,27 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    
+    <!--Wrapper class encapsulates entire webpage-->
+    <div class="wrapper">
+        <!--Top header-->
+        <header>
+            <!--Navbar 1 (with search bar)-->
+            <nav>                  
+                <ul>
+                    <li><a href="/login">LOGIN</a></li>
+                    <li><a href="/cart">CART</a></li>
+                </ul>
+            </nav>
+        </header>
+        <!--Main navbar-->
+        <nav>
+            <ul>
+                <li><a href="/"><img src="icons/home.svg" alt=""></a></li>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/shop">SHOP</a></li>
+                <li><a href="/recipe">RECIPES</a></li>
+            </ul>
+        </nav>
+    </div> 
 </body>
 </html>
