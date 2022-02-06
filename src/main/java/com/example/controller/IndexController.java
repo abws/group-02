@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Manages all requests to the homepage
- * @author abdiwahab
+ * @author Abdiwahab
  * @version 1
  */
 @Controller
 public class IndexController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
-		return "index";
+		return "index/index";
 	}
 	
 
