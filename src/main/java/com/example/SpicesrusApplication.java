@@ -1,4 +1,4 @@
-package com.example.spicesrus;
+package com.example;
 
 import com.example.entities.Spices;
 import com.example.repo.SpicesRepository;
