@@ -10,7 +10,7 @@
 
 	<c:forEach items="${spices}" var="spice">
 	<h3> ${spice.getName()} : ${spice.getPrice()} per 100g </h3>
-	<img src="${spice.getPicture}" alt="${spice.getName()}">
+	<img src="${spice.getPicture()}" alt="${spice.getName()}">
 	
 	</c:forEach>
 
