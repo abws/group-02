@@ -1,8 +1,8 @@
 package com.example.spicesrus;
 
-import com.example.entities.Spices;
-import com.example.repo.SpicesRepository;
-import com.example.spicesrus.security.UDetails;
+import com.example.spicesrus.entities.Spices;
+import com.example.spicesrus.repo.SpicesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;

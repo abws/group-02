@@ -1,4 +1,4 @@
-package com.example.entities;
+package com.example.spicesrus.entities;
 
 import java.util.List;
 
