@@ -35,10 +35,17 @@
         <div class="main-nav">
             <nav>
                 <ul>
-                    <li><a href="/"><img src="icons/home.svg" alt=""></a></li>
-                    <li><a href="/about">ABOUT</a></li>
-                    <li><a href="/shop">SHOP</a></li>
-                    <li><a href="/recipe">RECIPES</a></li>
+                    <div class=left>
+                        <li><a href="/"><img class="home"src="icons/home.svg" alt=""></a></li>
+                        <li><a href="/about">ABOUT</a></li>
+                    </div>
+                    <div class=logo>
+
+                    </div>
+                    <div class=right>
+                        <li><a href="/shop">SHOP</a></li>
+                        <li><a href="/recipe">RECIPES</a></li>
+                    </div>
                 </ul>
             </nav>
         </div>
