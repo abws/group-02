@@ -42,10 +42,34 @@ header ul {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   list-style-type: none;
+  margin-right: 1em;
+}
+
+header ul .user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 0.1rem solid;
+  border-color: green;
+  padding: 0;
+  border-radius: 3rem;
+  margin-right: 1em;
+}
+
+header ul .user img {
+  margin: 0;
+  padding: 0;
 }
 
 header ul a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #5b4239;
   padding: 0px 20px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .main-nav {
@@ -73,6 +97,7 @@ header ul a {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   list-style-type: none;
+  padding-left: 0;
 }
 
 .main-nav ul .left {
@@ -85,12 +110,13 @@ header ul a {
 }
 
 .main-nav ul .left a {
-  margin: 0em 2em;
+  margin: 0em 3em;
 }
 
 .main-nav ul .left a .home {
   position: absolute;
   top: -0.3em;
+  margin-left: -1em;
 }
 
 .main-nav ul .right {
@@ -104,6 +130,7 @@ header ul a {
 .main-nav ul .right a {
   padding: 0em;
   margin: 0em 1.5em;
+  margin-left: 4em;
 }
 
 .input-wrapper {

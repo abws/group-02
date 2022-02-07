@@ -25,7 +25,12 @@
             <!--Navbar 1 (with search bar)-->
             <nav>                  
                 <ul>
-                    <li><a href="/login">LOGIN</a></li>
+                    <div class="user" >
+                        <a href="/login">
+                            <li><img class="home"src="icons/user.svg" alt=""></li>
+                            <li>LOGIN</li>
+                        </a>
+                    </div>
                     <li><a href="/cart">CART</a></li>
                 </ul>
             </nav>

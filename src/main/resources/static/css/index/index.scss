@@ -33,8 +33,25 @@ header {
         display: flex;
         flex-wrap: wrap;
         list-style-type: none;
+        margin-right: 1em;
+        .user {
+            display: flex;
+            border: 0.1rem solid;
+            border-color: green;
+            padding: 0;
+            border-radius: 3rem;
+            margin-right: 1em;
+
+            img {
+                margin: 0;
+                padding: 0;
+            }
+        }
         a {
+            display: flex;
+            color: #5b4239;
             padding: 0px 20px;
+            justify-content: space-between;
         }
     }
 }
@@ -56,6 +73,7 @@ header {
         display: flex;
         justify-content: space-around;
         list-style-type: none;
+        padding-left: 0;
         .left {
             display: flex;
             margin-right: auto;
@@ -63,11 +81,12 @@ header {
             position: relative;
             a {
             
-                margin: 0em 2em;
+                margin: 0em 3em;
 
                 .home {
                     position: absolute;
                     top: -0.3em;
+                    margin-left: -1em;
 
 
                 }
@@ -81,6 +100,7 @@ header {
             a {
                 padding: 0em;
                 margin: 0em 1.5em;
+                margin-left: 4em;
 
             }
         }
