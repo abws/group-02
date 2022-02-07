@@ -19,7 +19,8 @@
             <!--Search bar-->
             <div class="input-wrapper">
                 <input type="text" placeholder="Search spices...">
-                <div class="search-bar-button"><img src="icons/search-bar.svg" alt=""></div>
+                <!--Preprocess input on server-side, href to /shop for simplicity-->
+                <div class="search-bar-button"><a href="/shop"><img src="icons/search-bar.svg" alt=""></div>
             </div>
             <!--Navbar 1 (with search bar)-->
             <nav>                  
@@ -29,7 +30,6 @@
                 </ul>
             </nav>
         </header>
-        <div class="clearfix"></div>
 
         <!--Main navbar-->
         <div class="main-nav">

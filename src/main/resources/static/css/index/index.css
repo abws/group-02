@@ -48,8 +48,8 @@ header {
   -webkit-box-align: centre;
       -ms-flex-align: centre;
           align-items: centre;
-  width: 500px;
-  height: 50px;
+  width: 200px;
+  height: 30px;
   border-radius: 3rem;
   padding: 5px;
 }
@@ -60,5 +60,12 @@ header {
   border: none;
   outline: none;
   font-family: 'Londrina Solid', cursive;
+}
+
+.input-wrapper .search-bar-button {
+  -webkit-box-align: centre;
+      -ms-flex-align: centre;
+          align-items: centre;
+  margin: 5px;
 }
 /*# sourceMappingURL=index.css.map */

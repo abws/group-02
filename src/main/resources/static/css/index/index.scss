@@ -38,8 +38,8 @@ header {
 	margin: 0.5rem 0.5rem;
     display: flex;
     align-items: centre;
-    width: 500px;
-    height: 50px;
+    width: 200px;
+    height: 30px;
     border-radius: 3rem;
     padding: 5px;
     
@@ -48,8 +48,13 @@ header {
 		width: 90%;
         border: none;
         outline: none;
-        font-family: 'Londrina Solid', cursive;
+        font-family: 'Londrina Solid', cursive;   
+    }
 
-        
+    .search-bar-button {
+    	align-items: centre;
+    	margin: 5px;
+
+
     }
 }
