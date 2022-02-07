@@ -16,13 +16,13 @@
     <form:password path="password"/>
     <form:errors path="password"/>
     <br>
-    <form:label for="email" path="email">Email:</form:label>
-    <form:input path="email"/>
-    <form:errors path="email"/>
-    <br>
     <form:label for="confirmPassword" path="confirmedPassword">Confirm Password:</form:label>
     <form:password path="confirmedPassword"/>
     <form:errors path="confirmedPassword"/>
+    <br>
+    <form:label for="email" path="email">Email:</form:label>
+    <form:input path="email"/>
+    <form:errors path="email"/>
     <br>
     <form:label for="firstName" path="firstName">First Name:</form:label>
     <form:input path="firstName"/>
