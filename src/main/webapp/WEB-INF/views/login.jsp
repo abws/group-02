@@ -7,6 +7,7 @@
 
 <h1>User Login</h1>
 
+<c:if test="${param.error != null}"><p>Your credentials are incorrect</p></c:if>
 <form action="/login" method="POST">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username"/>
@@ -14,7 +15,7 @@
     <input type="password" name="password" id="password"/>
     <input type="submit" value="Login">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    <p>Dont have an account.<a href="/login/register">Click here to register!</a></p>
+    <p>Dont have an account.<a href="/register">Click here to register!</a></p>
 </form>
 </body>
 </html>
