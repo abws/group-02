@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 public class LoginController {
@@ -17,19 +18,21 @@ public class LoginController {
     @Autowired
     private PasswordEncoder encoder;
 
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.addValidators(new UDetailsValidator());
+    }
 
     @GetMapping("/login")
     public String login() {
         return "login";
     }
 
-    @GetMapping("/login/register")
+    @RequestMapping(value = "/register")
     public String register(Model model) {
         model.addAttribute("user", new UDetails());
         return "register";
     }
-
-
 
     // ** Testing that you cant access this page without a login.
     @GetMapping("/restricted/loginsuccess")
@@ -38,15 +41,10 @@ public class LoginController {
     }
 
 
-    @PostMapping("/login/register")
-    public String register(@ModelAttribute UDetails details) {
-        if (repo.findByUsername(details.getUsername()) != null) {
-            // User already exists
-            return "register?error=exists";
-        }
-
-        if (!details.getPassword().equals(details.getConfirmedPassword())) {
-            return "register?error=pw";
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register(@Valid @ModelAttribute("user") UDetails details, BindingResult result) {
+        if (result.hasErrors()) {
+            return "register";
         }
 
         details.setPassword(encoder.encode(details.getPassword()));
