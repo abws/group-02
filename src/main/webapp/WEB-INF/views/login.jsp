@@ -2,8 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<jsp:include page="nav.jsp" />
+
 </head>
 <body>
+
 
 <h1>User Login</h1>
 
