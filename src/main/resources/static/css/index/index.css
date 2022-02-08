@@ -199,7 +199,7 @@ header ul a {
   position: absolute;
   background: url("../../images/main-homepage.png");
   background-size: cover;
-  background-position: 50% 65%;
+  background-position: 50% 150%;
   width: 105%;
   height: 100vh;
 }
