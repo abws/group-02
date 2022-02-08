@@ -18,6 +18,7 @@ public class UDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         UDetails details = repo.findByUsername(login);
+        if (details == null) throw new UsernameNotFoundException("Credentials Invalid");
         return new User(details.getUsername(), details.getPassword(), true, true, true, true, Collections.emptyList());
     }
 }

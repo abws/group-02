@@ -1,4 +1,4 @@
-package com.example.entities;
+package com.example.spicesrus.entities;
 
 import java.util.List;
 
@@ -11,13 +11,23 @@ import javax.persistence.OneToMany;
 public class Spices {
 	@Id
 	private String name;
+	private String category;
 	private String description;
 	private Double price;
+
 	@OneToMany
 	@JoinColumn
 	private List<Spices> complimentarySpices;
 	private String picture;
 	
+	
+	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public String getName() {
 		return name;
 	}
