@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 public class Spices {
 	@Id
 	private String name;
+	private String category;
 	private String description;
 	private Double price;
 	@OneToMany
@@ -18,6 +19,14 @@ public class Spices {
 	private List<Spices> complimentarySpices;
 	private String picture;
 	
+	
+	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public String getName() {
 		return name;
 	}
