@@ -6,11 +6,13 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Orders {
 	
 	@Id
+	@OneToOne
 	private int id;
 	@OneToMany
 	private String spiceId;
