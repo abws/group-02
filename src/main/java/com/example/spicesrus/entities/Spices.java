@@ -14,6 +14,7 @@ public class Spices {
 	private String category;
 	private String description;
 	private Double price;
+
 	@OneToMany
 	@JoinColumn
 	private List<Spices> complimentarySpices;

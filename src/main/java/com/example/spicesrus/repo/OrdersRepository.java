@@ -6,5 +6,5 @@ import com.example.spicesrus.entities.Spices;
 
 public interface OrdersRepository extends CrudRepository<Orders, Integer> {
 
-    public Spices findByName(String name);
+//    public Spices findByName(String name);
 }

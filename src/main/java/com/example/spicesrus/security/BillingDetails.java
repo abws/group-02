@@ -8,7 +8,7 @@ import javax.persistence.OneToOne;
 public class BillingDetails {
 @Id
 private int billingID;
-@OneToOne
+//@OneToOne
 private int ordernum;
 private String firstName;
 private String surname;

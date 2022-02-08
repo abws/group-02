@@ -12,9 +12,7 @@ import javax.persistence.OneToOne;
 public class Orders {
 	
 	@Id
-	@OneToOne
 	private int id;
-	@OneToMany
 	private String spiceId;
 	private Date orderDate;
 	private int quantity;

@@ -6,6 +6,6 @@ import com.example.spicesrus.entities.Orders;
 
 public interface BillingDetailsRepo extends CrudRepository<BillingDetails, String> {
 	
-	public Orders findById(Integer id);
+//	public Orders findById(Integer id);
 
 }
