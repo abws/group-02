@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="<c:url value='css/base.css'/>">
 </head>
 <body>
 

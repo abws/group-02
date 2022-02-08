@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <jsp:include page="nav.jsp" />
+    <link rel="stylesheet" href="<c:url value='css/base.css'/>">
 </head>
 <body>
 
