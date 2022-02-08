@@ -35,6 +35,23 @@ header {
           justify-content: space-between;
 }
 
+header .logo {
+  position: absolute;
+  background-color: #fae3cc;
+  border-radius: 3rem;
+  left: 40%;
+  top: -2em;
+  padding: 3em 3em;
+  padding-bottom: 0em;
+}
+
+header .logo .logo-text {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 3rem;
+  color: #d59518;
+  margin-bottom: 0em;
+}
+
 header ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -49,16 +66,30 @@ header ul .user {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border: 0.1rem solid;
-  border-color: green;
-  padding: 0;
-  border-radius: 3rem;
-  margin-right: 1em;
 }
 
 header ul .user img {
   margin: 0;
-  padding: 0;
+  padding-right: 10px;
+}
+
+header ul .user a {
+  border: 0.1rem solid;
+  border-color: green;
+  padding: 0.5em 0.5em;
+  border-radius: 3rem;
+  margin-right: 1em;
+  padding-bottom: 0.2em;
+}
+
+header ul .user a:hover {
+  background-color: green;
+  color: white;
+}
+
+header ul .cart {
+  margin-top: 12px;
+  border-left: #5b4239 solid 0.1rem;
 }
 
 header ul a {

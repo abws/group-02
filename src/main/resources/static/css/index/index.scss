@@ -29,6 +29,22 @@ header {
     z-index: -1;
     display: flex;    
     justify-content: space-between;
+    .logo{
+        position: absolute;
+        background-color: #fae3cc;
+        border-radius: 3rem;
+        left: 40%;
+        top: -2em;
+        padding: 3em 3em;
+        padding-bottom: 0em;
+
+        .logo-text{
+            font-family: 'Caveat Brush', cursive;
+            font-size: 3rem;
+            color: #d59518;
+            margin-bottom: 0em;
+        }
+    }
     ul {
         display: flex;
         flex-wrap: wrap;
@@ -36,16 +52,29 @@ header {
         margin-right: 1em;
         .user {
             display: flex;
-            border: 0.1rem solid;
-            border-color: green;
-            padding: 0;
-            border-radius: 3rem;
-            margin-right: 1em;
-
             img {
                 margin: 0;
-                padding: 0;
+                padding-right: 10px;
             }
+            a{
+                border: 0.1rem solid;
+                border-color: green;
+                padding: 0.5em 0.5em;
+                border-radius: 3rem;
+                margin-right: 1em;
+                padding-bottom: 0.2em;
+
+
+
+                &:hover {
+                    background-color: green;
+                    color: white;
+                }
+            }
+        }
+        .cart{
+            margin-top: 12px;
+            border-left: #5b4239 solid 0.1rem;
         }
         a {
             display: flex;
@@ -87,8 +116,6 @@ header {
                     position: absolute;
                     top: -0.3em;
                     margin-left: -1em;
-
-
                 }
 
             }

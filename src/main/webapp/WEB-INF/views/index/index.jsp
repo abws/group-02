@@ -8,7 +8,7 @@
     <title>Spices R Us</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Londrina+Solid&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value='css/index/index.css'/>">
 </head>
 <body>
@@ -20,18 +20,21 @@
             <div class="input-wrapper">
                 <input type="text" placeholder="Search spices...">
                 <!--Preprocess input on server-side, href to /shop for simplicity-->
-                <div class="search-bar-button"><a href="/shop"><img src="icons/search-bar.svg" alt=""></div>
+                <div class="search-bar-button"><a href="/shop"><img src="icons/search-bar.svg" alt=""></a></div>
+            </div>
+            <div class="logo">
+                <h1 class="logo-text">Spices R Us</h1>
             </div>
             <!--Navbar 1 (with search bar)-->
             <nav>                  
                 <ul>
                     <div class="user" >
                         <a href="/login">
-                            <li><img class="home"src="icons/user.svg" alt=""></li>
+                            <li><img class="user-image" src="icons/user.svg" alt=""></li>
                             <li>LOGIN</li>
                         </a>
                     </div>
-                    <li><a href="/cart">CART</a></li>
+                    <li><a class="cart" href="/cart">CART</a></li>
                 </ul>
             </nav>
         </header>
