@@ -83,7 +83,7 @@ header ul .user a {
 }
 
 header ul .user a:hover {
-  background-color: green;
+  background-color: #77be6d;
   color: white;
 }
 
@@ -193,5 +193,15 @@ header ul a {
   -webkit-box-align: centre;
       -ms-flex-align: centre;
           align-items: centre;
+}
+
+.hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url("../../images/main-homepage.png");
+  background-size: cover;
+  width: 105%;
+  height: 1vh;
 }
 /*# sourceMappingURL=index.css.map */

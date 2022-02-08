@@ -57,6 +57,17 @@
                 </ul>
             </nav>
         </div>
+        <!--First Body Block-->
+        <section class="hero">
+            <p>FRESH</p>
+            <p>FRAGRANT</p>
+            <p>FAMILY OWNED</p>
+            <svg class="underline" width="172" height="62" viewBox="0 0 172 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 57C25.3668 37.7069 86.2803 0.390674 167 5.47037" stroke="#FAE3CC" stroke-width="9" stroke-linecap="round"/>
+            </svg>
+                
+
+        </section>
     </div> 
 </body>
 </html>

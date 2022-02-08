@@ -67,7 +67,7 @@ header {
 
 
                 &:hover {
-                    background-color: green;
+                    background-color: #77be6d;
                     color: white;
                 }
             }
@@ -159,4 +159,14 @@ header {
     	//margin: 5px;
     }
 
+}
+
+.hero {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('../../images/main-homepage.png');
+    background-size: cover;
+    width: 105%;
+    height: 1vh;
 }
