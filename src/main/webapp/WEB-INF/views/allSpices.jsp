@@ -83,7 +83,7 @@
 	<div class="row">
 		<c:forEach items="${spices}" var="spice">
 			<div class="card">
-				<img src="${spice.getPicture()}" alt="${spice.getName()}" style="width:100%">
+				<img src="${spice.getPicture()}" alt="${spice.getName()}" width="500" height="300" style="width:100%">
 				<h1> ${spice.getName()}</h1> 
 				<p> Category: ${spice.getCategory()}</p>
 				<p class="price">£${spice.getPrice()} per 100g</p>
