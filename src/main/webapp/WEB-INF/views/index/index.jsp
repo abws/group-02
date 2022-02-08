@@ -31,7 +31,7 @@
                     <div class="user" >
                         <a href="/login">
                             <li><img class="user-image" src="icons/user.svg" alt=""></li>
-                            <li>LOGIN</li>
+                            <li>${username}</li>
                         </a>
                     </div>
                     <li><a class="cart" href="#">CART</a></li>

@@ -1,8 +1,11 @@
 package com.example.spicesrus.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.security.Principal;
 
 /**
  * Manages all requests to the homepage
@@ -12,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class IndexController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index() {
+	public String index(Principal principal, Model model) {
+		String username = principal != null ? principal.getName() : "LOGIN";
+		model.addAttribute("username", username);
 		return "index/index";
 	}
 	
