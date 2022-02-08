@@ -34,7 +34,7 @@
                             <li>LOGIN</li>
                         </a>
                     </div>
-                    <li><a class="cart" href="/cart">CART</a></li>
+                    <li><a class="cart" href="#">CART</a></li>
                 </ul>
             </nav>
         </header>
@@ -45,14 +45,14 @@
                 <ul>
                     <div class=left>
                         <li><a href="/"><img class="home"src="icons/home.svg" alt=""></a></li>
-                        <li><a href="/about">ABOUT</a></li>
+                        <li><a href="#">ABOUT</a></li>
                     </div>
                     <div class=logo>
 
                     </div>
                     <div class=right>
-                        <li><a href="/shop">SHOP</a></li>
-                        <li><a href="/recipe">RECIPES</a></li>
+                        <li><a href="/spices">SHOP</a></li>
+                        <li><a href="#">RECIPES</a></li>
                     </div>
                 </ul>
             </nav>
