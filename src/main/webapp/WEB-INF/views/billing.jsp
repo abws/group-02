@@ -25,7 +25,7 @@
     <form:input path="customerEmail"/>
     <form:errors path="customerEmail"/>
     <br>
-    
+
     <input type="submit" value="Order">
 </form:form>
 </body>
