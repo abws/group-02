@@ -50,8 +50,7 @@
 
     </style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <jsp:include page="nav.jsp"/>
-    <link rel="stylesheet" href="<c:url value='css/base.css'/>">
+    <jsp:include page="base.jsp" />
     <title>Spices</title>
 
 </head>

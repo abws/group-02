@@ -6,7 +6,7 @@
 <head>
   <!-- bootstrap -->
 <style type="text/css">
-.nav ul {
+.navigation ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -14,16 +14,16 @@
     background-color: rgb(207, 112, 24);
   }
 
-  .nav li {
+  .navigation li {
     float: left;
     border-right:1px solid #bbb;
   }
 
-  .nav li:last-child {
+  .navigation li:last-child {
     border-right: none;
   }
 
-  .nav li a {
+  .navigation li a {
     display: block;
     color: white;
     text-align: center;
@@ -31,11 +31,11 @@
     text-decoration: none;
   }
 
-  .nav li a:hover:not(.active) {
+  .navigation li a:hover:not(.active) {
     background-color: rgb(151, 94, 41);
   }
 
-  .nav .active {
+  .navigation .active {
     background-color: #aa551d;
   }
 
@@ -44,7 +44,7 @@
 
 </head>
 <body>
-	<div class ="nav">
+	<div class ="navigation">
 		<ul>
 		  <li><a href="/">Home</a></li>
 		  <li><a href="#news">News</a></li>
