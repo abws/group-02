@@ -1,5 +1,6 @@
 package com.example.spicesrus;
 
+import com.example.spicesrus.entities.Basket;
 import com.example.spicesrus.entities.Spices;
 import com.example.spicesrus.repo.SpicesRepository;
 import com.example.spicesrus.security.UDetails;
@@ -28,7 +29,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 	private PasswordEncoder encoder;
 	
 	public static List<Spices> spices = new ArrayList<>();
-
+	public Basket basket = new Basket();
 
     public static void main(String[] args) {
         SpringApplication.run(SpicesrusApplication.class, args);
