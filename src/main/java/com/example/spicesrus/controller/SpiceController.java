@@ -19,10 +19,24 @@ public class SpiceController {
 	@Autowired
 	SpicesRepository sRepo;
 	
-	@RequestMapping("/spices") //by default manages get requests
+	/**
+	 * Checks if a spice exists in the database 
+	 * and adds it to the model if it does
+	 * Couldn't handle /spices?... requests as its implemented elsewhere
+	 * @param spice
+	 * @param model
+	 * @return "spice" jsp page
+	 */
+	@RequestMapping("/spice") //by default manages get requests
 	public String showSpice(@RequestParam Spices spice, Model model) {
 		Spices s = sRepo.findByName(spice.getName()); //same as finding by id since the name is the id
-		model.addAttribute("spice", s);
+		
+		//just in case user types the spice name into the url
+		if (s != null)
+			model.addAttribute("uniqueSpice", s);
+		else
+			return "spice-not-found-page"; //needs to be implemented
+		
 		return "spice";
 		
 	}
