@@ -29,7 +29,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 	private PasswordEncoder encoder;
 	
 	public static List<Spices> spices = new ArrayList<>();
-	Basket basket = new Basket();
+	public static Basket basket = new Basket();
 
     public static void main(String[] args) {
         SpringApplication.run(SpicesrusApplication.class, args);

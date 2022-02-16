@@ -22,21 +22,21 @@ public class Basket {
 	
 	@OneToMany
 	@JoinColumn
-	private List<Item> items;
+	private List<Spices> items;
 
-	public List<Item> getItems() {
+	public List<Spices> getItems() {
 		return items;
 	}
 
-	public void setItems(List<Item> items) {
+	public void setItems(List<Spices> items) {
 		this.items = items;
 	}
 	
-	public void addItems(Item item) {
+	public void addItems(Spices item) {
 		this.items.add(item);
 	}
 	
-	public void deleteItems(Item item) {
+	public void deleteItems(Spices item) {
 		this.items.remove(item);
 	}
 }
