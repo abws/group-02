@@ -3,6 +3,7 @@ package com.example.spicesrus.entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -11,6 +12,7 @@ import com.example.spicesrus.security.UDetails;
 @Entity
 public class Basket {
 	@Id
+	@GeneratedValue
 	private int id;
 	
 	@OneToOne
