@@ -87,10 +87,10 @@
             <img src="${spice.getPicture()}" alt="${spice.getName()}" width="500" height="300" style="width:100%">
             <h1> ${spice.getName()}</h1>
             <p> Category: ${spice.getCategory()}</p>
-            <p class="price">ï¿½${spice.getPrice()} per 100g</p>
+            <p class="price">£${spice.getPrice()} per 100g</p>
             <p>${spice.description}</p>
             <p>
-                <button>Add to Cart</button>
+            	<a href="/Basket/${spice.getName()}" class="btn btn-primary">Add to Cart</a>
             </p>
         </div>
     </c:forEach>

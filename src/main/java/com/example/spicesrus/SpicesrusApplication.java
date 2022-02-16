@@ -1,11 +1,5 @@
 package com.example.spicesrus;
 
-import com.example.spicesrus.entities.Basket;
-import com.example.spicesrus.entities.Spices;
-import com.example.spicesrus.repo.SpicesRepository;
-import com.example.spicesrus.security.UDetails;
-import com.example.spicesrus.security.UDetailsRepo;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +9,12 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.example.spicesrus.entities.Basket;
+import com.example.spicesrus.entities.Spices;
+import com.example.spicesrus.repo.SpicesRepository;
+import com.example.spicesrus.security.UDetails;
+import com.example.spicesrus.security.UDetailsRepo;
 
 @SpringBootApplication
 public class SpicesrusApplication implements ApplicationRunner {
@@ -29,7 +29,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 	private PasswordEncoder encoder;
 	
 	public static List<Spices> spices = new ArrayList<>();
-	public Basket basket = new Basket();
+	Basket basket = new Basket();
 
     public static void main(String[] args) {
         SpringApplication.run(SpicesrusApplication.class, args);

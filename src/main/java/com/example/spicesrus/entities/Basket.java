@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.example.spicesrus.security.UDetails;
@@ -18,21 +20,23 @@ public class Basket {
 	@OneToOne
 	private UDetails user;
 	
-	private List<Spices> items;
+	@OneToMany
+	@JoinColumn
+	private List<Item> items;
 
-	public List<Spices> getItems() {
+	public List<Item> getItems() {
 		return items;
 	}
 
-	public void setItems(List<Spices> items) {
+	public void setItems(List<Item> items) {
 		this.items = items;
 	}
 	
-	public void addItems(Spices spice) {
-		this.items.add(spice);
+	public void addItems(Item item) {
+		this.items.add(item);
 	}
 	
-	public void deleteItems(Spices spice) {
-		this.items.remove(spice);
+	public void deleteItems(Item item) {
+		this.items.remove(item);
 	}
 }
