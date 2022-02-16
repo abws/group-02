@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <jsp:include page="base.jsp" />
+    <jsp:include page="../base.jsp" />
 </head>
 <body>
 

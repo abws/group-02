@@ -15,42 +15,46 @@ public class LoginController {
 
     @Autowired
     private UDetailsRepo repo;
+
     @Autowired
     private PasswordEncoder encoder;
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
-        binder.addValidators(new UDetailsValidator());
+        binder.addValidators(new DetailsValidator(repo));
     }
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return "security/login";
     }
 
     @RequestMapping(value = "/register")
     public String register(Model model) {
         model.addAttribute("user", new UDetails());
-        return "register";
+        return "security/register";
     }
 
-    // ** Testing that you cant access this page without a login.
-    @GetMapping("/restricted/loginsuccess")
-    public String loginSuccess() {
-        return "example-restricted";
-    }
-
-
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@Valid @ModelAttribute("user") UDetails details, BindingResult result) {
+    @RequestMapping("/confirmRegistration")
+    public String completeRegistration(@Valid @ModelAttribute("user") UDetails details, BindingResult result) {
         if (result.hasErrors()) {
-            return "register";
+            return "security/register";
         }
 
+        details.setConfirmedPassword(null); // No longer need to store this (Duplicated Value)
         details.setPassword(encoder.encode(details.getPassword()));
-        details.setConfirmedPassword(null);
         repo.save(details);
-        return "register-success";
+        return "security/register-success";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register(@Valid @ModelAttribute("user") UDetails details, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "security/register";
+        }
+
+        model.addAttribute("details", details);
+        return "security/register-confirm";
     }
 
 
