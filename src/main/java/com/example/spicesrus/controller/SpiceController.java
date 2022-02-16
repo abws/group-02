@@ -1,13 +1,16 @@
 package com.example.spicesrus.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.spicesrus.entities.Item;
 import com.example.spicesrus.entities.Spices;
-import com.example.spicesrus.repo.SpicesRepository;
+import com.example.spicesrus.repo.ItemRepository;
 
 /**
  * Manages all requests to the homepage
@@ -17,7 +20,7 @@ import com.example.spicesrus.repo.SpicesRepository;
 @Controller
 public class SpiceController {
 	@Autowired
-	SpicesRepository sRepo;
+	ItemRepository iRepo;
 	
 	/**
 	 * Checks if a spice exists in the database 
@@ -28,18 +31,17 @@ public class SpiceController {
 	 * @return "spice" jsp page
 	 */
 	@RequestMapping("/spice") //by default manages get requests
-	public String showSpice(@RequestParam Spices spice, Model model) {
-		Spices s = sRepo.findByName(spice.getName()); //same as finding by id since the name is the id
+	public String showSpice(@RequestParam String spice, Model model) {
+		Item i = iRepo.findBySpiceName(spice); //same as finding by id since the name is the id
 		
 		//just in case user types the spice name into the url
-		if (s != null)
-			model.addAttribute("uniqueSpice", s);
+		if (i != null)
+			model.addAttribute("item", i);
 		else
 			return "spice-not-found-page"; //needs to be implemented
 		
 		return "spice";
 		
-	}
-	
+	}	
 
 }

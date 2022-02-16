@@ -23,7 +23,7 @@ public class Item {
 	private int id;
 	@OneToOne
 	@JoinColumn
-	Spices spice;
+	private Spices spice;
 	private int weightInGrams;
 	@Transient //transient annotation stops these fields from being persisted
 	private double weightInPounds;
