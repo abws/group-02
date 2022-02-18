@@ -9,10 +9,20 @@
 </head>
 <body>
 	<p>${spice.name}</p>
+	<p>${spice.category}</p>
+	<p>${spice.description}</p>
+	<p>${spice.picture}</p>
+
 	<p>Price per 100g: $ ${spice.price}</p>
 
-	<form:form method="POST", action="addItem?${spice.name}">
-		<form></form>
+	<form:form action="addItem" modelAttribute="item">
+		<form:hidden path="spice" value="${spice.name}"/>
+		<br>
+		<form:label path="weightInGrams">Weight: </form:label>
+		<form:input path="weightInGrams"/>
+		<form:errors path="weightInGrams"/>
+		<br>
+		<input type="submit" value="Add to Cart">
 		
 	</form:form>
 </body>
