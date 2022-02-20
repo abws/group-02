@@ -22,10 +22,16 @@ public class BasketController {
 	
 	@RequestMapping("/Basket/{name}")
 	public String addToBasket(Model model, @PathVariable("name") String name) {
-		// Add item to basket here
 		Spices spicetoAdd = spiceRepo.findByName(name);
 		SpicesrusApplication.basket.addItems(spicetoAdd);
 		return "redirect:../spices";
+	}
+	
+	@RequestMapping("/Basket/Remove/{name}")
+	public String RemoveFromBasket(Model model, @PathVariable("name") String name) {
+		Spices spicetoDelete = spiceRepo.findByName(name);
+		SpicesrusApplication.basket.deleteItems(spicetoDelete);
+		return "redirect:../basket";
 	}
 	
 	@GetMapping("/Basket")

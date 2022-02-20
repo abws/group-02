@@ -1,5 +1,6 @@
 package com.example.spicesrus.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,7 +23,7 @@ public class Basket {
 	
 	@OneToMany
 	@JoinColumn
-	private List<Spices> items;
+	private List<Spices> items = new ArrayList<Spices>();
 
 	public List<Spices> getItems() {
 		return items;
