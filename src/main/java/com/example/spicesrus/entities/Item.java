@@ -2,47 +2,47 @@ package com.example.spicesrus.entities;
 
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PostLoad;
 import javax.persistence.Transient;
 
 /**
  * Represents an item
- * Each item will map to 1 product
- * Items will interact with cart
+ * Each item will map to 1 spice
+ * Each cart will have 1 or more items
  * @author Abdiwahab
  * @version 1.0
  */
 @Entity
-public class Item {
+abstract class Item {
 	@Id
 	@GeneratedValue
 	private int id;
-	@OneToOne
-	@JoinColumn
+	@ManyToOne(fetch = FetchType.LAZY) //unidirectional
+	@JoinColumn(name = "spice_id")
 	private Spices spice;
-	private int weightInGrams;
+	private int weightInGrams; //will be the default. if user writes it down in pounds, convert to grams on client-side
 	@Transient //transient annotation stops these fields from being persisted
-	private double weightInPounds;
-	@Transient
 	private double price;
+	
 	
 	/**
 	 * Makes the software more efficient by applying the calculations 
 	 * only once after the object is loaded from the database instead of
 	 * calling them every time
 	 */
+	/*Currently not working
 	@PostLoad
-	private void postLoad() {
-		this.weightInPounds = this.weightInGrams / 28.5;
-		 
+	private void postLoad() {		 
 		//spice price is for every 100g, hence the division
 		this.price = weightInGrams * (this.spice.getPrice() / 100);
 	}
-
+	*/
 	public int getId() {
 		return id;
 	}
@@ -51,11 +51,11 @@ public class Item {
 		this.id = id;
 	}
 
-	public Spices getSpices() {
+	public Spices getSpice() {
 		return spice;
 	}
 
-	public void setSpices(Spices spice) {
+	public void setSpice(Spices spice) {
 		this.spice = spice;
 	}
 
@@ -67,15 +67,8 @@ public class Item {
 		this.weightInGrams = weightInGrams;
 	}
 
-	public double getWeightInPounds() {
-		return weightInPounds;
-	}
-
-	public void setWeightInPounds(double weightInPounds) {
-		this.weightInPounds = weightInPounds;
-	}
-
 	public double getPrice() {
+		this.price = weightInGrams * (this.spice.getPrice() / 100);
 		return price;
 	}
 
