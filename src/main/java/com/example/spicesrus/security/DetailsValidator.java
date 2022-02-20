@@ -24,6 +24,9 @@ public class DetailsValidator implements Validator {
     public void validate(Object target, Errors errors) {
         UDetails ud = (UDetails) target;
 
+        if (ud.getEmail() != null && repo.findByEmail(ud.getEmail()) != null) {
+            errors.rejectValue("email", "", "This email is already registered with us.");
+        }
         if (ud.getUsername() != null && repo.findByUsername(ud.getUsername()) != null) {
             errors.rejectValue("username", "", "This username is taken.");
         }

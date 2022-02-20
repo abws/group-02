@@ -2,10 +2,7 @@ package com.example.spicesrus.entities;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Spices {
@@ -61,4 +58,9 @@ public class Spices {
 	public void setPrice(double d) {
 		this.price = d;
 	}
+
+	public double getUserPrice() {
+		return price * 0.2; // 20% discount
+	}
+
 }
