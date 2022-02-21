@@ -280,15 +280,16 @@ sortmenu.onchange = function() {
 
 
 <div class="row">
-    <c:forEach var="spice" items="${spices}">
-        <div class="card"class="cards">
-            <a href="spice?spice=${spice.name}"><img src="${spice.picture}" alt="${spice.name}" width="500" height="300" style="width:100%"></a>
-            <h1> ${spice.name}</h1>
-            <p> Category: ${spice.category}</p>
-            <p class="price">£${spice.price} per 100g</p>
+
+    <c:forEach items="${spices}" var="spice">
+        <div class="card">
+            <img src="${spice.getPicture()}" alt="${spice.getName()}" width="500" height="300" style="width:100%">
+            <h1> ${spice.getName()}</h1>
+            <p> Category: ${spice.getCategory()}</p>
+            <p class="price">£${spice.getPrice()} per 100g</p>
             <p>${spice.description}</p>
             <p>
-                <a href="spice?spice=${spice.name}"><button>View Details</button></a>
+            	<a href="/Basket/${spice.getName()}" class="btn btn-primary">Add to Cart</a>
             </p>
         </div>
     </c:forEach>
