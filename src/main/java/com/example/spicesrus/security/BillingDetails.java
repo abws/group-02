@@ -14,6 +14,10 @@ private String firstName;
 private String surname;
 private String customerAddress;
 private String customerEmail;
+private String cardholderName;
+private String cardNumber;
+private String expiryDate;
+private String cvvNumber;
 
 public int getBillingID() {
 	return billingID;
@@ -51,6 +55,31 @@ public int getOrdernum() {
 public void setOrdernum(int ordernum) {
 	this.ordernum = ordernum;
 }
+public String getCardholderName() {
+	return cardholderName;
+}
+public void setCardholderName(String cardholderName) {
+	this.cardholderName = cardholderName;
+}
+public String getCardNumber() {
+	return cardNumber;
+}
+public void setCardNumber(String cardNumber) {
+	this.cardNumber = cardNumber;
+}
+public String getExpiryDate() {
+	return expiryDate;
+}
+public void setExpiryDate(String expiryDate) {
+	this.expiryDate = expiryDate;
+}
+public String getCvvNumber() {
+	return cvvNumber;
+}
+public void setCvvNumber(String cvvNumber) {
+	this.cvvNumber = cvvNumber;
+}
+
 
 
 

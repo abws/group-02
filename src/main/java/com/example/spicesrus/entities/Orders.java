@@ -13,7 +13,7 @@ public class Orders {
 	
 	@Id
 	private int id;
-	private String spiceId;
+	private String BasketId;
 	private Date orderDate;
 	private int quantity;
 	private float orderTotal;
@@ -24,12 +24,6 @@ public class Orders {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public String getSpiceId() {
-		return spiceId;
-	}
-	public void setSpiceid(String spiceId) {
-		this.spiceId = spiceId;
 	}
 	public Date getOrderDate() {
 		return orderDate;
@@ -48,6 +42,12 @@ public class Orders {
 	}
 	public void setOrderTotal(float orderTotal) {
 		this.orderTotal = orderTotal;
+	}
+	public String getBasketId() {
+		return BasketId;
+	}
+	public void setBasketId(String basketId) {
+		BasketId = basketId;
 	}	
 	
 }
