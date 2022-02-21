@@ -15,20 +15,17 @@ import javax.persistence.Transient;
  * Represents an item
  * Each item will map to 1 spice
  * Each cart will have 1 or more items
+ * Abstract base class
  * @author Abdiwahab
  * @version 1.0
  */
-@Entity
 abstract class Item {
 	@Id
 	@GeneratedValue
 	private int id;
-	@ManyToOne(fetch = FetchType.LAZY) //unidirectional
+	@OneToOne(fetch = FetchType.LAZY) //unidirectional
 	@JoinColumn(name = "spice_id")
 	private Spices spice;
-	private int weightInGrams; //will be the default. if user writes it down in pounds, convert to grams on client-side
-	@Transient //transient annotation stops these fields from being persisted
-	private double price;
 	
 	
 	/**
@@ -57,23 +54,6 @@ abstract class Item {
 
 	public void setSpice(Spices spice) {
 		this.spice = spice;
-	}
-
-	public int getWeightInGrams() {
-		return weightInGrams;
-	}
-
-	public void setWeightInGrams(int weightInGrams) {
-		this.weightInGrams = weightInGrams;
-	}
-
-	public double getPrice() {
-		this.price = weightInGrams * (this.spice.getPrice() / 100);
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
 	}
 
 }

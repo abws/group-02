@@ -1,36 +1,37 @@
 package com.example.spicesrus.entities;
 
-import javax.persistence.Entity;
 import javax.persistence.Transient;
 
 /**
  * Child class of Item
- * Represents items in gram format
+ * Represents items in pound format
  * @author
  *
  */
-@Entity
-public class ItemGrams extends Item{
-	private int weightInGrams; //will be the default. if user writes it down in pounds, convert to grams on client-side
+public class ItemPounds extends Item{
+	private double weightInPounds;
 	@Transient //transient annotation stops these fields from being persisted
 	private double price;
-	
-	public int getWeightInGrams() {
-		return weightInGrams;
+
+	public double getWeightInPounds() {
+		return weightInPounds;
 	}
 
-	public void setWeightInGrams(int weightInGrams) {
-		this.weightInGrams = weightInGrams;
+	public void setWeightInPounds(double weightInPounds) {
+		//round pounds to 2 decimal places
+		this.weightInPounds = Math.round(weightInPounds * 100.0) / 100.0;
 	}
 
 	public double getPrice() {
-		this.price = weightInGrams * (getSpice().getPrice() / 100);
+		//convert weight into grams and then multiply by the standard
+		this.price = (weightInPounds * 454) * (getSpice().getPrice() / 100);
 		return price;
 	}
 
 	@Override
 	public String toString() {
-		Integer quotient = Math.floorMod(getWeightInGrams() / 1000, getId());
+		
+		Integer quotient = Math.floorMod(getWeightInPounds() / 1000);
 		Integer remainder = getWeightInGrams() % 1000;
 		
 		if (quotient == 0)
