@@ -175,12 +175,11 @@ public class SpicesController {
 	
 	@GetMapping("/user")
 	public String User(Model model, @RequestParam String username) {
-		List<UDetails> users = SpicesrusApplication.users;
+		Iterable<UDetails> users = uRepo.findAll();
+
 		for (UDetails u: users) {
 			if(u.getUsername().contentEquals(username)) {
 				model.addAttribute("user", u);
-			}else {
-				return "error404";
 			}
 		}
 		return "user_detail";
