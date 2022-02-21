@@ -2,7 +2,6 @@ package com.example.spicesrus;
 
 import com.example.spicesrus.entities.Item;
 import com.example.spicesrus.entities.Spices;
-import com.example.spicesrus.repo.ItemRepository;
 import com.example.spicesrus.repo.SpicesRepository;
 import com.example.spicesrus.security.UDetails;
 import com.example.spicesrus.security.UDetailsRepo;

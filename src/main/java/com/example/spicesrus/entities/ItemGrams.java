@@ -11,31 +11,38 @@ import javax.persistence.Transient;
  */
 @Entity
 public class ItemGrams extends Item{
-	private int weightInGrams; //will be the default. if user writes it down in pounds, convert to grams on client-side
+	private int kilograms;
+	private int grams;
 	@Transient //transient annotation stops these fields from being persisted
 	private double price;
 	
-	public int getWeightInGrams() {
-		return weightInGrams;
+	public int getKilograms() {
+		return kilograms;
 	}
 
-	public void setWeightInGrams(int weightInGrams) {
-		this.weightInGrams = weightInGrams; //shouldn't be a double
+	public void setKilograms(int kilograms) {
+		this.kilograms = kilograms;
+	}
+
+	public int getGrams() {
+		return grams;
+	}
+
+	public void setGrams(int grams) {
+		this.grams = grams;
 	}
 
 	public double getPrice() {
-		this.price = Math.round((weightInGrams * (getSpice().getPrice() / 100)) * 100.0) / 100.0;
+		//get the price of 1 gram and multiply it by the number of grams we have (LHS)
+		this.price = ((kilograms * 1000) + grams) * (getSpice().getPrice() / 100);
 		return price;
 	}
 
 	@Override
 	public String toString() {
-		Integer quotient = getWeightInGrams() / 1000;
-		Integer remainder = getWeightInGrams() % 1000;
-		
-		if (quotient == 0)
-			return getSpice().getName() + ":" + getWeightInGrams() + "grams";
+		if (kilograms == 0)
+			return getSpice().getName() + ":" + this.grams + "grams";
 		else
-			return getSpice().getName() + ":" + quotient.toString() + "kg " + remainder.toString() + "g";
+			return getSpice().getName() + ":" + this.kilograms + "kg " + this.grams + "g";
 	}
 }

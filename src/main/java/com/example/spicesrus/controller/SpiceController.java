@@ -43,7 +43,7 @@ public class SpiceController {
 	public String showSpice(@RequestParam String spice, Model model) {
 		Spices s = sRepo.findByName(spice); //same as finding by id since the name is the id
 		model.addAttribute("spice", s);
-		model.addAttribute("itemPound", new ItemPounds()); //CANNOT INSTANTIATE AN ITEM OBJECT!
+		model.addAttribute("itemPound", new ItemPounds()); //CANNOT INSTANTIATE AN ITEM OBJECT!, whatever happened to that whole polymorphism stuff
 		model.addAttribute("itemGram", new ItemGrams());
 		
 		//just in case user types the spice name into the url
@@ -55,18 +55,25 @@ public class SpiceController {
 	}	
 	
 	/**
-	 * Adds an item to the Item database
+	 * Adds an item in grams to database
 	 * @param item
 	 * @return "spice" jsp page
 	 */
 	@PostMapping("addItem")
-	public String addItem(@ModelAttribute Item item) {
-		Item i = iRepo.save(item);
-		i = iRepo.findById(i.getId()).get();
+	public String addItem(@ModelAttribute Item item, @RequestParam String units) {
+		if (units == "pounds") {
+			 item = (ItemPounds) item;
+			 Item x = ipRepo.save(item);
+		}
+	
+		else {
+			item = (ItemGrams) item;
+			Item x = igRepo.save(item);
+		}
 		
-		System.out.println(i.getPrice());
+		x = igRepo.findById(x.getId()).get();
+		System.out.println(x.getPrice());
 		return "redirect:/spices";
-		
 	}
 
 }

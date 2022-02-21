@@ -1,5 +1,6 @@
 package com.example.spicesrus.entities;
 
+import javax.persistence.Entity;
 import javax.persistence.Transient;
 
 /**
@@ -8,35 +9,41 @@ import javax.persistence.Transient;
  * @author
  *
  */
+@Entity
 public class ItemPounds extends Item{
-	private double weightInPounds;
+	private int stones;
+	private double pounds;
 	@Transient //transient annotation stops these fields from being persisted
 	private double price;
-
-	public double getWeightInPounds() {
-		return weightInPounds;
+	
+	public int getStones() {
+		return stones;
 	}
 
-	public void setWeightInPounds(double weightInPounds) {
+	public void setStones(int stones) {
+		this.stones = stones;
+	}
+
+	public double getPounds() {
+		return pounds;
+	}
+
+	public void setPounds(double pounds) {
 		//round pounds to 2 decimal places
-		this.weightInPounds = Math.round(weightInPounds * 100.0) / 100.0;
+		this.pounds = Math.round(pounds * 100.0) / 100.0;
 	}
 
 	public double getPrice() {
-		//convert weight into grams and then multiply by the standard
-		this.price = Math.round((weightInPounds * 454) * (getSpice().getPrice() / 100) * 100.0) / 100.0;
+		//convert convert stones and pounds to grams and then multiply by standard
+		this.price = (((this.stones * 16) + this.pounds) * 454) * (getSpice().getPrice() / 100);
 		return price;
 	}
 
 	@Override
 	public String toString() {
-		
-		Integer quotient = (int) Math.floor(getWeightInPounds()) / 16;
-		Double remainder = getWeightInPounds() % 1000;
-		
-		if (quotient == 0)
-			return getSpice().getName() + ":" + remainder + "pounds";
+		if (this.stones == 0)
+			return getSpice().getName() + ":" + this.pounds + " pounds";
 		else
-			return getSpice().getName() + ":" + quotient.toString() + "st " + remainder.toString() + "Ib";
+			return getSpice().getName() + ":" + this.stones + " st " + this.pounds + " Ib";
 	}
 }

@@ -19,6 +19,8 @@ import javax.persistence.Transient;
  * @author Abdiwahab
  * @version 1.0
  */
+
+@Entity
 public abstract class Item {
 	@Id
 	@GeneratedValue
@@ -55,5 +57,7 @@ public abstract class Item {
 	public void setSpice(Spices spice) {
 		this.spice = spice;
 	}
+
+	public abstract double getPrice();
 
 }
