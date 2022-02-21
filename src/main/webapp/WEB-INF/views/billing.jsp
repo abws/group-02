@@ -21,6 +21,10 @@
     <form:input path="customerAddress"/>
     <form:errors path="customerAddress"/>
     <br>
+    <form:label for="customerPostcode" path="customerPostcode">Postcode:</form:label>
+    <form:input path="customerAddress"/>
+    <form:errors path="customerAddress"/>
+    <br>
     <form:label for="customerEmail" path="customerEmail">Email:</form:label>
     <form:input path="customerEmail"/>
     <form:errors path="customerEmail"/>

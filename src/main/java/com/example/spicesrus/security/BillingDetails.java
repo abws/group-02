@@ -4,15 +4,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.example.spicesrus.entities.Orders;
+
 @Entity
 public class BillingDetails {
 @Id
 private int billingID;
-//@OneToOne
-private int ordernum;
+@OneToOne
+private Orders order;
 private String firstName;
 private String surname;
 private String customerAddress;
+private String customerPostcode;
 private String customerEmail;
 private String cardholderName;
 private String cardNumber;
@@ -49,12 +52,6 @@ public String getCustomerEmail() {
 public void setCustomerEmail(String customerEmail) {
 	this.customerEmail = customerEmail;
 }
-public int getOrdernum() {
-	return ordernum;
-}
-public void setOrdernum(int ordernum) {
-	this.ordernum = ordernum;
-}
 public String getCardholderName() {
 	return cardholderName;
 }
@@ -78,6 +75,12 @@ public String getCvvNumber() {
 }
 public void setCvvNumber(String cvvNumber) {
 	this.cvvNumber = cvvNumber;
+}
+public String getCustomerPostcode() {
+	return customerPostcode;
+}
+public void setCustomerPostcode(String customerPostcode) {
+	this.customerPostcode = customerPostcode;
 }
 
 

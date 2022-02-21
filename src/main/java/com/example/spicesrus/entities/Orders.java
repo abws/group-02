@@ -4,16 +4,20 @@ package com.example.spicesrus.entities;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.example.spicesrus.security.UDetails;
 
 @Entity
 public class Orders {
 	
 	@Id
+	@GeneratedValue
 	private int id;
-	private String BasketId;
+	@OneToOne
+	private UDetails user;
 	private Date orderDate;
 	private int quantity;
 	private float orderTotal;
@@ -43,11 +47,6 @@ public class Orders {
 	public void setOrderTotal(float orderTotal) {
 		this.orderTotal = orderTotal;
 	}
-	public String getBasketId() {
-		return BasketId;
-	}
-	public void setBasketId(String basketId) {
-		BasketId = basketId;
-	}	
+	
 	
 }
