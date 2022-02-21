@@ -11,7 +11,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(207, 112, 24);
+    background-color: #fe7b00;
   }
 
   .navigation li {
@@ -31,17 +31,16 @@
     text-decoration: none;
   }
 
-  .navigation li a:hover:not(.active) {
-    background-color: rgb(151, 94, 41);
+  .navigation li a:hover{
+    background-color: #dc6a00;
   }
 
   .navigation .active {
-    background-color: #aa551d;
+    background-color: #ed7200;
   }
 
 
 </style>
-
 </head>
 <body>
 	<div class ="navigation">

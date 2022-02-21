@@ -28,6 +28,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 	private PasswordEncoder encoder;
 	
 	public static List<Spices> spices = new ArrayList<>();
+	public static List<UDetails> users = new ArrayList<>();
 
 
     public static void main(String[] args) {
@@ -36,27 +37,28 @@ public class SpicesrusApplication implements ApplicationRunner {
     
     public void run(ApplicationArguments args) throws Exception{
     	UDetails ud = new UDetails();
-    	ud.setUsername("example");
+    	ud.setUsername("michaeljordan");
     	ud.setPassword(encoder.encode("password"));
-    	ud.setEmail("example@example.com");
-		ud.setFirstName("First Name");
-		ud.setLastName("Last Name");
+    	ud.setEmail("mcj@google.com");
+		ud.setFirstName("Michael");
+		ud.setLastName("Jordan");
+		
 		detailsRepo.save(ud);
 
     	Spices s1 = new Spices();
     	s1.setName("ALLSPICE");
     	s1.setCategory("Spice Blends");
     	s1.setPrice(0.8);
-    	s1.setDescription("Allspice is not actually blend of other spices but a berry of an evergreen tree. It's flavor is similar to a blend of nutmeg, cloves and cinnamon");
-    	s1.setPicture("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/AllspiceBowl.JPG/220px-AllspiceBowl.JPG");
+    	s1.setDescription("Allspice is not actually blend of other spices but a berry of an evergreen tree. It's flavor is similar to a blend of nutmeg and cinnamon");
+    	s1.setPicture("https://www.spicemountain.co.uk/wp-content/uploads/2019/10/allspice_1046861527.jpg");
     	s1 = spicesRepo.save(s1);
     	
     	Spices s2 = new Spices();
     	s2.setName("BLACK PEPPER");
     	s2.setCategory("Peppers");
     	s2.setPrice(0.99);
-    	s2.setDescription("Black Pepper adds flavor to almost every food of every nation in the world. It is used in rubs, spice blends, salad dressings, and peppercorn blends.");
-    	s2.setPicture("https://tse2.mm.bing.net/th?id=OIP.kAnWSBo2ETYfDSENYY1s8QHaE7&pid=Api");
+    	s2.setDescription("Black Pepper adds flavor to almost every food of every nation in the world. It is used in rubs, spice blends and peppercorn blends.");
+    	s2.setPicture("https://stamboulbazaar.com/wp-content/uploads/nc/catalog/Product/Baharatlar/turkish-black-pepper-spice-ground.jpg");
     	s2 = spicesRepo.save(s2);
     	
     	Spices s3 = new Spices();
@@ -79,6 +81,7 @@ public class SpicesrusApplication implements ApplicationRunner {
     	spices.add(s2);
     	spices.add(s3);
     	spices.add(s4);
+    	users.add(ud);
 
     }
 }

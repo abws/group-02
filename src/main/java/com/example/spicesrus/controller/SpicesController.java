@@ -3,6 +3,8 @@ package com.example.spicesrus.controller;
 import com.example.spicesrus.SpicesrusApplication;
 import com.example.spicesrus.entities.Spices;
 import com.example.spicesrus.repo.SpicesRepository;
+import com.example.spicesrus.security.UDetails;
+import com.example.spicesrus.security.UDetailsRepo;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -20,12 +23,17 @@ public class SpicesController {
 	@Autowired
 	private SpicesRepository spicesRepo;
 	
+	@Autowired
+	private UDetailsRepo uRepo;
+
 	@RequestMapping("/spices")
 	public String Spices(Model model) {
 		Iterable<com.example.spicesrus.entities.Spices> spiceListFromDatabase = spicesRepo.findAll(); 
+		model.addAttribute("path", "Relevant");
 		model.addAttribute("spices", spiceListFromDatabase );
 		return "allSpices";
 	}
+	
 	
 	@GetMapping("/spices/Salts")
 	public String showCategory_S(Model model) {
@@ -37,6 +45,7 @@ public class SpicesController {
 				output.add(s);
 			}
 		}
+		model.addAttribute("path", "Relevant");
 		model.addAttribute("spices", output);
 				
 		return "allSpices";
@@ -53,7 +62,7 @@ public class SpicesController {
 			}
 		}
 		model.addAttribute("spices", output);
-				
+		model.addAttribute("path", "Relevant");
 		return "allSpices";
 	}
 	
@@ -68,7 +77,8 @@ public class SpicesController {
 			}
 		}
 		model.addAttribute("spices", output);
-				
+		model.addAttribute("path", "Relevant");
+
 		return "allSpices";
 	}
 	
@@ -90,6 +100,7 @@ public class SpicesController {
 			}
 		}
 		model.addAttribute("spices", output);	
+		model.addAttribute("path", "A-Z");
 		return "allSpices";
 	}
 	
@@ -112,6 +123,7 @@ public class SpicesController {
 		}
 		
 		model.addAttribute("spices", output);	
+		model.addAttribute("path", "Z-A");
 		return "allSpices";
 	}
 
@@ -132,7 +144,7 @@ public class SpicesController {
 				}
 			}
 		}
-		
+		model.addAttribute("path", "Price Ascending");
 		model.addAttribute("spices", output);	
 		return "allSpices";
 	}
@@ -154,11 +166,24 @@ public class SpicesController {
 				}
 			}
 		}
-		
+		model.addAttribute("path", "Price Descending");
+
 		model.addAttribute("spices", output);	
 		return "allSpices";
 	}
 	
 	
-
+	@GetMapping("/user")
+	public String User(Model model, @RequestParam String username) {
+		List<UDetails> users = SpicesrusApplication.users;
+		for (UDetails u: users) {
+			if(u.getUsername().contentEquals(username)) {
+				model.addAttribute("user", u);
+			}else {
+				return "error404";
+			}
+		}
+		return "user_detail";
+	}
+	
 }
