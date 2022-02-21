@@ -11,39 +11,40 @@ import javax.persistence.Transient;
  */
 @Entity
 public class ItemPounds extends Item{
-	private int stones;
-	private double pounds;
+	private int pounds;
+	private int ounces;
 	@Transient //transient annotation stops these fields from being persisted
 	private double price;
 	
-	public int getStones() {
-		return stones;
-	}
-
-	public void setStones(int stones) {
-		this.stones = stones;
-	}
-
-	public double getPounds() {
+	public int getPounds() {
 		return pounds;
 	}
 
-	public void setPounds(double pounds) {
-		//round pounds to 2 decimal places
-		this.pounds = Math.round(pounds * 100.0) / 100.0;
+	public void setPounds(int ounces) {
+		this.ounces = ounces;
+	}
+	
+	public int getOunces() {
+		return this.ounces;
+	}
+
+
+	public void setOunces(int ounces) {
+		this.ounces = ounces;
 	}
 
 	public double getPrice() {
 		//convert convert stones and pounds to grams and then multiply by standard
-		this.price = (((this.stones * 16) + this.pounds) * 454) * (getSpice().getPrice() / 100);
+		this.price = (((this.pounds * 16) + this.ounces) * 28.3495) * (getSpice().getPrice() / 100);
+		this.price = Math.round(this.price * 100.0) / 100.0; //round to 2 decimal places
 		return price;
 	}
 
 	@Override
 	public String toString() {
-		if (this.stones == 0)
-			return getSpice().getName() + ":" + this.pounds + " pounds";
+		if (this.pounds == 0)
+			return getSpice().getName() + ":" + this.ounces + " lb";
 		else
-			return getSpice().getName() + ":" + this.stones + " st " + this.pounds + " Ib";
+			return getSpice().getName() + ":" + this.pounds + " lb " + this.pounds + " oz.";
 	}
 }
