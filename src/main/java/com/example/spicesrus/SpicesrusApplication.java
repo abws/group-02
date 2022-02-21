@@ -48,7 +48,7 @@ public class SpicesrusApplication implements ApplicationRunner {
     	Spices s1 = new Spices();
     	s1.setName("ALLSPICE");
     	s1.setCategory("Spice Blends");
-    	s1.setPrice(0.8);
+    	s1.setPrice(0.85);
     	s1.setDescription("Allspice is not actually blend of other spices but a berry of an evergreen tree. It's flavor is similar to a blend of nutmeg and cinnamon");
     	s1.setPicture("https://www.spicemountain.co.uk/wp-content/uploads/2019/10/allspice_1046861527.jpg");
     	s1 = spicesRepo.save(s1);
@@ -64,7 +64,7 @@ public class SpicesrusApplication implements ApplicationRunner {
     	Spices s3 = new Spices();
     	s3.setName("GARLIC SALT");
     	s3.setCategory("Salts");
-    	s3.setPrice(1.2);
+    	s3.setPrice(1.20);
     	s3.setDescription("Ideal to have on hand for that garlic flavour.Just add to sauces and dips, on pizzas and in salad dressings.");
     	s3.setPicture("https://thekitchencommunity.org/wp-content/uploads/2021/04/Garlic-Powder.jpg");
     	s3 = spicesRepo.save(s3);
@@ -72,7 +72,7 @@ public class SpicesrusApplication implements ApplicationRunner {
     	Spices s4 = new Spices();
     	s4.setName("LONG PEPPER");
     	s4.setCategory("Peppers");
-    	s4.setPrice(3);
+    	s4.setPrice(3.00);
     	s4.setDescription("This pepper is mostley used in slow cooked dishes & pickels.It smells sweetley fragrant, but has a biting aftertaste.");
     	s4.setPicture("https://cdn.shopify.com/s/files/1/1745/8453/products/photo1_d6ee5edf-6270-452a-b368-b2351ae4b27a_1024x1024.jpg?v=1639330805");
     	s4 = spicesRepo.save(s4);

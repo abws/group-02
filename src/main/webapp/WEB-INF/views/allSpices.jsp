@@ -157,11 +157,7 @@
 	
 	}
   
- .wrap{
- 
 
-  
- }
  
  
 .search {
@@ -182,13 +178,13 @@
     border-radius: 5px 0 0 5px;
     outline: none;
     color: #ffffff;
-    background-color: transparent;
+    background-color: #00000078;
 }
 
 
 
 .searchTerm:focus{
-  color: #dc6a00;
+  color: white;
    
 }
   
@@ -286,13 +282,13 @@ sortmenu.onchange = function() {
 <div class="row">
     <c:forEach var="spice" items="${spices}">
         <div class="card"class="cards">
-            <img src="${spice.picture}" alt="${spice.name}" width="500" height="300" style="width:100%">
+            <a href="spice?spice=${spice.name}"><img src="${spice.picture}" alt="${spice.name}" width="500" height="300" style="width:100%"></a>
             <h1> ${spice.name}</h1>
             <p> Category: ${spice.category}</p>
             <p class="price">£${spice.price} per 100g</p>
             <p>${spice.description}</p>
             <p>
-                <button>Add to Cart</button>
+                <a href="spice?spice=${spice.name}"><button>View Details</button></a>
             </p>
         </div>
     </c:forEach>
