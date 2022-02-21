@@ -24,19 +24,19 @@ public class ItemPounds extends Item{
 
 	public double getPrice() {
 		//convert weight into grams and then multiply by the standard
-		this.price = (weightInPounds * 454) * (getSpice().getPrice() / 100);
+		this.price = Math.round((weightInPounds * 454) * (getSpice().getPrice() / 100) * 100.0) / 100.0;
 		return price;
 	}
 
 	@Override
 	public String toString() {
 		
-		Integer quotient = Math.floorMod(getWeightInPounds() / 1000);
-		Integer remainder = getWeightInGrams() % 1000;
+		Integer quotient = (int) Math.floor(getWeightInPounds()) / 16;
+		Double remainder = getWeightInPounds() % 1000;
 		
 		if (quotient == 0)
-			return getSpice().getName() + ":" + getWeightInGrams() + "grams";
+			return getSpice().getName() + ":" + remainder + "pounds";
 		else
-			return getSpice().getName() + ":" + quotient.toString() + "kg " + remainder.toString() + "g";
+			return getSpice().getName() + ":" + quotient.toString() + "st " + remainder.toString() + "Ib";
 	}
 }

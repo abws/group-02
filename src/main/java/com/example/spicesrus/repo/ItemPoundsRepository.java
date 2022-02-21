@@ -1,10 +1,9 @@
 package com.example.spicesrus.repo;
 
 import org.springframework.data.repository.CrudRepository;
+import com.example.spicesrus.entities.ItemPounds;
 
-import com.example.spicesrus.entities.Item;
-
-public interface ItemRepository extends CrudRepository<Item, Integer> {
-	public Item findBySpiceName(String name);
+public interface ItemPoundsRepository extends CrudRepository<ItemPounds, Integer> {
+	public ItemPounds findBySpiceName(String name);
 
 }

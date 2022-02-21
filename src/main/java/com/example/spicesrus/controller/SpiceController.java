@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.spicesrus.entities.Item;
+import com.example.spicesrus.entities.ItemGrams;
+import com.example.spicesrus.entities.ItemPounds;
 import com.example.spicesrus.entities.Spices;
-import com.example.spicesrus.repo.ItemRepository;
+import com.example.spicesrus.repo.ItemGramsRepository;
+import com.example.spicesrus.repo.ItemPoundsRepository;
 import com.example.spicesrus.repo.SpicesRepository;
 
 /**
@@ -21,10 +24,11 @@ import com.example.spicesrus.repo.SpicesRepository;
 @Controller
 public class SpiceController {
 	
-	@Autowired
-	ItemRepository iRepo;
-	
-	@Autowired
+	@Autowired //for creating a new item in pound format
+	ItemPoundsRepository ipRepo;
+	@Autowired //for creating a new item in gram format
+	ItemGramsRepository igRepo;
+	@Autowired //for displaying the spice
 	SpicesRepository sRepo;
 	
 	/**
@@ -38,8 +42,9 @@ public class SpiceController {
 	@RequestMapping("/spice") //by default manages get requests
 	public String showSpice(@RequestParam String spice, Model model) {
 		Spices s = sRepo.findByName(spice); //same as finding by id since the name is the id
-		Item i = new Item();
-		model.addAttribute("item", i);
+		model.addAttribute("spice", s);
+		model.addAttribute("itemPound", new ItemPounds()); //CANNOT INSTANTIATE AN ITEM OBJECT!
+		model.addAttribute("itemGram", new ItemGrams());
 		
 		//just in case user types the spice name into the url
 		if (s != null)

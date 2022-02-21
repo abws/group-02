@@ -20,17 +20,17 @@ public class ItemGrams extends Item{
 	}
 
 	public void setWeightInGrams(int weightInGrams) {
-		this.weightInGrams = weightInGrams;
+		this.weightInGrams = weightInGrams; //shouldn't be a double
 	}
 
 	public double getPrice() {
-		this.price = weightInGrams * (getSpice().getPrice() / 100);
+		this.price = Math.round((weightInGrams * (getSpice().getPrice() / 100)) * 100.0) / 100.0;
 		return price;
 	}
 
 	@Override
 	public String toString() {
-		Integer quotient = Math.floorMod(getWeightInGrams() / 1000, getId());
+		Integer quotient = getWeightInGrams() / 1000;
 		Integer remainder = getWeightInGrams() % 1000;
 		
 		if (quotient == 0)

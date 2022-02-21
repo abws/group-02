@@ -19,7 +19,7 @@ import javax.persistence.Transient;
  * @author Abdiwahab
  * @version 1.0
  */
-abstract class Item {
+public abstract class Item {
 	@Id
 	@GeneratedValue
 	private int id;
