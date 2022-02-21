@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.spicesrus.entities.Basket;
 import com.example.spicesrus.entities.Spices;
 import com.example.spicesrus.repo.BasketRepository;
 import com.example.spicesrus.repo.SpicesRepository;
@@ -23,14 +24,16 @@ public class BasketController {
 	@RequestMapping("/Basket/{name}")
 	public String addToBasket(Model model, @PathVariable("name") String name) {
 		Spices spicetoAdd = spiceRepo.findByName(name);
-		SpicesrusApplication.basket.addItems(spicetoAdd);
+		Basket b = basketRepo.findById(0);
+		b.addItems(spicetoAdd);
 		return "redirect:../spices";
 	}
 	
 	@RequestMapping("/Basket/Remove/{name}")
 	public String RemoveFromBasket(Model model, @PathVariable("name") String name) {
 		Spices spicetoDelete = spiceRepo.findByName(name);
-		SpicesrusApplication.basket.deleteItems(spicetoDelete);
+		Basket b = basketRepo.findById(0);
+		b.deleteItems(spicetoDelete);
 		return "redirect:../basket";
 	}
 	

@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.spicesrus.entities.Basket;
 import com.example.spicesrus.entities.Spices;
+import com.example.spicesrus.repo.BasketRepository;
 import com.example.spicesrus.repo.SpicesRepository;
 import com.example.spicesrus.security.UDetails;
 import com.example.spicesrus.security.UDetailsRepo;
@@ -24,18 +25,24 @@ public class SpicesrusApplication implements ApplicationRunner {
 
 	@Autowired
 	private UDetailsRepo detailsRepo;
+	
+	@Autowired
+	private BasketRepository basketrepo;
 
 	@Autowired
 	private PasswordEncoder encoder;
 	
 	public static List<Spices> spices = new ArrayList<>();
-	public static Basket basket = new Basket();
 
     public static void main(String[] args) {
         SpringApplication.run(SpicesrusApplication.class, args);
     }
     
     public void run(ApplicationArguments args) throws Exception{
+    	
+    	Basket basket = new Basket();
+    	basket = basketrepo.save(basket); 
+    	
     	UDetails ud = new UDetails();
     	ud.setUsername("example");
     	ud.setPassword(encoder.encode("password"));
