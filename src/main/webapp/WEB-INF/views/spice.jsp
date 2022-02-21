@@ -15,12 +15,14 @@
 
 	<p>Price per 100g: $ ${spice.price}</p>
 
-	<form:form action="addItem" modelAttribute="item">
+	<form:form action="addItemGrams" modelAttribute="itemGram">
 		<form:hidden path="spice" value="${spice.name}"/>
-		<br>
-		<form:label path="weightInGrams">Weight: </form:label>
-		<form:input path="weightInGrams"/>
-		<form:errors path="weightInGrams"/>
+		<!--kilograms/stones input-->
+		<form:input path="kilograms"/>
+		<form:label path="kilograms">kilograms</form:label>	
+		<!--grams/stones input-->
+		<form:input path="grams"/>
+		<form:label path="grams">grams</form:label>
 		<br>
 		<input type="submit" value="Add to Cart">
 		

@@ -59,21 +59,27 @@ public class SpiceController {
 	 * @param item
 	 * @return "spice" jsp page
 	 */
-	@PostMapping("addItem")
-	public String addItem(@ModelAttribute Item item, @RequestParam String units) {
-		if (units == "pounds") {
-			 item = (ItemPounds) item;
-			 Item x = ipRepo.save(item);
-		}
-	
-		else {
-			item = (ItemGrams) item;
-			Item x = igRepo.save(item);
-		}
-		
+	@PostMapping("addItemGrams")
+	public String addItem(@ModelAttribute ItemGrams item) {
+		Item x = igRepo.save(item);
 		x = igRepo.findById(x.getId()).get();
 		System.out.println(x.getPrice());
 		return "redirect:/spices";
+		
+	}
+	
+	/**
+	 * Adds an item to pounds database
+	 * @param item
+	 * @return "spice" jsp page
+	 */
+	@PostMapping("addItemPounds")
+	public String addItem(@ModelAttribute ItemPounds item) {
+		Item x = ipRepo.save(item);
+		x = ipRepo.findById(x.getId()).get();
+		System.out.println(x.getPrice());
+		return "redirect:/spices";
+		
 	}
 
 }
