@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -184,5 +185,15 @@ public class SpicesController {
 		}
 		return "user_detail";
 	}
+	
+	
+	@GetMapping("/spicesearch")
+	public String search(Model model, @RequestParam String spice) {
+		List<Spices> spices = spicesRepo.findByNameContainingIgnoreCase(spice);
+		model.addAttribute("spices", spices);	
+		return "allSpices";
+		
+	}
+	
 	
 }
