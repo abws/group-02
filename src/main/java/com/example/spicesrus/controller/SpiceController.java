@@ -1,5 +1,7 @@
 package com.example.spicesrus.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +19,9 @@ import com.example.spicesrus.repo.ItemPoundsRepository;
 import com.example.spicesrus.repo.SpicesRepository;
 
 /**
- * Manages all requests to the homepage
+ * Controller class managing items being added to cart 
  * @author Abdiwahab
- * @version 1
+ * @version 2
  */
 @Controller
 public class SpiceController {
@@ -34,7 +36,7 @@ public class SpiceController {
 	/**
 	 * Checks if a spice exists in the database.
 	 * Shows the spice to user
-	 * Couldn't handle /spices?... requests as its implemented elsewhere
+	 * Couldn't handle "/spices?..." requests as its implemented elsewhere
 	 * @param spice
 	 * @param model
 	 * @return "spice" jsp page
@@ -43,7 +45,7 @@ public class SpiceController {
 	public String showSpice(@RequestParam String spice, Model model) {
 		Spices s = sRepo.findByName(spice); //same as finding by id since the name is the id
 		model.addAttribute("spice", s);
-		model.addAttribute("itemPound", new ItemPounds()); //CANNOT INSTANTIATE AN ITEM OBJECT!, whatever happened to that whole polymorphism stuff
+		model.addAttribute("itemPound", new ItemPounds()); //CANNOT INSTANTIATE AN ITEM OBJECT!, whatever happened to that whole polymorphism stuff they were bragging about (would be nice if i could create a general object that gets specified after form is filled)
 		model.addAttribute("itemGram", new ItemGrams());
 		
 		//just in case user types the spice name into the url
@@ -60,7 +62,8 @@ public class SpiceController {
 	 * @return "spice" jsp page
 	 */
 	@PostMapping("addItemGrams")
-	public String addItem(@ModelAttribute ItemGrams item) {
+	public String addItem(@ModelAttribute ItemGrams item, HttpServletRequest request) {
+		request.getSession().setAttribute("hi", "hi");
 		Item x = igRepo.save(item);
 		x = igRepo.findById(x.getId()).get();
 		System.out.println(x.getPrice());
@@ -69,15 +72,16 @@ public class SpiceController {
 	}
 	
 	/**
-	 * Adds an item to pounds database
+	 * Adds an item in pounds to database
 	 * @param item
 	 * @return "spice" jsp page
 	 */
 	@PostMapping("addItemPounds")
 	public String addItem(@ModelAttribute ItemPounds item) {
+		System.out.println(item.getPounds());
 		Item x = ipRepo.save(item);
 		x = ipRepo.findById(x.getId()).get();
-		System.out.println(x.getPrice());
+		//System.out.println(x.getPrice());
 		return "redirect:/spices";
 		
 	}

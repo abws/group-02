@@ -20,44 +20,51 @@
 		<form:hidden path="spice" value="${spice.name}"/>
 		<!--kilograms/stones input depending on js onlcik-->
 		<form:input id="input-large" path="kilograms"/>
-		<form:label id="label-large" path="kilograms">kilograms</form:label>	
+		<form:label id="label-large" path="kilograms">kg</form:label>	
 		<!--grams/stones input depending on js onclick-->
 		<form:input id="input-small" path="grams"/>
-		<form:label id="label-small" path="grams">grams</form:label>
+		<form:label id="label-small" path="grams">g</form:label>
 		<button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
 		<br>
 		<input type="submit" value="Add to Cart">
 	</form:form>
 
+
 	<script type="text/javascript">
 		let y = false;
 
 		function unitSwitch(){
-			//currently at imperial units (pounds and ounces)
+			//if at imperial units (pounds and ounces)
 			if (!y) {
-			y = true;
-			document.getElementById("units").innerHTML = "Switch to Metric Units";
-			document.getElementById("form").action = "addItemPounds";
-			document.getElementById("form").modelAttribute = "itemPound";
-			document.getElementById("input-large").path = "pounds";
-			document.getElementById("input-small").path = "ounces";
-			document.getElementById("label-large").innerHTML = "pounds";
-			document.getElementById("label-small").innerHTML = "ounces";
-		}
+				y = true;
+				document.getElementById("units").innerHTML = "Switch to Metric Units";
 
-		//currently at metric units (kilograms and grams)
-		else if (y) {
-			y = false;
-			document.getElementById("units").innerHTML = "Switch to Imperial Units";
-			document.getElementById("form").action = "addItemGrams";
-			document.getElementById("form").modelAttribute = "itemPound";
-			document.getElementById("input-large").path = "kilograms";
-			document.getElementById("input-small").path = "grams";
-			document.getElementById("label-large").innerHTML = "kilograms";
-			document.getElementById("label-small").innerHTML = "grams";
-		}
+				document.getElementById("form").action = "addItemPounds";
+				document.getElementById("form").modelAttribute = "itemPound";
 
+				document.getElementById("input-large").path = "pounds";
+				document.getElementById("input-small").path = "ounces";
+
+				document.getElementById("label-large").innerHTML = "lb";
+				document.getElementById("label-small").innerHTML = "oz.";
+			}
+
+			//if at metric units (kilograms and grams)
+			else if (y) {
+				y = false;
+				document.getElementById("units").innerHTML = "Switch to Imperial Units";
+
+				document.getElementById("form").action = "addItemGrams";
+				document.getElementById("form").modelAttribute = "itemGram";
+
+				document.getElementById("input-large").path = "kilograms";
+				document.getElementById("input-small").path = "grams";
+
+				document.getElementById("label-large").innerHTML = "kg";
+				document.getElementById("label-small").innerHTML = "g";
+			}
 		}
 	</script>
+
 </body>
 </html>

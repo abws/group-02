@@ -15,7 +15,7 @@ import javax.persistence.Transient;
  * Represents an item
  * Each item will map to 1 spice
  * Each cart will have 1 or more items
- * Abstract base class
+ * Abstract class
  * @author Abdiwahab
  * @version 1.0
  */

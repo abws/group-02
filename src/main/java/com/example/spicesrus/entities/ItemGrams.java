@@ -6,7 +6,7 @@ import javax.persistence.Transient;
 /**
  * Child class of Item
  * Represents items in gram format
- * @author
+ * @author Abdiwahab
  *
  */
 @Entity
