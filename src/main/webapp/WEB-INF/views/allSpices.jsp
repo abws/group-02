@@ -228,16 +228,17 @@ input.searchTerm {
 
 <div id="back">
 
-		<div class="pic">
 		<form action="/spicesearch" method="GET">
-	      <input name="spice" type="text" class="searchTerm" placeholder="What are you looking for?">
-	      <button type="submit" class="searchButton">
-				<i class="fa-solid fa-magnifying-glass"></i>
-	     </button>
-	 </form>
+			<div class="pic">
+	      		<input name="spice" type="text" class="searchTerm" placeholder="What are you looking for?">
+	      		<button type="submit" class="searchButton">
+					<i class="fa-solid fa-magnifying-glass"></i>
+	     		</button>
+	     	</div>
+
+	 	</form>
 	
-		</div>
-	</div>
+</div>
 
 
 
