@@ -1,7 +1,9 @@
+<%@ page contentType="text/html; charset=UTF-8" %> 
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-
 
 <style>
 
@@ -235,16 +237,21 @@ width:100%;
 
 
 </style>
-   <jsp:include page="nav.jsp" />
 
-	<title>${uniqueSpice.name}</title>
+    <jsp:include page="nav.jsp" />
+  <title>${spice.name}</title>
+</head>
 	
+
+
+
+
 	 <body>
     <main class="container">
 
       <!-- Left Column / Image -->
       <div class="left-column">
-        <img src="${uniqueSpice.picture}"alt="${uniqueSpice.name}">      
+        <img src="${spice.picture}"alt="${spice.name}">      
       </div>
 
 
@@ -253,14 +260,10 @@ width:100%;
 
         <!-- Product Description -->
         <div class="product-description">
-          <span>${uniqueSpice.category}</span>
-          <h1>${uniqueSpice.name}</h1>
-          <p>${uniqueSpice.description}</p>
+          <span>${spice.category}</span>
+          <h1>${spice.name}</h1>
+          <p>${spice.description}</p>
         </div>
-
-          <!-- Type Configuration -->
-          <div class="type-config">
-            <span>Select Type</span>
 
             <div class="type-choose">
               <button>500g</button>
@@ -269,13 +272,23 @@ width:100%;
             </div>
             
              <!-- Quantity -->
-          <div class="quantity-config">
-            <span>Select Quantity</span>
-
+          <div class="quantity-config">            
             <div class="type-choose">
-              <button>-</button>
-              <input type="text" id="amount" value="0">
-              <button>+</button>
+                <!--form action and modelattribute will change onclick via js-->
+              <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
+                  <form:hidden path="spice" value="${spice.name}"/>
+                  <!--kilograms/stones input depending on js onlcik-->
+                  <form:input id="input-large" path="kilograms"/>
+                  <form:label id="label-large" path="kilograms">kg</form:label> 
+                  <!--grams/stones input depending on js onclick-->
+                  <form:input id="input-small" path="grams"/>
+                  <form:label id="label-small" path="grams">g</form:label>
+                  <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
+                  <br>
+                  <div class="product-price">
+                    <input class="cart-btn" type="submit" value="Add to Cart">
+                  </div>
+              </form:form>
             </div>
 
             
@@ -284,14 +297,10 @@ width:100%;
 
         <!-- Product Pricing -->
         <div class="product-price">
-          <span><p>£${uniqueSpice.price}</p></span>
-          <a href="#" class="cart-btn">Add to cart</a>
+          <span><p>Price per 100g: &pound;${spice.price}</p></span>
         </div>
         
-        
-         
-        
-           
+       
     </main>
     
       <div class="recipe">
@@ -313,10 +322,43 @@ width:100%;
 		</div>
   
            </div>
-        
-    
-	
-	
-</head>
 
+
+	<script type="text/javascript">
+		let y = false;
+
+		function unitSwitch(){
+			//if at imperial units (pounds and ounces)
+			if (!y) {
+				y = true;
+				document.getElementById("units").innerHTML = "Switch to Metric Units";
+
+				document.getElementById("form").action = "addItemPounds";
+				document.getElementById("form").modelAttribute = "itemPound";
+
+				document.getElementById("input-large").path = "pounds";
+				document.getElementById("input-small").path = "ounces";
+
+				document.getElementById("label-large").innerHTML = "lb";
+				document.getElementById("label-small").innerHTML = "oz.";
+			}
+
+			//if at metric units (kilograms and grams)
+			else if (y) {
+				y = false;
+				document.getElementById("units").innerHTML = "Switch to Imperial Units";
+
+				document.getElementById("form").action = "addItemGrams";
+				document.getElementById("form").modelAttribute = "itemGram";
+
+				document.getElementById("input-large").path = "kilograms";
+				document.getElementById("input-small").path = "grams";
+
+				document.getElementById("label-large").innerHTML = "kg";
+				document.getElementById("label-small").innerHTML = "g";
+			}
+		}
+	</script>
+
+</body>
 </html>

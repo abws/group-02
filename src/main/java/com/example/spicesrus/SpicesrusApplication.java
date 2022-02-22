@@ -1,5 +1,10 @@
 package com.example.spicesrus;
 
+import com.example.spicesrus.entities.Item;
+import com.example.spicesrus.entities.Spices;
+import com.example.spicesrus.repo.SpicesRepository;
+import com.example.spicesrus.security.UDetails;
+import com.example.spicesrus.security.UDetailsRepo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,7 +86,7 @@ public class SpicesrusApplication implements ApplicationRunner {
     	s4.setName("LONG PEPPER");
     	s4.setCategory("Peppers");
     	s4.setPrice(3.00);
-    	s4.setDescription("This pepper is mostley used in slow cooked dishes & pickels.It smells sweetley fragrant, but has a biting aftertaste.");
+    	s4.setDescription("This pepper is mostly used in slow cooked dishes & pickels.It smells sweetley fragrant, but has a biting aftertaste.");
     	s4.setPicture("https://cdn.shopify.com/s/files/1/1745/8453/products/photo1_d6ee5edf-6270-452a-b368-b2351ae4b27a_1024x1024.jpg?v=1639330805");
     	s4 = spicesRepo.save(s4);
     	
