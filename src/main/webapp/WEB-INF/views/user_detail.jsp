@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>User Detail</title>
-<jsp:include page="base.jsp" />
+<jsp:include page="nav.jsp" />
 <style>
 .center {
   position: absolute;
@@ -49,7 +49,7 @@ body {
   width: 200px;
   position: fixed;
   z-index: 1;
-  top: 52px;
+
   left: 0;
   background-color: #FB9350;
   overflow-x: hidden;
@@ -83,11 +83,12 @@ body {
 <div class="sidenav">
   <a href="#">My Details</a>
   <a href="#">My Address</a>
+  <a href="#">My Orders</a>
   <a href="#">My Preference</a>
 </div>
 
 <div class="content">
-  <h2>>User Profile Detail</h2>
+  <h2>User Profile Details</h2>
   
 		<label>Username:</label><label> ${user.username}</label>
 	

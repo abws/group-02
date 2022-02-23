@@ -11,6 +11,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Londrina+Solid&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value='css/index/index.css'/>">
+   	<style>
+   		#udetail{
+  			visibility: hidden;
+   		}
+   	</style>
 </head>
 <body>
     <!--Wrapper class encapsulates entire webpage-->
@@ -37,7 +42,9 @@
                                     <li>LOGIN</li>
                                 </c:when>
                                 <c:otherwise>
-                                    <li>${username}</li>
+                                    <a href="/user?username=${username}">
+                                        <li>${username}</li>
+                                    </a>
                                 </c:otherwise>
                             </c:choose>
                         </a>
@@ -56,6 +63,7 @@
                             </c:otherwise>
                         </c:choose>
                     </div>
+
                     <li><a class="cart" href="#">CART</a></li>
                 </ul>
             </nav>

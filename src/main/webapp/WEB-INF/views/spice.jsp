@@ -1,21 +1,18 @@
-<%@ page contentType="text/html; charset=UTF-8" %> 
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.getElementsByTagName("html")[0].className += " js";</script>
+<link rel="stylesheet" href="assets/css/style.css">
 <style>
 
 html, body {
   height: 100%;
   width: 100%;
   margin: 0;
-  
- 	
-	font-family: 'Arial';
-		
-		
+  font-family: 'Arial';		
 }
 
 .container {
@@ -27,7 +24,7 @@ html, body {
 
 /* Columns */
 .left-column {
-  width: 65%;
+  width: 60%;
   position: relative;
 }
 
@@ -74,7 +71,7 @@ html, body {
 .product-description p {
   font-size: 16px;
   font-weight: 300;
-  color: #86939E;
+  color: #9e9586;
   line-height: 24px;
 }
 
@@ -104,7 +101,7 @@ html, body {
 }
 
 .type-choose button {
-  border: 2px solid #E1E8EE;
+  border: 2px solid #eee7e1;
   border-radius: 6px;
   padding: 13px 20px;
   font-size: 14px;
@@ -117,9 +114,11 @@ html, body {
 .type-choose button:hover,
 .type-choose button:active,
 .type-choose button:focus {
-  border: 2px solid #86939E;
+  border: 2px solid #9e9386;
   outline: none;
 }
+
+
 
 .type-config {
   border-bottom: 1px solid #E1E8EE;
@@ -156,7 +155,7 @@ html, body {
 }
 
 .product-price span {
-  font-size: 36px;
+  font-size: 46px;
   font-weight: 300;
   color: black;
   margin-right: 20px;
@@ -165,15 +164,17 @@ html, body {
 .cart-btn {
   display: inline-block;
   background-color: #fd8d0c;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 10px;
+  font-size: 18px;
   color: #FFFFFF;
   text-decoration: none;
   padding: 12px 30px;
   transition: all .5s;
+  border:none;
+  cursor: pointer;
 }
 .cart-btn:hover {
-  background-color: #ff6600;
+  background-color: #fc8a6f;
 }
 
 /* Responsive */
@@ -204,7 +205,7 @@ html, body {
 }
 
 #amount{
-	border: 2px solid #E1E8EE;
+	border: 2px solid #eee7e1;
     border-radius: 6px;
     padding: 13px 20px;
     font-size: 14px;
@@ -215,43 +216,86 @@ html, body {
     width: 15px;
     text-align:center;
 }
+
+.unit_input{
+border: 2px solid #eee7e1;
+    border-radius: 6px;
+    padding: 13px 20px;
+    font-size: 14px;
+    color: #5E6977;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all .5s;
+    width: 25px;
+    text-align:center;
+
+}
 .recipe{
 
-width:100%;
+
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 1200px;
+
+display: flex;
 
 }
 
+.recipe div{
 
+width:33.33%;
 
-.column {
-  float: left;
-  padding: 10px;
+    padding: 10px;
+    margin: 10px;
 }
 
-/* Clearfix (clear floats) */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
+.recipe img{
+  border-radius: 10px;
+  
+img-shadow: 2px 2px;
+
+      border:2px solid #fff;
+    
+      box-shadow: 10px 10px 5px #ccc;
+      -moz-box-shadow: 10px 10px 5px #ccc;
+      -webkit-box-shadow: 10px 10px 5px #ccc;
+      -khtml-box-shadow: 10px 10px 5px #ccc;
+}
+
+.recipe img:hover {
+  box-shadow: 0 0 2px 2px #fd8d0c;
+      cursor: pointer;
+}
+
+h2{
+
+    text-align: center;
+    background: #fc8a70;
+    color: white;
+    padding: 10px;
+
+ border-radius: 0px 50px 0px 0px;
+    font-family: arial;
+    font-size: 28px;
+    width: 50%;
+
+
 }
 
 
 </style>
+   <jsp:include page="nav.jsp" />
 
-    <jsp:include page="nav.jsp" />
-  <title>${spice.name}</title>
-</head>
-	
-
-
-
-
+	<title>${spice.name}</title>
+	</head>
 	 <body>
     <main class="container">
 
       <!-- Left Column / Image -->
       <div class="left-column">
-        <img src="${spice.picture}"alt="${spice.name}">      
+        <img src="${spice.picture}" alt="${spice.name}">      
       </div>
 
 
@@ -261,104 +305,224 @@ width:100%;
         <!-- Product Description -->
         <div class="product-description">
           <span>${spice.category}</span>
-          <h1>${spice.name}</h1>
+          <h1 class="name">${spice.name}</h1>
           <p>${spice.description}</p>
         </div>
 
+          <!-- Type Configuration -->
+          <div class="type-config">
+            <span>Select Type</span>
+
             <div class="type-choose">
-              <button>500g</button>
-              <button>5kg</button>
-              <button>10kg</button>
+              <button class="quantity" onclick="change_price()">100g</button>
+              <button class="quantity1" onclick="change_price1()">500g</button>
+              <button class="quantity2" onclick="change_price2()">1kg</button>
+              <button class="quantity3" onclick="change_price3()">5kg</button>
+             
+            </div>
+            
+            <div class="quantity-config">            
+              <div class="type-choose">
+                  <!--form action and modelattribute will change onclick via js-->
+                <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
+                    <form:hidden path="spice" value="${spice.name}"/>
+                    <!--kilograms/stones input depending on js onlcik-->
+                    <form:input id="input-large" class="unit_input" path="kilograms"/>
+                    <form:label id="label-large" path="kilograms">kg</form:label> 
+                    <!--grams/stones input depending on js onclick-->
+                    <form:input id="input-small" class="unit_input" path="grams"/>
+                    <form:label id="label-small" path="grams">g</form:label>
+                    <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
+                    <br>
+                    
+                </form:form>
+              </div>
+  
+              
             </div>
             
              <!-- Quantity -->
-          <div class="quantity-config">            
-            <div class="type-choose">
-                <!--form action and modelattribute will change onclick via js-->
-              <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
-                  <form:hidden path="spice" value="${spice.name}"/>
-                  <!--kilograms/stones input depending on js onlcik-->
-                  <form:input id="input-large" path="kilograms"/>
-                  <form:label id="label-large" path="kilograms">kg</form:label> 
-                  <!--grams/stones input depending on js onclick-->
-                  <form:input id="input-small" path="grams"/>
-                  <form:label id="label-small" path="grams">g</form:label>
-                  <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
-                  <br>
-                  <div class="product-price">
-                    <input class="cart-btn" type="submit" value="Add to Cart">
-                  </div>
-              </form:form>
-            </div>
+          <div class="quantity-config">
+            <span>Select Quantity</span>
 
+            <div class="type-choose">
+              <button class="btn btn-default btn-subtract">-</button>
+              <input type="text" id="amount" value="1" class="form-control no-padding text-center item-quantity" min="0" onkeyup="value=value.replace(/^\d/g,'')">
+              <button class="btn btn-default btn-add">+</button>
+            </div>
+			
             
           </div>
         </div>
 
         <!-- Product Pricing -->
         <div class="product-price">
-          <span><p>Price per 100g: &pound;${spice.price}</p></span>
+          <span><p id="price"></p></span>
+         <button onclick="my()" class="cart-btn" id="pass">Add to cart</button>
         </div>
         
-       
-    </main>
+     </div>
+  	</main>
     
+    
+            <h2 style="text-align:center;">Related Recipe</h2>
       <div class="recipe">
-           <h1 style="Text-align:center;"> Recommended Recipe </h1>
-           
-	 	 <div class="row">
-		  	<div class="column">
-		   	 <img src="https://desirerecipes.com/wp-content/uploads/2021/11/image-28-1-1-1-1.jpg" alt="Black pepper" height="400" width="450">
-		   	 <p>Black Pepper Angus Steak</p>
-		 	</div>
-		 <div class="column">
-		   	 <img src="https://desirerecipes.com/wp-content/uploads/2021/11/image-28-1-1-1-1.jpg" alt="Black pepper" height="400" width="450">
-		   	 <p>Black Pepper Angus Steak</p>
-		 	</div>
-		  <div class="column">
-		   	 <img src="https://desirerecipes.com/wp-content/uploads/2021/11/image-28-1-1-1-1.jpg" alt="Black pepper" height="400" width="450">
-		   	 <p>Black Pepper Angus Steak</p>
-		 	</div>
+      
+      	
+   
+	 	<div >
+ 	 		<img src="https://selfproclaimedfoodie.com/wp-content/uploads/new-york-strip-steak-square-3.jpg" alt="Black pepper" width="304" height="236">
+		   	 <p> Angus Steak</p>
+	 	</div>
+	 	
+	 	<div >
+ 	 		<img src="https://www.connoisseurusveg.com/wp-content/uploads/2017/04/black-pepper-tofu.jpg" alt="Black pepper" width="304" height="236">
+		   	 <p>Black Pepper Tofu</p>
+	 	</div>
+	 	
+	 	<div >
+ 	 		<img src="https://huntercattle.com/wp-content/uploads/2020/11/istockphoto-541851706-612x612-1.jpg" alt="Black pepper" width="304" height="236">
+		   	 <p>Sirloin Steak</p>
+	 	</div>
+	 	
+		   	
 		</div>
   
-           </div>
+           
+<script>
+	var minus = document.querySelector(".btn-subtract");
+	var add = document.querySelector(".btn-add");
+	var quantityNumber = document.querySelector(".item-quantity");
+	var currentValue = 1;
+	var quantity1 = document.querySelector(".quantity1");
+	var quantity2 = document.querySelector(".quantity2");
+	var quantity3 = document.querySelector(".quantity3");
+	var price = ${spice.price};
+	var price1 = ${spice.price}*5;
+	var price2 = ${spice.price}*8;
+	var price3 = ${spice.price}*10;
+	var total =document.getElementById("price").innerHTML;
+	var p = document.getElementById("price");
+	var type = "";
+	var q = "";
+	var submit_price = 0;
 
+	document.getElementById("price").innerHTML = "&pound" +${spice.price}.toFixed(2);
 
-	<script type="text/javascript">
-		let y = false;
-
-		function unitSwitch(){
-			//if at imperial units (pounds and ounces)
-			if (!y) {
-				y = true;
-				document.getElementById("units").innerHTML = "Switch to Metric Units";
-
-				document.getElementById("form").action = "addItemPounds";
-				document.getElementById("form").modelAttribute = "itemPound";
-
-				document.getElementById("input-large").path = "pounds";
-				document.getElementById("input-small").path = "ounces";
-
-				document.getElementById("label-large").innerHTML = "lb";
-				document.getElementById("label-small").innerHTML = "oz.";
-			}
-
-			//if at metric units (kilograms and grams)
-			else if (y) {
-				y = false;
-				document.getElementById("units").innerHTML = "Switch to Imperial Units";
-
-				document.getElementById("form").action = "addItemGrams";
-				document.getElementById("form").modelAttribute = "itemGram";
-
-				document.getElementById("input-large").path = "kilograms";
-				document.getElementById("input-small").path = "grams";
-
-				document.getElementById("label-large").innerHTML = "kg";
-				document.getElementById("label-small").innerHTML = "g";
-			}
+	
+	minus.addEventListener("click", function(){
+		if (currentValue > 1){
+		    currentValue -= 1;
+		    quantityNumber.value = currentValue;
+		    document.getElementById("price").innerHTML = "&pound"+ (total * quantityNumber.value).toFixed(2);
+		    console.log(currentValue)}
+	
+		else{
+			currentValue = 1;
 		}
-	</script>
+		
+	});
+	
+	add.addEventListener("click", function() {
+	    currentValue += 1;
+	    quantityNumber.value = currentValue;
+	    document.getElementById("price").innerHTML = "&pound"+(total * quantityNumber.value).toFixed(2);
+	    console.log(currentValue);
+	});
+	
+	
 
+	function change_price(){
+		quantityNumber.value = 1;
+		currentValue = 1;
+	    document.getElementById("price").innerHTML = "&pound"+price.toFixed(2);
+	    total = price;
+	    type = document.querySelector(".quantity").innerHTML;
+	    submit_price = price.toFixed(2);
+	}
+	function change_price1(){
+		quantityNumber.value = 1;
+		currentValue = 1;
+	    document.getElementById("price").innerHTML = "&pound"+price1.toFixed(2);
+	    total = price1;
+	    type = document.querySelector(".quantity1").innerHTML;
+	    submit_price = price1.toFixed(2);
+
+	}
+	function change_price2(){
+		quantityNumber.value = 1;
+		currentValue = 1;
+	    document.getElementById("price").innerHTML ="&pound"+ price2.toFixed(2);
+	    total = price2;
+	    type = document.querySelector(".quantity2").innerHTML;
+	    submit_price = price2.toFixed(2);
+
+	}
+	function change_price3(){
+		quantityNumber.value = 1;
+		currentValue = 1;
+	    document.getElementById("price").innerHTML = "&pound"+price3.toFixed(2);
+	    total = price3;
+	    type = document.querySelector(".quantity3").innerHTML;
+	    submit_price = price3.toFixed(2);
+
+	}
+	
+
+	
+	var addtobasket = document.querySelector(".cart-btn");
+	var submit_price = 0;
+	var product = document.getElementByClass("product-price");
+ 
+
+	
+
+	
+	function my(){
+		
+		window.location.href="addtobasket"+window.location.search +"&type="+type+"&quantity="+currentValue+"&price="+submit_price+"&total="+(submit_price*currentValue).toFixed(2);
+	}
+	
+ </script>      
+
+
+
+<script type="text/javascript">
+  let y = false;
+
+  function unitSwitch(){
+    //if at imperial units (pounds and ounces)
+    if (!y) {
+      y = true;
+      document.getElementById("units").innerHTML = "Switch to Metric Units";
+
+      document.getElementById("form").action = "addItemPounds";
+      document.getElementById("form").modelAttribute = "itemPound";
+
+      document.getElementById("input-large").path = "pounds";
+      document.getElementById("input-small").path = "ounces";
+
+      document.getElementById("label-large").innerHTML = "lb";
+      document.getElementById("label-small").innerHTML = "oz.";
+    }
+
+    //if at metric units (kilograms and grams)
+    else if (y) {
+      y = false;
+      document.getElementById("units").innerHTML = "Switch to Imperial Units";
+
+      document.getElementById("form").action = "addItemGrams";
+      document.getElementById("form").modelAttribute = "itemGram";
+
+      document.getElementById("input-large").path = "kilograms";
+      document.getElementById("input-small").path = "grams";
+
+      document.getElementById("label-large").innerHTML = "kg";
+      document.getElementById("label-small").innerHTML = "g";
+    }
+  }
+</script>
+    
 </body>
+
 </html>
