@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.spicesrus.entities.Basket;
 import com.example.spicesrus.entities.Spices;
@@ -21,6 +22,7 @@ public class BasketController {
 	@Autowired
 	private BasketRepository basketRepo;
 	
+	/*
 	@RequestMapping("/Basket/{name}")
 	public String addToBasket(Model model, @PathVariable("name") String name) {
 		Spices spicetoAdd = spiceRepo.findByName(name);
@@ -40,7 +42,25 @@ public class BasketController {
 	@GetMapping("/Basket")
 	public String showBasket(Model model) {
 		return "basket";
+	}*/
+	
+	
+	@RequestMapping("/shopping_cart")
+	public String cart(){
+		return "shopping_cart";
 	}
 	
-	
+	@RequestMapping("/addtobasket")
+	public String add(Model model, @RequestParam String spice, @RequestParam String type, @RequestParam int quantity, @RequestParam double price, @RequestParam double total){
+		
+		model.addAttribute("name", spice);
+		model.addAttribute("type", type);
+		model.addAttribute("quantity", quantity);
+		model.addAttribute("price", price);
+		model.addAttribute("total", total);
+		return "shopping_cart";
+	}
+
 }
+	
+	

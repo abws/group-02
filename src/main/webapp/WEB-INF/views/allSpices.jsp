@@ -1,20 +1,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+
 
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="https://kit.fontawesome.com/939c463b2c.js" crossorigin="anonymous"></script>
-    <style>
-        .card {
+<script src="https://kit.fontawesome.com/939c463b2c.js" crossorigin="anonymous"></script>
+
+<style>
+        .card{
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             max-width: 370px;
             margin-top: 20px;
-            margin-left: 70px;
-            margin-right: 40px;
+            margin-left: 20px;
+            margin-right: 20px;
             margin-bottom: 20px;
             text-align: center;
             font-family: arial;
-            flex: 0 1 24%;
+            flex: 0 1 33%;
             padding: 0 10px;
 			float:left;
 			width: 33.33%;
@@ -120,7 +124,7 @@
 		}
 		body {
 		  background-color: #fae3cc;
-		  font-family: 'Londrina Solid', cursive;
+		  font-family:arial;
 		  padding: 0;
 		  margin: 0;
 		}
@@ -152,24 +156,24 @@
 	display:flex;
 	width:100%;
 	height:380px;
-	background-image: url("https://oldworldspices.com/wp-content/uploads/2020/01/ows.services_proddev_hero.png)");
-	filter:brightness 50%;
+	background-image: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url("https://oldworldspices.com/wp-content/uploads/2020/01/ows.services_proddev_hero.png)");
+
 	
 	}
   
 
  
  
-.search {
+form .search {
   width: 100%;
   position: relative;
   display: flex;
 }
 
-.searchTerm {
+form .searchTerm {
 
-    width: 30%;
-    border: 7px solid white;
+	width: 120%;
+    border: 4px solid white;
     border-right: none;
     border-top: none;
     border-left: none;
@@ -178,12 +182,13 @@
     border-radius: 5px 0 0 5px;
     outline: none;
     color: #ffffff;
-    background-color: #00000078;
+        background:transparent;
+
 }
 
 
 
-.searchTerm:focus{
+form .searchTerm:focus{
   color: white;
    
 }
@@ -195,7 +200,7 @@
 
 }
 
-.searchButton {
+form .searchButton {
     width: 40px;
     height: 46px;
     border: transparent;
@@ -206,12 +211,30 @@
     cursor: pointer;
     font-size: 30px;
 
+
 }
 
-input.searchTerm {
-    font-size: 30px;
+form input.searchTerm {
+    font-size: 35px;
     font-family: arial;
     padding: 10px;
+}
+
+.box{
+
+
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 1300px;
+
+display: flex;
+
+}
+
+.searchform{
+	 display: flex;
 }
 
 
@@ -228,17 +251,17 @@ input.searchTerm {
 
 <div id="back">
 
-		<form action="/spicesearch" method="GET">
-			<div class="pic">
-	      		<input name="spice" type="text" class="searchTerm" placeholder="What are you looking for?">
-	      		<button type="submit" class="searchButton">
-					<i class="fa-solid fa-magnifying-glass"></i>
-	     		</button>
-	     	</div>
-
-	 	</form>
-	
-</div>
+		<div class="pic">
+				
+		<form action="/spicesearch" class="searchform" method="GET">
+		    <input name="spice" type="text" class="searchTerm" placeholder="What are you looking for?">
+      		<button type="submit" class="searchButton">
+				<i class="fa-solid fa-magnifying-glass"></i>
+     		</button>
+		</form>
+			
+		</div>
+	</div>
 
 
 
@@ -280,22 +303,21 @@ sortmenu.onchange = function() {
 
 </script>
 
-
+<div class="box">
 <div class="row">
-
-    <c:forEach items="${spices}" var="spice">
-        <div class="card">
-				<a href="/spice?spice=${spice.name}"><img src="${spice.getPicture()}" alt="${spice.getName()}" width="500" height="300" style="width:100%"></a>
-            <h1> ${spice.getName()}</h1>
-            <p> Category: ${spice.getCategory()}</p>
-            <p class="price">£${spice.getPrice()} per 100g</p>
+    <c:forEach var="spice" items="${spices}">
+        <div class="card"class="cards">
+            <a href="spice?spice=${spice.name}"><img src="${spice.picture}" alt="${spice.name}" width="500" height="300" style="width:100%"></a>
+            <h1> ${spice.name}</h1>
+            <p> Category: ${spice.category}</p>
+            <p class="price" id="price">£ <fmt:formatNumber type="number" value="${spice.price}" pattern="0.00"/>  per 100g</p>
             <p>${spice.description}</p>
             <p>
-            	<a href="/Basket/${spice.getName()}" class="btn btn-primary">Add to Cart</a>
+                <a href="spice?spice=${spice.name}"><button>View Details</button></a>
             </p>
         </div>
     </c:forEach>
-
+</div>
 </div>
 <div class="center">
   <div class="pagination">

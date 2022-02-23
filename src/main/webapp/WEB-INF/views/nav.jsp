@@ -12,6 +12,8 @@
     padding: 0;
     overflow: hidden;
     background-color: #fe7b00;
+    font:arial;
+    
   }
 
   .navigation li {
@@ -50,7 +52,7 @@
 		  <li><a href="/spices">Shop</a></li>
 		  <li><a href="/login">Contact</a></li>
 
-		  <li style="float:right"><a class="active" href="#basket">Basket</a></li>
+		  <li style="float:right"><a class="active" href="/shopping_cart">Basket</a></li>
 		  <li style="float:right"><a class="active" href="/login">Login</a></li>
 		</ul>
 	</div>

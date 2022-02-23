@@ -11,6 +11,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Londrina+Solid&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value='css/index/index.css'/>">
+   	<style>
+   		#udetail{
+  			visibility: hidden;
+   		}
+   	</style>
 </head>
 <body>
     <!--Wrapper class encapsulates entire webpage-->
@@ -33,6 +38,11 @@
             <!--Navbar 1 (with search bar)-->
             <nav>                  
                 <ul>
+	                <div class="user" id="udetail" >
+                        <a href="/user?username=${username}">
+                            <li >User Detail</li>
+                        </a>
+	                </div>
                     <div class="user" >
                         <a href="/login">
                             <li><img class="user-image" src="icons/user.svg" alt=""></li>
@@ -42,8 +52,10 @@
                     <div class="register" style="display: ${register}">
                         <a href="/register">
                             <li>REGISTER</li>
+                            <li id="username">${username}</li>
                         </a>
                     </div>
+                    
                     <li><a class="cart" href="#">CART</a></li>
                 </ul>
             </nav>
@@ -81,5 +93,12 @@
 
         </section>
     </div> 
+    
+    
+    <script>
+   		 if (document.getElementById("username").innerHTML!="LOGIN"){
+   			document.getElementById("udetail").style.visibility = "visible" ;
+   		 }
+    </script>
 </body>
 </html>
