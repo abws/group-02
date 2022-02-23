@@ -1,7 +1,9 @@
 package com.example.spicesrus;
 
 import com.example.spicesrus.entities.Item;
+import com.example.spicesrus.entities.Recipes;
 import com.example.spicesrus.entities.Spices;
+import com.example.spicesrus.repo.RecipesRepository;
 import com.example.spicesrus.repo.SpicesRepository;
 import com.example.spicesrus.security.UDetails;
 import com.example.spicesrus.security.UDetailsRepo;
@@ -37,8 +39,14 @@ public class SpicesrusApplication implements ApplicationRunner {
 	@Autowired
 	private PasswordEncoder encoder;
 	
+	@Autowired
+	private RecipesRepository recipesRepo;
+	
 	public static List<Spices> spices = new ArrayList<>();
+
 	public static List<UDetails> users = new ArrayList<>();
+
+	public static List<Recipes> recipes = new ArrayList<>();
 
     public static void main(String[] args) {
         SpringApplication.run(SpicesrusApplication.class, args);

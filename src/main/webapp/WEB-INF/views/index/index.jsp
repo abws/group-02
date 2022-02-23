@@ -58,7 +58,7 @@
                     </div>
                     <div class=right>
                         <li><a href="/spices">SHOP</a></li>
-                        <li><a href="#">RECIPES</a></li>
+                        <li><a href="/recipes">RECIPES</a></li>
                     </div>
                 </ul>
             </nav>
