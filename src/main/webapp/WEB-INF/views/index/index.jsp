@@ -38,24 +38,38 @@
             <!--Navbar 1 (with search bar)-->
             <nav>                  
                 <ul>
-	                <div class="user" id="udetail" >
-                        <a href="/user?username=${username}">
-                            <li >User Detail</li>
-                        </a>
-	                </div>
                     <div class="user" >
                         <a href="/login">
                             <li><img class="user-image" src="icons/user.svg" alt=""></li>
                             <li >${username}</li>
                         </a>
-                    </div>
-                    <div class="register" style="display: ${register}">
-                        <a href="/register">
-                            <li>REGISTER</li>
-                            <li id="username">${username}</li>
+                            <c:choose>
+                                <c:when test="${username == null}">
+                                    <li>LOGIN</li>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="/user?username=${username}">
+                                        <li>${username}</li>
+                                    </a>
+                                </c:otherwise>
+                            </c:choose>
                         </a>
                     </div>
-                    
+                    <div class="register">
+                        <c:choose>
+                            <c:when test="${username == null}">
+                                <a href="/register">
+                                    <li >REGISTER</li>
+                                </a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/logout">
+                                    <li >LOGOUT</li>
+                                </a>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+
                     <li><a class="cart" href="#">CART</a></li>
                 </ul>
             </nav>
@@ -93,12 +107,5 @@
 
         </section>
     </div> 
-    
-    
-    <script>
-   		 if (document.getElementById("username").innerHTML!="LOGIN"){
-   			document.getElementById("udetail").style.visibility = "visible" ;
-   		 }
-    </script>
 </body>
 </html>
