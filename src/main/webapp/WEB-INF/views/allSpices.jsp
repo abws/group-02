@@ -327,7 +327,7 @@
             </c:choose>
             <p>${spice.description}</p>
             <p>
-                <a href="spice?spice=${spice.name}"><button>View Details</button></a>
+                <a href="/spice?spice=${spice.name}"><button>View Details</button></a>
             </p>
         </div>
     </c:forEach>
