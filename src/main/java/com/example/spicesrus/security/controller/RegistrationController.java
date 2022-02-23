@@ -1,17 +1,27 @@
-package com.example.spicesrus.security;
+package com.example.spicesrus.security.controller;
 
+import com.example.spicesrus.security.DetailsValidator;
+import com.example.spicesrus.security.EmailHandler;
+import com.example.spicesrus.security.UDetails;
+import com.example.spicesrus.security.UDetailsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.thymeleaf.context.Context;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 @Controller
-public class LoginController {
+public class RegistrationController {
+
 
     @Autowired
     private UDetailsRepo repo;
@@ -19,14 +29,13 @@ public class LoginController {
     @Autowired
     private PasswordEncoder encoder;
 
+    @Autowired
+    private EmailHandler handler;
+
+
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         binder.addValidators(new DetailsValidator(repo));
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "security/login";
     }
 
     @RequestMapping(value = "/register")
@@ -44,6 +53,13 @@ public class LoginController {
         details.setConfirmedPassword(null); // No longer need to store this (Duplicated Value)
         details.setPassword(encoder.encode(details.getPassword()));
         repo.save(details);
+        try {
+            Context context = new Context();
+            context.setVariable("username", details.getUsername());
+            handler.dispatchEmail(details.getEmail(), "Registration Confirmation", "register_template.html", context);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
         return "security/register-success";
     }
 
@@ -57,5 +73,5 @@ public class LoginController {
         return "security/register-confirm";
     }
 
-
 }
+

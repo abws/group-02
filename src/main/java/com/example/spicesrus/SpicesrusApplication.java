@@ -47,16 +47,24 @@ public class SpicesrusApplication implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception{
     	
     	Basket basket = new Basket();
-    	basket = basketrepo.save(basket); 
-    	
-    	UDetails ud = new UDetails();
-    	ud.setUsername("michaeljordan");
-    	ud.setPassword(encoder.encode("password"));
-    	ud.setEmail("mcj@google.com");
+    	basket = basketrepo.save(basket);
+
+		UDetails ud = new UDetails();
+		ud.setUsername("michaeljordan");
+		ud.setPassword(encoder.encode("password"));
+		ud.setEmail("mcj@google.com");
 		ud.setFirstName("Michael");
 		ud.setLastName("Jordan");
-		
+
+		UDetails ud2 = new UDetails();
+		ud2.setUsername("example");
+		ud2.setPassword(encoder.encode("password"));
+		ud2.setEmail("example@google.com");
+		ud2.setFirstName("First");
+		ud2.setLastName("Last");
+
 		detailsRepo.save(ud);
+		detailsRepo.save(ud2);
 
     	Spices s1 = new Spices();
     	s1.setName("ALLSPICE");
@@ -94,7 +102,7 @@ public class SpicesrusApplication implements ApplicationRunner {
     	spices.add(s2);
     	spices.add(s3);
     	spices.add(s4);
-    	users.add(ud);
+    	users.add(ud2);
 
     }
 }
