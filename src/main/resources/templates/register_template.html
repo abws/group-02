@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Email</title>
+
+    <style>
+        .logo-text {
+            font-family: 'Caveat Brush', cursive;
+            font-size: 3rem;
+            color: #d59518;
+            margin-bottom: 0em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="logo">
+    <h1 class="logo-text">Spices R Us</h1>
+</div>
+
+<h1>Thanks for registering</h1>
+<p>Thanks <span th:text="${username}"></span> for signing up to SpicesRUS. You are now able to access a price discount across our website
+</p>
+</body>
+</html>

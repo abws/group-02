@@ -7,7 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.context.Context;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 @Controller
@@ -18,6 +20,9 @@ public class LoginController {
 
     @Autowired
     private PasswordEncoder encoder;
+
+    @Autowired
+    private EmailHandler handler;
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
@@ -44,6 +49,13 @@ public class LoginController {
         details.setConfirmedPassword(null); // No longer need to store this (Duplicated Value)
         details.setPassword(encoder.encode(details.getPassword()));
         repo.save(details);
+        try {
+            Context context = new Context();
+            context.setVariable("username", details.getUsername());
+            handler.dispatchEmail(details.getEmail(), "Registration Confirmation", "register_template.html", context);
+        }catch (MessagingException e) {
+            e.printStackTrace();
+        }
         return "security/register-success";
     }
 
