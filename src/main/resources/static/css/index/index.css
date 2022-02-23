@@ -82,8 +82,22 @@ header ul .user a {
   padding-bottom: 0.2em;
 }
 
+header ul .register a {
+  border: 0.1rem solid;
+  border-color: rgb(255, 172, 47);
+  padding: 0.5em 0.5em;
+  border-radius: 3rem;
+  margin-right: 1em;
+  padding-bottom: 0.2em;
+}
+
 header ul .user a:hover {
   background-color: #77be6d;
+  color: white;
+}
+
+header ul .register a:hover {
+  background-color: rgb(255, 151, 76);
   color: white;
 }
 

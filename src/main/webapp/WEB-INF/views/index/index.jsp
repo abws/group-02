@@ -39,7 +39,7 @@
                             <li >${username}</li>
                         </a>
                     </div>
-                    <div class="user" >
+                    <div class="register" >
                         <a href="/register">
                             <li >REGISTER</li>
                         </a>
