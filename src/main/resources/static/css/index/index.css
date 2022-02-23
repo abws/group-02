@@ -5,6 +5,10 @@ body {
   margin: 0;
 }
 
+.lower-section {
+	color: #5b4239;
+}
+
 .wrapper {
   padding: 0;
   margin: 0;
@@ -238,7 +242,4 @@ header ul a {
   margin: 0;
 }
 
-p{
-	color: #5b4239;
-}
 /*# sourceMappingURL=index.css.map */
