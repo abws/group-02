@@ -9,7 +9,7 @@ import java.security.Principal;
 
 /**
  * Manages all requests to the homepage
- * @author Abdiwahab
+ * @author
  * @version 1
  */
 @Controller
@@ -17,7 +17,9 @@ public class IndexController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Principal principal, Model model) {
 		String username = principal != null ? principal.getName() : "LOGIN";
+		String register = principal != null ? "none" : "display";
 		model.addAttribute("username", username);
+		model.addAttribute("register", register);
 		return "index/index";
 	}
 	

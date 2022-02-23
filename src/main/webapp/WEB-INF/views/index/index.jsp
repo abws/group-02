@@ -39,9 +39,9 @@
                             <li >${username}</li>
                         </a>
                     </div>
-                    <div class="register" >
+                    <div class="register" style="display: ${register}">
                         <a href="/register">
-                            <li >REGISTER</li>
+                            <li>REGISTER</li>
                         </a>
                     </div>
                     <li><a class="cart" href="#">CART</a></li>
