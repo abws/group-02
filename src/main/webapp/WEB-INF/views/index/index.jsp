@@ -19,9 +19,13 @@
         <header>
             <!--Search bar-->
             <div class="input-wrapper">
-                <input type="text" placeholder="Search spices...">
+                <form action="/spicesearch" method="GET">
+                    <input name="spice" type="text" placeholder="Search spices...">
+                </form>
+
                 <!--Preprocess input on server-side, href to /shop for simplicity-->
                 <div class="search-bar-button"><a href="/shop"><img src="icons/search-bar.svg" alt=""></a></div>
+
             </div>
             <div class="logo">
                 <h1 class="logo-text">Spices R Us</h1>

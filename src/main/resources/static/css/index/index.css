@@ -179,7 +179,7 @@ header ul a {
   padding: 5px;
 }
 
-.input-wrapper input {
+.input-wrapper form input {
   margin-left: 8px;
   width: 80%;
   border: none;
@@ -193,6 +193,8 @@ header ul a {
   -webkit-box-align: centre;
       -ms-flex-align: centre;
           align-items: centre;
+          padding-left: 10%;
+          
 }
 
 .hero {
