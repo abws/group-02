@@ -35,6 +35,11 @@
                             <li >${username}</li>
                         </a>
                     </div>
+                    <div class="user" >
+                        <a href="/register">
+                            <li >REGISTER</li>
+                        </a>
+                    </div>
                     <li><a class="cart" href="#">CART</a></li>
                 </ul>
             </nav>
