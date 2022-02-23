@@ -36,7 +36,7 @@
                 <h1 class="logo-text">Spices R Us</h1>
             </div>
             <!--Navbar 1 (with search bar)-->
-            <nav>                  
+            <nav>
                 <ul>
                     <div class="user" >
                         <a href="/login">
@@ -103,13 +103,13 @@
                 </svg>
             </div>
         </section>
-        <section>
+        <section style="position: absolute; top: 60vh;">
             <p>
                 <div>
-        Spices have a long and old history, they are used across the world, where they are a part of life and culture. In each home and in each region the nation over, various spices and mixes are used to make unique and unmistakable preferences for dishes. Before the modern age, housewives used to prepare their spices physically at home and make their own mixes for use in their cooking. Spices R Us aims to make this process easier for you to get quality products for the best price. Our founder aimed to source and provide quantities suitable for cooking and we hope that everyone can experience the joy of good food. 
+        Spices have a long and old history, they are used across the world, where they are a part of life and culture. In each home and in each region the nation over, various spices and mixes are used to make unique and unmistakable preferences for dishes. Before the modern age, housewives used to prepare their spices physically at home and make their own mixes for use in their cooking. Spices R Us aims to make this process easier for you to get quality products for the best price. Our founder aimed to source and provide quantities suitable for cooking and we hope that everyone can experience the joy of good food.
             </div>
             </p>
         </section>
-    </div> 
+    </div>
 </body>
 </html>
