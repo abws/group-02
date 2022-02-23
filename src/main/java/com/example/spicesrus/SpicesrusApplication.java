@@ -107,7 +107,7 @@ public class SpicesrusApplication implements ApplicationRunner {
     	s4 = spicesRepo.save(s4);
     	
     	Recipes r1 = new Recipes();
-    	r1.setCategory("Dessert");
+    	r1.setCategory("Pastries");
     	r1.setDescription("");
     	r1.setName("Cinnamon Buns");
     	r1.setPicture("https://www.cookingclassy.com/wp-content/uploads/2020/09/mini-cinnamon-rolls-21.jpg");
