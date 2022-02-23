@@ -91,7 +91,7 @@
             <p> Category: ${recipe.getCategory()}</p>
             <p>${recipe.description}</p>
             <p>
-                <button>Add to Cart</button>
+                <button>30-45mins</button>
             </p>
         </div>
     </c:forEach>

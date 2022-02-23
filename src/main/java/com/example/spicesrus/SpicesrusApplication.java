@@ -106,11 +106,17 @@ public class SpicesrusApplication implements ApplicationRunner {
     	s4.setPicture("https://cdn.shopify.com/s/files/1/1745/8453/products/photo1_d6ee5edf-6270-452a-b368-b2351ae4b27a_1024x1024.jpg?v=1639330805");
     	s4 = spicesRepo.save(s4);
     	
+    	Recipes r1 = new Recipes();
+    	r1.setCategory("Dessert");
+    	r1.setDescription("");
+    	r1.setName("Cinnamon Buns");
+    	r1.setPicture("https://www.cookingclassy.com/wp-content/uploads/2020/09/mini-cinnamon-rolls-21.jpg");
     	spices.add(s1);
     	spices.add(s2);
     	spices.add(s3);
     	spices.add(s4);
     	users.add(ud2);
+    	recipesRepo.save(r1);
 
     }
 }
