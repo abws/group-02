@@ -35,6 +35,7 @@
             </div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <p>Dont have an account? <a href="/register">Click here to register!</a></p>
+            <p>Forgotten your password? <a href="/lost-password">Reset it here</a></p>
         </form>
     </div>
 </div>
