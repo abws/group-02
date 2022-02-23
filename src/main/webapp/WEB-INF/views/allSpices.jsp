@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ page pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -288,7 +290,17 @@ sortmenu.onchange = function() {
 				<a href="/spice?spice=${spice.name}"><img src="${spice.getPicture()}" alt="${spice.getName()}" width="500" height="300" style="width:100%"></a>
             <h1> ${spice.getName()}</h1>
             <p> Category: ${spice.getCategory()}</p>
-            <p class="price">�${spice.getPrice()} per 100g</p>
+
+
+            <c:choose>
+                <c:when test="${pageContext.request.remoteUser != null}">
+                    <p class="price"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2" minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber> per 100g</p>
+                </c:when>
+                <c:otherwise>
+                    <p class="price"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2" minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber> per 100g</p>
+                </c:otherwise>
+            </c:choose>
+
             <p>${spice.description}</p>
             <p>
             	<a href="/Basket/${spice.getName()}" class="btn btn-primary">Add to Cart</a>

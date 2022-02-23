@@ -32,13 +32,29 @@
                     <div class="user" >
                         <a href="/login">
                             <li><img class="user-image" src="icons/user.svg" alt=""></li>
-                            <li >${username}</li>
+                            <c:choose>
+                                <c:when test="${username == null}">
+                                    <li>LOGIN</li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li>${username}</li>
+                                </c:otherwise>
+                            </c:choose>
                         </a>
                     </div>
-                    <div class="user" >
-                        <a href="/register">
-                            <li >REGISTER</li>
-                        </a>
+                    <div class="user">
+                        <c:choose>
+                            <c:when test="${username == null}">
+                                <a href="/register">
+                                    <li >REGISTER</li>
+                                </a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/logout">
+                                    <li >LOGOUT</li>
+                                </a>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                     <li><a class="cart" href="#">CART</a></li>
                 </ul>

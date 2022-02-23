@@ -60,7 +60,7 @@ public class Spices {
 	}
 
 	public double getUserPrice() {
-		return price * 0.2; // 20% discount
+		return price * 0.8; // 20% discount
 	}
 
 }
