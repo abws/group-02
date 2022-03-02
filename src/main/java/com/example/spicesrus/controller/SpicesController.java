@@ -173,19 +173,7 @@ public class SpicesController {
 		return "allSpices";
 	}
 	
-	
-	@GetMapping("/user")
-	public String User(Model model, @RequestParam String username) {
-		Iterable<UDetails> users = uRepo.findAll();
 
-		for (UDetails u: users) {
-			if(u.getUsername().contentEquals(username)) {
-				model.addAttribute("user", u);
-			}
-		}
-		return "user_detail";
-	}
-	
 	
 	@GetMapping("/spicesearch")
 	public String search(Model model, @RequestParam String spice) {
