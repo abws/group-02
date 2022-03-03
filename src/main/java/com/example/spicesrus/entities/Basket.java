@@ -16,7 +16,7 @@ import com.example.spicesrus.security.UDetails;
 public class Basket {
 	@Id
 	@GeneratedValue
-	private int id;
+	private int id; //a session will point to a basket
 	
 	@OneToOne
 	private UDetails user;
