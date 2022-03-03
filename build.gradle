@@ -11,6 +11,12 @@ sourceCompatibility = '11'
 repositories {
     mavenCentral()
 }
+dependencyManagement {
+	imports {
+		mavenBom 'org.springframework.session:spring-session-bom:2020.0.3'
+	
+	}
+}
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -25,6 +31,8 @@ dependencies {
     implementation 'jstl:jstl:1.2'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'ognl:ognl:3.3.2'
+    implementation 'org.springframework.session:spring-session-core'
+    implementation 'org.springframework.session:spring-session-jdbc'
 }
 
 tasks.named('test') {
