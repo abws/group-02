@@ -21,11 +21,15 @@ public class CartController {
     	r1.setDescription("");
     	r1.setName("Cinnamon Buns");
     	r1.setPicture("https://www.cookingclassy.com/wp-content/uploads/2020/09/mini-cinnamon-rolls-21.jpg");
-    	rRepo.save(r1);
-		request.getSession().setAttribute("cart", r1.getName());
-		String x = (String) request.getSession().getAttribute("cart");
-		Recipes y = rRepo.findByName(x);
-		System.out.println(y);
+    	r1 = rRepo.save(r1);
+		//request.getSession().setAttribute("cart", r1.getName());
+    	
+		request.getSession().setAttribute("cart", r1);
+		Recipes x = (Recipes) request.getSession().getAttribute("cart");
+		//String x = (String) request.getSession().getAttribute("cart");
+
+		//Recipes y = rRepo.findByName(x);
+		System.out.println(x);
 		
 		return "/";
 	}

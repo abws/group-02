@@ -1,5 +1,6 @@
 package com.example.spicesrus.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,7 +9,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Recipes {
+public class Recipes implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6240592456825514898L;
 	@Id
 	private String name;
 	private String category;
