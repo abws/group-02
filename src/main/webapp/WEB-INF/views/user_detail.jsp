@@ -1,135 +1,136 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>User Detail</title>
-<jsp:include page="nav.jsp" />
-<style>
-.center {
-  position: absolute;
-  margin: auto;
-  width: 30%;
-  border: 2px solid #73AD21;
-  padding: 10px;
-  top: 20%;
-  left: 35%;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Detail</title>
+    <jsp:include page="base.jsp"/>
 
-.title{
-	text-align:center;
-}
-</style>
 
+    <script>
+        function toggle() {
+            x = document.getElementById("password1").type === "password";
+            if (x) {
+                document.getElementById("password1").type = "text";
+                document.getElementById("password2").type = "text";
+                document.getElementById("password1button").textContent = "Hide";
+                document.getElementById("password2button").textContent = "Hide";
+            } else {
+                document.getElementById("password1").type = "password";
+                document.getElementById("password2").type = "password";
+                document.getElementById("password1button").textContent = "Show";
+                document.getElementById("password2button").textContent = "Show";
+            }
+        }
+    </script>
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Style the side navigation */
+        .sidenav {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+
+            left: 0;
+            background-color: #FB9350;
+            overflow-x: hidden;
+        }
+
+
+        /* Side navigation links */
+        .sidenav a {
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color on hover */
+        .sidenav a:hover {
+            background-color: #F28123;
+            color: white;
+        }
+
+        /* Style the content */
+        .content {
+            margin-left: 200px;
+            padding-left: 20px;
+            margin-top: 5vh;
+        }
+    </style>
 </head>
 <body>
-
-	
-
-<head>
-<title>User Detail</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Style the side navigation */
-.sidenav {
-  height: 100%;
-  width: 200px;
-  position: fixed;
-  z-index: 1;
-
-  left: 0;
-  background-color: #FB9350;
-  overflow-x: hidden;
-}
-
-
-/* Side navigation links */
-.sidenav a {
-  color: white;
-  padding: 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color on hover */
-.sidenav a:hover {
-  background-color: #F28123;
-  color: white;
-}
-
-/* Style the content */
-.content {
-  margin-left: 200px;
-  padding-left: 20px;
-
-}
-</style>
-</head>
-<body>
-
 <div class="sidenav">
-  <a href="#">My Details</a>
-  <a href="#">My Address</a>
-  <a href="#">My Orders</a>
-  <a href="#">My Preference</a>
+    <a href="#">My Details</a>
+    <a href="#">My Address</a>
+    <a href="#">My Orders</a>
+    <a href="#">My Preference</a>
 </div>
 
 <div class="content">
-  <h2>User Profile Details</h2>
-  
-		<label>Username:</label><label> ${user.username}</label>
-	
-	    <br> <br/>
-		<label>Email:</label>
-
-	    <input type="text" value= ${user.email} name="email">
-	    	
-	    <br> <br/>
-	    <label>First Name:</label>
-	    
-	    
-
-	    <input type="text" value= ${user.firstName} name="fname">
-	    
-	     <br> <br/>
-	    <label>Last Name:</label>
-
-	  <input type="text" name="lastname" value=${user.lastName}>
-	    <br> <br/>
-	    <label class="labels">Change Password:</label>
- 		<input type="text" id="password" name="password"> <br><br>  
- 		
- 	
- 		<input type="submit" value="Save" style="text-align:center"> 
-
-  
-</div>
+    <h2 class="text-center">User Profile Details</h2>
 
 
+    <div class="d-flex justify-content-center">
+        <br>
+        <form:form modelAttribute="user" action="/user" method="post">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Username:</span>
+                <form:input cssClass="form-control" readonly="true" path="username"/>
+                    <%--                <form:errors cssClass="helpBlock" path="username"/><br>--%>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Email:</span>
+                <form:input cssClass="form-control" path="email"/>
+                <form:errors cssClass="helpBlock" path="email"/><br>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">First Name:</span>
+                <form:input cssClass="form-control" path="firstName"/>
+                <form:errors cssClass="helpBlock" path="firstName"/> <br>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Last Name:</span>
+                <form:input cssClass="form-control" path="lastName"/>
+                <form:errors cssClass="helpBlock" path="lastName"/><br>
+            </div>
 
+            <div class="input-group mb-3">
+                <span class="input-group-text">Password:</span>
+                <form:password cssClass="form-control" id="password1" path="password" placeholder="****"/>
+                <form:errors cssClass="helpBlock" path="password"/><br>
+                <button class="btn btn-primary input-group-append" type="button" id="password1button"
+                        onclick="toggle()">View
+                </button>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Confirm Password:</span>
+                <form:password cssClass="form-control" id="password2" path="confirmedPassword" placeholder="****"/>
+                <form:errors cssClass="helpBlock" path="confirmedPassword"/><br>
+                <button class="btn btn-primary input-group-append" type="button" id="password2button"
+                        onclick="toggle()">View
+                </button>
+            </div>
 
+            <input type="submit" value="Change Details">
+        </form:form>
 
-
-
-
-
+    </div>
 </body>
-</html>
 
-	
-
-</body>
 </html>
