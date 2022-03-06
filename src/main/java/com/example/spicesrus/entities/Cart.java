@@ -1,5 +1,6 @@
 package com.example.spicesrus.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,12 @@ import javax.persistence.*;
  *
  */
 @Entity
-public class Cart {
+public class Cart  implements Serializable {
+	/**
+	 * Session attribute needs to serialise and deserialise all cart objects
+	 */
+	private static final long serialVersionUID = 7809850254467550842L;
+
 	@Id
 	@GeneratedValue
 	private int id; //a session will point to a basket

@@ -9,11 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Recipes implements Serializable{
+public class Recipes {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6240592456825514898L;
 	@Id
 	private String name;
 	private String category;

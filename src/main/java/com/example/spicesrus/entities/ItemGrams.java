@@ -47,4 +47,9 @@ public class ItemGrams extends Item{
 		else
 			return getSpice().getName() + ":" + this.kilograms + "kg " + this.grams + "g";
 	}
+
+	@Override
+	public String getWeight() {
+		return this.kilograms + "kg " + this.grams + "g";
+	}
 }

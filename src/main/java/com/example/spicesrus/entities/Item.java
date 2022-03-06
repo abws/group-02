@@ -68,5 +68,7 @@ public abstract class Item {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	
+	public abstract String getWeight();
 
 }

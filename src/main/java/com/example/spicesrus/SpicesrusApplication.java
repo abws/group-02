@@ -10,6 +10,8 @@ import com.example.spicesrus.security.UDetailsRepo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -18,8 +20,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.spicesrus.entities.Basket;
+import com.example.spicesrus.entities.Cart;
 import com.example.spicesrus.entities.Spices;
 import com.example.spicesrus.repo.BasketRepository;
+import com.example.spicesrus.repo.CartRepository;
 import com.example.spicesrus.repo.SpicesRepository;
 import com.example.spicesrus.security.UDetails;
 import com.example.spicesrus.security.UDetailsRepo;
@@ -42,6 +46,12 @@ public class SpicesrusApplication implements ApplicationRunner {
 	@Autowired
 	private RecipesRepository recipesRepo;
 	
+	@Autowired
+	private CartRepository cRepo;
+	
+	@Autowired 
+	private HttpSession httpSession;
+	
 	public static List<Spices> spices = new ArrayList<>();
 
 	public static List<UDetails> users = new ArrayList<>();
@@ -53,10 +63,8 @@ public class SpicesrusApplication implements ApplicationRunner {
     }
     
     public void run(ApplicationArguments args) throws Exception{
+    	httpSession.setAttribute("cart", new Cart()); //for testing purposes. add this permamanently later for all session objects
     	
-    	Basket basket = new Basket();
-    	basket = basketrepo.save(basket);
-
 		UDetails ud = new UDetails();
 		ud.setUsername("michaeljordan");
 		ud.setPassword(encoder.encode("password"));

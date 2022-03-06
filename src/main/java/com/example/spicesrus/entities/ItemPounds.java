@@ -47,4 +47,9 @@ public class ItemPounds extends Item{
 		else
 			return getSpice().getName() + ":" + this.pounds + " lb " + this.pounds + " oz.";
 	}
+	
+	@Override
+	public String getWeight() {
+		return this.pounds + "lbs" + this.ounces + "oz.";
+	}
 }
