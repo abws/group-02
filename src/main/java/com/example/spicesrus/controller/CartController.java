@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.spicesrus.entities.Cart;
+import com.example.spicesrus.entities.Item;
+import com.example.spicesrus.entities.ItemGrams;
+import com.example.spicesrus.entities.ItemPounds;
 import com.example.spicesrus.entities.Recipes;
 import com.example.spicesrus.repo.ItemGramsRepository;
 import com.example.spicesrus.repo.ItemPoundsRepository;
@@ -30,9 +33,11 @@ public class CartController {
 		return "cart";
 	}
 	
-	@PutMapping("/cart")
-	public String addItem(@RequestParam String name) {
-		return "cart";
+	@PutMapping("/addItem")
+	public String addItem(HttpServletRequest request, @ModelAttribute Item item) {		
+		Cart cart = (Cart) request.getSession().getAttribute("cart");
+		cart.getItems().add(item);
+		return "redirect:/spices";
 	}
 
 }
