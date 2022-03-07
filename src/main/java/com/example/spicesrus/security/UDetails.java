@@ -23,7 +23,7 @@ public class UDetails {
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> authorities = new ArrayList<>(List.of("BASIC"));
+    private List<String> authorities = new ArrayList<>();
 
     @Transient
     private String confirmedPassword;

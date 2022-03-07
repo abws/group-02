@@ -1,7 +1,9 @@
 package com.example.spicesrus.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -30,11 +32,36 @@ public class UDetailsService implements UserDetailsService {
         if (details == null) throw new UsernameNotFoundException("Credentials Invalid");
 
         List<SimpleGrantedAuthority> matched = new ArrayList<>();
+        matched.add(basic);
 
         roles.forEach(role -> {
             if (details.getAuthorities().contains(role.getAuthority())) matched.add(role);
         });
 
         return new User(details.getUsername(), details.getPassword(), true, true, true, true, matched);
+    }
+
+    /**
+     * Changes the user to another plan
+     *
+     * @param user - The user to modify
+     * @param plan - The plan to change them to (basic, novice, expert)
+     */
+    public void updateUser(UDetails user, String plan) {
+        List<String> l = user.getAuthorities();
+        l.removeAll(List.of("BASIC", "NOVICE", "EXPERT"));
+        l.add(plan);
+        user.setAuthorities(l);
+
+        List<SimpleGrantedAuthority> matched = new ArrayList<>();
+        matched.add(basic);
+
+        roles.forEach(role -> {
+            if (l.contains(role.getAuthority())) matched.add(role);
+        });
+
+        SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(SecurityContextHolder.getContext().getAuthentication().getPrincipal(), SecurityContextHolder.getContext().getAuthentication().getCredentials(), matched));
+        user.setAuthorities(l);
+        repo.save(user);
     }
 }
