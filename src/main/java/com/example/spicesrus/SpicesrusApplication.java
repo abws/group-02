@@ -5,8 +5,8 @@ import com.example.spicesrus.entities.Recipes;
 import com.example.spicesrus.entities.Spices;
 import com.example.spicesrus.repo.RecipesRepository;
 import com.example.spicesrus.repo.SpicesRepository;
-import com.example.spicesrus.security.UDetails;
-import com.example.spicesrus.security.UDetailsRepo;
+import com.example.spicesrus.security.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +15,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.spicesrus.entities.Basket;
@@ -25,6 +26,7 @@ import com.example.spicesrus.security.UDetails;
 import com.example.spicesrus.security.UDetailsRepo;
 
 @SpringBootApplication
+@Configuration
 public class SpicesrusApplication implements ApplicationRunner {
 
 	@Autowired
@@ -41,7 +43,8 @@ public class SpicesrusApplication implements ApplicationRunner {
 	
 	@Autowired
 	private RecipesRepository recipesRepo;
-	
+
+
 	public static List<Spices> spices = new ArrayList<>();
 
 	public static List<UDetails> users = new ArrayList<>();
@@ -70,9 +73,32 @@ public class SpicesrusApplication implements ApplicationRunner {
 		ud2.setEmail("example@google.com");
 		ud2.setFirstName("First");
 		ud2.setLastName("Last");
-
 		detailsRepo.save(ud);
 		detailsRepo.save(ud2);
+
+		UDetails dto = new UDetails();
+		dto.setPassword(encoder.encode("password"));
+		dto.setLastName("User");
+		dto.setUsername("basic");
+		dto.setFirstName("Basic");
+		dto.setEmail("basic@gmail.com");
+		dto.setAuthorities(List.of("BASIC"));
+		detailsRepo.save(dto);
+		dto.setUsername("novice");
+		dto.setFirstName("Novice");
+		dto.setEmail("novice@gmail.com");
+		dto.setAuthorities(List.of("NOVICE"));
+		detailsRepo.save(dto);
+		dto.setUsername("expert");
+		dto.setFirstName("Expert");
+		dto.setEmail("expert@gmail.com");
+		dto.setAuthorities(List.of("EXPERT"));
+		detailsRepo.save(dto);
+		dto.setUsername("admin");
+		dto.setFirstName("admin");
+		dto.setAuthorities(List.of("EXPERT", "ADMIN"));
+		dto.setEmail("admin@gmail.com");
+		detailsRepo.save(dto);
 
     	Spices s1 = new Spices();
     	s1.setName("ALLSPICE");
@@ -107,7 +133,7 @@ public class SpicesrusApplication implements ApplicationRunner {
     	s4 = spicesRepo.save(s4);
     	
     	Recipes r1 = new Recipes();
-    	r1.setCategory("Dessert");
+    	r1.setCategory("Pastries");
     	r1.setDescription("");
     	r1.setName("Cinnamon Buns");
     	r1.setPicture("https://www.cookingclassy.com/wp-content/uploads/2020/09/mini-cinnamon-rolls-21.jpg");

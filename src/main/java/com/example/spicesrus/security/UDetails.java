@@ -4,13 +4,13 @@ package com.example.spicesrus.security;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class UDetails {
@@ -19,9 +19,11 @@ public class UDetails {
     @Size(min = 4, max = 16, message = "A username must be between 4-16 characters")
     private String username;
 
-
     @NotNull
     private String password;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> authorities = new ArrayList<>();
 
     @Transient
     private String confirmedPassword;
@@ -36,7 +38,6 @@ public class UDetails {
     @NotNull
     @Email
     private String email;
-
 
     public String getConfirmedPassword() {
         return confirmedPassword;
@@ -84,5 +85,25 @@ public class UDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "UDetails{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmedPassword='" + confirmedPassword + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
+    public List<String> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<String> authorities) {
+        this.authorities = authorities;
     }
 }

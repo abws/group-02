@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### EXCLUDE MAC PROPERTIES FILE ###
+.DS_Store
