@@ -14,6 +14,7 @@ public class Recipes {
 	private String category;
 	private String description;
 	private int timeRequired;
+	private String minimumRoleRequired;
 
 	@OneToMany
 	@JoinColumn
@@ -70,6 +71,12 @@ public class Recipes {
 	}
 	public void setTimeRequired(int timeRequired) {
 		this.timeRequired = timeRequired;
+	}
+	public String getMinimumRoleRequired() {
+		return minimumRoleRequired;
+	}
+	public void setMinimumRoleRequired(String minimumRoleRequired) {
+		this.minimumRoleRequired = minimumRoleRequired;
 	}
 	
 }
