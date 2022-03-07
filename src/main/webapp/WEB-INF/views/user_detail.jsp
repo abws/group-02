@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -85,50 +86,58 @@
 <div class="content">
     <h2 class="text-center">User Profile Details</h2>
 
-
     <div class="d-flex justify-content-center">
         <br>
-        <form:form modelAttribute="user" action="/user" method="post">
-            <div class="input-group mb-3">
-                <span class="input-group-text">Username:</span>
-                <form:input cssClass="form-control" readonly="true" path="username"/>
-                    <%--                <form:errors cssClass="helpBlock" path="username"/><br>--%>
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">Email:</span>
-                <form:input cssClass="form-control" path="email"/>
-                <form:errors cssClass="helpBlock" path="email"/><br>
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">First Name:</span>
-                <form:input cssClass="form-control" path="firstName"/>
-                <form:errors cssClass="helpBlock" path="firstName"/> <br>
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">Last Name:</span>
-                <form:input cssClass="form-control" path="lastName"/>
-                <form:errors cssClass="helpBlock" path="lastName"/><br>
-            </div>
+        <sec:authorize access="isAuthenticated()">
 
-            <div class="input-group mb-3">
-                <span class="input-group-text">Password:</span>
-                <form:password cssClass="form-control" id="password1" path="password" placeholder="****"/>
-                <form:errors cssClass="helpBlock" path="password"/><br>
-                <button class="btn btn-primary input-group-append" type="button" id="password1button"
-                        onclick="toggle()">View
-                </button>
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">Confirm Password:</span>
-                <form:password cssClass="form-control" id="password2" path="confirmedPassword" placeholder="****"/>
-                <form:errors cssClass="helpBlock" path="confirmedPassword"/><br>
-                <button class="btn btn-primary input-group-append" type="button" id="password2button"
-                        onclick="toggle()">View
-                </button>
-            </div>
 
-            <input type="submit" value="Change Details">
-        </form:form>
+            <form:form modelAttribute="user" action="/user" method="post">
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Username:</span>
+                    <form:input cssClass="form-control" readonly="true" path="username"/>
+                        <%--                <form:errors cssClass="helpBlock" path="username"/><br>--%>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Email:</span>
+                    <form:input cssClass="form-control" path="email"/>
+                    <form:errors cssClass="helpBlock" path="email"/><br>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">First Name:</span>
+                    <form:input cssClass="form-control" path="firstName"/>
+                    <form:errors cssClass="helpBlock" path="firstName"/> <br>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Last Name:</span>
+                    <form:input cssClass="form-control" path="lastName"/>
+                    <form:errors cssClass="helpBlock" path="lastName"/><br>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Password:</span>
+                    <form:password cssClass="form-control" id="password1" path="password" placeholder="****"/>
+                    <form:errors cssClass="helpBlock" path="password"/><br>
+                    <button class="btn btn-primary input-group-append" type="button" id="password1button"
+                            onclick="toggle()">View
+                    </button>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Confirm Password:</span>
+                    <form:password cssClass="form-control" id="password2" path="confirmedPassword" placeholder="****"/>
+                    <form:errors cssClass="helpBlock" path="confirmedPassword"/><br>
+                    <button class="btn btn-primary input-group-append" type="button" id="password2button"
+                            onclick="toggle()">View
+                    </button>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">User Roles:</span>
+                    <input readonly value="<sec:authentication property="principal.authorities"/>">
+                </div>
+
+                <input type="submit" value="Change Details">
+            </form:form>
+        </sec:authorize>
 
     </div>
 </body>

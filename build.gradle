@@ -24,6 +24,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'jstl:jstl:1.2'
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.security:spring-security-taglibs:5.2.2.RELEASE'
     implementation 'ognl:ognl:3.3.2'
 }
 
