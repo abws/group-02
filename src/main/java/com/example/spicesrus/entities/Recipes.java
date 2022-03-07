@@ -19,6 +19,10 @@ public class Recipes {
 	private List<Recipes> complimentaryRecipes;
 	private String picture;
 	
+	@OneToMany
+	@JoinColumn
+	private List<Spices> spicesInvolved;
+	
 	
 	
 	public String getCategory() {
