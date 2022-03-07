@@ -33,11 +33,6 @@ public class CartController {
 		return "cart";
 	}
 	
-	@PutMapping("/addItem")
-	public String addItem(HttpServletRequest request, @ModelAttribute Item item) {		
-		Cart cart = (Cart) request.getSession().getAttribute("cart");
-		cart.getItems().add(item);
-		return "redirect:/spices";
-	}
+
 
 }
