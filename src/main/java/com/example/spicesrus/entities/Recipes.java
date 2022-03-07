@@ -13,6 +13,7 @@ public class Recipes {
 	private String name;
 	private String category;
 	private String description;
+	private int timeRequired;
 
 	@OneToMany
 	@JoinColumn
@@ -25,6 +26,12 @@ public class Recipes {
 	
 	
 	
+	public List<Spices> getSpicesInvolved() {
+		return spicesInvolved;
+	}
+	public void setSpicesInvolved(List<Spices> spicesInvolved) {
+		this.spicesInvolved = spicesInvolved;
+	}
 	public String getCategory() {
 		return category;
 	}
@@ -57,6 +64,12 @@ public class Recipes {
 	}
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+	public int getTimeRequired() {
+		return timeRequired;
+	}
+	public void setTimeRequired(int timeRequired) {
+		this.timeRequired = timeRequired;
 	}
 	
 }
