@@ -1,5 +1,6 @@
 package com.example.spicesrus.security;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.thymeleaf.context.Context;
 
 @Controller
 public class BillingController {
@@ -21,6 +23,9 @@ public class BillingController {
 	
 	@Autowired
     private PasswordEncoder encoder;
+	
+	@Autowired
+	private EmailHandler handler;
 	
 	@InitBinder
     protected void initBinder(WebDataBinder binder) {
@@ -43,6 +48,13 @@ public class BillingController {
 	        details.setCvvNumber(encoder.encode(details.getCvvNumber()));
 	        details.setExpiryDate(encoder.encode(details.getExpiryDate()));
 	        repo.save(details);
+	        try {
+	        	Context context = new Context();
+	        	context.setVariable("firstName", details.getFirstName());
+	            handler.dispatchEmail(details.getCustomerEmail(), "Billing Confirmation", "billing_template.html", context);
+	        }catch (MessagingException e) {
+	            e.printStackTrace();
+	        } 
 	        return "order-complete";
 	    }
 	

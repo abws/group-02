@@ -1,12 +1,5 @@
 package com.example.spicesrus;
 
-import com.example.spicesrus.entities.Item;
-import com.example.spicesrus.entities.Recipes;
-import com.example.spicesrus.entities.Spices;
-import com.example.spicesrus.repo.RecipesRepository;
-import com.example.spicesrus.repo.SpicesRepository;
-import com.example.spicesrus.security.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +10,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.thymeleaf.context.Context;
 
 import com.example.spicesrus.entities.Basket;
+import com.example.spicesrus.entities.Recipes;
 import com.example.spicesrus.entities.Spices;
 import com.example.spicesrus.repo.BasketRepository;
+import com.example.spicesrus.repo.RecipesRepository;
 import com.example.spicesrus.repo.SpicesRepository;
+import com.example.spicesrus.security.EmailHandler;
 import com.example.spicesrus.security.UDetails;
 import com.example.spicesrus.security.UDetailsRepo;
 
@@ -43,6 +40,9 @@ public class SpicesrusApplication implements ApplicationRunner {
 	
 	@Autowired
 	private RecipesRepository recipesRepo;
+	
+	@Autowired
+	private EmailHandler handler;
 
 
 	public static List<Spices> spices = new ArrayList<>();
@@ -56,7 +56,7 @@ public class SpicesrusApplication implements ApplicationRunner {
     }
     
     public void run(ApplicationArguments args) throws Exception{
-    	
+
     	Basket basket = new Basket();
     	basket = basketrepo.save(basket);
 

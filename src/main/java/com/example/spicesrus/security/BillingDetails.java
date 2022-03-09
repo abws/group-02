@@ -1,6 +1,7 @@
 package com.example.spicesrus.security;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -9,6 +10,7 @@ import com.example.spicesrus.entities.Orders;
 @Entity
 public class BillingDetails {
 @Id
+@GeneratedValue
 private int billingID;
 @OneToOne
 private Orders order;
