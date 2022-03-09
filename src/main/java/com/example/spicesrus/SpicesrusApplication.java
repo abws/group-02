@@ -49,8 +49,8 @@ public class SpicesrusApplication implements ApplicationRunner {
 	@Autowired
 	private CartRepository cRepo;
 	
-	@Autowired 
-	private HttpSession httpSession;
+	//@Autowired 
+	//private HttpSession httpSession;
 	
 	public static List<Spices> spices = new ArrayList<>();
 
@@ -63,7 +63,7 @@ public class SpicesrusApplication implements ApplicationRunner {
     }
     
     public void run(ApplicationArguments args) throws Exception{
-    	httpSession.setAttribute("cart", new Cart()); //for testing purposes. add this permamanently later for all session objects
+    	//httpSession.setAttribute("cart", new Cart()); //for testing purposes. add this permamanently later for all session objects
     	
 		UDetails ud = new UDetails();
 		ud.setUsername("michaeljordan");

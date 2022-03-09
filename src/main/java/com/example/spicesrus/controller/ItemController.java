@@ -29,8 +29,10 @@ import com.example.spicesrus.repo.SpicesRepository;
 @Controller
 public class ItemController {
 	
-	@Autowired //for creating a new item
-	ItemRepository iRepo;
+	@Autowired //for creating a new items in pounds
+	ItemPoundsRepository ipRepo;
+	@Autowired //for creating new items in grams
+	ItemGramsRepository igRepo;
 	@Autowired //for displaying the spice
 	SpicesRepository sRepo;
 	
@@ -68,8 +70,8 @@ public class ItemController {
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
 		cart.getItems().add(item);
 		
-		Item i = iRepo.save(item);
-		i = iRepo.findById(i.getId());
+		Item i = igRepo.save(item);
+		i = igRepo.findById(i.getId());
 		System.out.println(i.getPrice());
 		return "redirect:/spices";
 		
@@ -85,12 +87,13 @@ public class ItemController {
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
 		cart.getItems().add(item);
 
-		Item i = iRepo.save(item);
-		i = iRepo.findById(item.getId());
+		Item i = ipRepo.save(item);
+		i = ipRepo.findById(item.getId());
 		System.out.println(item.getPrice());
 		return "redirect:/spices";	
 	}
 	
+	/*
 	@PostMapping("deleteItem")
 	public String deleteItem(@RequestParam int id) {
 		Item i = iRepo.findById(id);
@@ -99,5 +102,6 @@ public class ItemController {
 		return "redirect:/cart";
 		
 	}
+	*/
 
 }
