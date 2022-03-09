@@ -10,32 +10,35 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.spicesrus.entities.Cart;
 import com.example.spicesrus.entities.Item;
 import com.example.spicesrus.entities.ItemGrams;
 import com.example.spicesrus.entities.ItemPounds;
 import com.example.spicesrus.entities.Spices;
 import com.example.spicesrus.repo.ItemGramsRepository;
 import com.example.spicesrus.repo.ItemPoundsRepository;
+import com.example.spicesrus.repo.ItemRepository;
 import com.example.spicesrus.repo.SpicesRepository;
 
 /**
- * Controller class managing items being added to cart 
- * @author Abdiwahab
- * @version 2
+ * Manages the creation and destruction of item objects, and adding them to a cart
+ * @author 
+ * version 3
  */
+
 @Controller
-public class SpiceController {
+public class ItemController {
 	
-	@Autowired //for creating a new item in pound format
+	@Autowired //for creating a new items in pounds
 	ItemPoundsRepository ipRepo;
-	@Autowired //for creating a new item in gram format
+	@Autowired //for creating new items in grams
 	ItemGramsRepository igRepo;
 	@Autowired //for displaying the spice
 	SpicesRepository sRepo;
 	
 	/**
+	 * Individual spice page
 	 * Checks if a spice exists in the database.
-	 * Shows the spice to user
 	 * Couldn't handle "/spices?..." requests as its implemented elsewhere
 	 * @param spice
 	 * @param model
@@ -58,15 +61,18 @@ public class SpiceController {
 	
 	/**
 	 * Adds an item in grams to database
+	 * Form takes us here
 	 * @param item
 	 * @return "spice" jsp page
 	 */
 	@PostMapping("addItemGrams")
 	public String addItem(@ModelAttribute ItemGrams item, HttpServletRequest request) {
-		request.getSession().setAttribute("hi", "hi");
-		Item x = igRepo.save(item);
-		x = igRepo.findById(x.getId()).get();
-		System.out.println(x.getPrice());
+		Cart cart = (Cart) request.getSession().getAttribute("cart");
+		cart.getItems().add(item);
+		
+		Item i = igRepo.save(item);
+		i = igRepo.findById(i.getId());
+		System.out.println(i.getPrice());
 		return "redirect:/spices";
 		
 	}
@@ -77,13 +83,25 @@ public class SpiceController {
 	 * @return "spice" jsp page
 	 */
 	@PostMapping("addItemPounds")
-	public String addItem(@ModelAttribute ItemPounds item) {
-		System.out.println(item.getPounds());
-		Item x = ipRepo.save(item);
-		x = ipRepo.findById(x.getId()).get();
-		//System.out.println(x.getPrice());
-		return "redirect:/spices";
+	public String addItem(@ModelAttribute ItemPounds item, HttpServletRequest request) {
+		Cart cart = (Cart) request.getSession().getAttribute("cart");
+		cart.getItems().add(item);
+
+		Item i = ipRepo.save(item);
+		i = ipRepo.findById(item.getId());
+		System.out.println(item.getPrice());
+		return "redirect:/spices";	
+	}
+	
+	/*
+	@PostMapping("deleteItem")
+	public String deleteItem(@RequestParam int id) {
+		Item i = iRepo.findById(id);
+		iRepo.deleteById(i.getId());
+
+		return "redirect:/cart";
 		
 	}
+	*/
 
 }

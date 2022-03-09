@@ -36,6 +36,7 @@ public class ItemGrams extends Item{
 		//get the price of 1 gram and multiply it by the number of grams we have (LHS)
 		this.price = ((kilograms * 1000) + grams) * (getSpice().getPrice() / 100);
 		this.price = Math.round(this.price * 100.0) / 100.0; //round to 2 decimal places
+		this.price *= this.price * this.getQuantity();
 		return price;
 	}
 
@@ -45,5 +46,10 @@ public class ItemGrams extends Item{
 			return getSpice().getName() + ":" + this.grams + "grams";
 		else
 			return getSpice().getName() + ":" + this.kilograms + "kg " + this.grams + "g";
+	}
+
+	@Override
+	public String getWeight() {
+		return this.kilograms + "kg " + this.grams + "g";
 	}
 }

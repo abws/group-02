@@ -1,5 +1,6 @@
 package com.example.spicesrus.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,6 +10,9 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Recipes {
+	/**
+	 * 
+	 */
 	@Id
 	private String name;
 	private String category;

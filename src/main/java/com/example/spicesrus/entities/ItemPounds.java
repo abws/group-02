@@ -36,6 +36,7 @@ public class ItemPounds extends Item{
 		//convert pounds and ounces to grams and then multiply by standard
 		this.price = (((this.pounds * 16) + this.ounces) * 28.3495) * (getSpice().getPrice() / 100);
 		this.price = Math.round(this.price * 100.0) / 100.0; //round to 2 decimal places
+		this.price *= this.price * this.getQuantity();
 		return price;
 	}
 
@@ -45,5 +46,10 @@ public class ItemPounds extends Item{
 			return getSpice().getName() + ":" + this.ounces + " lb";
 		else
 			return getSpice().getName() + ":" + this.pounds + " lb " + this.pounds + " oz.";
+	}
+	
+	@Override
+	public String getWeight() {
+		return this.pounds + "lbs" + this.ounces + "oz.";
 	}
 }

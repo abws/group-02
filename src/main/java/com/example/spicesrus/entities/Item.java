@@ -28,6 +28,7 @@ public abstract class Item {
 	@OneToOne(fetch = FetchType.LAZY) //unidirectional
 	@JoinColumn(name = "spice_id")
 	private Spices spice;
+	private int quantity;
 	
 	
 	/**
@@ -59,5 +60,15 @@ public abstract class Item {
 	}
 
 	public abstract double getPrice();
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
+	public abstract String getWeight();
 
 }
