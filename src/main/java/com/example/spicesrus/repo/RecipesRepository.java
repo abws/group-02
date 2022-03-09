@@ -1,7 +1,7 @@
 package com.example.spicesrus.repo;
 
 import com.example.spicesrus.entities.Recipes;
-import com.example.spicesrus.entities.Spices;
+
 
 import java.util.List;
 
