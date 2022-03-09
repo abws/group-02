@@ -55,6 +55,8 @@ public class BillingController {
 	        try {
 	        	Context context = new Context();
 	        	context.setVariable("firstName", details.getFirstName());
+	        	context.setVariable("customerAddress", details.getCustomerAddress());
+	        	context.setVariable("customerPostcode", details.getCustomerPostcode());
 	            handler.dispatchEmail(details.getCustomerEmail(), "Billing Confirmation", "billing_template.html", context);
 	        }catch (MessagingException e) {
 	            e.printStackTrace();
