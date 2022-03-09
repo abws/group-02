@@ -66,12 +66,13 @@ public class ItemController {
 	 * @return "spice" jsp page
 	 */
 	@PostMapping("addItemGrams")
-	public String addItem(@ModelAttribute ItemGrams item, HttpServletRequest request) {
+	public String addItemGrams(@ModelAttribute ItemGrams item, HttpServletRequest request) {
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
 		cart.getItems().add(item);
 		
 		Item i = igRepo.save(item);
 		i = igRepo.findById(i.getId());
+		System.out.println(item.getSpice().getName());
 		System.out.println(i.getPrice());
 		return "redirect:/spices";
 		
@@ -83,12 +84,14 @@ public class ItemController {
 	 * @return "spice" jsp page
 	 */
 	@PostMapping("addItemPounds")
-	public String addItem(@ModelAttribute ItemPounds item, HttpServletRequest request) {
+	public String addItemPounds(@ModelAttribute ItemPounds item, HttpServletRequest request) {
+		System.out.println(item.getPounds());
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
 		cart.getItems().add(item);
 
 		Item i = ipRepo.save(item);
 		i = ipRepo.findById(item.getId());
+		System.out.println(item.getSpice().getName());
 		System.out.println(item.getPrice());
 		return "redirect:/spices";	
 	}

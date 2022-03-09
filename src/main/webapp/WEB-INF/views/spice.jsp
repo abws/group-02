@@ -332,7 +332,10 @@ h2{
                     <!--grams/stones input depending on js onclick-->
                     <form:input id="input-small" class="unit_input" path="grams"/>
                     <form:label id="label-small" path="grams">g</form:label>
-                    <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
+
+                    <form:input class="unit_input" path="quantity"/>
+                    <form:label path="quantity">Quantity</form:label>                    <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
+                    <input type="submit">
                     <br>
                     
                 </form:form>
