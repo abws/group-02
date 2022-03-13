@@ -250,8 +250,8 @@
 
     <div class="pic">
 
-    <form action="/spicesearch" class="searchform" method="GET">
-        <input name="spice" type="text" class="searchTerm" placeholder="What are you looking for?">
+    <form action="/recipesearch" class="searchform" method="GET">
+        <input name="recipe" type="text" class="searchTerm" placeholder="What are you looking for?">
           <button type="submit" class="searchButton">
             <i class="fa-solid fa-magnifying-glass"></i>
          </button>
@@ -290,8 +290,8 @@
     <label for="sorting">Sort By:</label>
     <select name="sort" id="sort">
         <option selected disabled>${path}</option>
-        <option id="sort_a-z" value="/spices/a-z">A-Z</option>
-        <option id="sort_z-a" value="/spices/z-a">Z-A</option>
+        <option id="sort_a-z" value="/recipes/a-z">A-Z</option>
+        <option id="sort_z-a" value="/recipes/z-a">Z-A</option>
     </select>
 
 </form>
@@ -323,6 +323,18 @@
         </div>
     </c:forEach>
 </div>
+</div>
+<div class="center">
+    <div class="pagination">
+        <a href="#">&laquo;</a>
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">&raquo;</a>
+    </div>
 </div>
 
 </body>
