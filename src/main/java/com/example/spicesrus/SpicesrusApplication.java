@@ -137,6 +137,20 @@ public class SpicesrusApplication implements ApplicationRunner {
     	r1.setDescription("Eggs for breakfast is a genuinely global phenomenon and there is a dazzling array of recipes from around the world using them. This one is from North Africa (versions of it are popular throughout the");
     	r1.setName("Shakshuka");
     	r1.setPicture("https://www.spicemountain.co.uk/wp-content/uploads/2019/08/shakshuka.jpg");
+    	r1.setFullDescription("");
+    	r1.setIngredients("2tbs Olive Oil\n"
+    			+ "1 Onion, finely sliced\n"
+    			+ "1 Red Pepper, diced\n"
+    			+ "1 Yellow Pepper, diced\n"
+    			+ "3 cloves Garlic, finely chopped\n"
+    			+ "2tsp Sweet Paprika\n"
+    			+ "1/2 Cumin Seeds\n"
+    			+ "1/2 Caraway Seeds\n"
+    			+ "1/2 Cayenne Pepper\n"
+    			+ "2 tins Plum Tomatoes\n"
+    			+ "1tsp Sugar\n"
+    			+ "4 Eggs\n"
+    			+ "2tsp Lemon Juice");
     	r1 = recipesRepo.save(r1);
     	
     	Recipes r2 = new Recipes();

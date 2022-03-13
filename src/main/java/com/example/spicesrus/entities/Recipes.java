@@ -13,6 +13,8 @@ public class Recipes {
 	private String name;
 	private String category;
 	private String description;
+	private String ingredients;
+	private String fullDescription;
 	private int timeRequired;
 
 	@OneToMany
@@ -49,6 +51,18 @@ public class Recipes {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getIngredients() {
+		return ingredients;
+	}
+	public void setIngredients(String ingredients) {
+		this.ingredients = ingredients;
+	}
+	public String getFullDescription() {
+		return fullDescription;
+	}
+	public void setFullDescription(String fullDescription) {
+		this.fullDescription = fullDescription;
 	}
 	public List<Recipes> getComplimentaryRecipes() {
 		return complimentaryRecipes;
