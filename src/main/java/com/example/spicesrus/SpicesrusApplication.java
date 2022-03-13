@@ -133,16 +133,44 @@ public class SpicesrusApplication implements ApplicationRunner {
     	s4 = spicesRepo.save(s4);
     	
     	Recipes r1 = new Recipes();
-    	r1.setCategory("Pastries");
-    	r1.setDescription("");
-    	r1.setName("Cinnamon Buns");
-    	r1.setPicture("https://www.cookingclassy.com/wp-content/uploads/2020/09/mini-cinnamon-rolls-21.jpg");
+    	r1.setCategory("Breakfast");
+    	r1.setDescription("Eggs for breakfast is a genuinely global phenomenon and there is a dazzling array of recipes from around the world using them. This one is from North Africa (versions of it are popular throughout the");
+    	r1.setName("Shakshuka");
+    	r1.setPicture("https://www.spicemountain.co.uk/wp-content/uploads/2019/08/shakshuka.jpg");
+    	r1 = recipesRepo.save(r1);
+    	
+    	Recipes r2 = new Recipes();
+    	r2.setCategory("Cakes and Pies");
+    	r2.setDescription("An Autumn Sunday, a walk in the woods (or the park) and a lovely crumble waiting to be enjoyed when you get home, smothered in creamy custard to take the chill out of your bones.");
+    	r2.setName("Apple & Blackberry Crumble/Custard");
+    	r2.setPicture("https://www.spicemountain.co.uk/wp-content/uploads/2019/10/apple-and-blackberry-crumble-recipes.jpg");
+    	r2 = recipesRepo.save(r2);
+    	
+    	Recipes r3 = new Recipes();
+    	r3.setCategory("Lunch");
+    	r3.setDescription("A long-term favourite for picking up from the deli counter, there are as many recipes for hummus as there are chickpeas in a sack, but we make no apology for stating that this recipe is the best!");
+    	r3.setName("Hummus");
+    	r3.setPicture("https://www.spicemountain.co.uk/wp-content/uploads/2019/10/hummus-1.jpg");
+    	r3 = recipesRepo.save(r3);
+    	
+    	Recipes r4 = new Recipes();
+    	r4.setCategory("Dinner");
+    	r4.setDescription("Any fan of Japanese food will be aware that a Katsu Curry is a heavenly experience! What sets it apart are a couple of things – First, the chicken is breadcrumbed and fried, second the");
+    	r4.setName("Chicken Katsu Curry");
+    	r4.setPicture("https://www.notenoughcinnamon.com/wp-content/uploads/2020/11/Healthy-Chicken-Katsu-Curry-2.jpg");
+    	r4 = recipesRepo.save(r4);
+    	
+    	
+    	
     	spices.add(s1);
     	spices.add(s2);
     	spices.add(s3);
     	spices.add(s4);
     	users.add(ud2);
-    	recipesRepo.save(r1);
+    	recipes.add(r1);
+    	recipes.add(r2);
+    	recipes.add(r3);
+    	recipes.add(r4);
 
     }
 }
