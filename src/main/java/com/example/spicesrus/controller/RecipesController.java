@@ -1,7 +1,10 @@
 package com.example.spicesrus.controller;
 
 import com.example.spicesrus.SpicesrusApplication;
+import com.example.spicesrus.entities.ItemGrams;
+import com.example.spicesrus.entities.ItemPounds;
 import com.example.spicesrus.entities.Recipes;
+import com.example.spicesrus.entities.Spices;
 import com.example.spicesrus.repo.RecipesRepository;
 import com.example.spicesrus.security.UDetailsRepo;
 
@@ -166,5 +169,29 @@ public class RecipesController {
 		
 	}
 	
+	
+	
+	
+	/**
+	 * Checks if a spice exists in the database.
+	 * Shows the spice to user
+	 * Couldn't handle "/recipes?..." requests as its implemented elsewhere
+	 * @param spice
+	 * @param model
+	 * @return "spice" jsp page
+	 */
+	@RequestMapping("/recipe") //by default manages get requests
+	public String showRecipe(@RequestParam String recipe, Model model) {
+		Recipes r = recipesRepo.findByName(recipe); //same as finding by id since the name is the id
+		model.addAttribute("recipe", r);
+		
+		
+		//just in case user types the recipe name into the url
+		if (r != null)
+			model.addAttribute("recipe", r);
+		else
+			return "recipe-not-found-page"; //needs to be implemented
+		return "recipe";	
+	}	
 }
 
