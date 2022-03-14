@@ -25,8 +25,8 @@ public class CartController {
 	@GetMapping("/cart")
 	public String getCart(HttpServletRequest request, Model model) {
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
-		model.addAttribute(cart);
-		return "cart";
+		model.addAttribute("cart", cart);
+		return "cart/cart";
 	}
 	
 

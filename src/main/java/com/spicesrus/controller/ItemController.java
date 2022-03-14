@@ -44,11 +44,15 @@ public class ItemController {
 	 * @return "spice" jsp page
 	 */
 	@RequestMapping("/spice") //by default manages get requests
-	public String showSpice(@RequestParam String spice, Model model) {
+	public String showSpice(@RequestParam String spice, Model model, HttpServletRequest request) {
 		Spices s = sRepo.findByName(spice); //same as finding by id since the name is the id
 		model.addAttribute("spice", s);
 		model.addAttribute("itemPound", new ItemPounds()); //CANNOT INSTANTIATE AN ITEM OBJECT!, whatever happened to that whole polymorphism stuff they were bragging about (would be nice if i could create a general object that gets specified after form is filled)
 		model.addAttribute("itemGram", new ItemGrams());
+		
+		if (request.getSession().getAttribute("cart") == null) {
+			request.getSession().setAttribute("cart", new Cart());
+		}
 		
 		//just in case user types the spice name into the url
 		if (s != null)
@@ -66,8 +70,10 @@ public class ItemController {
 	 */
 	@PostMapping("addItemGrams")
 	public String addItemGrams(@ModelAttribute ItemGrams item, HttpServletRequest request) {
+				
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
 		cart.getItems().add(item);
+		request.getSession().setAttribute("cart", cart);
 		
 		Item i = igRepo.save(item);
 		i = igRepo.findById(i.getId());
@@ -84,9 +90,9 @@ public class ItemController {
 	 */
 	@PostMapping("addItemPounds")
 	public String addItemPounds(@ModelAttribute ItemPounds item, HttpServletRequest request) {
-		System.out.println(item.getPounds());
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
 		cart.getItems().add(item);
+		request.getSession().setAttribute("cart", cart);
 
 		Item i = ipRepo.save(item);
 		i = ipRepo.findById(item.getId());

@@ -1,14 +1,13 @@
 package com.spicesrus.model;
 
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 /**
  * Represents an item
@@ -20,8 +19,7 @@ import javax.persistence.OneToOne;
  */
 
 @Entity
-public abstract class Item implements Serializable{
-	private static final long serialVersionUID = 7711873887877339425L;
+public abstract class ItemAll {
 	@Id
 	@GeneratedValue
 	private int id;
@@ -29,6 +27,10 @@ public abstract class Item implements Serializable{
 	@JoinColumn(name = "spice_id")
 	private Spices spice;
 	private int quantity;
+	private Unit unit;
+	@Transient //transient annotation stops these fields from being persisted
+	private double priceMetric;
+	private double priceImperial;
 	
 	
 	/**
