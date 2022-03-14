@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Biling Confirmation</title>
+
+    <style>
+        .logo-text {
+            font-family: 'Caveat Brush', cursive;
+            font-size: 3rem;
+            color: #d59518;
+            margin-bottom: 0em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="logo">
+    <h1 class="logo-text">Spices R Us</h1>
+</div>
+
+<h1>Order Confirmation</h1>
+<p>Thanks <span th:text="${firstName}"></span> for ordering from SpicesRUS. Your order will now be processed and prepared for delivery to the following address:
+</p>
+<p>
+<span th:text="${customerAddress}"></span>   
+<span th:text="${customerPostcode}"></span>   
+</p>
+
+</body>
+</html>
