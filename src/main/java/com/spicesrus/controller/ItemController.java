@@ -50,9 +50,9 @@ public class ItemController {
 		model.addAttribute("itemPound", new ItemPounds()); //CANNOT INSTANTIATE AN ITEM OBJECT!, whatever happened to that whole polymorphism stuff they were bragging about (would be nice if i could create a general object that gets specified after form is filled)
 		model.addAttribute("itemGram", new ItemGrams());
 		
-		if (request.getSession().getAttribute("cart") == null) {
+		if (request.getSession().getAttribute("cart") == null) 
 			request.getSession().setAttribute("cart", new Cart());
-		}
+		
 		
 		//just in case user types the spice name into the url
 		if (s != null)
@@ -79,7 +79,7 @@ public class ItemController {
 		i = igRepo.findById(i.getId());
 		System.out.println(item.getSpice().getName());
 		System.out.println(i.getPrice());
-		return "redirect:/spices";
+		return "redirect:/spice?spice=" + item.getSpice().getName();
 		
 	}
 	
@@ -98,7 +98,7 @@ public class ItemController {
 		i = ipRepo.findById(item.getId());
 		System.out.println(item.getSpice().getName());
 		System.out.println(item.getPrice());
-		return "redirect:/spices";	
+		return "redirect:/spice?spice=" + item.getSpice().getName();
 	}
 	
 	/*

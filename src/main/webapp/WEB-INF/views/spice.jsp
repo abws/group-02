@@ -311,13 +311,13 @@ h2{
 
           <!-- Type Configuration -->
           <div class="type-config">
-            <span>Select Type</span>
+            <span>Select Weight</span>
 
             <div class="type-choose">
-              <button class="quantity" onclick="change_price()">100g</button>
-              <button class="quantity1" onclick="change_price1()">500g</button>
-              <button class="quantity2" onclick="change_price2()">1kg</button>
-              <button class="quantity3" onclick="change_price3()">5kg</button>
+              <button class="quantity" onclick="a()">25g</button>
+              <button class="quantity1" onclick="b()">50g</button>
+              <button class="quantity2" onclick="c()">100g</button>
+              <button class="quantity3" onclick="d()">250g</button>
              
             </div>
             
@@ -326,25 +326,38 @@ h2{
                   <!--form action and modelattribute will change onclick via js-->
                 <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
                     <form:hidden path="spice" value="${spice.name}"/>
-                    <!--kilograms/stones input depending on js onlcik-->
+                    <!--kilograms/stones input depending on js onclick-->
                     <form:input id="input-large" class="unit_input" path="kilograms"/>
                     <form:label id="label-large" path="kilograms">kg</form:label> 
                     <!--grams/stones input depending on js onclick-->
                     <form:input id="input-small" class="unit_input" path="grams"/>
                     <form:label id="label-small" path="grams">g</form:label>
 
-                    <form:input class="unit_input" path="quantity"/>
-                    <form:label path="quantity">Quantity</form:label>                    <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
-                    <input type="submit">
+                    <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
+
                     <br>
-                    
+                    <form:label path="quantity">Select Quantity</form:label>
+                    <form:input path="quantity"/>
+                    <br>
+
+                    <div class="type-choose">
+                      <!--
+                      <button class="btn btn-default btn-subtract" onclick="subtract()">-</button>
+                        <form:input id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^\d/g,'')"/>
+                      <button class="btn btn-default btn-add" onclick="unitSwitch()">+</button>
+                    </div>
+                  -->
+                    <div class="product-price">
+                      <span><p id="price-">&pound${spice.price} per 100g</p></span>
+                      <input type="submit" class="cart-btn" value="Add to Cart"> 
+                    </div>                   
                 </form:form>
               </div>
   
               
             </div>
-            
-             <!-- Quantity -->
+     
+             <!-- Quantity
           <div class="quantity-config">
             <span>Select Quantity</span>
 
@@ -358,13 +371,14 @@ h2{
           </div>
         </div>
 
-        <!-- Product Pricing -->
+         Product Pricing 
         <div class="product-price">
           <span><p id="price"></p></span>
          <button onclick="my()" class="cart-btn" id="pass">Add to cart</button>
         </div>
         
      </div>
+    -->
   	</main>
     
     
@@ -486,11 +500,7 @@ h2{
 		window.location.href="addtobasket"+window.location.search +"&type="+type+"&quantity="+currentValue+"&price="+submit_price+"&total="+(submit_price*currentValue).toFixed(2);
 	}
 	
- </script>      
 
-
-
-<script type="text/javascript">
   let y = false;
 
   function unitSwitch(){
@@ -502,8 +512,8 @@ h2{
       document.getElementById("form").action = "addItemPounds";
       document.getElementById("form").modelAttribute = "itemPound";
 
-      document.getElementById("input-large").path = "pounds";
-      document.getElementById("input-small").path = "ounces";
+      document.getElementById("input-large").setAttribute('path', 'pounds');
+      document.getElementById("input-small").setAttribute('path', 'ounces');
 
       document.getElementById("label-large").innerHTML = "lb";
       document.getElementById("label-small").innerHTML = "oz.";
@@ -524,6 +534,44 @@ h2{
       document.getElementById("label-small").innerHTML = "g";
     }
   }
+
+  function add() {
+    let val = document.getElementById("quantity").value;
+    val = (Number(val) + 1).toString();
+
+  }
+
+  function subtract() {
+    let val = document.getElementById("quantity").value;
+    val = (Number(val) - 1).toString();
+
+  }
+
+  function a() {
+    document.getElementById("input-large").value = '0';
+    document.getElementById("input-small").value = '25';
+    document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * 25) / 100;  
+  }
+
+  function b() {
+    document.getElementById("input-large").value = '0';
+    document.getElementById("input-small").value = '50';
+    document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * 50) / 100;
+  }
+
+  function c() {
+    document.getElementById("input-large").value = '0';
+    document.getElementById("input-small").value = '100';
+    document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * 100) / 100;
+  }
+
+  function d() {
+    document.getElementById("input-large").value = '0';
+    document.getElementById("input-small").value = '250';
+    document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * 250) / 100;
+  }
+
+
 </script>
     
 </body>
