@@ -16,8 +16,6 @@ public class Orders {
 	@Id
 	@GeneratedValue
 	private int id;
-	@OneToOne
-	private UDetails user;
 	private Date orderDate;
 	private int quantity;
 	private float orderTotal;

@@ -19,6 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.thymeleaf.context.Context;
 
+/**The billing controller links to the billing form page.
+ * It encodes and saves billing information for payment processing.
+ * @author Haleem
+ *
+ */
+
 @Controller
 public class BillingController {
 	
@@ -48,10 +54,12 @@ public class BillingController {
 	            return "billing";
 	        }
 	         
+	        // encode all sensitive billing information 
 	        details.setCardNumber(encoder.encode(details.getCardNumber()));
 	        details.setCvvNumber(encoder.encode(details.getCvvNumber()));
 	        details.setExpiryDate(encoder.encode(details.getExpiryDate()));
 	        repo.save(details);
+	        //Sends a billing confirmation email using billing template HTML once the user submits the form.
 	        try {
 	        	Context context = new Context();
 	        	context.setVariable("firstName", details.getFirstName());
