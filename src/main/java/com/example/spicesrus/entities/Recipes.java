@@ -15,6 +15,7 @@ public class Recipes {
 	private String description;
 	private String ingredients;
 	private String fullDescription;
+	private String method;
 	private int timeRequired;
 
 	@OneToMany
@@ -51,6 +52,12 @@ public class Recipes {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getMethod() {
+		return method;
+	}
+	public void setMethod(String method) {
+		this.method = method;
 	}
 	public String getIngredients() {
 		return ingredients;

@@ -99,13 +99,13 @@ public class RecipesController {
 		return "allRecipes";
 	}
 	
-	@GetMapping("/recipes/Pastires")
+	@GetMapping("/recipes/Pastries")
 	public String showCategory_P(Model model) {
 		
 		List<Recipes> recipes = SpicesrusApplication.recipes;
 		List<Recipes> output = new ArrayList<Recipes>();
 		for (Recipes r: recipes) {
-			if (r.getCategory()=="Pastires") {
+			if (r.getCategory()=="Pastries") {
 				output.add(r);
 			}
 		}

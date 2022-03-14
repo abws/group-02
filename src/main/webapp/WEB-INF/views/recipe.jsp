@@ -24,12 +24,12 @@ html, body {
 
 /* Columns */
 .left-column {
-  width: 60%;
+  width: 70%;
   position: relative;
 }
 
 .right-column {
-  width: 35%;
+  width: 70%;
   margin-top: 60px;
 }
 
@@ -46,37 +46,85 @@ html, body {
 .left-column img.active {
   opacity: 1;
 }
-
-
-/* Right Column */
-
-/* Product Description */
-.product-description {
+/* Recipe Ingredients */
+.recipe-ingredients {
   border-bottom: 1px solid #E1E8EE;
   margin-bottom: 20px;
 }
-.product-description span {
+.recipe-ingredients span {
   font-size: 12px;
   color: #d57a29;
   letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
 }
-.product-description h1 {
+.recipe-ingredients h1 {
   font-weight: 300;
   font-size: 52px;
   color: #000000;
   letter-spacing: -2px;
 }
-.product-description p {
+.recipe-ingredients p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #9e9586;
+  line-height: 24px;
+}
+/* Recipe Method */
+.recipe-method {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+}
+.recipe-method span {
+  font-size: 12px;
+  color: #d57a29;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.recipe-method h1 {
+  font-weight: 300;
+  font-size: 52px;
+  color: #000000;
+  letter-spacing: -2px;
+}
+.recipe-method p {
   font-size: 16px;
   font-weight: 300;
   color: #9e9586;
   line-height: 24px;
 }
 
-/* Product Configuration */
-.product-color span,
+/* Right Column */
+
+/* Recipe Description */
+.recipe-description {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+  margin-left: 60px;
+}
+.recipe-description span {
+  font-size: 12px;
+  color: #d57a29;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.recipe-description h1 {
+  font-weight: 300;
+  font-size: 52px;
+  color: #000000;
+  letter-spacing: -2px;
+}
+.recipe-description p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #9e9586;
+  line-height: 24px;
+}
+
+/* Recipe Configuration */
+.recipe-color span,
 .type-config span {
   font-size: 14px;
   font-weight: 400;
@@ -230,7 +278,7 @@ border: 2px solid #eee7e1;
     text-align:center;
 
 }
-.recipe{
+.product{
 
 
     padding-right: 15px;
@@ -243,16 +291,16 @@ display: flex;
 
 }
 
-.recipe div{
+.product div{
 
-width:33.33%;
+width:25%;
 
-    padding: 10px;
-    margin: 10px;
+    padding: 5px;
+    margin: 5px;
 }
 
-.recipe img{
-  border-radius: 10px;
+.product img{
+  border-radius: 5px;
   
 img-shadow: 2px 2px;
 
@@ -264,7 +312,7 @@ img-shadow: 2px 2px;
       -khtml-box-shadow: 10px 10px 5px #ccc;
 }
 
-.recipe img:hover {
+.product img:hover {
   box-shadow: 0 0 2px 2px #fd8d0c;
       cursor: pointer;
 }
@@ -295,51 +343,61 @@ h2{
         <main class="container">
     
           <!-- Left Column / Image -->
-          <div class="left-column">
+          <div>
             <img src="${recipe.picture}" alt="${recipe.name}">
-   
           </div>
+
     
     
           <!-- Right Column -->
           <div class="right-column">
     
             <!-- Product Description -->
-            <div class="product-description">
+            <div class="recipe-description">
               <span>${recipe.category}</span>
               <h1 class="name">${recipe.name}</h1>
               <p>${recipe.description}</p>
-              <h1 class="Ingredients">Ingredients</h1>
-              <p>${recipe.ingredients}</p> 
             </div>
+          </div>
+        </main>
+        <main class="container">
+          <!--Ingredients and Method below the photo-->
+          <div class="recipe-ingredients">
+            <h1 class="Ingredients">Ingredients</h1>
+            <p>${recipe.ingredients}</p>
+            <h1 class="Method">Method</h1>
+            <p>${recipe.method}</p>
+          </div>          
+        </main>
 
-                <h2 style="text-align:center;">Related Product</h2>
-          <div class="recipe">
-          
-              
-       
-             <div>
-                  <img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/paprika1.jpeg" alt="Sweet Paprika" width="304" height="236">
-                    <p>Sweet Paprika</p>
-             </div>
-             
-             <div>
-                  <img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/cumin-seed.jpg" alt="Cumin Seeds" width="304" height="236">
-                    <p>Cumin Seeds</p>
-             </div>
-             
-             <div>
-                  <img src="https://huntercattle.com/wp-content/uploads/2020/11/istockphoto-541851706-612x612-1.jpg" alt="Cayenne Pepper" width="304" height="236">
-                    <p>Cayenne Pepper</p>
-             </div>
-             <div>
-                <img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/20161123_131905.jpg" alt="Carway Seeds" width="304" height="236">
-                  <p>Caraway Seeds</p>
-           </div>
-                   
-            </div>
+
+            <h2 style="text-align:center;">Related Product</h2>
+      <div class="product">
       
-        
+      	
+   
+	 	<div >
+ 	 		<img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/paprika1.jpeg" alt="Sweet Paprika" width="304" height="236">
+		   	 <p>Sweet Paprika</p>
+	 	</div>
+	 	
+	 	<div >
+ 	 		<img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/cumin-seed.jpg" alt="Cumin Seeds" width="304" height="236">
+		   	 <p>Cumin Seeds</p>
+	 	</div>
+	 	
+	 	<div >
+ 	 		<img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/cayenne-pepper_1422925949-scaled.jpg" alt="Cayenne Pepper" width="304" height="236">
+		   	 <p>Cayenne Pepper</p>
+	 	</div>
+
+	 	<div >
+      <img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/20161123_131905.jpg" alt="Carway Seeds" width="304" height="236">
+        <p>Carway Seeds</p>
+   </div>	 	
+		   	
+		</div>
+  
     </body>
     
     </html>
