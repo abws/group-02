@@ -30,7 +30,7 @@ public abstract class Item implements Serializable{
 	@JoinColumn(name = "spice_id")
 	private Spices spice;
 	private int quantity;
-	@ManyToOne(fetch = FetchType.LAZY) //bidirectional
+	@ManyToOne (fetch = FetchType.LAZY) //bidirectional
 	@JoinColumn
 	private Cart cart;
 	

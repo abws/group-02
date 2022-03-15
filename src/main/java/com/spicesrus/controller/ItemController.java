@@ -1,5 +1,10 @@
 package com.spicesrus.controller;
 
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,16 +15,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 import com.spicesrus.model.Cart;
 import com.spicesrus.model.Item;
 import com.spicesrus.model.ItemGrams;
 import com.spicesrus.model.ItemPounds;
 import com.spicesrus.model.Spices;
+import com.spicesrus.model.UDetails;
 import com.spicesrus.repository.CartRepository;
 import com.spicesrus.repository.ItemGramsRepository;
 import com.spicesrus.repository.ItemPoundsRepository;
 import com.spicesrus.repository.ItemRepository;
 import com.spicesrus.repository.SpicesRepository;
+import com.spicesrus.repository.UDetailsRepo;
 
 /**
  * Manages the creation and destruction of item objects, and adding them to a cart
@@ -40,6 +48,8 @@ public class ItemController {
 	ItemRepository iRepo;
 	@Autowired
 	CartRepository cRepo;
+	@Autowired
+	UDetailsRepo uRepo;
 	
 	
 	/**
@@ -51,12 +61,28 @@ public class ItemController {
 	 * @return "spice" jsp page
 	 */
 	@RequestMapping("/spice") //by default manages get requests
-	public String showSpice(@RequestParam String spice, Model model, HttpServletRequest request) {
+	public String showSpice(@RequestParam String spice, Model model, HttpServletRequest request, Principal user) {
+		//get spice to view and item ready 
 		Spices s = sRepo.findByName(spice); //same as finding by id since the name is the id
 		model.addAttribute("spice", s);
 		model.addAttribute("itemPound", new ItemPounds()); //CANNOT INSTANTIATE AN ITEM OBJECT!, whatever happened to that whole polymorphism stuff they were bragging about (would be nice if i could create a general object that gets specified after form is filled)
 		model.addAttribute("itemGram", new ItemGrams());
 		
+		//user privileges
+		UDetails userDetails = null;
+		List<String> level = new ArrayList<>();
+		
+		if (user == null)
+			level.add("none");
+		
+		else {
+			userDetails = uRepo.findByUsername(user.getName());
+			level = userDetails.getAuthorities();
+		}
+		model.addAttribute("level", level);
+		
+
+		//session management
 		if (request.getSession().getAttribute("cart") == null) {
 			Cart cart = new Cart();
 			cart = cRepo.save(cart);
@@ -83,6 +109,7 @@ public class ItemController {
 	public String addItemGrams(@ModelAttribute ItemGrams item, HttpServletRequest request) {
 				
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
+		item.setCart(cart);
 		cart.getItems().add(item);
 		request.getSession().setAttribute("cart", cart);
 		

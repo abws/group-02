@@ -31,6 +31,12 @@ public class CartController {
 	
 	@GetMapping("/cart")
 	public String getCart(HttpServletRequest request, Model model) {
+		if (request.getSession().getAttribute("cart") == null) {
+			Cart cart = new Cart();
+			cart = cRepo.save(cart);
+			request.getSession().setAttribute("cart", cart);
+		}
+		
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
 		cart = cRepo.findById(cart.getId());
 		request.getSession().setAttribute("cart", cart);
