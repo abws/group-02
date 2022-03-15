@@ -8,7 +8,7 @@
 
 <h1>Order Complete</h1>
 
-<p>You have successfully completed your order.</p>
+<p>You have successfully completed your order. A confirmation email has been sent to your email</p>
 </form>
 </body>
 </html>
