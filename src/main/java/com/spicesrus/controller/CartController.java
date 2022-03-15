@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.spicesrus.model.Cart;
 import com.spicesrus.model.Item;
+import com.spicesrus.repository.CartRepository;
 import com.spicesrus.repository.ItemGramsRepository;
 import com.spicesrus.repository.ItemPoundsRepository;
 import com.spicesrus.repository.ItemRepository;
@@ -24,11 +25,17 @@ public class CartController {
 	ItemPoundsRepository ipRepo;
 	@Autowired
 	ItemRepository iRepo;
+	@Autowired 
+	CartRepository cRepo;
 	
 	
 	@GetMapping("/cart")
 	public String getCart(HttpServletRequest request, Model model) {
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
+		cart = cRepo.findById(cart.getId());
+		request.getSession().setAttribute("cart", cart);
+		//System.out.println(cart.getItems().get(0).getQuantity() + "now"); //debugging
+		
 		model.addAttribute("cart", cart);
 		return "cart/cart";
 	}

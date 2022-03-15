@@ -82,7 +82,8 @@ button:hover {
 
   background-color: #ffe1ca;;
   border-radius: 35px;
-  
+  font-family: 'Helvetica';
+
 
   -webkit-box-shadow: 10px 10px 5px #d9d9d9;
 }
@@ -114,6 +115,8 @@ button:hover {
 display: flex; 
 justify-content: space-between; 
 padding: 0 50 0 50;
+margin-top: 10px;
+box-shadow: 0px 10px 10px -10px grey;
 }
 
 .summary p{
@@ -121,6 +124,18 @@ padding: 0 50 0 50;
         font-size: 16px;
     font-weight: 800;
 
+}
+
+.total {
+    margin-top: 15px;
+    display:flex;
+    justify-content: space-between;
+    font-size: 2em; 
+}
+
+.total .final-price {
+    margin-top: 20px;
+    font-size: 2.5em;
 }
 
 .right-column h1{
@@ -196,9 +211,9 @@ padding: 0 50 0 50;
                   <p>&pound6.80</p>
                </div>
 
-                <div class ="total">
+                <div class="total">
                   <p>Total </p>
-                  <p id="total"></p>
+                  <p class="final-price"id="total"></p>
                </div>
 
                <div class = "checkout">
@@ -218,7 +233,7 @@ padding: 0 50 0 50;
 
             function increment() {
                 let val = Number(document.getElementById("quantity").value);
-                if (val == 10) return 0;
+                if (val == 10) return 0; //the button deactivates for values over 10 or below 0
                 document.getElementById("quantity").value = Number(document.getElementById("quantity").value) + 1;
           }
 

@@ -37,8 +37,6 @@ public class IndexController {
 		public String endSession(HttpSession s) {
 			s.invalidate();
 			return "redirect:/";
-			
-		
 		}
 
 }
