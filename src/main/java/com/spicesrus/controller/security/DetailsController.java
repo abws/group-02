@@ -1,5 +1,8 @@
 package com.spicesrus.controller.security;
 
+import com.spicesrus.dto.UserDTO;
+import com.spicesrus.model.User;
+import com.spicesrus.repository.UserRepository;
 import com.spicesrus.validators.DetailsValidator;
 import com.spicesrus.model.UDetails;
 import com.spicesrus.repository.UDetailsRepo;
@@ -17,19 +20,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Arrays;
 
 @Controller
 public class DetailsController {
 
     @Autowired
-    private UDetailsRepo repo;
-
+    private UserRepository userRepository;
     @Autowired
     private PasswordEncoder encoder;
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
-        binder.addValidators(new DetailsValidator(repo));
+        binder.addValidators(new DetailsValidator(userRepository));
     }
 
 
@@ -40,17 +43,21 @@ public class DetailsController {
             return "redirect:/login"; // If there is no available user data redirect to login.
         }
 
-        UDetails user = repo.findByUsername(principal.getName());
-        user.setPassword("******"); // This is vital to ensure that the encrypted password is not shown
-        model.addAttribute("user", user);
+
+        User actual = userRepository.findByUsername(principal.getName());
+        UserDTO dto = UserDTO.fromUser(actual);
+        dto.setPassword("*******");
+
+        model.addAttribute("user", dto);
+        model.addAttribute("membership", Arrays.toString(actual.getAuthorities().toArray()));
         return "user_detail";
     }
 
     @PostMapping("/user")
-    public String user(Principal principal, @Valid @ModelAttribute(name = "user") UDetails user, BindingResult result, Model model) {
+    public String user(Principal principal, @Valid @ModelAttribute(name = "user") UserDTO user, BindingResult result, Model model) {
 
         BindingResult tmp = new BeanPropertyBindingResult(user, "user");
-        UDetails actual = repo.findByUsername(principal.getName());
+        UserDTO actual = UserDTO.fromUser(userRepository.findByUsername(principal.getName()));
 
         if (!principal.getName().equals(user.getUsername())) {
             result.reject("username", "You are not allowed to change your username"); // Prevents username being chnaged (Primary Key)
@@ -100,7 +107,6 @@ public class DetailsController {
             actual.setPassword(encoder.encode(user.getPassword()));
         }
 
-        repo.save(actual); // Update the user.
 
         return "redirect:/user";
     }

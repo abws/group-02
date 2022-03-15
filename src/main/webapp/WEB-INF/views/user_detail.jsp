@@ -132,7 +132,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text">User Roles:</span>
-                    <input readonly value="<sec:authentication property="principal.authorities"/>">
+                    <input readonly value="${membership}">
                 </div>
 
                 <input type="submit" value="Change Details">

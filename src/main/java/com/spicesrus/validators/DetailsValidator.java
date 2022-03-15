@@ -1,32 +1,34 @@
 package com.spicesrus.validators;
 
+import com.spicesrus.dto.UserDTO;
 import com.spicesrus.model.UDetails;
-import com.spicesrus.repository.UDetailsRepo;
+import com.spicesrus.model.User;
+import com.spicesrus.repository.UserRepository;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 public class DetailsValidator implements Validator {
 
-    private UDetailsRepo repo;
+    private UserRepository userRepository;
 
     // Pass an instance of repository.
-    public DetailsValidator(UDetailsRepo repo) {
-        this.repo = repo;
+    public DetailsValidator(UserRepository repo) {
+        this.userRepository = repo;
     }
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return UDetails.class.equals(clazz);
+        return UserDTO.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        UDetails ud = (UDetails) target;
+        UserDTO ud = (UserDTO) target;
 
-        if (ud.getEmail() != null && repo.findByEmail(ud.getEmail()) != null) {
+        if (ud.getEmail() != null && userRepository.findByEmail(ud.getEmail()) != null) {
             errors.rejectValue("email", "", "This email is already registered with us.");
         }
-        if (ud.getUsername() != null && repo.findByUsername(ud.getUsername()) != null) {
+        if (ud.getUsername() != null && userRepository.findByUsername(ud.getUsername()) != null) {
             errors.rejectValue("username", "", "This username is taken.");
         }
 

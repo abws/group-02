@@ -2,8 +2,10 @@ package com.spicesrus.service;
 
 import com.spicesrus.model.UDetails;
 import com.spicesrus.repository.UDetailsRepo;
+import com.spicesrus.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -16,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UDetailsService implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
     @Autowired
-    private UDetailsRepo repo;
+    private UserRepository userRepository;
 
     private SimpleGrantedAuthority basic = new SimpleGrantedAuthority("BASIC");
     private SimpleGrantedAuthority novice = new SimpleGrantedAuthority("NOVICE");
@@ -29,40 +31,30 @@ public class UDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        UDetails details = repo.findByUsername(login);
-        if (details == null) throw new UsernameNotFoundException("Credentials Invalid");
+        com.spicesrus.model.User user = userRepository.findByUsername(login);
+        if (user == null) throw new UsernameNotFoundException("Credentials Invalid");
 
         List<SimpleGrantedAuthority> matched = new ArrayList<>();
         matched.add(basic);
 
         roles.forEach(role -> {
-            if (details.getAuthorities().contains(role.getAuthority())) matched.add(role);
+            if (user.getAuthorities().contains(role.getAuthority())) matched.add(role);
         });
 
-        return new User(details.getUsername(), details.getPassword(), true, true, true, true, matched);
+        return new User(user.getUsername(), user.getPassword(), true, true, true, true, matched);
     }
 
-    /**
-     * Changes the user to another plan
-     *
-     * @param user - The user to modify
-     * @param plan - The plan to change them to (basic, novice, expert)
-     */
-    public void updateUser(UDetails user, String plan) {
-        List<String> l = user.getAuthorities();
-        l.removeAll(List.of("BASIC", "NOVICE", "EXPERT"));
-        l.add(plan);
-        user.setAuthorities(l);
-
+    public void update(com.spicesrus.model.User user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         List<SimpleGrantedAuthority> matched = new ArrayList<>();
         matched.add(basic);
 
         roles.forEach(role -> {
-            if (l.contains(role.getAuthority())) matched.add(role);
+            if (user.getAuthorities().contains(role.getAuthority())) matched.add(role);
         });
 
-        SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(SecurityContextHolder.getContext().getAuthentication().getPrincipal(), SecurityContextHolder.getContext().getAuthentication().getCredentials(), matched));
-        user.setAuthorities(l);
-        repo.save(user);
+        Authentication tmp = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), matched);
+        SecurityContextHolder.getContext().setAuthentication(tmp);
     }
+
 }
