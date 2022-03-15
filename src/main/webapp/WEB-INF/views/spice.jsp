@@ -314,10 +314,11 @@ h2{
             <span>Select Weight</span>
 
             <div class="type-choose">
-              <button class="quantity" onclick="a()">25g</button>
-              <button class="quantity1" onclick="b()">50g</button>
-              <button class="quantity2" onclick="c()">100g</button>
-              <button class="quantity3" onclick="d()">250g</button>
+              <button class="quantity" onclick="a(25)">25g</button>
+              <button class="quantity1" onclick="a(50)">50g</button>
+              <button class="quantity2" onclick="a(100)">100g</button>
+              <button class="quantity3" onclick="a(250)">250g</button>
+              <button class="quantity3" onclick="a(500)">500g</button>
              
             </div>
             
@@ -334,19 +335,18 @@ h2{
                     <form:label id="label-small" path="grams">g</form:label>
 
                     <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
-
+                    <!--
                     <br>
                     <form:label path="quantity">Select Quantity</form:label>
                     <form:input path="quantity"/>
                     <br>
-
+                    -->
                     <div class="type-choose">
-                      <!--
-                      <button class="btn btn-default btn-subtract" onclick="subtract()">-</button>
-                        <form:input id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^\d/g,'')"/>
-                      <button class="btn btn-default btn-add" onclick="unitSwitch()">+</button>
+                      <button class="btn btn-default btn-subtract" onclick="decrement()" type="button">-</button>
+                        <form:input id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10"/>
+                      <button class="btn btn-default btn-add" onclick="increment()" type="button">+</button>
                     </div>
-                  -->
+
                     <div class="product-price">
                       <span><p id="price-">&pound${spice.price} per 100g</p></span>
                       <input type="submit" class="cart-btn" value="Add to Cart"> 
@@ -407,6 +407,7 @@ h2{
   
            
 <script>
+  /*
 	var minus = document.querySelector(".btn-subtract");
 	var add = document.querySelector(".btn-add");
 	var quantityNumber = document.querySelector(".item-quantity");
@@ -499,8 +500,10 @@ h2{
 		
 		window.location.href="addtobasket"+window.location.search +"&type="+type+"&quantity="+currentValue+"&price="+submit_price+"&total="+(submit_price*currentValue).toFixed(2);
 	}
-	
+  */
+	</script>
 
+  <script>
   let y = false;
 
   function unitSwitch(){
@@ -535,45 +538,53 @@ h2{
     }
   }
 
-  function add() {
-    let val = document.getElementById("quantity").value;
-    val = (Number(val) + 1).toString();
+  function increment() {
+    let val = Number(document.getElementById("quantity").value);
+    if (val == 10) return 0;
+    document.getElementById("quantity").value = Number(document.getElementById("quantity").value) + 1;
+
+  }
+</script>
+  <script>
+  function decrement() {
+    let val = Number(document.getElementById("quantity").value);
+    if (val == 1) return 0;
+    document.getElementById("quantity").value = document.getElementById("quantity").value - 1;
+    //val = (Number(val) - 1);
 
   }
 
-  function subtract() {
-    let val = document.getElementById("quantity").value;
-    val = (Number(val) - 1).toString();
-
-  }
-
-  function a() {
+  function a(n) {
+    if (n == 25){
     document.getElementById("input-large").value = '0';
     document.getElementById("input-small").value = '25';
     document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * 25) / 100;  
   }
 
-  function b() {
+  if (n == 50) {
     document.getElementById("input-large").value = '0';
     document.getElementById("input-small").value = '50';
     document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * 50) / 100;
   }
 
-  function c() {
+  if (n == 100) {
     document.getElementById("input-large").value = '0';
     document.getElementById("input-small").value = '100';
     document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * 100) / 100;
   }
 
-  function d() {
+  if (n == 250) {
     document.getElementById("input-large").value = '0';
     document.getElementById("input-small").value = '250';
     document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * 250) / 100;
   }
 
+  if (n == 500) {
+    document.getElementById("input-large").value = '0';
+    document.getElementById("input-small").value = '500';
+    document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * 500) / 100;
+  }
 
-</script>
-    
+</script>  
 </body>
-
 </html>
