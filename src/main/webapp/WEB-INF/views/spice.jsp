@@ -29,7 +29,7 @@ html, body {
 }
 
 .right-column {
-  width: 35%;
+  width: 38%;
   margin-top: 60px;
 }
 
@@ -311,15 +311,15 @@ h2{
 
           <!-- Type Configuration -->
           <div class="type-config">
-            <span>Select Weight</span>
-
             <div class="type-choose">
-              <button class="quantity" onclick="a(25)">25g</button>
-              <button class="quantity1" onclick="a(50)">50g</button>
-              <button class="quantity2" onclick="a(100)">100g</button>
-              <button class="quantity3" onclick="a(250)">250g</button>
-              <button class="quantity3" onclick="a(500)">500g</button>
-             
+              <span>Select Weight</span> 
+              <button class="quantity" onmousedown="flashImperial()" onmouseup="metric()">See in Imperial</button> <br>
+
+              <button id="b-25" class="quantity" onclick="a(25)">25g</button>
+              <button id="b-50" class="quantity" onclick="a(50)">50g</button>
+              <button id="b-100" class="quantity" onclick="a(100)">100g</button>
+              <button id="b-250" class="quantity" onclick="a(250)">250g</button>
+              <button id="b-500" class="quantity" onclick="a(500)">500g</button>
             </div>
             
             <div class="quantity-config">            
@@ -558,6 +558,22 @@ h2{
     document.getElementById("input-large").value = '0';
     document.getElementById("input-small").value = n;
     document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * n) / 100;  
+  }
+
+  function metric() {
+    document.getElementById("b-25").innerHTML =  "25g"
+    document.getElementById("b-50").innerHTML = "50g"
+    document.getElementById("b-100").innerHTML = "100g"
+    document.getElementById("b-250").innerHTML = "250g"
+    document.getElementById("b-500").innerHTML = "500g"
+    
+  }
+  function flashImperial() {
+    document.getElementById("b-25").innerHTML =  Math.round((25/28.35) * 100) /100 + "oz";
+    document.getElementById("b-50").innerHTML = Math.round((50/28.35) * 100) /100 + "oz";
+    document.getElementById("b-100").innerHTML = Math.round((100/28.35) * 100) /100 + "oz";
+    document.getElementById("b-250").innerHTML = Math.round((250/28.35) * 100) /100 + "oz";
+    document.getElementById("b-500").innerHTML = Math.round((500/28.35) * 100) /100 + "oz";
   }
 
 </script>  
