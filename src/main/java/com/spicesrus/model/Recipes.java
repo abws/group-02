@@ -30,6 +30,8 @@ public class Recipes {
 	@ElementCollection
 	private List<String> method;
 
+	private boolean restricted = false;
+
 
 
 	public List<Spices> getSpicesInvolved() {
@@ -96,5 +98,12 @@ public class Recipes {
 	public void setTimeRequired(int timeRequired) {
 		this.timeRequired = timeRequired;
 	}
-	
+
+	public boolean isRestricted() {
+		return restricted;
+	}
+
+	public void setRestricted(boolean restricted) {
+		this.restricted = restricted;
+	}
 }

@@ -77,6 +77,7 @@ public class SpicesrusApplication implements ApplicationRunner {
         createSpice("Peppers", "LONG PEPPER", "This pepper is mostly used in slow cooked dishes & pickels.It smells sweetley fragrant, but has a biting aftertaste.", 3.00, "https://stamboulbazaar.com/wp-content/uploads/nc/catalog/Product/Baharatlar/turkish-black-pepper-spice-ground.jpg");
 
         Recipes r1 = new Recipes();
+        r1.setRestricted(true); // can only be accessed by novice+
         r1.setCategory("Breakfast");
         r1.setDescription("Eggs for breakfast is a genuinely global phenomenon and there is a dazzling array of recipes from around the world using them. This one is from North Africa (versions of it are popular throughout the Middle East)");
         r1.setName("Shakshuka");
