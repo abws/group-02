@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -23,7 +24,20 @@ public class MembershipController {
     private UserService service;
 
     @GetMapping("/membership")
-    public String membership() {
+    public String membership(Principal principal, Model model) {
+        String membership;
+        if (principal == null) {
+            membership = "NONE";
+        }else{
+            User user = repo.findByUsername(principal.getName());
+            if (user.getAuthorities().contains("EXPERT")) membership = "EXPERT";
+            else if (user.getAuthorities().contains("ADMIN")) membership = "EXPERT"; // display admin as expert
+            else if (user.getAuthorities().contains("NOVICE")) membership = "NOVICE";
+            else if (user.getAuthorities().contains("BASIC")) membership = "BASIC";
+            else membership = "NONE ";
+        }
+
+        model.addAttribute("membership", membership);
         return "membership_overview";
     }
 
@@ -36,7 +50,7 @@ public class MembershipController {
         repo.save(user);
         service.update(user);
         session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
-        return "redirect:/user";
+        return "redirect:/membership";
     }
 
     @PostMapping("/membership/novice")
@@ -48,7 +62,7 @@ public class MembershipController {
         repo.save(user);
         service.update(user);
         session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
-        return "redirect:/user";
+        return "redirect:/membership";
     }
 
     @PostMapping("/membership/expert")
@@ -60,7 +74,7 @@ public class MembershipController {
         repo.save(user);
         service.update(user);
         session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
-        return "redirect:/user";
+        return "redirect:/membership";
     }
 
     /*
