@@ -2,10 +2,7 @@ package com.spicesrus.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Recipes {
@@ -16,9 +13,7 @@ public class Recipes {
 	private String name;
 	private String category;
 	private String description;
-	private String ingredients;
 	private String FullDescription;
-	private String method;
 	private int timeRequired;
 
 	@OneToMany
@@ -29,9 +24,14 @@ public class Recipes {
 	@OneToMany
 	@JoinColumn
 	private List<Spices> spicesInvolved;
-	
-	
-	
+
+	@ElementCollection
+	private List<String> ingredients;
+	@ElementCollection
+	private List<String> method;
+
+
+
 	public List<Spices> getSpicesInvolved() {
 		return spicesInvolved;
 	}
@@ -56,16 +56,16 @@ public class Recipes {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getMethod() {
+	public List<String> getMethod() {
 		return method;
 	}
-	public void setMethod(String method) {
+	public void setMethod(List<String> method) {
 		this.method = method;
 	}
-	public String getIngredients() {
+	public List<String> getIngredients() {
 		return ingredients;
 	}
-	public void setIngredients(String ingredients) {
+	public void setIngredients(List<String> ingredients) {
 		this.ingredients = ingredients;
 	}
 	public String getFullDescription() {

@@ -82,20 +82,21 @@ public class SpicesrusApplication implements ApplicationRunner {
         r1.setName("Shakshuka");
         r1.setPicture("https://www.spicemountain.co.uk/wp-content/uploads/2019/08/shakshuka.jpg");
         r1.setFullDescription(""); //Eggs for breakfast is a genuinely global phenomenon and there is a dazzling array of recipes from around the world using them. This one is from North Africa (versions of it are popular throughout the Middle East), and the other main ingredient apart from egg is tomato. Various veggies can be added depending on which country’s recipe you are following, but we like it best just adding plenty of sweet peppers, whichever colour you choose. It is spiced with cumin seeds, caraway seeds, cayenne and paprika (our Harissa spice blend does the job perfectly), and is lovely served with a hunk of bread, or a warm pitta bread. Along with the similar Mexican Huevos Rancheros, this is one of our favourite Sunday brunch treats.
-        r1.setIngredients("2tbs Olive Oil\n"
-                + "1 Onion, finely sliced\n"
-                + "1 Red Pepper, diced\n"
-                + "1 Yellow Pepper, diced\n"
-                + "3 cloves Garlic, finely chopped\n"
-                + "2tsp Sweet Paprika\n"
-                + "1/2 Cumin Seeds\n"
-                + "1/2 Caraway Seeds\n"
-                + "1/2 Cayenne Pepper\n"
-                + "2 tins Plum Tomatoes\n"
-                + "1tsp Sugar\n"
-                + "4 Eggs\n"
-                + "2tsp Lemon Juice");
-        r1.setMethod("");/*Method
+//        r1.setIngredients("2tbs Olive Oil\n"
+//                + "1 Onion, finely sliced\n"
+//                + "1 Red Pepper, diced\n"
+//                + "1 Yellow Pepper, diced\n"
+//                + "3 cloves Garlic, finely chopped\n"
+//                + "2tsp Sweet Paprika\n"
+//                + "1/2 Cumin Seeds\n"
+//                + "1/2 Caraway Seeds\n"
+//                + "1/2 Cayenne Pepper\n"
+//                + "2 tins Plum Tomatoes\n"
+//                + "1tsp Sugar\n"
+//                + "4 Eggs\n"
+//                + "2tsp Lemon Juice");
+        r1.setIngredients(List.of("2tbs olive oil", "1 onion", "1 red pepper"));
+        r1.setMethod(List.of("Heat olive oil and cook onion", "Cook peppers", "..."));/*Method
 1
 In a large, lidded frying pan, heat the olive oil and add the onion, cooking until just starting to turn golden. Add the peppers and keep sauteeing until soft, then add the garlic and spices and cook for another couple of minutes.
 2
@@ -110,7 +111,7 @@ Now make a few wells in the sauce, and break in the eggs. Season lightly, then t
         r2.setName("Apple and Blackberry Crumble Custard");
         r2.setPicture("https://media.istockphoto.com/photos/ice-cream-apple-crisp-picture-id185229208?k=20&m=185229208&s=612x612&w=0&h=xuxEGADJhuIGW-9Kkn9io6RxLvcPR-1el68wR01EvOA=");
         r2.setFullDescription("");//An Autumn Sunday, a walk in the woods (or the park) and a lovely crumble waiting to be enjoyed when you get home, smothered in creamy custard to take the chill out of your bones. Apple and blackberry are bang in season at this time of year, and though of course there is merit in rhubarb for the crumble, the apple and blackberry pairing just sums up English sweets for us. This recipe uses our cinnamon sugar blend in the crumble, and our vanilla sugar for the custard, just for extra luxury.
-        r2.setIngredients("");/*"120g plain flour\n"
+        r2.setIngredients(List.of("120g Plain Flour", "60g cinnamon sugar", "60g unsalted butter"));/*"120g plain flour\n"
     			+ "60g cinnamon sugar\n"
     			+ "60g unsalted butter, cut into pieces\n"
     			+ "300g apples, peeled cored and diced\n"
@@ -124,7 +125,7 @@ Now make a few wells in the sauce, and break in the eggs. Season lightly, then t
     			+ "3tbs cornflour\n"
     			+ "200g vanilla sugar*/
 
-        r2.setMethod("");/*1
+        r2.setMethod(List.of("Prepare the fruit", "Melt the butter and sugar in saucepan", "..."));/*1
 First, prepare the fruit. Put the butter and sugar in a saucepan and melt together over a medium heat, then cook gently for 3 mins until the mixture turns to a light caramel.
 2
 Stir in the apples and cook for another 3 minutes before adding the blackberries and the mixed spice and cooking for 3 minutes more. Set aside while you prepare the crumble.
@@ -145,7 +146,7 @@ Now add the warmed milk and cream, whisking constantly, before returning everyth
         r3.setName("Hummus");
         r3.setPicture("https://img.freepik.com/darmowe-zdjecie/pyszny-hummus_144627-19472.jpg?t=st=1647339211~exp=1647339811~hmac=7acf2f4c66577fc8170c8d045d58c18130f442687f5dcbd5d8284b22fe5b40e2&w=740");
         r2.setFullDescription("");//A long-term favourite for picking up from the deli counter, there are as many recipes for hummus as there are chickpeas in a sack, but we make no apology for stating that this recipe is the best! The reason for the variety in recipes is that hummus is a staple in most of the countries surrounding the eastern Mediterranean and into the Middle East, all of which have their own little foibles when it comes to seasoning the hummus. Our take is based on the Israeli version, which is always served with a blob of harissa-style hot sauce in the middle – this procedure is highly recommended. Tinned chickpeas are far and away the easiest (and fortunately the best) to use for the recipe.
-        r2.setIngredients("");/*2 tins chickpeas\n"
+        r2.setIngredients(List.of("2 Tins Chickpeas", "1tbs olive oil", "1tbs tahini paste"));/*2 tins chickpeas\n"
     			+ "1tbs olive oil\n"
     			+ "1tbs tahini paste, available from our Borough Market shop\n"
     			+ "1tsp garlic powder or granules\n"
@@ -153,7 +154,7 @@ Now add the warmed milk and cream, whisking constantly, before returning everyth
     			+ "salt and pepper\n"
     			+ "1tsp ground cumin\n"
     			+ "½ tsp cayenne pepper*/
-        r2.setMethod("");/*1
+        r2.setMethod(List.of("Drain the chickpeas and blend with other dry ingredients and the tahini", "Pour in the oliver oil and lemon jucice while blending", "..."));/*1
 Drain the chickpeas and place in a blender together with the other dry ingredients and the tahini.
 2
 Whizz together, and while it is whizzing, pour in the olive oil then the lemon juice. The consistency of tinned chickpeas varies quite a lot, some come out drier than others, so you may need to add a splash of water (or more lemon juice).
@@ -167,7 +168,7 @@ You will need to blend the hummus for five minutes or so. Check the hummus for s
         r4.setName("Chicken Katsu Curry");
         r4.setPicture("https://us.123rf.com/450wm/amnajtandee/amnajtandee1704/amnajtandee170400026/75769947-curry-ryż-z-smażącą-wieprzowiną-japońskie-jedzenie-tonkatsu-curry-rice-na-białym-tle-.jpg?ver=6");
         r2.setFullDescription("");//Any fan of Japanese food will be aware that a Katsu Curry is a heavenly experience! What sets it apart are a couple of things – First, the chicken is breadcrumbed and fried, second the sauce is made separately and then used to smother the crispy chicken in a blanket of smooth, silky luxury. The sauce is not hot by any means, more warm and aromatic with distinctive fruity notes. It has a marked sweetness, especially once the honey is added. The texture of the sauce makes for a wonderful contrast with the crunch of the chicken. This recipe is perfect as a midweek supper, and due to the mild, fruity flavour of the sauce kids will love it. To sum up – a combination of fried chicken and yummy curry sauce? Yes please!
-        r2.setIngredients("");/*2 chicken breasts\n"
+        r2.setIngredients(List.of("2 chicken breasts", "1 egg beaten", "100g panko breadcrumbs", "50g flour"));/*2 chicken breasts\n"
     			+ "1 egg, beaten\n"
     			+ "100g panko breadcrumbs\n"
     			+ "50g flour, seasoned with salt and pepper\n"
@@ -177,7 +178,7 @@ You will need to blend the hummus for five minutes or so. Check the hummus for s
     			+ "1 bay leaf\n"
     			+ "1tbs plain flour\n"
     			+ "250ml water or chicken stock*/
-        r2.setMethod("");/*1
+        r2.setMethod(List.of("Heat 1tbs sunflour oil and add the flour", "Cooke for a minute then add the Katsu curry blend", "..."));/*1
 First make the sauce. Heat 1tbs sunflower oil in a saucepan and add the flour. Cook the mixture for under a minute before adding the Katsu curry blend. Stir this spiced mixture in and cook for a further minute.
 2
 Slowly pour in the water or chicken stock, stirring all the time to avoid any lumps. Add the honey, soy sauce and a bay leaf.
