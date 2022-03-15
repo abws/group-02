@@ -2,9 +2,7 @@ package com.spicesrus;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import com.example.spicesrus.entities.Recipes;
 import com.spicesrus.model.User;
 import com.spicesrus.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -192,18 +190,12 @@ Heat an inch or two of sunflower oil in a heavy, deep frying pan. To check the t
 6
 To serve, slice the chicken diagonally then smother it with your katsu sauce, alongside plain steamed rice and a crispy salad.
 */
-        r4 = recipesRepo.save(r4);
+//        r4 = recipesRepo.save(r4);
 
-
-        spices.add(s1);
-        spices.add(s2);
-        spices.add(s3);
-        spices.add(s4);
-        users.add(ud2);
         recipes.add(r1);
         recipes.add(r2);
         recipes.add(r3);
-        recipes.add(r4);
+//        recipes.add(r4);
 
         spicesRepo.findAll().forEach(spice -> spices.add(spice));
         recipesRepo.save(r1);

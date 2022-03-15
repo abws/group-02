@@ -1,7 +1,6 @@
 package com.spicesrus.repository;
 
 import com.spicesrus.model.Recipes;
-import com.example.spicesrus.entities.Recipes;
 
 import java.util.List;
 

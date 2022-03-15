@@ -1,19 +1,14 @@
 package com.spicesrus.controller;
 
+import com.spicesrus.SpicesrusApplication;
 import com.spicesrus.model.Recipes;
 import com.spicesrus.repository.RecipesRepository;
-import com.example.spicesrus.SpicesrusApplication;
-import com.example.spicesrus.entities.ItemGrams;
-import com.example.spicesrus.entities.ItemPounds;
-import com.example.spicesrus.entities.Recipes;
-import com.example.spicesrus.entities.Spices;
-import com.example.spicesrus.repo.RecipesRepository;
-import com.example.spicesrus.security.UDetailsRepo;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.spicesrus.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +23,7 @@ public class RecipesController {
     private RecipesRepository recipesRepo;
     
     @Autowired
-	private UDetailsRepo uRepo;
+	private UserRepository userRepository;
 
     @RequestMapping("/recipes")
     public String Recipes(Model model) {
