@@ -5,7 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://kit.fontawesome.com/939c463b2c.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/2f306254e3.js" crossorigin="anonymous"></script>
+    
     <style>
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -158,8 +159,7 @@
             display: flex;
             width: 100%;
             height: 380px;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://oldworldspices.com/wp-content/uploads/2020/01/ows.services_proddev_hero.png)");
-
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/spice_hero.png");
 
         }
 
