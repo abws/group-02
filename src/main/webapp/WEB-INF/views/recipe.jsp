@@ -29,7 +29,7 @@ html, body {
 }
 
 .right-column {
-  width: 70%;
+  width: 55%;
   margin-top: 60px;
 }
 
@@ -346,9 +346,6 @@ h2{
           <div>
             <img src="${recipe.picture}" alt="${recipe.name}">
           </div>
-
-    
-    
           <!-- Right Column -->
           <div class="right-column">
     

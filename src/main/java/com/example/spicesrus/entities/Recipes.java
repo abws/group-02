@@ -14,7 +14,7 @@ public class Recipes {
 	private String category;
 	private String description;
 	private String ingredients;
-	private String fullDescription;
+	private String FullDescription;
 	private String method;
 	private int timeRequired;
 
@@ -66,11 +66,12 @@ public class Recipes {
 		this.ingredients = ingredients;
 	}
 	public String getFullDescription() {
-		return fullDescription;
+		return FullDescription;
 	}
-	public void setFullDescription(String fullDescription) {
-		this.fullDescription = fullDescription;
+	public void setFullDescription(String FullDescription) {
+		this.FullDescription = FullDescription;
 	}
+
 	public List<Recipes> getComplimentaryRecipes() {
 		return complimentaryRecipes;
 	}
