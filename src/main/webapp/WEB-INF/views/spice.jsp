@@ -555,34 +555,9 @@ h2{
   }
 
   function a(n) {
-    if (n == 25){
     document.getElementById("input-large").value = '0';
-    document.getElementById("input-small").value = '25';
-    document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * 25) / 100;  
-  }
-
-  if (n == 50) {
-    document.getElementById("input-large").value = '0';
-    document.getElementById("input-small").value = '50';
-    document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * 50) / 100;
-  }
-
-  if (n == 100) {
-    document.getElementById("input-large").value = '0';
-    document.getElementById("input-small").value = '100';
-    document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * 100) / 100;
-  }
-
-  if (n == 250) {
-    document.getElementById("input-large").value = '0';
-    document.getElementById("input-small").value = '250';
-    document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * 250) / 100;
-  }
-
-  if (n == 500) {
-    document.getElementById("input-large").value = '0';
-    document.getElementById("input-small").value = '500';
-    document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * 500) / 100;
+    document.getElementById("input-small").value = n;
+    document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * n) / 100;  
   }
 
 </script>  
