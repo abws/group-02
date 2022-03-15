@@ -1,4 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -312,7 +314,49 @@ h2{
           <p>${spice.description}</p>
         </div>
 
-          <!-- Type Configuration -->
+                <c:choose>
+                  <c:when test="${level == 'none' || 'basic'}">
+                <!-- Type Configuration -->
+                    <div class="type-config">
+                    <div class="type-choose">
+                    <span>Select Weight</span> 
+                    <button class="quantity" onmousedown="flashImperial()" onmouseup="metric()">See in Imperial</button> <br>
+
+                    <button id="b-25" class="quantity" onclick="a(25)">25g</button>
+                    <button id="b-50" class="quantity" onclick="a(50)">50g</button>
+                  </div>
+                  
+                  <div class="quantity-config">            
+                    <div class="type-choose">
+                    <!--form action and modelattribute will change onclick via js-->
+                    <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
+                        <form:hidden path="spice" value="${spice.name}"/>
+                        <!--kilograms/stones input depending on js onclick-->
+                        <form:hidden id="input-large" class="unit_input" path="kilograms"/>
+                        <!--grams/stones input depending on js onclick-->
+                        <form:hidden id="input-small" class="unit_input" path="grams"/>
+
+                        <!--
+                        <br>
+                        <form:label path="quantity">Select Quantity</form:label>
+                        <form:input path="quantity"/>
+                        <br>
+                        -->
+                        <div class="type-choose">
+                          <button class="btn btn-default btn-subtract" onclick="decrement()" type="button">-</button>
+                            <form:input class="quantity" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10"/>
+                          <button class="btn btn-default btn-add" onclick="increment()" type="button">+</button>
+                        </div>
+
+                        <div class="product-price">
+                          <span><p id="price-">&pound${spice.price} per 100g</p></span>
+                          <input type="submit" class="cart-btn" value="Add to Cart"> 
+                        </div>                   
+                    </form:form>
+                  </c:when>
+
+                  <c:when test="${level.equals('novice')}">
+                  <!-- Type Configuration -->
           <div class="type-config">
             <div class="type-choose">
               <span>Select Weight</span> 
@@ -327,38 +371,77 @@ h2{
             
             <div class="quantity-config">            
               <div class="type-choose">
-                  <!--form action and modelattribute will change onclick via js-->
-                <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
-                    <form:hidden path="spice" value="${spice.name}"/>
-                    <!--kilograms/stones input depending on js onclick-->
-                    <form:input id="input-large" class="unit_input" path="kilograms"/>
-                    <form:label id="label-large" path="kilograms">kg</form:label> 
-                    <!--grams/stones input depending on js onclick-->
-                    <form:input id="input-small" class="unit_input" path="grams"/>
-                    <form:label id="label-small" path="grams">g</form:label>
 
-                    <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
-                    <!--
-                    <br>
-                    <form:label path="quantity">Select Quantity</form:label>
-                    <form:input path="quantity"/>
-                    <br>
-                    -->
+                    <!--form action and modelattribute will change onclick via js-->
+                    <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
+                        <form:hidden path="spice" value="${spice.name}"/>
+                        <!--kilograms/stones input depending on js onclick-->
+                        <form:hidden id="input-large" class="unit_input" path="kilograms"/>
+                        <!--grams/stones input depending on js onclick-->
+                        <form:hidden id="input-small" class="unit_input" path="grams"/>
+
+                        <!--
+                        <br>
+                        <form:label path="quantity">Select Quantity</form:label>
+                        <form:input path="quantity"/>
+                        <br>
+                        -->
+                        <div class="type-choose">
+                          <button class="btn btn-default btn-subtract" onclick="decrement()" type="button">-</button>
+                            <form:input class="quantity" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10"/>
+                          <button class="btn btn-default btn-add" onclick="increment()" type="button">+</button>
+                        </div>
+
+                        <div class="product-price">
+                          <span><p id="price-">&pound${spice.price} per 100g</p></span>
+                          <input type="submit" class="cart-btn" value="Add to Cart"> 
+                        </div>                   
+                    </form:form>
+                  </c:when>
+
+                  <c:when test="${level.equals('expert')}">
+                    <!-- Type Configuration -->
+                    <div class="type-config">
                     <div class="type-choose">
-                      <button class="btn btn-default btn-subtract" onclick="decrement()" type="button">-</button>
-                        <form:input id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10"/>
-                      <button class="btn btn-default btn-add" onclick="increment()" type="button">+</button>
-                    </div>
-
-                    <div class="product-price">
-                      <span><p id="price-">&pound${spice.price} per 100g</p></span>
-                      <input type="submit" class="cart-btn" value="Add to Cart"> 
-                    </div>                   
-                </form:form>
-              </div>
+                    <span>Select Weight</span> 
   
-              
-            </div>
+                  </div>
+                  
+                  <div class="quantity-config">            
+                    <div class="type-choose">
+                    <!--form action and modelattribute will change onclick via js-->
+                    <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
+                        <form:hidden path="spice" value="${spice.name}"/>
+                        <!--kilograms/stones input depending on js onclick-->
+                        <form:input id="input-large" class="unit_input" path="kilograms"/>
+                        <form:label id="label-large" path="kilograms">kg</form:label> 
+                        <!--grams/stones input depending on js onclick-->
+                        <form:input id="input-small" class="unit_input" path="grams"/>
+                        <form:label id="label-small" path="grams">g</form:label>
+
+                        <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
+                        <!--
+                        <br>
+                        <form:label path="quantity">Select Quantity</form:label>
+                        <form:input path="quantity"/>
+                        <br>
+                        -->
+                        <div class="type-choose">
+                          <button class="btn btn-default btn-subtract" onclick="decrement()" type="button">-</button>
+                            <form:input class="quantity" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10"/>
+                          <button class="btn btn-default btn-add" onclick="increment()" type="button">+</button>
+                        </div>
+
+                        <div class="product-price">
+                          <span><p id="price-">&pound${spice.price} per 100g</p></span>
+                          <input type="submit" class="cart-btn" value="Add to Cart"> 
+                        </div>                   
+                    </form:form>
+                  </c:when>
+
+                </c:choose>
+                </div>
+              </div>
      
              <!-- Quantity
           <div class="quantity-config">

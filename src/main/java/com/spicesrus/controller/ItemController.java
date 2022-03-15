@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 import com.spicesrus.model.Cart;
 import com.spicesrus.model.Item;
 import com.spicesrus.model.ItemGrams;
@@ -70,16 +69,17 @@ public class ItemController {
 		
 		//user privileges
 		UDetails userDetails = null;
-		List<String> level = new ArrayList<>();
+		String level;
 		
 		if (user == null)
-			level.add("none");
+			level = "none";
 		
 		else {
 			userDetails = uRepo.findByUsername(user.getName());
-			level = userDetails.getAuthorities();
+			level = userDetails.getAuthorities().get(userDetails.getAuthorities().size() - 1);
 		}
-		model.addAttribute("level", level);
+		System.out.println(level.toLowerCase());
+		model.addAttribute("level", level.toLowerCase());
 		
 
 		//session management
@@ -88,6 +88,7 @@ public class ItemController {
 			cart = cRepo.save(cart);
 			
 			request.getSession().setAttribute("cart", cart);
+			model.addAttribute("cart", cart);
 		}
 		
 		

@@ -52,7 +52,7 @@
 		  <li><a href="/spices">Shop</a></li>
 		  <li><a href="/login">Contact</a></li>
 
-		  <li style="float:right"><a class="active" href="/cart">Cart</a></li>
+		  <li style="float:right"><a class="active" href="/cart">Cart(${cart.getItems().size()})</a></li>
 		  <li style="float:right"><a class="active" href="/login">Login</a></li>
 		</ul>
 	</div>
