@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Manages all requests to the homepage
@@ -24,5 +25,20 @@ public class IndexController {
 		return "index/index";
 	}
 	
+	/**
+	 * For testing purposes only!
+	 * Before closing the application,
+	 * enter this endpoint to avoid
+	 * any data mismatch problems later,
+	 * especially for those using cart.
+	 * Also do this for every relaunch of app
+	 */
+	@RequestMapping("/end")
+		public String endSession(HttpSession s) {
+			s.invalidate();
+			return "redirect:/";
+			
+		
+		}
 
 }

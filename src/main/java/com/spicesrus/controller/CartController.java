@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.spicesrus.model.Cart;
+import com.spicesrus.model.Item;
 import com.spicesrus.repository.ItemGramsRepository;
 import com.spicesrus.repository.ItemPoundsRepository;
+import com.spicesrus.repository.ItemRepository;
 import com.spicesrus.repository.RecipesRepository;
 
 @Controller
@@ -20,6 +22,8 @@ public class CartController {
 	ItemGramsRepository igRepo;
 	@Autowired 
 	ItemPoundsRepository ipRepo;
+	@Autowired
+	ItemRepository iRepo;
 	
 	
 	@GetMapping("/cart")
@@ -27,6 +31,25 @@ public class CartController {
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
 		model.addAttribute("cart", cart);
 		return "cart/cart";
+	}
+	
+	@PostMapping("increaseItem")
+	public String increaseItem(@RequestParam int itemId, @RequestParam int quantity) {
+		System.out.println(quantity);
+		
+		Item i = iRepo.findById(itemId);
+		
+		System.out.println(i);
+	
+		if (quantity > 0) {
+			i.setQuantity(quantity);
+			iRepo.save(i);
+		}
+		else
+			iRepo.delete(i);
+		return "redirect:cart";
+		
+		
 	}
 	
 

@@ -29,7 +29,7 @@ html, body {
 }
 
 .right-column {
-  width: 38%;
+  width: 40%;
   margin-top: 60px;
 }
 
@@ -97,7 +97,10 @@ html, body {
 
 /* Cable Configuration */
 .type-choose {
-  margin-bottom: 20px;
+  margin: 20px 0px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E1E8EE;
+
 }
 
 .type-choose button {
@@ -155,7 +158,7 @@ html, body {
 }
 
 .product-price span {
-  font-size: 46px;
+  font-size: 45px;
   font-weight: 300;
   color: black;
   margin-right: 20px;

@@ -15,8 +15,10 @@ import com.spicesrus.model.Item;
 import com.spicesrus.model.ItemGrams;
 import com.spicesrus.model.ItemPounds;
 import com.spicesrus.model.Spices;
+import com.spicesrus.repository.CartRepository;
 import com.spicesrus.repository.ItemGramsRepository;
 import com.spicesrus.repository.ItemPoundsRepository;
+import com.spicesrus.repository.ItemRepository;
 import com.spicesrus.repository.SpicesRepository;
 
 /**
@@ -34,6 +36,11 @@ public class ItemController {
 	ItemGramsRepository igRepo;
 	@Autowired //for displaying the spice
 	SpicesRepository sRepo;
+	@Autowired
+	ItemRepository iRepo;
+	@Autowired
+	CartRepository cRepo;
+	
 	
 	/**
 	 * Individual spice page
@@ -50,8 +57,12 @@ public class ItemController {
 		model.addAttribute("itemPound", new ItemPounds()); //CANNOT INSTANTIATE AN ITEM OBJECT!, whatever happened to that whole polymorphism stuff they were bragging about (would be nice if i could create a general object that gets specified after form is filled)
 		model.addAttribute("itemGram", new ItemGrams());
 		
-		if (request.getSession().getAttribute("cart") == null) 
-			request.getSession().setAttribute("cart", new Cart());
+		if (request.getSession().getAttribute("cart") == null) {
+			Cart cart = new Cart();
+			cart = cRepo.save(cart);
+			
+			request.getSession().setAttribute("cart", cart);
+		}
 		
 		
 		//just in case user types the spice name into the url
@@ -75,11 +86,12 @@ public class ItemController {
 		cart.getItems().add(item);
 		request.getSession().setAttribute("cart", cart);
 		
-		Item i = igRepo.save(item);
-		i = igRepo.findById(i.getId());
+		item.setCart(cart);
+		Item i = iRepo.save(item);
+		i = iRepo.findById(i.getId());
 		System.out.println(item.getSpice().getName());
 		System.out.println(i.getPrice());
-		return "redirect:/spice?spice=" + item.getSpice().getName();
+		return "redirect:/spice?spice=" + item.getSpice().getName(); //change to shop after testing
 		
 	}
 	
@@ -94,8 +106,9 @@ public class ItemController {
 		cart.getItems().add(item);
 		request.getSession().setAttribute("cart", cart);
 
-		Item i = ipRepo.save(item);
-		i = ipRepo.findById(item.getId());
+		item.setCart(cart);
+		Item i = iRepo.save(item);
+		i = iRepo.findById(item.getId());
 		System.out.println(item.getSpice().getName());
 		System.out.println(item.getPrice());
 		return "redirect:/spice?spice=" + item.getSpice().getName();

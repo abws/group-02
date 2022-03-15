@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -29,6 +30,9 @@ public abstract class Item implements Serializable{
 	@JoinColumn(name = "spice_id")
 	private Spices spice;
 	private int quantity;
+	@ManyToOne(fetch = FetchType.LAZY) //bidirectional
+	@JoinColumn
+	private Cart cart;
 	
 	
 	/**
@@ -70,5 +74,13 @@ public abstract class Item implements Serializable{
 	}
 	
 	public abstract String getWeight();
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 
 }
