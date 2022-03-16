@@ -26,11 +26,11 @@ public abstract class Item implements Serializable{
 	@Id
 	@GeneratedValue
 	private int id;
-	@OneToOne(fetch = FetchType.LAZY) //unidirectional
+	@OneToOne(fetch = FetchType.EAGER) //unidirectional
 	@JoinColumn(name = "spice_id")
 	private Spices spice;
 	private int quantity;
-	@ManyToOne (fetch = FetchType.LAZY) //bidirectional
+	@ManyToOne (fetch = FetchType.EAGER) //bidirectional
 	@JoinColumn
 	private Cart cart;
 	

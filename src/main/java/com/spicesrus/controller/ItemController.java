@@ -81,17 +81,28 @@ public class ItemController {
 		System.out.println(level.toLowerCase());
 		model.addAttribute("level", level.toLowerCase());
 		
-
+		System.out.println("I'm here");
 		//session management
 		if (request.getSession().getAttribute("cart") == null) {
 			Cart cart = new Cart();
 			cart = cRepo.save(cart);
 			
 			request.getSession().setAttribute("cart", cart);
+			//model.addAttribute("cart", cart);
+			//model.addAttribute("cart-items", 0);
+		}
+		
+		else {
+			System.out.println("I'm here");
+			Cart cart = (Cart) request.getSession().getAttribute("cart");
 			model.addAttribute("cart", cart);
+			//int n = cart.getItems().size();
+			//System.out.println(n);
+			//model.addAttribute("cart-items", n);
 		}
 		
 		
+
 		//just in case user types the spice name into the url
 		if (s != null)
 			model.addAttribute("spice", s);
@@ -108,9 +119,15 @@ public class ItemController {
 	 */
 	@PostMapping("addItemGrams")
 	public String addItemGrams(@ModelAttribute ItemGrams item, HttpServletRequest request) {
-				
+			
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
+		if (cRepo.findById(cart.getId()).isPresent())
+			cart = cRepo.findById(cart.getId()).get();
+		else
+			cRepo.save(cart);
+		
 		item.setCart(cart);
+
 		cart.getItems().add(item);
 		request.getSession().setAttribute("cart", cart);
 		

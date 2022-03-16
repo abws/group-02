@@ -355,8 +355,8 @@ h2{
                     </form:form>
                   </c:when>
 
-                  <c:when test="${level.equals('novice')}">
-                  <!-- Type Configuration -->
+              <c:when test="${level.equals('novice')}">
+            <!-- Type Configuration -->
           <div class="type-config">
             <div class="type-choose">
               <span>Select Weight</span> 

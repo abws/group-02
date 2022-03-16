@@ -38,7 +38,7 @@ public class CartController {
 		}
 		
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
-		cart = cRepo.findById(cart.getId());
+		cart = cRepo.findById(cart.getId()).get();
 		request.getSession().setAttribute("cart", cart);
 		//System.out.println(cart.getItems().get(0).getQuantity() + "now"); //debugging
 		
