@@ -21,12 +21,14 @@ import com.spicesrus.model.ItemGrams;
 import com.spicesrus.model.ItemPounds;
 import com.spicesrus.model.Spices;
 import com.spicesrus.model.UDetails;
+import com.spicesrus.model.User;
 import com.spicesrus.repository.CartRepository;
 import com.spicesrus.repository.ItemGramsRepository;
 import com.spicesrus.repository.ItemPoundsRepository;
 import com.spicesrus.repository.ItemRepository;
 import com.spicesrus.repository.SpicesRepository;
 import com.spicesrus.repository.UDetailsRepo;
+import com.spicesrus.repository.UserRepository;
 
 /**
  * Manages the creation and destruction of item objects, and adding them to a cart
@@ -48,7 +50,7 @@ public class ItemController {
 	@Autowired
 	CartRepository cRepo;
 	@Autowired
-	UDetailsRepo uRepo;
+	UserRepository uRepo;
 	
 	
 	/**
@@ -68,7 +70,7 @@ public class ItemController {
 		model.addAttribute("itemGram", new ItemGrams());
 		
 		//user privileges
-		UDetails userDetails = null;
+		User userDetails = null;
 		String level;
 		
 		if (user == null)
@@ -76,9 +78,10 @@ public class ItemController {
 		
 		else {
 			userDetails = uRepo.findByUsername(user.getName());
+			System.out.println(user.getName());
 			level = userDetails.getAuthorities().get(userDetails.getAuthorities().size() - 1);
 		}
-		System.out.println(level.toLowerCase());
+		//System.out.println(level.toLowerCase());
 		model.addAttribute("level", level.toLowerCase());
 		
 		//session management
@@ -136,7 +139,8 @@ public class ItemController {
 		i = iRepo.findById(i.getId());
 		System.out.println(item.getSpice().getName());
 		System.out.println(i.getPrice());
-		return "redirect:/spice?spice=" + item.getSpice().getName(); //change to shop after testing
+		//return "redirect:/spice?spice=" + item.getSpice().getName(); //change to shop after testing
+		return "redirect:/spices";
 		
 	}
 	
@@ -156,7 +160,8 @@ public class ItemController {
 		i = iRepo.findById(item.getId());
 		System.out.println(item.getSpice().getName());
 		System.out.println(item.getPrice());
-		return "redirect:/spice?spice=" + item.getSpice().getName();
+		//return "redirect:/spice?spice=" + item.getSpice().getName();
+		return "redirect:/spices";
 	}
 	
 	/*
