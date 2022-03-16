@@ -26,7 +26,7 @@ html, body {
 
 /* Columns */
 .left-column {
-  width: 60%;
+  width: 70%;
   position: relative;
 }
 

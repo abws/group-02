@@ -81,9 +81,9 @@ public class ItemController {
 		System.out.println(level.toLowerCase());
 		model.addAttribute("level", level.toLowerCase());
 		
-		System.out.println("I'm here");
 		//session management
 		if (request.getSession().getAttribute("cart") == null) {
+			System.out.println("I'm here");
 			Cart cart = new Cart();
 			cart = cRepo.save(cart);
 			
@@ -124,7 +124,7 @@ public class ItemController {
 		if (cRepo.findById(cart.getId()).isPresent())
 			cart = cRepo.findById(cart.getId()).get();
 		else
-			cRepo.save(cart);
+			cart = cRepo.save(cart);
 		
 		item.setCart(cart);
 

@@ -38,5 +38,13 @@ public class IndexController {
 			s.invalidate();
 			return "redirect:/";
 		}
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home(Principal principal, Model model) {
+		String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
+		return "index/home";
+	}
 
 }
+
+

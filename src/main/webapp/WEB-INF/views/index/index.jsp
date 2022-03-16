@@ -81,7 +81,7 @@
             <ul>
                 <div class=left>
                     <li><a href="/"><img class="home" src="icons/home.svg" alt=""></a></li>
-                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="/membership">MEMBERSHIP</a></li>
                 </div>
                 <div class=logo>
 
