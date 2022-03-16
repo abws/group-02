@@ -1,11 +1,13 @@
 package com.spicesrus.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-public class Spices {
+public class Spices implements Serializable{
+	private static final long serialVersionUID = 4261824342100056906L;
 	@Id
 	private String name;
 	private String category;

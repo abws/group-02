@@ -1,4 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -29,7 +31,7 @@ html, body {
 }
 
 .right-column {
-  width: 35%;
+  width: 40%;
   margin-top: 60px;
 }
 
@@ -97,7 +99,10 @@ html, body {
 
 /* Cable Configuration */
 .type-choose {
-  margin-bottom: 20px;
+  margin: 20px 0px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E1E8EE;
+
 }
 
 .type-choose button {
@@ -155,7 +160,7 @@ html, body {
 }
 
 .product-price span {
-  font-size: 46px;
+  font-size: 45px;
   font-weight: 300;
   color: black;
   margin-right: 20px;
@@ -309,39 +314,136 @@ h2{
           <p>${spice.description}</p>
         </div>
 
-          <!-- Type Configuration -->
-          <div class="type-config">
-            <span>Select Type</span>
+                <c:choose>
+                  <c:when test="${level == 'none' || 'basic'}">
+                <!-- Type Configuration -->
+                    <div class="type-config">
+                    <div class="type-choose">
+                    <span>Select Weight</span> 
+                    <button class="quantity" onmousedown="flashImperial()" onmouseup="metric()">See in Imperial</button> <br>
 
+                    <button id="b-25" class="quantity" onclick="a(25)">25g</button>
+                    <button id="b-50" class="quantity" onclick="a(50)">50g</button>
+                  </div>
+                  
+                  <div class="quantity-config">            
+                    <div class="type-choose">
+                    <!--form action and modelattribute will change onclick via js-->
+                    <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
+                        <form:hidden path="spice" value="${spice.name}"/>
+                        <!--kilograms/stones input depending on js onclick-->
+                        <form:hidden id="input-large" class="unit_input" path="kilograms"/>
+                        <!--grams/stones input depending on js onclick-->
+                        <form:hidden id="input-small" class="unit_input" path="grams"/>
+
+                        <!--
+                        <br>
+                        <form:label path="quantity">Select Quantity</form:label>
+                        <form:input path="quantity"/>
+                        <br>
+                        -->
+                        <div class="type-choose">
+                          <button class="btn btn-default btn-subtract" onclick="decrement()" type="button">-</button>
+                            <form:input class="quantity" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10"/>
+                          <button class="btn btn-default btn-add" onclick="increment()" type="button">+</button>
+                        </div>
+
+                        <div class="product-price">
+                          <span><p id="price-">&pound${spice.price} per 100g</p></span>
+                          <input type="submit" class="cart-btn" value="Add to Cart"> 
+                        </div>                   
+                    </form:form>
+                  </c:when>
+
+              <c:when test="${level.equals('novice')}">
+            <!-- Type Configuration -->
+          <div class="type-config">
             <div class="type-choose">
-              <button class="quantity" onclick="change_price()">100g</button>
-              <button class="quantity1" onclick="change_price1()">500g</button>
-              <button class="quantity2" onclick="change_price2()">1kg</button>
-              <button class="quantity3" onclick="change_price3()">5kg</button>
-             
+              <span>Select Weight</span> 
+              <button class="quantity" onmousedown="flashImperial()" onmouseup="metric()">See in Imperial</button> <br>
+
+              <button id="b-25" class="quantity" onclick="a(25)">25g</button>
+              <button id="b-50" class="quantity" onclick="a(50)">50g</button>
+              <button id="b-100" class="quantity" onclick="a(100)">100g</button>
+              <button id="b-250" class="quantity" onclick="a(250)">250g</button>
+              <button id="b-500" class="quantity" onclick="a(500)">500g</button>
             </div>
             
             <div class="quantity-config">            
               <div class="type-choose">
-                  <!--form action and modelattribute will change onclick via js-->
-                <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
-                    <form:hidden path="spice" value="${spice.name}"/>
-                    <!--kilograms/stones input depending on js onlcik-->
-                    <form:input id="input-large" class="unit_input" path="kilograms"/>
-                    <form:label id="label-large" path="kilograms">kg</form:label> 
-                    <!--grams/stones input depending on js onclick-->
-                    <form:input id="input-small" class="unit_input" path="grams"/>
-                    <form:label id="label-small" path="grams">g</form:label>
-                    <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
-                    <br>
-                    
-                </form:form>
-              </div>
+
+                    <!--form action and modelattribute will change onclick via js-->
+                    <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
+                        <form:hidden path="spice" value="${spice.name}"/>
+                        <!--kilograms/stones input depending on js onclick-->
+                        <form:hidden id="input-large" class="unit_input" path="kilograms"/>
+                        <!--grams/stones input depending on js onclick-->
+                        <form:hidden id="input-small" class="unit_input" path="grams"/>
+
+                        <!--
+                        <br>
+                        <form:label path="quantity">Select Quantity</form:label>
+                        <form:input path="quantity"/>
+                        <br>
+                        -->
+                        <div class="type-choose">
+                          <button class="btn btn-default btn-subtract" onclick="decrement()" type="button">-</button>
+                            <form:input class="quantity" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10"/>
+                          <button class="btn btn-default btn-add" onclick="increment()" type="button">+</button>
+                        </div>
+
+                        <div class="product-price">
+                          <span><p id="price-">&pound${spice.price} per 100g</p></span>
+                          <input type="submit" class="cart-btn" value="Add to Cart"> 
+                        </div>                   
+                    </form:form>
+                  </c:when>
+
+                  <c:when test="${level.equals('expert')}">
+                    <!-- Type Configuration -->
+                    <div class="type-config">
+                    <div class="type-choose">
+                    <span>Select Weight</span> 
   
-              
-            </div>
-            
-             <!-- Quantity -->
+                  </div>
+                  
+                  <div class="quantity-config">            
+                    <div class="type-choose">
+                    <!--form action and modelattribute will change onclick via js-->
+                    <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
+                        <form:hidden path="spice" value="${spice.name}"/>
+                        <!--kilograms/stones input depending on js onclick-->
+                        <form:input id="input-large" class="unit_input" path="kilograms"/>
+                        <form:label id="label-large" path="kilograms">kg</form:label> 
+                        <!--grams/stones input depending on js onclick-->
+                        <form:input id="input-small" class="unit_input" path="grams"/>
+                        <form:label id="label-small" path="grams">g</form:label>
+
+                        <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
+                        <!--
+                        <br>
+                        <form:label path="quantity">Select Quantity</form:label>
+                        <form:input path="quantity"/>
+                        <br>
+                        -->
+                        <div class="type-choose">
+                          <button class="btn btn-default btn-subtract" onclick="decrement()" type="button">-</button>
+                            <form:input class="quantity" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10"/>
+                          <button class="btn btn-default btn-add" onclick="increment()" type="button">+</button>
+                        </div>
+
+                        <div class="product-price">
+                          <span><p id="price-">&pound${spice.price} per 100g</p></span>
+                          <input type="submit" class="cart-btn" value="Add to Cart"> 
+                        </div>                   
+                    </form:form>
+                  </c:when>
+
+                </c:choose>
+                </div>
+              </div>
+     
+             <!-- Quantity
           <div class="quantity-config">
             <span>Select Quantity</span>
 
@@ -355,13 +457,14 @@ h2{
           </div>
         </div>
 
-        <!-- Product Pricing -->
+         Product Pricing 
         <div class="product-price">
           <span><p id="price"></p></span>
          <button onclick="my()" class="cart-btn" id="pass">Add to cart</button>
         </div>
         
      </div>
+    -->
   	</main>
     
     
@@ -390,6 +493,7 @@ h2{
   
            
 <script>
+  /*
 	var minus = document.querySelector(".btn-subtract");
 	var add = document.querySelector(".btn-add");
 	var quantityNumber = document.querySelector(".item-quantity");
@@ -482,12 +586,10 @@ h2{
 		
 		window.location.href="addtobasket"+window.location.search +"&type="+type+"&quantity="+currentValue+"&price="+submit_price+"&total="+(submit_price*currentValue).toFixed(2);
 	}
-	
- </script>      
+  */
+	</script>
 
-
-
-<script type="text/javascript">
+  <script>
   let y = false;
 
   function unitSwitch(){
@@ -499,8 +601,8 @@ h2{
       document.getElementById("form").action = "addItemPounds";
       document.getElementById("form").modelAttribute = "itemPound";
 
-      document.getElementById("input-large").path = "pounds";
-      document.getElementById("input-small").path = "ounces";
+      document.getElementById("input-large").setAttribute('path', 'pounds');
+      document.getElementById("input-small").setAttribute('path', 'ounces');
 
       document.getElementById("label-large").innerHTML = "lb";
       document.getElementById("label-small").innerHTML = "oz.";
@@ -521,8 +623,45 @@ h2{
       document.getElementById("label-small").innerHTML = "g";
     }
   }
-</script>
-    
-</body>
 
+  function increment() {
+    let val = Number(document.getElementById("quantity").value);
+    if (val == 10) return 0;
+    document.getElementById("quantity").value = Number(document.getElementById("quantity").value) + 1;
+
+  }
+</script>
+  <script>
+  function decrement() {
+    let val = Number(document.getElementById("quantity").value);
+    if (val == 1) return 0;
+    document.getElementById("quantity").value = document.getElementById("quantity").value - 1;
+    //val = (Number(val) - 1);
+
+  }
+
+  function a(n) {
+    document.getElementById("input-large").value = '0';
+    document.getElementById("input-small").value = n;
+    document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * n) / 100;  
+  }
+
+  function metric() {
+    document.getElementById("b-25").innerHTML =  "25g"
+    document.getElementById("b-50").innerHTML = "50g"
+    document.getElementById("b-100").innerHTML = "100g"
+    document.getElementById("b-250").innerHTML = "250g"
+    document.getElementById("b-500").innerHTML = "500g"
+    
+  }
+  function flashImperial() {
+    document.getElementById("b-25").innerHTML =  Math.round((25/28.35) * 100) /100 + "oz";
+    document.getElementById("b-50").innerHTML = Math.round((50/28.35) * 100) /100 + "oz";
+    document.getElementById("b-100").innerHTML = Math.round((100/28.35) * 100) /100 + "oz";
+    document.getElementById("b-250").innerHTML = Math.round((250/28.35) * 100) /100 + "oz";
+    document.getElementById("b-500").innerHTML = Math.round((500/28.35) * 100) /100 + "oz";
+  }
+
+</script>  
+</body>
 </html>

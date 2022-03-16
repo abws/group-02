@@ -21,8 +21,9 @@ public class Cart  implements Serializable {
 	@GeneratedValue
 	private int id; //a session will point to a basket
 	
-	@OneToMany
-	@JoinColumn
+	@OneToMany (mappedBy="cart",
+				cascade = CascadeType.ALL,
+				orphanRemoval = true)
 	private List<Item> items = new ArrayList<>();
 	
 	@Transient //we don't want to persist the price as it can be generated on-load

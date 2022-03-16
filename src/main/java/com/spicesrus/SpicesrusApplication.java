@@ -73,8 +73,8 @@ public class SpicesrusApplication implements ApplicationRunner {
 
         createSpice("Spice Blends", "ALLSPICE", "Allspice is not actually blend of other spices but a berry of an evergreen tree. It's flavor is similar to a blend of nutmeg and cinnamon", 0.85, "https://www.spicemountain.co.uk/wp-content/uploads/2019/10/allspice_1046861527.jpg");
         createSpice("Peppers", "BLACK PEPPER", "Black Pepper adds flavor to almost every food of every nation in the world. It is used in rubs, spice blends and peppercorn blends.", 0.99, "https://stamboulbazaar.com/wp-content/uploads/nc/catalog/Product/Baharatlar/turkish-black-pepper-spice-ground.jpg");
-        createSpice("Salts", "GARLIC SALT", "Ideal to have on hand for that garlic flavour.Just add to sauces and dips, on pizzas and in salad dressings..", 1.20, "https://cdn.shopify.com/s/files/1/1745/8453/products/photo1_d6ee5edf-6270-452a-b368-b2351ae4b27a_1024x1024.jpg?v=1639330805");
-        createSpice("Peppers", "LONG PEPPER", "This pepper is mostly used in slow cooked dishes & pickels.It smells sweetley fragrant, but has a biting aftertaste.", 3.00, "https://stamboulbazaar.com/wp-content/uploads/nc/catalog/Product/Baharatlar/turkish-black-pepper-spice-ground.jpg");
+        createSpice("Salts", "GARLIC SALT", "Ideal to have on hand for that garlic flavour.Just add to sauces and dips, on pizzas and in salad dressings..", 1.20, "https://thekitchencommunity.org/wp-content/uploads/2021/04/Garlic-Powder-1200x900.jpg");
+        createSpice("Peppers", "LONG PEPPER", "This pepper is mostly used in slow cooked dishes & pickels.It smells sweetley fragrant, but has a biting aftertaste.", 3.00, "https://www.seeds-gallery.shop/7492-large_default/indian-long-pepper-spice-whole-piper-longum.jpg");
 
         Recipes r1 = new Recipes();
         r1.setRestricted(true); // can only be accessed by novice+

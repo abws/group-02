@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://kit.fontawesome.com/939c463b2c.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/2f306254e3.js" crossorigin="anonymous"></script>
     <style>
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);

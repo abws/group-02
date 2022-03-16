@@ -70,7 +70,7 @@
                     </c:choose>
                 </div>
 
-                <li><a class="cart" href="#">CART</a></li>
+                <li><a class="cart" href="/cart">CART</a></li>
             </ul>
         </nav>
     </header>
