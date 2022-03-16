@@ -60,7 +60,7 @@
     <c:forEach items="${basket}" var="spice">
         <div class="card">
             <h1> ${spice.getName()}</h1>
-            <p class="price">£${spice.getPrice()} per 100g</p>
+            <p class="price">ï¿½${spice.getPrice()} per 100g</p>
 
             <p>
             	<a href="/Basket/Remove/${spice.getName()}" class="btn btn-primary">Remove from Cart</a>

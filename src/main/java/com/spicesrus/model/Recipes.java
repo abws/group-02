@@ -2,10 +2,7 @@ package com.spicesrus.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Recipes {
@@ -16,6 +13,7 @@ public class Recipes {
 	private String name;
 	private String category;
 	private String description;
+	private String FullDescription;
 	private int timeRequired;
 
 	@OneToMany
@@ -26,9 +24,16 @@ public class Recipes {
 	@OneToMany
 	@JoinColumn
 	private List<Spices> spicesInvolved;
-	
-	
-	
+
+	@ElementCollection
+	private List<String> ingredients;
+	@ElementCollection
+	private List<String> method;
+
+	private boolean restricted = false;
+
+
+
 	public List<Spices> getSpicesInvolved() {
 		return spicesInvolved;
 	}
@@ -53,6 +58,25 @@ public class Recipes {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public List<String> getMethod() {
+		return method;
+	}
+	public void setMethod(List<String> method) {
+		this.method = method;
+	}
+	public List<String> getIngredients() {
+		return ingredients;
+	}
+	public void setIngredients(List<String> ingredients) {
+		this.ingredients = ingredients;
+	}
+	public String getFullDescription() {
+		return FullDescription;
+	}
+	public void setFullDescription(String FullDescription) {
+		this.FullDescription = FullDescription;
+	}
+
 	public List<Recipes> getComplimentaryRecipes() {
 		return complimentaryRecipes;
 	}
@@ -74,5 +98,12 @@ public class Recipes {
 	public void setTimeRequired(int timeRequired) {
 		this.timeRequired = timeRequired;
 	}
-	
+
+	public boolean isRestricted() {
+		return restricted;
+	}
+
+	public void setRestricted(boolean restricted) {
+		this.restricted = restricted;
+	}
 }

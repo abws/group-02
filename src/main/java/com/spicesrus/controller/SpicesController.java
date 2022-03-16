@@ -2,17 +2,22 @@ package com.spicesrus.controller;
 
 import com.spicesrus.SpicesrusApplication;
 import com.spicesrus.model.Spices;
+import com.spicesrus.model.User;
 import com.spicesrus.repository.SpicesRepository;
 import com.spicesrus.repository.UDetailsRepo;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
+import com.spicesrus.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,156 +27,70 @@ public class SpicesController {
 	@Autowired
 	private SpicesRepository spicesRepo;
 	
+
 	@Autowired
-	private UDetailsRepo uRepo;
+	private UserRepository userRepository;
 
 	@RequestMapping("/spices")
-	public String Spices(Model model) {
+	public String Spices(Principal principal, Model model, @RequestParam(name = "sort", required = false, defaultValue = "a-z") String sortType) {
 		Iterable<Spices> spiceListFromDatabase = spicesRepo.findAll();
-		model.addAttribute("path", "Relevant");
-		model.addAttribute("spices", spiceListFromDatabase );
-		return "allSpices";
-	}
-	
-	
-	@GetMapping("/spices/Salts")
-	public String showCategory_S(Model model) {
-		
-		List<Spices> spices = SpicesrusApplication.spices;
-		List<Spices> output = new ArrayList<Spices>();
-		for (Spices s: spices) {
-			if (s.getCategory()=="Salts") {
-				output.add(s);
+		if (principal != null) {
+			User user = userRepository.findByUsername(principal.getName());
+			if (user.getAuthorities().contains("NOVICE") || user.getAuthorities().contains("EXPERT")) {
+				model.addAttribute("isMember", true);
+			}else{
+				model.addAttribute("isMember", false);
 			}
+		}else{
+			model.addAttribute("isMember", false);
 		}
-		model.addAttribute("path", "Relevant");
-		model.addAttribute("spices", output);
-				
-		return "allSpices";
-	}
-	
-	@GetMapping("/spices/Peppers")
-	public String showCategory_P(Model model) {
-		
-		List<Spices> spices = SpicesrusApplication.spices;
-		List<Spices> output = new ArrayList<Spices>();
-		for (Spices s: spices) {
-			if (s.getCategory()=="Peppers") {
-				output.add(s);
-			}
-		}
-		model.addAttribute("spices", output);
-		model.addAttribute("path", "Relevant");
-		return "allSpices";
-	}
-	
-	@GetMapping("/spices/Spice_Blends")
-	public String showCategory_SB(Model model) {
-		
-		List<Spices> spices = SpicesrusApplication.spices;
-		List<Spices> output = new ArrayList<Spices>();
-		for (Spices s: spices) {
-			if (s.getCategory()=="Spice Blends") {
-				output.add(s);
-			}
-		}
-		model.addAttribute("spices", output);
-		model.addAttribute("path", "Relevant");
+		List<Spices> displayed = new ArrayList<>();
 
-		return "allSpices";
-	}
-	
-	@GetMapping("/spices/a-z")
-	public String sort_a(Model model) {
-		
-		List<Spices> spices = SpicesrusApplication.spices;
-		List<String> names = new ArrayList<String>();
-		List<Spices> output = new ArrayList<Spices>();
-		for (Spices s: spices) {
-			names.add(s.getName());			
-		}
-		Collections.sort(names);
-		for (String n: names) {
-			for (Spices s: spices) {
-				if (s.getName()== n) {
-					output.add(s);
+		if (sortType.equals("salts")) {
+			model.addAttribute("path", "Relevant");
+			spiceListFromDatabase.forEach(spice -> {
+				if (spice.getCategory().equals("Salts")) {
+					displayed.add(spice);
 				}
-			}
-		}
-		model.addAttribute("spices", output);	
-		model.addAttribute("path", "A-Z");
-		return "allSpices";
-	}
-	
-	@GetMapping("/spices/z-a")
-	public String sort_z(Model model) {
-		
-		List<Spices> spices = SpicesrusApplication.spices;
-		List<String> names = new ArrayList<String>();
-		List<Spices> output = new ArrayList<Spices>();
-		for (Spices s: spices) {
-			names.add(s.getName());			
-		}
-		Collections.sort(names,Collections.reverseOrder());
-		for (String n: names) {
-			for (Spices s: spices) {
-				if (s.getName()== n) {
-					output.add(s);
+			});
+		}else if (sortType.equals("peppers")) {
+			model.addAttribute("path", "Relevant");
+			spiceListFromDatabase.forEach(spice -> {
+				if (spice.getCategory().equals("Peppers")) {
+					displayed.add(spice);
 				}
-			}
-		}
-		
-		model.addAttribute("spices", output);	
-		model.addAttribute("path", "Z-A");
-		return "allSpices";
-	}
-
-	@GetMapping("/spices/price_asc")
-	public String sort_asc(Model model) {
-		
-		List<Spices> spices = SpicesrusApplication.spices;
-		List<Double> prices = new ArrayList<Double>();
-		List<Spices> output = new ArrayList<Spices>();
-		for (Spices s: spices) {
-			prices.add(s.getPrice());			
-		}
-		Collections.sort(prices);
-		for (Double p: prices) {
-			for (Spices s: spices) {
-				if (s.getPrice()== p) {
-					output.add(s);
+			});
+		}else if (sortType.equals("spiceBlends")) {
+			model.addAttribute("path", "Relevant");
+			spiceListFromDatabase.forEach(spice -> {
+				if (spice.getCategory().equals("Spice Blends")) {
+					displayed.add(spice);
 				}
-			}
+			});
+		}else if (sortType.equals("a-z")) {
+			model.addAttribute("path", "A-Z");
+			spiceListFromDatabase.forEach(displayed::add);
+			displayed.sort(Comparator.comparing(Spices::getName));
+		} else if (sortType.equals("z-a")) {
+			model.addAttribute("path", "Z-A");
+			spiceListFromDatabase.forEach(displayed::add);
+			displayed.sort(Comparator.comparing(Spices::getName));
+			Collections.reverse(displayed);
+		}else if (sortType.equals("price_asc")) {
+			model.addAttribute("path", "Price Ascending");
+			spiceListFromDatabase.forEach(displayed::add);
+			displayed.sort(Comparator.comparing(Spices::getPrice));
+		}else if (sortType.equals("price_dsc")) {
+			model.addAttribute("path", "Price Descending");
+			spiceListFromDatabase.forEach(displayed::add);
+			displayed.sort(Comparator.comparing(Spices::getPrice));
+			Collections.reverse(displayed);
+		}else{
+			spiceListFromDatabase.forEach(displayed::add);
 		}
-		model.addAttribute("path", "Price Ascending");
-		model.addAttribute("spices", output);	
+		model.addAttribute("spices", displayed);
 		return "allSpices";
 	}
-	
-	@GetMapping("/spices/price_dsc")
-	public String sort_dsc(Model model) {
-		
-		List<Spices> spices = SpicesrusApplication.spices;
-		List<Double> prices = new ArrayList<Double>();
-		List<Spices> output = new ArrayList<Spices>();
-		for (Spices s: spices) {
-			prices.add(s.getPrice());			
-		}
-		Collections.sort(prices,Collections.reverseOrder());
-		for (Double p: prices) {
-			for (Spices s: spices) {
-				if (s.getPrice()== p) {
-					output.add(s);
-				}
-			}
-		}
-		model.addAttribute("path", "Price Descending");
-
-		model.addAttribute("spices", output);	
-		return "allSpices";
-	}
-	
-
 	
 	@GetMapping("/spicesearch")
 	public String search(Model model, @RequestParam String spice) {

@@ -5,7 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://kit.fontawesome.com/939c463b2c.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/2f306254e3.js" crossorigin="anonymous"></script>
+    
     <style>
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -158,8 +159,7 @@
             display: flex;
             width: 100%;
             height: 380px;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://oldworldspices.com/wp-content/uploads/2020/01/ows.services_proddev_hero.png)");
-
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/spice_hero.png");
 
         }
 
@@ -272,13 +272,13 @@
     <a href="/spices" class="cata">
         <button>All</button>
     </a>
-    <a href="/spices/Spice_Blends" class="cata">
+    <a href="/spices?sort=spiceBlends" class="cata">
         <button>Spice Blends</button>
     </a>
-    <a href="/spices/Peppers" class="cata">
+    <a href="/spices?sort=peppers" class="cata">
         <button>Peppers</button>
     </a>
-    <a href="/spices/Salts" class="cata">
+    <a href="/spices?sort=salts" class="cata">
         <button>Salts</button>
     </a>
 </div>
@@ -287,10 +287,10 @@
     <label for="sorting">Sort By:</label>
     <select name="sort" id="sort">
         <option selected disabled>${path}</option>
-        <option id="sort_a-z" value="/spices/a-z">A-Z</option>
-        <option id="sort_z-a" value="/spices/z-a">Z-A</option>
-        <option id="sort_asc" value="/spices/price_asc">Price Ascending</option>
-        <option id="sort_dec" value="/spices/price_dsc">Price Descending</option>
+        <option id="sort_a-z" value="/spices?sort=a-z">A-Z</option>
+        <option id="sort_z-a" value="/spices?sort=z-a">Z-A</option>
+        <option id="sort_asc" value="/spices?sort=price_asc">Price Ascending</option>
+        <option id="sort_dec" value="/spices?sort=price_dsc">Price Descending</option>
     </select>
 
 </form>
@@ -314,15 +314,22 @@
             <h1> ${spice.getName()}</h1>
             <p> Category: ${spice.getCategory()}</p>
             <c:choose>
-                <c:when test="${pageContext.request.remoteUser != null}">
-                    <p class="price"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                <c:when test="${isMember}">
+                    <p class="price">Non Member Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                                       minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber>
+                        per 100g</p>
+                    <p class="price">Your Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
                                                        minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber>
                         per 100g</p>
                 </c:when>
                 <c:otherwise>
-                    <p class="price"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
-                                                       minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber> per
-                        100g</p>
+                    <p class="price">Member Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                                                   minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber>
+                        per 100g</p>
+                    <p class="price">Your Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                                                         minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber>
+                        per 100g</p>
+
                 </c:otherwise>
             </c:choose>
             <p>${spice.description}</p>
