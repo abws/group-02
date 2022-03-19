@@ -18,6 +18,8 @@ import com.spicesrus.model.Spices;
 import com.spicesrus.service.EmailHandler;
 import com.spicesrus.model.UDetails;
 
+import javax.sql.DataSource;
+
 @SpringBootApplication
 @Configuration
 public class SpicesrusApplication implements ApplicationRunner {
@@ -60,8 +62,10 @@ public class SpicesrusApplication implements ApplicationRunner {
     }
 
     public void run(ApplicationArguments args) throws Exception {
+        initData();
+    }
 
-        //httpSession.setAttribute("cart", new Cart()); //for testing purposes. add this permamanently later for all session objects
+    private void initData() {
 
         createUser("michaeljordan", "password", "mcj@google.com", "Michael", "Jordan");
         createUser("example", "password", "example@google.com", "First", "Last");
@@ -201,7 +205,6 @@ To serve, slice the chicken diagonally then smother it with your katsu sauce, al
 
         spicesRepo.findAll().forEach(spice -> spices.add(spice));
         recipesRepo.save(r1);
-
     }
 
 
