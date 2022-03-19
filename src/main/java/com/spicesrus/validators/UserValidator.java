@@ -18,19 +18,19 @@ public class UserValidator implements Validator {
     public void validate(Object target, Errors errors) {
         UserDTO dto = (UserDTO) target;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "", "First name must not be empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "", "Last name must not be empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "registration_first_name_empty", "First name must not be empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "registration_last_name_empty", "Last name must not be empty");
 
         if (dto.getUsername().length() < 4 || dto.getUsername().length() > 16) {
-            errors.rejectValue("username", "", "Username length must be between 4-16 characters");
+            errors.rejectValue("username", "registration_username_length", "Username length must be between 4-16 characters");
         }
 
         if (dto.getPassword().length() < 4 || dto.getPassword().length() > 16) {
-            errors.rejectValue("password", "", "Username length must be between 4-16 characters");
+            errors.rejectValue("password", "registration_password_length", "Password length must be between 4-16 characters");
         }
 
         if (!dto.getConfirmedPassword().equals(dto.getPassword())) {
-            errors.rejectValue("confirmedPassword", "", "The passwords do not match");
+            errors.rejectValue("confirmedPassword", "registration_password_mismatch", "The passwords do not match");
         }
     }
 }

@@ -10,13 +10,18 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.spicesrus.model.Recipes;
 import com.spicesrus.model.Spices;
 import com.spicesrus.service.EmailHandler;
 import com.spicesrus.model.UDetails;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.sql.DataSource;
 
@@ -232,5 +237,8 @@ To serve, slice the chicken diagonally then smother it with your katsu sauce, al
         spice.setPicture(picture);
         spicesRepo.save(spice);
     }
+
+
+
 
 }
