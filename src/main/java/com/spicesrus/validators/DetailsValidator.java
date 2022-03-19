@@ -35,9 +35,8 @@ public class DetailsValidator implements Validator {
         if (ud.getPassword().length() > 16 || ud.getPassword().length() < 8) {
             errors.rejectValue("password", "password", "The password must be between 8-16 characters");
         }
+
         if (!ud.getPassword().equals(ud.getConfirmedPassword())) {
-            System.out.println(ud.getPassword());
-            System.out.println(ud.getConfirmedPassword());
             errors.rejectValue("confirmedPassword", "password2", "The passwords do not match");
         }
 
