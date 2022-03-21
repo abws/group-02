@@ -315,7 +315,7 @@ h2{
         </div>
 
                 <c:choose>
-                  <c:when test="${level == 'none' || 'basic'}">
+                  <c:when test="${level == 'none' || level == 'basic'}">
                 <!-- Type Configuration -->
                     <div class="type-config">
                     <div class="type-choose">

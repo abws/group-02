@@ -184,10 +184,10 @@ box-shadow: 0px 10px 10px -10px grey;
                 <td>${item.spice.category}</td>
                 <td>
                     <form action="increaseItem" method="post">
-                        <button class="btn btn-default btn-subtract3" onclick="decrement()">-</button>
-                            <input type="text" name="quantity" id="quantity" value="${item.quantity}" class="form-control no-padding text-center item-quantity3"/>
+                        <button class="btn btn-default btn-subtract3" onclick="decrement(${item.id})">-</button>
+                            <input type="text" name="quantity" id="quantity${item.id}" value="${item.quantity}" class="form-control no-padding text-center item-quantity3"/>
                             <input type="text" name="itemId" value="${item.id}" hidden="true">
-                        <button class="btn btn-default btn-add" onclick="increment()">+</button>
+                        <button class="btn btn-default btn-add" onclick="increment(${item.id})">+</button>
                     </form>
                 </td>
                 <td>${item.spice.price}</td>
@@ -231,16 +231,16 @@ box-shadow: 0px 10px 10px -10px grey;
          <script>
             document.getElementById("total").innerHTML = "&pound" + Math.round(Number(${cart.price} + 6.8) * 100) / 100;
 
-            function increment() {
-                let val = Number(document.getElementById("quantity").value);
+            function increment(x) {
+                let val = Number(document.getElementById("quantity" + x).value);
                 if (val == 10) return 0; //the button deactivates for values over 10 or below 0
-                document.getElementById("quantity").value = Number(document.getElementById("quantity").value) + 1;
+                document.getElementById("quantity" + x).value = Number(document.getElementById("quantity" + x).value) + 1;
           }
 
-            function decrement() {
-                let val = Number(document.getElementById("quantity").value);
+            function decrement(x) {
+                let val = Number(document.getElementById("quantity" + x).value);
                 if (val == 1) return 0;
-                document.getElementById("quantity").value = document.getElementById("quantity").value - 1;
+                document.getElementById("quantity" + x).value = Number(document.getElementById("quantity"  + x).value) - 1;
           }
 
         </script>
