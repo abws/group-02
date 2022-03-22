@@ -1,6 +1,8 @@
 package com.spicesrus.controller.security;
 
+import com.spicesrus.model.User;
 import com.spicesrus.repository.ForgottenPasswordRepo;
+import com.spicesrus.repository.UserRepository;
 import com.spicesrus.service.EmailHandler;
 import com.spicesrus.dto.ForgottenPasswordDTO;
 import com.spicesrus.model.UDetails;
@@ -22,6 +24,9 @@ public class ResetPasswordController {
     private UDetailsRepo repo;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private ForgottenPasswordRepo fpr;
 
     @Autowired
@@ -37,14 +42,13 @@ public class ResetPasswordController {
 
     @PostMapping("/lost-password")
     public String lostPassword(@ModelAttribute(name = "dto") ForgottenPasswordDTO dto) {
-        UDetails ud = repo.findByUsername(dto.getUsername());
-
-        if (ud == null) {
+        User user = userRepository.findByUsername(dto.getUsername());
+        if (user == null) {
             return "security/lost-password";
         }
-        if (ud.getEmail().equals(dto.getEmail())) {
+        if (user.getEmail().equals(dto.getEmail())) {
             try {
-                handler.dispatchEmail(ud.getEmail(), "Password Reset", "Password Reset Code: " + dto.getToken());
+                handler.dispatchEmail(user.getEmail(), "Password Reset", "Password Reset Code: " + dto.getToken());
                 fpr.save(dto);
             } catch (MessagingException e) {
                 e.printStackTrace();
@@ -72,9 +76,9 @@ public class ResetPasswordController {
             return "redirect:/lost-password?expired";
         }
 
-        UDetails details = repo.findByUsername(matching.getUsername());
-        details.setPassword(encoder.encode(dto.getPassword()));
-        repo.save(details);
+        User user = userRepository.findByUsername(matching.getUsername());
+        user.setPassword(encoder.encode(dto.getPassword()));
+        userRepository.save(user);
         return "redirect:/login";
     }
 }

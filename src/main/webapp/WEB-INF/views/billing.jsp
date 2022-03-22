@@ -37,7 +37,7 @@
     <form:input path ="cardholderName"/>
     <form:errors path ="cardholderName"/>
     <br>
-    <form:label for="cardNumber" path="cardNumber"> Card Number:</form:label>
+    <form:label for="cardNumber" path="cardNumber"> Card Number (16 digits):</form:label>
     <form:input path ="cardNumber"/>
     <form:errors path ="cardNumber"/>
     <br>
@@ -45,7 +45,7 @@
     <form:input path = "expiryDate"/>
     <form:errors path = "expiryDate"/>
     <br>
-    <form:label for="cvvNumber" path="cvvNumber"> CVV Number:</form:label>
+    <form:label for="cvvNumber" path="cvvNumber"> CVV Number (3 digits) :</form:label>
     <form:password path = "cvvNumber"/>
     <form:errors path = "cvvNumber"/>
     <br>

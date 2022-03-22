@@ -70,7 +70,7 @@
                     </c:choose>
                 </div>
 
-                <li><a class="cart" href="#">CART</a></li>
+                <li><a class="cart" href="/cart">CART</a></li>
             </ul>
         </nav>
     </header>
@@ -81,7 +81,7 @@
             <ul>
                 <div class=left>
                     <li><a href="/"><img class="home" src="icons/home.svg" alt=""></a></li>
-                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="/membership">MEMBERSHIP</a></li>
                 </div>
                 <div class=logo>
 

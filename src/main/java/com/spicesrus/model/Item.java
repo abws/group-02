@@ -1,11 +1,14 @@
 package com.spicesrus.model;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -18,14 +21,18 @@ import javax.persistence.OneToOne;
  */
 
 @Entity
-public abstract class Item {
+public abstract class Item implements Serializable{
+	private static final long serialVersionUID = 7711873887877339425L;
 	@Id
 	@GeneratedValue
 	private int id;
-	@OneToOne(fetch = FetchType.LAZY) //unidirectional
+	@OneToOne(fetch = FetchType.EAGER) //unidirectional
 	@JoinColumn(name = "spice_id")
 	private Spices spice;
 	private int quantity;
+	@ManyToOne (fetch = FetchType.EAGER) //bidirectional
+	@JoinColumn
+	private Cart cart;
 	
 	
 	/**
@@ -67,5 +74,13 @@ public abstract class Item {
 	}
 	
 	public abstract String getWeight();
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 
 }

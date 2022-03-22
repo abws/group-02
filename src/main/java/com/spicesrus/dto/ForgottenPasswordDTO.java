@@ -7,7 +7,6 @@ import java.util.UUID;
 @Entity
 public class ForgottenPasswordDTO {
 
-
     @Id
     private String token;
     private String username;
@@ -19,7 +18,6 @@ public class ForgottenPasswordDTO {
     private Long created;
 
     private String providedToken;
-
 
     public ForgottenPasswordDTO() {
         token = UUID.randomUUID().toString();

@@ -1,8 +1,10 @@
 package com.spicesrus.controller.security;
 
+import com.spicesrus.dto.UserDTO;
+import com.spicesrus.model.User;
+import com.spicesrus.repository.UserRepository;
 import com.spicesrus.validators.DetailsValidator;
 import com.spicesrus.service.EmailHandler;
-import com.spicesrus.model.UDetails;
 import com.spicesrus.repository.UDetailsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,6 +26,9 @@ public class RegistrationController {
 
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private UDetailsRepo repo;
 
     @Autowired
@@ -35,41 +40,47 @@ public class RegistrationController {
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
-        binder.addValidators(new DetailsValidator(repo));
+        binder.addValidators(new DetailsValidator(userRepository));
     }
 
     @RequestMapping(value = "/register")
     public String register(Model model) {
-        model.addAttribute("user", new UDetails());
+        model.addAttribute("user", new UserDTO());
         return "security/register";
     }
 
     @RequestMapping("/confirmRegistration")
-    public String completeRegistration(@Valid @ModelAttribute("user") UDetails details, BindingResult result) {
+    public String completeRegistration(@Valid @ModelAttribute("user") UserDTO dto, BindingResult result) {
         if (result.hasErrors()) {
             return "security/register";
         }
 
-        details.setConfirmedPassword(null); // No longer need to store this (Duplicated Value)
-        details.setPassword(encoder.encode(details.getPassword()));
-        repo.save(details);
+        User user = new User();
+        user.setUsername(dto.getUsername());
+        user.setPassword(encoder.encode(dto.getPassword()));
+        user.setEmail(dto.getEmail());
+        user.setFirstName(dto.getFirstName());
+        user.setLastName(dto.getLastName());
+
+        userRepository.save(user);
+
         try {
             Context context = new Context();
-            context.setVariable("username", details.getUsername());
-            handler.dispatchEmail(details.getEmail(), "Registration Confirmation", "register_template.html", context);
+            context.setVariable("username", user.getUsername());
+            handler.dispatchEmail(user.getEmail(), "Registration Confirmation", "register_template.html", context);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-        return "security/register-success";
+        return "redirect:/membership_overview";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@Valid @ModelAttribute("user") UDetails details, BindingResult result, Model model) {
+    public String register(@Valid @ModelAttribute("user") UserDTO dto, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "security/register";
         }
 
-        model.addAttribute("details", details);
+        model.addAttribute("details", dto);
         return "security/register-confirm";
     }
 
