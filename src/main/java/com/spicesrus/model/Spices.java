@@ -8,7 +8,12 @@ import javax.persistence.*;
 @Entity
 public class Spices implements Serializable{
 	private static final long serialVersionUID = 4261824342100056906L;
+
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+
 	private String name;
 	private String category;
 	private String description;

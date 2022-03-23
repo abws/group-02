@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.mail.MessagingException;
+import java.util.Optional;
 
 @Controller
 public class ResetPasswordController {
@@ -42,7 +43,8 @@ public class ResetPasswordController {
 
     @PostMapping("/lost-password")
     public String lostPassword(@ModelAttribute(name = "dto") ForgottenPasswordDTO dto) {
-        User user = userRepository.findByUsername(dto.getUsername());
+        Optional<User> query = userRepository.findByUsername(dto.getUsername());
+        User user = query.get();
         if (user == null) {
             return "security/lost-password";
         }
@@ -76,7 +78,8 @@ public class ResetPasswordController {
             return "redirect:/lost-password?expired";
         }
 
-        User user = userRepository.findByUsername(matching.getUsername());
+        Optional<User> query = userRepository.findByUsername(matching.getUsername());
+        User user = query.get();
         user.setPassword(encoder.encode(dto.getPassword()));
         userRepository.save(user);
         return "redirect:/login";

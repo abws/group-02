@@ -9,6 +9,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import com.spicesrus.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -186,7 +187,8 @@ public class RecipesController {
             if (principal == null) {
                 return "redirect:/login";
             }
-            User user = userRepository.findByUsername(principal.getName());
+            Optional<User> query = userRepository.findByUsername(principal.getName());
+            User user = query.get();
             if (!user.getAuthorities().contains("NOVICE") && !user.getAuthorities().contains("EXPERT")) {
 				return "restricted_recipe";
             }

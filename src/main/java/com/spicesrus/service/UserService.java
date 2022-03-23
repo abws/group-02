@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -31,7 +32,8 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        com.spicesrus.model.User user = userRepository.findByUsername(login);
+        Optional<com.spicesrus.model.User> query = userRepository.findByUsername(login);
+        com.spicesrus.model.User user = query.get();
         if (user == null) throw new UsernameNotFoundException("Credentials Invalid");
 
         List<SimpleGrantedAuthority> matched = new ArrayList<>();

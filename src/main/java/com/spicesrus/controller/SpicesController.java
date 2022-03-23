@@ -7,10 +7,7 @@ import com.spicesrus.repository.SpicesRepository;
 import com.spicesrus.repository.UDetailsRepo;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 import com.spicesrus.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +32,8 @@ public class SpicesController {
 	public String Spices(Principal principal, Model model, @RequestParam(name = "sort", required = false, defaultValue = "a-z") String sortType) {
 		Iterable<Spices> spiceListFromDatabase = spicesRepo.findAll();
 		if (principal != null) {
-			User user = userRepository.findByUsername(principal.getName());
+			Optional<User> query = userRepository.findByUsername(principal.getName());
+			User user = query.get();
 			if (user.getAuthorities().contains("NOVICE") || user.getAuthorities().contains("EXPERT")) {
 				model.addAttribute("isMember", true);
 			}else{

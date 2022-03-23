@@ -1,5 +1,7 @@
 package com.spicesrus.model;
 
+import com.spicesrus.dto.UserDTO;
+
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -82,5 +84,7 @@ public class User {
     public void setAuthorities(List<String> authorities) {
         this.authorities = authorities;
     }
+
+
 }
 

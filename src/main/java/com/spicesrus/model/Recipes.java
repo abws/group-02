@@ -10,6 +10,9 @@ public class Recipes {
 	 * 
 	 */
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+
 	private String name;
 	private String category;
 	private String description;
@@ -43,6 +46,11 @@ public class Recipes {
 	public String getCategory() {
 		return category;
 	}
+
+	public int getId() {
+		return id;
+	}
+
 	public void setCategory(String category) {
 		this.category = category;
 	}
