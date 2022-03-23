@@ -26,18 +26,18 @@ public class DetailsValidator implements Validator {
         UserDTO ud = (UserDTO) target;
 
         if (ud.getEmail() != null && userRepository.findByEmail(ud.getEmail()) != null) {
-            errors.rejectValue("email", "", "This email is already registered with us.");
+            errors.rejectValue("email", "details_email_exists", "This email is already registered with us.");
         }
         if (ud.getUsername() != null && userRepository.findByUsername(ud.getUsername()) != null) {
-            errors.rejectValue("username", "", "This username is taken.");
+            errors.rejectValue("username", "details_username_taken", "This username is taken.");
         }
 
         if (ud.getPassword().length() > 16 || ud.getPassword().length() < 8) {
-            errors.rejectValue("password", "password", "The password must be between 8-16 characters");
+            errors.rejectValue("password", "details_password_size", "The password must be between 8-16 characters");
         }
 
         if (!ud.getPassword().equals(ud.getConfirmedPassword())) {
-            errors.rejectValue("confirmedPassword", "password2", "The passwords do not match");
+            errors.rejectValue("confirmedPassword", "details_password_mismatch", "The passwords do not match");
         }
 
 
