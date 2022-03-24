@@ -2,11 +2,14 @@ package com.spicesrus.controller;
 
 import com.spicesrus.SpicesrusApplication;
 import com.spicesrus.model.Recipes;
+import com.spicesrus.model.Spices;
 import com.spicesrus.model.User;
 import com.spicesrus.repository.RecipesRepository;
+import com.spicesrus.repository.SpicesRepository;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,6 +28,9 @@ public class RecipesController {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private SpicesRepository spicesRepo;
 
     @RequestMapping("/recipes")
     public String Recipes(Model model) {
@@ -166,7 +172,27 @@ public class RecipesController {
         return "allRecipes";
 
     }
-
+    
+    @GetMapping("/userspicesearch")
+    public String searchspice(Model model, @RequestParam String spices) {
+    	String[] items = spices.split(" ");
+        List<String> itemList = Arrays.asList(items);
+        List<Recipes> recipes = SpicesrusApplication.recipes;
+        ArrayList<Recipes> recipesToAdd = new ArrayList<Recipes>();
+    	for (String item: itemList) {
+    		Spices spiceToLookFor = spicesRepo.findByName(item);
+    		for (Recipes recipe: recipes) {
+    			if (recipe.getSpicesInvolved() == null){
+    				continue;
+    			}
+    			else if (recipe.getSpicesInvolved().contains(spiceToLookFor)){
+    				recipesToAdd.add(recipe);
+    			}
+    		}
+    	}
+    	model.addAttribute("recipes", recipesToAdd);
+        return "allRecipes";
+    }
 
     /**
      * Checks if a spice exists in the database.

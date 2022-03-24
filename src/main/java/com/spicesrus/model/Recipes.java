@@ -33,8 +33,6 @@ public class Recipes {
 
 	private boolean restricted = false;
 
-
-
 	public List<Spices> getSpicesInvolved() {
 		return spicesInvolved;
 	}

@@ -304,7 +304,14 @@
 
 </script>
 
-
+<div class="vertical-menu" style="text-align: center">
+	
+    <form action="/userspicesearch" class="searchform" method="GET">
+        <input name="spices" type="text" class="searchTerm" placeholder="Search using spices">
+          <button type="submit" class="searchButton">
+            <i class="fa-solid fa-magnifying-glass"></i>
+         </button>
+</div>
 
 
 <div class="box">
