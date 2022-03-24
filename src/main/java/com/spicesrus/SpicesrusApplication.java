@@ -61,7 +61,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 
     public void run(ApplicationArguments args) throws Exception {
 
-        //httpSession.setAttribute("cart", new Cart()); //for testing purposes. add this permamanently later for all session objects
+        //httpSession.setAttribute("cart", new Cart()); //for testing purposes. add this permanently later for all session objects
 
         createUser("michaeljordan", "password", "mcj@google.com", "Michael", "Jordan");
         createUser("example", "password", "example@google.com", "First", "Last");
