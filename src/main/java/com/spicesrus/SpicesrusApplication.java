@@ -10,13 +10,20 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.spicesrus.model.Recipes;
 import com.spicesrus.model.Spices;
 import com.spicesrus.service.EmailHandler;
 import com.spicesrus.model.UDetails;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+
+import javax.sql.DataSource;
 
 @SpringBootApplication
 @Configuration
@@ -60,8 +67,10 @@ public class SpicesrusApplication implements ApplicationRunner {
     }
 
     public void run(ApplicationArguments args) throws Exception {
-
+        initData();
+    }
         //httpSession.setAttribute("cart", new Cart()); //for testing purposes. add this permanently later for all session objects
+    private void initData() {
 
         createUser("michaeljordan", "password", "mcj@google.com", "Michael", "Jordan");
         createUser("example", "password", "example@google.com", "First", "Last");
@@ -237,7 +246,6 @@ coriander, stalks and leaves separated
 
         spicesRepo.findAll().forEach(spice -> spices.add(spice));
         recipesRepo.save(r1);
-
     }
 
 
@@ -266,5 +274,8 @@ coriander, stalks and leaves separated
         spicesRepo.save(spice);
     }
     
+
+
+
 
 }

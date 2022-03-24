@@ -91,17 +91,22 @@ public class ItemController {
 			cart = cRepo.save(cart);
 			
 			request.getSession().setAttribute("cart", cart);
-			//model.addAttribute("cart", cart);
-			//model.addAttribute("cart-items", 0);
+			model.addAttribute("cart", cart);
+			model.addAttribute("items", 0);
 		}
 		
+		/*
+		 * Either end session or make sure cart is instantiated with session cart as cart database is dropped with every restart of application
+		 */
 		else {
 			System.out.println("I'm here");
 			Cart cart = (Cart) request.getSession().getAttribute("cart");
+			//System.out.println(cart.getId());
+			cart = cRepo.findById(cart.getId()).get();
 			model.addAttribute("cart", cart);
-			//int n = cart.getItems().size();
-			//System.out.println(n);
-			//model.addAttribute("cart-items", n);
+			int n = cart.getItems().size();
+			System.out.println(n);
+			model.addAttribute("items", n);
 		}
 		
 		

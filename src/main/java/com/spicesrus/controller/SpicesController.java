@@ -1,8 +1,10 @@
 package com.spicesrus.controller;
 
 import com.spicesrus.SpicesrusApplication;
+import com.spicesrus.model.Cart;
 import com.spicesrus.model.Spices;
 import com.spicesrus.model.User;
+import com.spicesrus.repository.CartRepository;
 import com.spicesrus.repository.SpicesRepository;
 import com.spicesrus.repository.UDetailsRepo;
 
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.spicesrus.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +30,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SpicesController {
 	@Autowired
 	private SpicesRepository spicesRepo;
-	
-
+	@Autowired
+	private CartRepository cRepo;
 	@Autowired
 	private UserRepository userRepository;
 
 	@RequestMapping("/spices")
-	public String Spices(Principal principal, Model model, @RequestParam(name = "sort", required = false, defaultValue = "a-z") String sortType) {
+	public String Spices(Principal principal, Model model, @RequestParam(name = "sort", required = false, defaultValue = "a-z") String sortType, HttpServletRequest request) {
 		Iterable<Spices> spiceListFromDatabase = spicesRepo.findAll();
 		if (principal != null) {
 			User user = userRepository.findByUsername(principal.getName());
@@ -89,6 +93,19 @@ public class SpicesController {
 			spiceListFromDatabase.forEach(displayed::add);
 		}
 		model.addAttribute("spices", displayed);
+		
+		Cart cart = (Cart) request.getSession().getAttribute("cart");
+		if (cart == null) {
+			cart = cRepo.save(new Cart());
+			request.setAttribute("cart", cart);
+		}
+		else {
+			cart = cRepo.findById(cart.getId()).get();
+		}
+		
+		System.out.println(cart.getId());
+		model.addAttribute("cart", cart);
+		
 		return "allSpices";
 	}
 	
