@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
+        http.csrf().disable().rememberMe().key("spicesrus").and().authorizeRequests()
                 .antMatchers("/restricted/**").authenticated()
                 .antMatchers("/recipe/novice/**").hasAnyAuthority("NOVICE", "EXPERT")
                 .antMatchers("/recipe/expert/**").hasAnyAuthority("EXPERT")

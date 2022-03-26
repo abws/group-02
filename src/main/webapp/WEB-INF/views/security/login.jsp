@@ -29,6 +29,10 @@
                 <span class="input-group-text">Password:</span>
                 <input class="form-control" type="password" name="password" id="password"/>
             </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Remember Me:</span>
+                <input class="form-control" type="checkbox" name="remember-me" id="remember-me"/>
+            </div>
 
             <div class="input-group mb-3 justify-content-center">
                 <button class="btn btn-success" type="submit">Login</button>
