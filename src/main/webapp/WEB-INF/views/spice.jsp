@@ -432,7 +432,7 @@ button[disabled] {
                         <br>
                         -->
                         <div class="type-choose">
-                          <button class="btn btn-default btn-subtract" onclick="decrement()" type="button" id="decrement">-</button>
+                          <button class="btn btn-default btn-subtract" onclick="decrement()" type="button" id="decrement" disabled>-</button>
                             <form:input class="quantity" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10"/>
                           <button class="btn btn-default btn-add" onclick="increment()" type="button" id="increment" disabled>+</button>
                         </div>
@@ -599,8 +599,6 @@ button[disabled] {
     //alert("Hello world");
   //var increment = document.getElementById("increment");
   //var decrement = document.getElementById("decrement");
-  var large = document.getElementById("input-large").value;
-  var small = document.getElementById("input-small").value;
   //if (large == 0 || small = 0) var buttons = document.querySelectorAll("#increment", "#decrement");
   //buttons.forEach(disableButton)
 
@@ -652,12 +650,16 @@ button[disabled] {
     var quantity = Number(document.getElementById("quantity").value);
     if (quantity == 10) return 0;
     document.getElementById("quantity").value = Number(document.getElementById("quantity").value) + 1;
+    var small = document.getElementById("input-small").value;
+    a(small);
   }
 
   function decrement() {
     var quantity = Number(document.getElementById("quantity").value);
     if (quantity == 1) return 0;
     document.getElementById("quantity").value = document.getElementById("quantity").value - 1;
+    var small = document.getElementById("input-small").value;
+    a(small);
 
   }
 
