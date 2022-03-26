@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8 /">
 
 
 <!DOCTYPE html>
@@ -289,6 +290,10 @@ h2{
 
 }
 
+button[disabled] {
+  cursor: not-allowed;
+}
+
 
 </style>
    <jsp:include page="nav.jsp" />
@@ -344,7 +349,7 @@ h2{
                         -->
                         <div class="type-choose">
                           <button class="btn btn-default btn-subtract" onclick="decrement()" type="button">-</button>
-                            <form:input class="quantity" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10"/>
+                            <form:input class="quantity" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10" readonly="true" onfocus="this.blur()"/>
                           <button class="btn btn-default btn-add" onclick="increment()" type="button">+</button>
                         </div>
 
@@ -427,9 +432,9 @@ h2{
                         <br>
                         -->
                         <div class="type-choose">
-                          <button class="btn btn-default btn-subtract" onclick="decrement()" type="button">-</button>
+                          <button class="btn btn-default btn-subtract" onclick="decrement()" type="button" id="decrement">-</button>
                             <form:input class="quantity" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10"/>
-                          <button class="btn btn-default btn-add" onclick="increment()" type="button">+</button>
+                          <button class="btn btn-default btn-add" onclick="increment()" type="button" id="increment" disabled>+</button>
                         </div>
 
                         <div class="product-price">
@@ -442,7 +447,7 @@ h2{
                 </c:choose>
                 </div>
               </div>
-     
+
              <!-- Quantity
           <div class="quantity-config">
             <span>Select Quantity</span>
@@ -491,7 +496,7 @@ h2{
 		   	
 		</div>
   
-           
+<!--           
 <script>
   /*
 	var minus = document.querySelector(".btn-subtract");
@@ -588,8 +593,26 @@ h2{
 	}
   */
 	</script>
+-->
 
   <script>
+    //alert("Hello world");
+  //var increment = document.getElementById("increment");
+  //var decrement = document.getElementById("decrement");
+  var large = document.getElementById("input-large").value;
+  var small = document.getElementById("input-small").value;
+  //if (large == 0 || small = 0) var buttons = document.querySelectorAll("#increment", "#decrement");
+  //buttons.forEach(disableButton)
+
+/*
+  var val = document.getElementById("");
+  document.querySelector('type-choose').forEach(button => {
+    button.addEventListener('click', () => {
+      a(5);
+    })
+  })
+  */
+
   let y = false;
 
   function unitSwitch(){
@@ -624,43 +647,53 @@ h2{
     }
   }
 
-  function increment() {
-    let val = Number(document.getElementById("quantity").value);
-    if (val == 10) return 0;
-    document.getElementById("quantity").value = Number(document.getElementById("quantity").value) + 1;
 
+  function increment() {
+    var quantity = Number(document.getElementById("quantity").value);
+    if (quantity == 10) return 0;
+    document.getElementById("quantity").value = Number(document.getElementById("quantity").value) + 1;
   }
-</script>
-  <script>
+
   function decrement() {
-    let val = Number(document.getElementById("quantity").value);
-    if (val == 1) return 0;
+    var quantity = Number(document.getElementById("quantity").value);
+    if (quantity == 1) return 0;
     document.getElementById("quantity").value = document.getElementById("quantity").value - 1;
-    //val = (Number(val) - 1);
 
   }
 
   function a(n) {
     document.getElementById("input-large").value = '0';
     document.getElementById("input-small").value = n;
-    document.getElementById("price-").innerHTML = "&pound" + Math.round((${spice.price}) * n) / 100;  
+    var value = Math.round((${spice.price}) * n) / 100;
+    document.getElementById("price-").innerHTML = "&pound" + 
+                                                  value +
+                                                  " per " + n + "g jar";
+
+    var quantity = Number(document.getElementById("quantity").value);
+
+    var element = document.createElement("p");
+    element.setAttribute("id", "total-price");
+    document.getElementById("price-").appendChild(element);
+
+    document.getElementById("total-price").innerHTML = "Total: &pound" + (quantity * value);
   }
 
   function metric() {
-    document.getElementById("b-25").innerHTML =  "25g"
-    document.getElementById("b-50").innerHTML = "50g"
-    document.getElementById("b-100").innerHTML = "100g"
-    document.getElementById("b-250").innerHTML = "250g"
-    document.getElementById("b-500").innerHTML = "500g"
+    for (var i = 25; i <= 500; i *= 2) {
+      if (i == 200) i += 50;
+      document.getElementById("b-" + i).innerHTML = i + "g";
+    }
     
   }
+
   function flashImperial() {
-    document.getElementById("b-25").innerHTML =  Math.round((25/28.35) * 100) /100 + "oz";
-    document.getElementById("b-50").innerHTML = Math.round((50/28.35) * 100) /100 + "oz";
-    document.getElementById("b-100").innerHTML = Math.round((100/28.35) * 100) /100 + "oz";
-    document.getElementById("b-250").innerHTML = Math.round((250/28.35) * 100) /100 + "oz";
-    document.getElementById("b-500").innerHTML = Math.round((500/28.35) * 100) /100 + "oz";
+    for (var i = 25; i <= 500; i *= 2) {
+      if (i == 200) i += 50;
+      document.getElementById("b-" + i).innerHTML = Math.round((i / 28.35) * 100) / 100 + "oz";
+    }
   }
+  
+
 
 </script>  
 </body>

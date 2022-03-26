@@ -134,6 +134,7 @@ public class ItemController {
 		else
 			cart = cRepo.save(cart);
 		
+		
 		item.setCart(cart);
 
 		cart.getItems().add(item);
@@ -144,8 +145,8 @@ public class ItemController {
 		i = iRepo.findById(i.getId());
 		System.out.println(item.getSpice().getName());
 		System.out.println(i.getPrice());
-		//return "redirect:/spice?spice=" + item.getSpice().getName(); //change to shop after testing
-		return "redirect:/spices";
+		return "redirect:/spice?spice=" + item.getSpice().getName(); //change to shop after testing
+		//return "redirect:/spices";
 		
 	}
 	
