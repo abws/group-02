@@ -123,6 +123,7 @@ public class ItemController {
 	 */
 	@PostMapping("addItemGrams")
 	public String addItemGrams(@ModelAttribute ItemGrams item, HttpServletRequest request) {
+		System.out.println(item.getWeight());
 			
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
 		if (cRepo.findById(cart.getId()).isPresent())
@@ -150,6 +151,7 @@ public class ItemController {
 	 */
 	@PostMapping("addItemPounds")
 		public String addItemPounds(@ModelAttribute ItemPounds item, HttpServletRequest request) {
+		String x = item.getWeight();
 			
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
 		if (cRepo.findById(cart.getId()).isPresent())
@@ -164,7 +166,7 @@ public class ItemController {
 		item.setCart(cart);
 		Item i = iRepo.save(item);
 		i = iRepo.findById(i.getId());
-	
+		System.out.println(x);
 		return "redirect:/spice?spice=" + item.getSpice().getName(); //change to shop after testing
 		//return "redirect:/spices";
 	}

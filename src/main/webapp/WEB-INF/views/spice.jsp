@@ -143,6 +143,7 @@
         margin: 10px 0;
         display: inline-block;
       }
+      
       .type-config a:before {
         content: "?";
         height: 15px;
@@ -232,12 +233,12 @@
         font-size: 14px;
         color: #5E6977;
         background-color: #fff;
-        cursor: pointer;
+        cursor: auto;
         transition: all .5s;
         width: 25px;
         text-align:center;
-
       }
+
       .recipe{
         padding-right: 15px;
         padding-left: 15px;
@@ -324,11 +325,11 @@
                 <div class="type-choose">
                   <span>Select Weight</span> 
                   <button class="quantity" onmousedown="flashImperial()" onmouseup="stayMetric()">See in Imperial</button> <br>
-                  <button id="b-25" class="quantity" onclick="a(25)">25g</button>
-                  <button id="b-50" class="quantity" onclick="a(50)">50g</button>
-                  <button id="b-100" class="quantity" onclick="a(100)">100g</button>
-                  <button id="b-250" class="quantity" onclick="a(250)">250g</button>
-                  <button id="b-500" class="quantity" onclick="a(500)">500g</button>
+                  <button id="b-25" class="quantity" onclick="manageWeight(25)">25g</button>
+                  <button id="b-50" class="quantity" onclick="manageWeight(50)">50g</button>
+                  <button id="b-100" class="quantity" onclick="manageWeight(100)">100g</button>
+                  <button id="b-250" class="quantity" onclick="manageWeight(250)">250g</button>
+                  <button id="b-500" class="quantity" onclick="manageWeight(500)">500g</button>
                 </div>     
               </div>
 
@@ -370,9 +371,11 @@
 
                     <!--kilograms/stones input depending on if button clicked-->
                     <form:input id="input-large" class="unit_input" path="kilograms"/>
+                    <form:label id="label-large" path="kilograms">kg</form:label>
 
                     <!--grams/stones input depending on if button clicked-->
                     <form:input id="input-small" class="unit_input" path="grams"/>
+                    <form:label id="label-small" path="grams">g</form:label>
                     
                     <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
 
@@ -443,6 +446,8 @@
 
             document.getElementById("input-large").setAttribute('path', 'pounds');
             document.getElementById("input-small").setAttribute('path', 'ounces');
+            document.getElementById("input-large").setAttribute('name', 'pounds');
+            document.getElementById("input-small").setAttribute('name', 'ounces');
 
             document.getElementById("label-large").innerHTML = "lb";
             document.getElementById("label-small").innerHTML = "oz.";
@@ -454,8 +459,10 @@
             document.getElementById("form").action = "addItemGrams";
             document.getElementById("form").modelAttribute = "itemGram";
 
-            document.getElementById("input-large").path = "kilograms";
-            document.getElementById("input-small").path = "grams";
+            document.getElementById("input-large").setAttribute('path', "kilograms");
+            document.getElementById("input-small").setAttribute('path', "grams");
+            document.getElementById("input-large").setAttribute('name', 'kilgrams');
+            document.getElementById("input-small").setAttribute('name', 'grams');
 
             document.getElementById("label-large").innerHTML = "kg";
             document.getElementById("label-small").innerHTML = "g";
