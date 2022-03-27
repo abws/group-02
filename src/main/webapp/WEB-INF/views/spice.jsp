@@ -214,37 +214,37 @@
 
       #amount{
         border: 2px solid #eee7e1;
-          border-radius: 6px;
-          padding: 13px 20px;
-          font-size: 14px;
-          color: #5E6977;
-          background-color: #fff;
-          cursor: pointer;
-          transition: all .5s;
-          width: 15px;
-          text-align:center;
+        border-radius: 6px;
+        padding: 13px 20px;
+        font-size: 14px;
+        color: #5E6977;
+        background-color: #fff;
+        cursor: pointer;
+        transition: all .5s;
+        width: 15px;
+        text-align:center;
       }
 
       .unit_input{
-      border: 2px solid #eee7e1;
-          border-radius: 6px;
-          padding: 13px 20px;
-          font-size: 14px;
-          color: #5E6977;
-          background-color: #fff;
-          cursor: pointer;
-          transition: all .5s;
-          width: 25px;
-          text-align:center;
+        border: 2px solid #eee7e1;
+        border-radius: 6px;
+        padding: 13px 20px;
+        font-size: 14px;
+        color: #5E6977;
+        background-color: #fff;
+        cursor: pointer;
+        transition: all .5s;
+        width: 25px;
+        text-align:center;
 
       }
       .recipe{
-          padding-right: 15px;
-          padding-left: 15px;
-          margin-right: auto;
-          margin-left: auto;
-          width: 1200px;
-          display: flex;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        width: 1200px;
+        display: flex;
       }
 
       .recipe div{
@@ -279,6 +279,9 @@
         width: 50%;
       }
 
+      button {
+        display: inline;
+      }
       button[disabled] {
         cursor: not-allowed;
       }
@@ -312,14 +315,15 @@
 
           <!--Product Selection-->
           <c:choose>
-            <!--NON-MEMBERS, BASIC & NOVICE MEMBERS CAN ONLY CHOOSE WEIGHTS FROM A SELECTION-->
+            
             <c:when test="${level == 'none' || level == 'basic' || level == 'novice'}">
+              <!--NON-MEMBERS, BASIC & NOVICE MEMBERS CAN ONLY CHOOSE WEIGHTS FROM A SELECTION-->
 
               <!-- Weight Selection -->
               <div class="type-config">
                 <div class="type-choose">
                   <span>Select Weight</span> 
-                  <button class="quantity" onmousedown="flashImperial()" onmouseup="metric()">See in Imperial</button> <br>
+                  <button class="quantity" onmousedown="flashImperial()" onmouseup="stayMetric()">See in Imperial</button> <br>
                   <button id="b-25" class="quantity" onclick="a(25)">25g</button>
                   <button id="b-50" class="quantity" onclick="a(50)">50g</button>
                   <button id="b-100" class="quantity" onclick="a(100)">100g</button>
@@ -352,10 +356,10 @@
             </c:when>
 
 
-            <!--EXPERT USER HAS ACCESS TO THE FORM DIRECTLY-->
             <c:when test="${level == 'expert'}">
-              <!-- Weight Selection -->
+              <!--EXPERT USER HAS ACCESS TO THE FORM DIRECTLY-->
 
+              <!-- Weight Selection -->
               <div class="quantity-config">            
                 <div class="type-choose">
                   <span>Select Weight</span> 
@@ -417,11 +421,11 @@
         */
         let metric = false;
 
-        var level = ${level};
+        var level = '${level}';
 
         if (level == 'none' || level == 'basic') { //hide buttons for both non-members and basic members
-          var weights = document.querySelectorAll('#b-100', '#b-250', '#b-500');
-          weights.forEach(weight => {
+          var weights = document.querySelectorAll('#b-100, #b-250, #b-500');
+          weights.forEach((weight) => {
             weight.style.display = 'none';
           })
         }
@@ -466,7 +470,7 @@
           if (quantity == 10) return 0;
           document.getElementById("quantity").value = Number(document.getElementById("quantity").value) + 1;
           var small = document.getElementById("input-small").value;
-          a(small);
+          manageWeight(small);
         }
 
         /**
@@ -477,21 +481,20 @@
           if (quantity == 1) return 0;
           document.getElementById("quantity").value = document.getElementById("quantity").value - 1;
           var small = document.getElementById("input-small").value;
-          a(small);
-
+          manageWeight(small);
         }
 
         /**
          * Manages users chosen weight and dynamically prints price
          * @param {Number} weight The weight of the chosen product
          */
-        function a(weight) {
+        function manageWeight(weight) {
           document.getElementById("input-large").value = '0';
-          document.getElementById("input-small").value = n;
-          var value = Math.round((${spice.price}) * weight) / 100;
+          document.getElementById("input-small").value = weight;
+          var value = Math.round(('${spice.price}') * weight) / 100;
           document.getElementById("price-").innerHTML = "&pound" + 
                                                         value +
-                                                        " per " + n + 
+                                                        " per " + weight + 
                                                         "g jar";
 
           var quantity = Number(document.getElementById("quantity").value);
@@ -500,18 +503,19 @@
           element.setAttribute("id", "total-price");
           document.getElementById("price-").appendChild(element);
 
-          document.getElementById("total-price").innerHTML = "Total: &pound" + (quantity * value);
+          document.getElementById("total-price").innerHTML = "Total: &pound" + 
+                                                              Math.round((quantity * value) * 100)
+                                                              / 100;
         }
 
         /**
          * Formats weights into default grams after mouse is unclicked
          */ 
-        function metric() {
+         function stayMetric() {
           for (var i = 25; i <= 500; i *= 2) {
             if (i == 200) i += 50;
             document.getElementById("b-" + i).innerHTML = i + "g";
           }
-          
         }
 
         /**
@@ -520,7 +524,9 @@
         function flashImperial() {
           for (var i = 25; i <= 500; i *= 2) {
             if (i == 200) i += 50;
-            document.getElementById("b-" + i).innerHTML = Math.round((i / 28.35) * 100) / 100 + "oz";
+            document.getElementById("b-" + i).innerHTML = Math.round((i / 28.35) * 100) 
+                                                          / 100 //rounds value to 2 dp
+                                                          + "oz";
           }
         }
         
