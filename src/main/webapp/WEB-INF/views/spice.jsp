@@ -410,7 +410,6 @@ button[disabled] {
                     <div class="type-choose">
                     <span>Select Weight</span> 
   
-                  </div>
                   
                   <div class="quantity-config">            
                     <div class="type-choose">
@@ -418,10 +417,10 @@ button[disabled] {
                     <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
                         <form:hidden path="spice" value="${spice.name}"/>
                         <!--kilograms/stones input depending on js onclick-->
-                        <form:input id="input-large" class="unit_input" path="kilograms"/>
+                        <form:input id="input-large" class="unit_input" path="kilograms" value="5"/>
                         <form:label id="label-large" path="kilograms">kg</form:label> 
                         <!--grams/stones input depending on js onclick-->
-                        <form:input id="input-small" class="unit_input" path="grams"/>
+                        <form:input id="input-small" class="unit_input" path="grams" value="5"/>
                         <form:label id="label-small" path="grams">g</form:label>
 
                         <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
@@ -432,9 +431,9 @@ button[disabled] {
                         <br>
                         -->
                         <div class="type-choose">
-                          <button class="btn btn-default btn-subtract" onclick="decrement()" type="button" id="decrement" disabled>-</button>
+                          <button class="btn btn-default btn-subtract" onclick="decrement()" type="button" id="decrement">-</button>
                             <form:input class="quantity" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10"/>
-                          <button class="btn btn-default btn-add" onclick="increment()" type="button" id="increment" disabled>+</button>
+                          <button class="btn btn-default btn-add" onclick="increment()" type="button" id="increment">+</button>
                         </div>
 
                         <div class="product-price">

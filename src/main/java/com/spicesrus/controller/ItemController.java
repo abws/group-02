@@ -31,24 +31,22 @@ import com.spicesrus.repository.UDetailsRepo;
 import com.spicesrus.repository.UserRepository;
 
 /**
- * Manages the creation and destruction of item objects, and adding them to a cart
- * @author 
+ * Manages the creation and destruction of item objects, and their addition to a cart
+ * @author Abdiwahab
  * version 3
  */
 
 @Controller
 public class ItemController {
-	
-	@Autowired //for creating a new items in pounds
-	ItemPoundsRepository ipRepo;
-	@Autowired //for creating new items in grams
-	ItemGramsRepository igRepo;
-	@Autowired //for displaying the spice
+	@Autowired
 	SpicesRepository sRepo;
+	
 	@Autowired
 	ItemRepository iRepo;
+	
 	@Autowired
 	CartRepository cRepo;
+	
 	@Autowired
 	UserRepository uRepo;
 	
@@ -56,18 +54,20 @@ public class ItemController {
 	/**
 	 * Individual spice page
 	 * Checks if a spice exists in the database.
-	 * Couldn't handle "/spices?..." requests as its implemented elsewhere
+	 * Couldn't handle "/spices..." requests as its implemented elsewhere
 	 * @param spice
 	 * @param model
 	 * @return "spice" jsp page
 	 */
 	@RequestMapping("/spice") //by default manages get requests
 	public String showSpice(@RequestParam String spice, Model model, HttpServletRequest request, Principal user) {
+		
 		//get spice to view and item ready 
 		Spices s = sRepo.findByName(spice); //same as finding by id since the name is the id
 		model.addAttribute("spice", s);
-		model.addAttribute("itemPound", new ItemPounds()); //CANNOT INSTANTIATE AN ITEM OBJECT!, whatever happened to that whole polymorphism stuff they were bragging about (would be nice if i could create a general object that gets specified after form is filled)
+		model.addAttribute("itemPound", new ItemPounds());
 		model.addAttribute("itemGram", new ItemGrams());
+		
 		
 		//user privileges
 		User userDetails = null;
@@ -75,14 +75,13 @@ public class ItemController {
 		
 		if (user == null)
 			level = "none";
-		
 		else {
 			userDetails = uRepo.findByUsername(user.getName());
-			System.out.println(user.getName());
 			level = userDetails.getAuthorities().get(userDetails.getAuthorities().size() - 1);
 		}
-		//System.out.println(level.toLowerCase());
+		
 		model.addAttribute("level", level.toLowerCase());
+	
 		
 		//session management
 		if (request.getSession().getAttribute("cart") == null) {
@@ -96,32 +95,29 @@ public class ItemController {
 		}
 		
 		/*
-		 * Either end session or make sure cart is instantiated with session cart as cart database is dropped with every restart of application
+		 * Either end session or make sure cart is 
+		 * instantiated with session cart as cart 
+		 * database is dropped with every restart of application
 		 */
 		else {
-			System.out.println("I'm here");
 			Cart cart = (Cart) request.getSession().getAttribute("cart");
-			//System.out.println(cart.getId());
 			cart = cRepo.findById(cart.getId()).get();
 			model.addAttribute("cart", cart);
-			int n = cart.getItems().size();
-			System.out.println(n);
-			model.addAttribute("items", n);
+			model.addAttribute("items", cart.getItems().size());
 		}
 		
-		
-
 		//just in case user types the spice name into the url
 		if (s != null)
 			model.addAttribute("spice", s);
 		else
-			return "spice-not-found-page"; //needs to be implemented
+			return "spice-not-found-page";
 		return "spice";	
 	}	
 	
+	
 	/**
-	 * Adds an item in grams to database
-	 * Form takes us here
+	 * Adds an item in grams format to database
+	 * Item form takes us here
 	 * @param item
 	 * @return "spice" jsp page
 	 */
@@ -133,8 +129,6 @@ public class ItemController {
 			cart = cRepo.findById(cart.getId()).get();
 		else
 			cart = cRepo.save(cart);
-		
-		
 		item.setCart(cart);
 
 		cart.getItems().add(item);
@@ -143,42 +137,35 @@ public class ItemController {
 		item.setCart(cart);
 		Item i = iRepo.save(item);
 		i = iRepo.findById(i.getId());
-		System.out.println(item.getSpice().getName());
-		System.out.println(i.getPrice());
+
 		return "redirect:/spice?spice=" + item.getSpice().getName(); //change to shop after testing
 		//return "redirect:/spices";
-		
 	}
 	
 	/**
-	 * Adds an item in pounds to database
+	 * Adds an item in pounds format to database
+	 * Item form takes us here
 	 * @param item
 	 * @return "spice" jsp page
 	 */
 	@PostMapping("addItemPounds")
-	public String addItemPounds(@ModelAttribute ItemPounds item, HttpServletRequest request) {
+		public String addItemPounds(@ModelAttribute ItemPounds item, HttpServletRequest request) {
+			
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
+		if (cRepo.findById(cart.getId()).isPresent())
+			cart = cRepo.findById(cart.getId()).get();
+		else
+			cart = cRepo.save(cart);
+		item.setCart(cart);
+	
 		cart.getItems().add(item);
 		request.getSession().setAttribute("cart", cart);
-
+		
 		item.setCart(cart);
 		Item i = iRepo.save(item);
-		i = iRepo.findById(item.getId());
-		System.out.println(item.getSpice().getName());
-		System.out.println(item.getPrice());
-		//return "redirect:/spice?spice=" + item.getSpice().getName();
-		return "redirect:/spices";
-	}
+		i = iRepo.findById(i.getId());
 	
-	/*
-	@PostMapping("deleteItem")
-	public String deleteItem(@RequestParam int id) {
-		Item i = iRepo.findById(id);
-		iRepo.deleteById(i.getId());
-
-		return "redirect:/cart";
-		
+		return "redirect:/spice?spice=" + item.getSpice().getName(); //change to shop after testing
+		//return "redirect:/spices";
 	}
-	*/
-
 }
