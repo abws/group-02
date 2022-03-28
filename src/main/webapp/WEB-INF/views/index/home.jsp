@@ -63,7 +63,7 @@
                 <li> <button class="openBtn" onclick="openSearch()"><i class="fa-solid fa-magnifying-glass"></i>Search</button></li>
    
                 
-                <li style="float:right"><a href="/shopping_cart"><i class="fa-solid fa-cart-shopping"></i>Basket</a></li>
+                <li style="float:right"><a href="cart"><i class="fa-solid fa-cart-shopping"></i>Cart(${cartSize})</a></li>
 				<div class="user">
                     <c:choose>
                         <c:when test="${username == null}">
