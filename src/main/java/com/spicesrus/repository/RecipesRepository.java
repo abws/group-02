@@ -1,6 +1,7 @@
 package com.spicesrus.repository;
 
 import com.spicesrus.model.Recipes;
+import com.spicesrus.model.Spices;
 
 import java.util.List;
 
@@ -11,5 +12,7 @@ public interface RecipesRepository extends CrudRepository<Recipes, String> {
     public Recipes findByName(String name);
 
     public List<Recipes> findByNameContainingIgnoreCase(String name);
+    
+    public List<Recipes> findBySpicesInvolvedContaining(Spices spice);
 }
 

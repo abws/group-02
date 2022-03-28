@@ -359,7 +359,7 @@
 
     <!-- Left Column / Image -->
     <div>
-        <img src="${recipe.picture}" alt="${recipe.name}">
+        <img src="${recipe.picture}" height="500px" width="500px" alt="${recipe.name}">
     </div>
     <!-- Right Column -->
     <div class="right-column">
@@ -391,35 +391,29 @@
     </div>
 </main>
 
-
-<h2 style="text-align:center;">Related Product</h2>
+<h2 style="text-align:center;">Buy Spices Needed</h2>
 <div class="product">
+	
+	<c:forEach var="ingredient" items="${recipe.getSpicesInvolved()}">
+		<div>
+        	<a href="/spice?spice=${ingredient.name}">
+        	<img src="${ingredient.getPicture()}" alt="${ingredient.getName()}" width="304" height="236">
+             ${ingredient.name}
+            </a>
+    	</div>
+    </c:forEach>
+</div>
 
-
-    <div>
-        <img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/paprika1.jpeg" alt="Sweet Paprika"
+<h2 style="text-align:center;">Related Recipe</h2>
+<div class="product">
+	
+	<c:forEach var="ingredient" items="${recipe.getComplimentaryRecipes()}">
+		<div>
+        	<img src="${ingredient.getPicture()}" alt="${ingredient.getName()}"
              width="304" height="236">
-        <p>Sweet Paprika</p>
-    </div>
-
-    <div>
-        <img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/cumin-seed.jpg" alt="Cumin Seeds"
-             width="304" height="236">
-        <p>Cumin Seeds</p>
-    </div>
-
-    <div>
-        <img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/cayenne-pepper_1422925949-scaled.jpg"
-             alt="Cayenne Pepper" width="304" height="236">
-        <p>Cayenne Pepper</p>
-    </div>
-
-    <div>
-        <img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/20161123_131905.jpg" alt="Carway Seeds"
-             width="304" height="236">
-        <p>Carway Seeds</p>
-    </div>
-
+        	<p>${ingredient.getName()}</p>
+    	</div>
+    </c:forEach>
 </div>
 
 </body>

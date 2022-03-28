@@ -2,11 +2,14 @@ package com.spicesrus.controller;
 
 import com.spicesrus.SpicesrusApplication;
 import com.spicesrus.model.Recipes;
+import com.spicesrus.model.Spices;
 import com.spicesrus.model.User;
 import com.spicesrus.repository.RecipesRepository;
+import com.spicesrus.repository.SpicesRepository;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,6 +28,9 @@ public class RecipesController {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private SpicesRepository spicesRepo;
 
     @RequestMapping("/recipes")
     public String Recipes(Model model) {
@@ -166,7 +172,24 @@ public class RecipesController {
         return "allRecipes";
 
     }
-
+    
+    @GetMapping("/userspicesearch")
+    public String searchspice(Model model, @RequestParam String spices) {
+    	String[] items = spices.split(",");
+        List<String> itemList = Arrays.asList(items);
+        ArrayList<Spices> spiceList = new ArrayList<Spices>();
+        for (String spice: itemList) {
+        	spiceList.add(spicesRepo.findByName(spice));
+        }
+        
+        List<Recipes> recipesToAdd = new ArrayList<Recipes>();
+    	for (Spices item: spiceList) {
+    		List<Recipes> recipesContainingSpice = recipesRepo.findBySpicesInvolvedContaining(item);
+    		recipesToAdd.addAll(recipesContainingSpice);
+    		}
+    	model.addAttribute("recipes", recipesToAdd);
+        return "allRecipes";
+    }
 
     /**
      * Checks if a spice exists in the database.
