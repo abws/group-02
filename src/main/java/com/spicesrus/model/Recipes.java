@@ -1,5 +1,6 @@
 package com.spicesrus.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -15,10 +16,11 @@ public class Recipes {
 	private String description;
 	private String FullDescription;
 	private int timeRequired;
+	private String minimumRoleRequired;
 
 	@OneToMany
 	@JoinColumn
-	private List<Recipes> complimentaryRecipes;
+	private List<Recipes> complimentaryRecipes = new ArrayList<Recipes>();
 	private String picture;
 	
 	@OneToMany
@@ -31,8 +33,6 @@ public class Recipes {
 	private List<String> method;
 
 	private boolean restricted = false;
-
-
 
 	public List<Spices> getSpicesInvolved() {
 		return spicesInvolved;
@@ -106,4 +106,5 @@ public class Recipes {
 	public void setRestricted(boolean restricted) {
 		this.restricted = restricted;
 	}
+
 }
