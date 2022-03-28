@@ -229,13 +229,13 @@
       .unit_input{
         border: 2px solid #eee7e1;
         border-radius: 6px;
-        padding: 13px 20px;
+        padding: 13px 0px;
         font-size: 14px;
         color: #5E6977;
         background-color: #fff;
         cursor: auto;
         transition: all .5s;
-        width: 25px;
+        width: 4em;
         text-align:center;
       }
 
@@ -381,7 +381,7 @@
 
                     <div class="type-choose">
                       <button class="btn btn-default btn-subtract" onclick="decrement()" type="button">-</button>
-                      <form:input class="quantity" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10" readonly="true" onfocus="this.blur()"/>
+                      <form:input class="quantity unit_input" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10" readonly="true" onfocus="this.blur()"/>
                       <button class="btn btn-default btn-add" onclick="increment()" type="button">+</button>
                     </div>
 
