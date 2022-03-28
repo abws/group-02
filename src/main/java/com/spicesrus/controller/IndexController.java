@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.spicesrus.service.CartHelper;
 
 import java.security.Principal;
 
@@ -34,10 +35,12 @@ public class IndexController {
 	 * Also do this for every relaunch of app
 	 */
 	@RequestMapping("/end")
-		public String endSession(HttpSession s) {
-			s.invalidate();
-			return "redirect:/";
-		}
+	public String endSession(HttpSession s) {
+		s.invalidate();
+		CartHelper.setCartSize(0);
+		return "redirect:/";
+	}
+	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Principal principal, Model model) {
 		String username = principal != null ? principal.getName() : null;
