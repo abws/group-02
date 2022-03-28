@@ -311,6 +311,7 @@
           <button type="submit" class="searchButton">
             <i class="fa-solid fa-magnifying-glass"></i>
          </button>
+    </form>
 </div>
 
 
