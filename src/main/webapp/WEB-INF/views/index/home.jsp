@@ -353,7 +353,7 @@
 </div>
 
 <footer>
-    <p>Footer</p>
+    <p>&copy; 2022 Group 02, Software Engineering Project. All Rights Reserved</p>
 </footer>
 
 </body>
