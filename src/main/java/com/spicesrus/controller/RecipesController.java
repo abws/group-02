@@ -175,21 +175,18 @@ public class RecipesController {
     
     @GetMapping("/userspicesearch")
     public String searchspice(Model model, @RequestParam String spices) {
-    	String[] items = spices.split(" ");
+    	String[] items = spices.split(",");
         List<String> itemList = Arrays.asList(items);
-        List<Recipes> recipes = SpicesrusApplication.recipes;
-        ArrayList<Recipes> recipesToAdd = new ArrayList<Recipes>();
-    	for (String item: itemList) {
-    		Spices spiceToLookFor = spicesRepo.findByName(item);
-    		for (Recipes recipe: recipes) {
-    			if (recipe.getSpicesInvolved() == null){
-    				continue;
-    			}
-    			else if (recipe.getSpicesInvolved().contains(spiceToLookFor)){
-    				recipesToAdd.add(recipe);
-    			}
+        ArrayList<Spices> spiceList = new ArrayList<Spices>();
+        for (String spice: itemList) {
+        	spiceList.add(spicesRepo.findByName(spice));
+        }
+        
+        List<Recipes> recipesToAdd = new ArrayList<Recipes>();
+    	for (Spices item: spiceList) {
+    		List<Recipes> recipesContainingSpice = recipesRepo.findBySpicesInvolvedContaining(item);
+    		recipesToAdd.addAll(recipesContainingSpice);
     		}
-    	}
     	model.addAttribute("recipes", recipesToAdd);
         return "allRecipes";
     }

@@ -157,9 +157,9 @@ Now add the warmed milk and cream, whisking constantly, before returning everyth
         r3.setPicture("https://img.freepik.com/darmowe-zdjecie/pyszny-hummus_144627-19472.jpg?t=st=1647339211~exp=1647339811~hmac=7acf2f4c66577fc8170c8d045d58c18130f442687f5dcbd5d8284b22fe5b40e2&w=740");
         r3.setFullDescription("");//A long-term favourite for picking up from the deli counter, there are as many recipes for hummus as there are chickpeas in a sack, but we make no apology for stating that this recipe is the best! The reason for the variety in recipes is that hummus is a staple in most of the countries surrounding the eastern Mediterranean and into the Middle East, all of which have their own little foibles when it comes to seasoning the hummus. Our take is based on the Israeli version, which is always served with a blob of harissa-style hot sauce in the middle – this procedure is highly recommended. Tinned chickpeas are far and away the easiest (and fortunately the best) to use for the recipe.
         ArrayList<Spices> r3spices = new ArrayList<Spices>();
-        System.out.println(spicesRepo.findByName("Pepper"));
         r3spices.add(spicesRepo.findByName("BLACK PEPPER"));
         r3.setSpicesInvolved(r3spices);
+        System.out.println(r3spices.isEmpty());
         r3.setIngredients(List.of("2 Tins Chickpeas", "1tbs olive oil", "1tbs tahini paste"));/*2 tins chickpeas\n"
     			+ "1tbs olive oil\n"
     			+ "1tbs tahini paste, available from our Borough Market shop\n"
@@ -235,8 +235,10 @@ coriander, stalks and leaves separated
         Serve in deep bowls topped with coriander leaves and the remaining chilli slices.
         */
         
-        //r4.addComplimentaryRecipes(r5);
-        //r5.addComplimentaryRecipes(r4);
+        r5 = recipesRepo.save(r5);
+        
+        r4.addComplimentaryRecipes(r5);
+        r5.addComplimentaryRecipes(r4);
         
         recipes.add(r1);
         recipes.add(r2);

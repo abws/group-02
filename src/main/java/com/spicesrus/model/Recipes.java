@@ -1,5 +1,6 @@
 package com.spicesrus.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -19,7 +20,7 @@ public class Recipes {
 
 	@OneToMany
 	@JoinColumn
-	private List<Recipes> complimentaryRecipes;
+	private List<Recipes> complimentaryRecipes = new ArrayList<Recipes>();
 	private String picture;
 	
 	@OneToMany
