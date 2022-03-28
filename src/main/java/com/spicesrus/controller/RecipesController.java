@@ -10,7 +10,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.spicesrus.repository.UserRepository;
+import com.spicesrus.service.CartHelper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,14 +31,15 @@ public class RecipesController {
     private UserRepository userRepository;
 
     @RequestMapping("/recipes")
-    public String Recipes(Model model) {
+    public String Recipes(Model model, HttpServletRequest request) {
         Iterable<Recipes> recipeListFromDatabase = recipesRepo.findAll();
         model.addAttribute("recipes", recipeListFromDatabase);
+        CartHelper.createOrRetrieveCart(model, request);
         return "allRecipes";
     }
 
     @GetMapping("/recipes/Breakfast")
-    public String showCategory_B(Model model) {
+    public String showCategory_B(Model model, HttpServletRequest request) {
 
         List<Recipes> recipes = SpicesrusApplication.recipes;
         List<Recipes> output = new ArrayList<Recipes>();
@@ -45,12 +50,14 @@ public class RecipesController {
         }
         model.addAttribute("path", "Relevant");
         model.addAttribute("recipes", output);
+        CartHelper.createOrRetrieveCart(model, request);
+
 
         return "allRecipes";
     }
 
     @GetMapping("/recipes/Lunch")
-    public String showCategory_L(Model model) {
+    public String showCategory_L(Model model, HttpServletRequest request) {
 
         List<Recipes> recipes = SpicesrusApplication.recipes;
         List<Recipes> output = new ArrayList<Recipes>();
@@ -61,12 +68,14 @@ public class RecipesController {
         }
         model.addAttribute("path", "Relevant");
         model.addAttribute("recipes", output);
+        CartHelper.createOrRetrieveCart(model, request);
+
 
         return "allRecipes";
     }
 
     @GetMapping("/recipes/Dinner")
-    public String showCategory_D(Model model) {
+    public String showCategory_D(Model model, HttpServletRequest request) {
 
         List<Recipes> recipes = SpicesrusApplication.recipes;
         List<Recipes> output = new ArrayList<Recipes>();
@@ -77,12 +86,14 @@ public class RecipesController {
         }
         model.addAttribute("path", "Relevant");
         model.addAttribute("recipes", output);
+        CartHelper.createOrRetrieveCart(model, request);
+
 
         return "allRecipes";
     }
 
     @GetMapping("/recipes/Cakes and Pies")
-    public String showCategory_CaP(Model model) {
+    public String showCategory_CaP(Model model, HttpServletRequest request) {
 
         List<Recipes> recipes = SpicesrusApplication.recipes;
         List<Recipes> output = new ArrayList<Recipes>();
@@ -98,7 +109,7 @@ public class RecipesController {
     }
 
     @GetMapping("/recipes/Pastries")
-    public String showCategory_P(Model model) {
+    public String showCategory_P(Model model, HttpServletRequest request) {
 
         List<Recipes> recipes = SpicesrusApplication.recipes;
         List<Recipes> output = new ArrayList<Recipes>();
@@ -109,12 +120,14 @@ public class RecipesController {
         }
         model.addAttribute("path", "Relevant");
         model.addAttribute("recipes", output);
+        CartHelper.createOrRetrieveCart(model, request);
+
 
         return "allRecipes";
     }
 
     @GetMapping("/recipes/a-z")
-    public String sort_a(Model model) {
+    public String sort_a(Model model, HttpServletRequest request) {
 
         List<Recipes> recipes = SpicesrusApplication.recipes;
         List<String> names = new ArrayList<String>();
@@ -132,11 +145,13 @@ public class RecipesController {
         }
         model.addAttribute("recipes", output);
         model.addAttribute("path", "A-Z");
+        CartHelper.createOrRetrieveCart(model, request);
+
         return "allRecipes";
     }
 
     @GetMapping("/recipes/z-a")
-    public String sort_z(Model model) {
+    public String sort_z(Model model, HttpServletRequest request) {
 
         List<Recipes> recipes = SpicesrusApplication.recipes;
         List<String> names = new ArrayList<String>();
@@ -155,14 +170,18 @@ public class RecipesController {
 
         model.addAttribute("recipes", output);
         model.addAttribute("path", "Z-A");
+        CartHelper.createOrRetrieveCart(model, request);
+
         return "allRecipes";
     }
 
 
     @GetMapping("/recipesearch")
-    public String search(Model model, @RequestParam String recipe) {
+    public String search(Model model, @RequestParam String recipe, HttpServletRequest request) {
         List<Recipes> recipes = recipesRepo.findByNameContainingIgnoreCase(recipe);
         model.addAttribute("recipes", recipes);
+        CartHelper.createOrRetrieveCart(model, request);
+
         return "allRecipes";
 
     }
@@ -178,7 +197,7 @@ public class RecipesController {
      * @return "spice" jsp page
      */
     @RequestMapping("/recipe") //by default manages get requests
-    public String showRecipe(@RequestParam String recipe, Model model, Principal principal) {
+    public String showRecipe(@RequestParam String recipe, Model model, Principal principal, HttpServletRequest request) {
         Recipes r = recipesRepo.findByName(recipe); //same as finding by id since the name is the id
         model.addAttribute("recipe", r);
 
@@ -191,7 +210,7 @@ public class RecipesController {
 				return "restricted_recipe";
             }
         }
-
+        CartHelper.createOrRetrieveCart(model, request);
 
         //just in case user types the recipe name into the url
         if (r != null)
