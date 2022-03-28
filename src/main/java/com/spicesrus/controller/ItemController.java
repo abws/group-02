@@ -29,6 +29,7 @@ import com.spicesrus.repository.ItemRepository;
 import com.spicesrus.repository.SpicesRepository;
 import com.spicesrus.repository.UDetailsRepo;
 import com.spicesrus.repository.UserRepository;
+import com.spicesrus.service.CartHelper;
 
 /**
  * Manages the creation and destruction of item objects, and their addition to a cart
@@ -138,7 +139,8 @@ public class ItemController {
 		item.setCart(cart);
 		Item i = iRepo.save(item);
 		i = iRepo.findById(i.getId());
-
+		
+		CartHelper.setCartSize(cart.getItems().size());
 		return "redirect:/spice?spice=" + item.getSpice().getName(); //change to shop after testing
 		//return "redirect:/spices";
 	}
@@ -167,6 +169,8 @@ public class ItemController {
 		Item i = iRepo.save(item);
 		i = iRepo.findById(i.getId());
 		System.out.println(x);
+		
+		CartHelper.setCartSize(cart.getItems().size());
 		return "redirect:/spice?spice=" + item.getSpice().getName(); //change to shop after testing
 		//return "redirect:/spices";
 	}

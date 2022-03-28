@@ -12,6 +12,7 @@ import com.spicesrus.repository.CartRepository;
 @Component
 public class CartHelper {
 	private static CartRepository cRepo;
+	private static int cartSize = 0;
 	
 	public CartHelper(CartRepository cRepo) {
 		CartHelper.cRepo = cRepo;
@@ -28,4 +29,12 @@ public class CartHelper {
 		model.addAttribute("cart", cart);
 		return cart;	
 	}
+	public static int getCartSize() {
+		return cartSize;
+	}
+	public static void setCartSize(int cartSize) {
+		CartHelper.cartSize = cartSize;
+	}
+	
+	
 }
