@@ -22,7 +22,7 @@ public class IndexController {
 	public String index(Principal principal, Model model, HttpServletRequest request) {
 		String username = principal != null ? principal.getName() : null;
 		model.addAttribute("username", username);
-		return "index/index";
+		return "index/home";
 	}
 	
 	/**

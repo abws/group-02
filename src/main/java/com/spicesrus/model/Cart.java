@@ -7,7 +7,9 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * A class to represent user cart
+ * A class to represent a shopping cart
+ * @author Abdiwahab
+ * @version 1
  *
  */
 @Entity

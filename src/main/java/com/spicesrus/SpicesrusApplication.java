@@ -16,9 +16,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.ui.Model;
 
 import com.spicesrus.model.Recipes;
 import com.spicesrus.model.Spices;
+import com.spicesrus.service.CartHelper;
 import com.spicesrus.service.EmailHandler;
 import com.spicesrus.model.UDetails;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -276,6 +278,7 @@ coriander, stalks and leaves separated
         spicesRepo.save(spice);
     }
     
+
 
 
 

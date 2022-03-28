@@ -25,7 +25,7 @@ public class CartController {
 	ItemPoundsRepository ipRepo;
 	@Autowired
 	ItemRepository iRepo;
-	@Autowired 
+	@Autowired
 	CartRepository cRepo;
 	
 	
@@ -60,10 +60,9 @@ public class CartController {
 		}
 		else
 			iRepo.delete(i);
-		return "redirect:cart";
-		
-		
+		return "redirect:cart";	
 	}
+	
 	
 
 
