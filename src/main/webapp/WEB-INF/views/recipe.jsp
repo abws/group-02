@@ -359,7 +359,7 @@
 
     <!-- Left Column / Image -->
     <div>
-        <img src="${recipe.picture}" alt="${recipe.name}">
+        <img src="${recipe.picture}" height="500px" width="500px" alt="${recipe.name}">
     </div>
     <!-- Right Column -->
     <div class="right-column">
@@ -391,8 +391,20 @@
     </div>
 </main>
 
+<h2 style="text-align:center;">Buy Spices Needed</h2>
+<div class="product">
+	
+	<c:forEach var="ingredient" items="${recipe.getSpicesInvolved()}">
+		<div>
+        	<a href="/spice?spice=${ingredient.name}">
+        	<img src="${ingredient.getPicture()}" alt="${ingredient.getName()}" width="304" height="236">
+             ${ingredient.name}
+            </a>
+    	</div>
+    </c:forEach>
+</div>
 
-<h2 style="text-align:center;">Related Product</h2>
+<h2 style="text-align:center;">Related Recipe</h2>
 <div class="product">
 	
 	<c:forEach var="ingredient" items="${recipe.getComplimentaryRecipes()}">

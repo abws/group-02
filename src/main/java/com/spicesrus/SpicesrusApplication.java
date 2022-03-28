@@ -211,7 +211,7 @@ To serve, slice the chicken diagonally then smother it with your katsu sauce, al
 
         Recipes r5 = new Recipes();
         r5.setCategory("Dinner");
-        r5.setDescription("");
+        r5.setDescription("A hearty noodle dish for those cold nights.");
         r5.setName("Chicken Ramen");
         r5.setPicture("https://www.modernhoney.com/wp-content/uploads/2018/07/Homemade-Chicken-Ramen-1.jpg");
         r5.setFullDescription("");//Ramen is a noodle soup dish. Shoyu ramen soup is a clear, brown broth flavored with soy sauce (shoyu). The soup is made of chicken broth. Ramen are eaten with chopsticks, a Chinese-style spoon is often provided as well to help with small toppings and for drinking the soup.
@@ -241,6 +241,9 @@ coriander, stalks and leaves separated
         
         r4.addComplimentaryRecipes(r5);
         r5.addComplimentaryRecipes(r4);
+        
+        r4 = recipesRepo.save(r4);
+        r5 = recipesRepo.save(r5);
         
         recipes.add(r1);
         recipes.add(r2);
