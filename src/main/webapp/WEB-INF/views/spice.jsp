@@ -444,7 +444,7 @@
 
         inputElements.forEach(el => {
           ['keyup', 'mouseup'].forEach(event => {
-            el.addEventListener(event, showPrice, false);
+            el.addEventListener(event, manageWeightWrapper, false);
           })
         })
 
@@ -466,6 +466,7 @@
 
             document.getElementById("label-large").innerHTML = "lb";
             document.getElementById("label-small").innerHTML = "oz.";
+            manageWeightWrapper();
           }
           else if (metric) { //if at metric units (kilograms and grams)
             metric = false;
@@ -481,6 +482,7 @@
 
             document.getElementById("label-large").innerHTML = "kg";
             document.getElementById("label-small").innerHTML = "g";
+            manageWeightWrapper();
           }
         }
 
@@ -490,9 +492,10 @@
         function increment() {
           var quantity = Number(document.getElementById("quantity").value);
           if (quantity == 10) return 0;
+
           document.getElementById("quantity").value = Number(document.getElementById("quantity").value) + 1;
-          var small = document.getElementById("input-small").value;
-          var large = document.getElementById("input-large").value;
+          var small = fetchInputSmall();
+          var large = fetchInputLarge();
           if (large > 0 || small > 0) manageWeight(large, small);
         }
 
@@ -502,39 +505,31 @@
         function decrement() {
           var quantity = Number(document.getElementById("quantity").value);
           if (quantity == 1) return 0;
-          document.getElementById("quantity").value = document.getElementById("quantity").value - 1;
-          var small = document.getElementById("input-small").value
-          var large = document.getElementById("input-large").value;
+
+          document.getElementById("quantity").value = Number(document.getElementById("quantity").value) - 1;
+          var small = fetchInputSmall();
+          var large = fetchInputLarge();
           if (large > 0 || small > 0) manageWeight(large, small);
         }
 
         /**
          * Manages users chosen weight and dynamically prints price
-         * @param {Number} smallWeight The small weight of the chosen product
-         * @param {Number} largeWeight The large weight of the chosen product
+         * @param {Number} smallWeight The small weight (e.g grams) of the chosen product
+         * @param {Number} largeWeight The large weight (e.g kilograms) of the chosen product
          */
         function manageWeight(largeWeight, smallWeight) {
-          var type = document.getElementById("form").getAttribute("modelAttribute");
+          var unit = document.getElementById("input-small").getAttribute("name");
+          var quantity = Number(document.getElementById("quantity").value);
+          var rate = '${spice.price}';
+
           document.getElementById("input-large").value = largeWeight;
           document.getElementById("input-small").value = smallWeight;
-          if (!allowAndCheckSubmition(smallWeight + largeWeight)) return;
-          
-          var value = Math.round(('${spice.price}') * smallWeight) / 100;
-          document.getElementById("price-").innerHTML = "&pound" + 
-                                                        value +
-                                                        " per " + smallWeight + 
-                                                        "g jar";
 
-          var quantity = Number(document.getElementById("quantity").value);
+          if (!allowAndCheckSubmition(smallWeight + largeWeight)) return; //don't show price if submition isn't yet allowed (i.e input=0)
+  
 
-          var element = document.createElement("p");
-          element.setAttribute("id", "total-price");
-          document.getElementById("price-").appendChild(element);
-
-          document.getElementById("total-price").innerHTML = "Total: &pound" + 
-                                                              Math.round((quantity * value) * 100)
-                                                              / 100;
-          
+          showUnitPrice(smallWeight, largeWeight, rate, unit);
+          computeAndShowPrice(smallWeight, largeWeight, quantity, rate, unit);
         }
 
         /**
@@ -553,8 +548,7 @@
         function flashImperial() {
           for (var i = 25; i <= 500; i *= 2) {
             if (i == 200) i += 50;
-            document.getElementById("b-" + i).innerHTML = Math.round((i / 28.35) * 100) 
-                                                          / 100 //rounds value to 2 dp
+            document.getElementById("b-" + i).innerHTML = (i / 28.35).toFixed(2)                                
                                                           + "oz";
           }
         }
@@ -575,39 +569,93 @@
         }
 
         /**
-         * Prints the price depending on whether weight was in imperial or metric
+         * Manages computing total price and adding an element showing it
+         * @param {Number} smallWeight The small weight of the chosen product
+         * @param {Number} largeWeight The large weight of the chosen product     
+         * @param {Number} quantity The large weight of the chosen product         
+         * @param {Number} rate The price per 100g of spice 
+         * @param {Number} unit The chosen units of the user
          */
-        function showPrice() {
-          var unit = document.getElementById("form").getAttribute('action');
-          var smallWeight = document.getElementById("input-small").value;
-          var largeWeight = document.getElementById("input-large").value;
-          if (!allowAndCheckSubmition(smallWeight + largeWeight)) return; //don't show price is submition isn't yet allowed (i.e input=0)
-
-          if (unit == 'addItemGrams') {
-            var value = Math.round(('${spice.price}') * smallWeight) / 100;
-            var quantity = Number(document.getElementById("quantity").value);
+        function computeAndShowPrice(smallWeight, largeWeight, quantity, rate, unit) {
+          if (unit == 'grams') { //i.e unit == 'metric'
+            var pricePerUnit = (rate / 100) * (Number(smallWeight) + (Number(largeWeight) * 1000));
 
             var element = document.createElement("p");
             element.setAttribute("id", "total-price");
             document.getElementById("price-").appendChild(element);
-
             document.getElementById("total-price").innerHTML = "Total: &pound" + 
-                                                                Math.round((quantity * value) * 100)
-                                                                / 100;
-          }
+                                                                (quantity * pricePerUnit).toFixed(2);
+            }
 
-          else {
-            console.log(largeWeight);
+          else { //unit == 'imperial'
+            var pricePerUnit = (rate / 100) * 
+                        ((Number(largeWeight * 16) + Number(smallWeight)) * 28.3495);
+                        var element = document.createElement("p");
+
+            element.setAttribute("id", "total-price");
+            document.getElementById("price-").appendChild(element);
+            document.getElementById("total-price").innerHTML = "Total: &pound" + 
+                                                                (quantity * pricePerUnit).toFixed(2);
+                                                                
           }
-          
         }
+
         /**
          * 
-        function priceConverter(smallWeight, largeWeight, quantity, rate, unit) {
-          
+         */ 
+        function showUnitPrice(smallWeight, largeWeight, rate, unit) {
+          if (unit == 'grams') {
+            var pricePerUnit = (rate / 100) * (Number(smallWeight) + (Number(largeWeight) * 1000));
+            if (largeWeight == 0) {
+              document.getElementById("price-").innerHTML = "&pound" + 
+                                                            pricePerUnit.toFixed(2) +
+                                                            " per " + smallWeight + 
+                                                             "g jar";
+            }
+            else {
+              document.getElementById("price-").innerHTML = "&pound" + 
+                                                            pricePerUnit.toFixed(2) +
+                                                            " per " + largeWeight + "kg " + 
+                                                            smallWeight + "g " +
+                                                            "unit";
+            }
+          }
 
+          else { //unit == imperial
+            var pricePerUnit = (rate / 100) * 
+                                ((Number(largeWeight * 16) + Number(smallWeight)) * 28.3495);
+            if (largeWeight == 0) { 
+              document.getElementById("price-").innerHTML = "&pound" + 
+                                                            pricePerUnit.toFixed(2) +
+                                                            " per " + smallWeight + 
+                                                             "oz. jar";
+            }
+
+            else {
+              document.getElementById("price-").innerHTML = "&pound" + 
+                                                            pricePerUnit.toFixed(2) +
+                                                            " per " + largeWeight + "lb " + 
+                                                            smallWeight + "oz. " +
+                                                            "unit";
+            }
+          }
         }
-        */
+
+        function manageWeightWrapper() {
+          var small = fetchInputSmall();
+          var large = fetchInputLarge();
+
+          manageWeight(large, small);
+        }
+
+        function fetchInputSmall() {
+          return document.getElementById("input-small").value;
+        }
+
+        function fetchInputLarge() {
+          return document.getElementById("input-large").value;
+        }
+      
 
         
       </script> 
