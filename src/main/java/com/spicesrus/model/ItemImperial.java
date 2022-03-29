@@ -5,12 +5,12 @@ import javax.persistence.Transient;
 
 /**
  * Child class of Item
- * Represents items in pound format
+ * Represents items in imperial format
  * @author Abdiwahab
  *
  */
 @Entity
-public class ItemPounds extends Item{
+public class ItemImperial extends Item{
 	private int pounds;
 	private int ounces;
 	@Transient //"don't persist this value, we'll calculate it on the server-side as needed"

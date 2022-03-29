@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import com.spicesrus.model.Cart;
 import com.spicesrus.model.Item;
 import com.spicesrus.repository.CartRepository;
-import com.spicesrus.repository.ItemGramsRepository;
-import com.spicesrus.repository.ItemPoundsRepository;
+import com.spicesrus.repository.ItemImperialRepository;
+import com.spicesrus.repository.ItemMetricRepository;
 import com.spicesrus.repository.ItemRepository;
 import com.spicesrus.repository.RecipesRepository;
 
@@ -19,12 +19,16 @@ import com.spicesrus.repository.RecipesRepository;
 public class CartController {
 	@Autowired
 	RecipesRepository rRepo;
+	
+	@Autowired
+	ItemMetricRepository imRepo;
+	
 	@Autowired 
-	ItemGramsRepository igRepo;
-	@Autowired 
-	ItemPoundsRepository ipRepo;
+	ItemImperialRepository iiRepo;
+	
 	@Autowired
 	ItemRepository iRepo;
+	
 	@Autowired
 	CartRepository cRepo;
 	

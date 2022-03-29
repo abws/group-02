@@ -17,14 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spicesrus.model.Cart;
 import com.spicesrus.model.Item;
-import com.spicesrus.model.ItemGrams;
-import com.spicesrus.model.ItemPounds;
+import com.spicesrus.model.ItemImperial;
+import com.spicesrus.model.ItemMetric;
 import com.spicesrus.model.Spices;
 import com.spicesrus.model.UDetails;
 import com.spicesrus.model.User;
 import com.spicesrus.repository.CartRepository;
-import com.spicesrus.repository.ItemGramsRepository;
-import com.spicesrus.repository.ItemPoundsRepository;
 import com.spicesrus.repository.ItemRepository;
 import com.spicesrus.repository.SpicesRepository;
 import com.spicesrus.repository.UDetailsRepo;
@@ -66,8 +64,8 @@ public class ItemController {
 		//get spice to view and item ready 
 		Spices s = sRepo.findByName(spice); //same as finding by id since the name is the id
 		model.addAttribute("spice", s);
-		model.addAttribute("itemPound", new ItemPounds());
-		model.addAttribute("itemGram", new ItemGrams());
+		model.addAttribute("itemPound", new ItemImperial());
+		model.addAttribute("itemGram", new ItemMetric());
 		
 		
 		//user privileges
@@ -122,8 +120,8 @@ public class ItemController {
 	 * @param item
 	 * @return "spice" jsp page
 	 */
-	@PostMapping("addItemGrams")
-	public String addItemGrams(@ModelAttribute ItemGrams item, HttpServletRequest request) {
+	@PostMapping("addItemMetric")
+	public String addItemMetric(@ModelAttribute ItemMetric item, HttpServletRequest request) {
 		System.out.println(item.getWeight());
 			
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
@@ -151,8 +149,8 @@ public class ItemController {
 	 * @param item
 	 * @return "spice" jsp page
 	 */
-	@PostMapping("addItemPounds")
-		public String addItemPounds(@ModelAttribute ItemPounds item, HttpServletRequest request) {
+	@PostMapping("addItemImperial")
+		public String addItemPounds(@ModelAttribute ItemImperial item, HttpServletRequest request) {
 		String x = item.getWeight();
 			
 		Cart cart = (Cart) request.getSession().getAttribute("cart");

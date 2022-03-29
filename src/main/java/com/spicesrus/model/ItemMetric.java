@@ -5,12 +5,12 @@ import javax.persistence.Transient;
 
 /**
  * Child class of Item
- * Represents items in gram format
+ * Represents items in metric format
  * @author Abdiwahab
  *
  */
 @Entity
-public class ItemGrams extends Item{
+public class ItemMetric extends Item{
 	private int kilograms;
 	private int grams;
 	@Transient //transient annotation stops these fields from being persisted
