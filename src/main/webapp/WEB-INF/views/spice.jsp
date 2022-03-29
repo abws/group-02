@@ -13,11 +13,27 @@
 
     <!--CSS-->
     <style>
-      html, body {
+    .hero-nav {
+   		 background-color: rgb(255, 136, 0);
+   		 
+   		}
+      
+      .navigation ul {
+	    list-style-type: none;
+	    margin: 0;
+	    padding: 0;
+	    overflow: hidden;
+	    font-size: 18px;
+	    font-family:"Monserrat", sans-serif;
+	    font-weight: 900;
+	    background-color: rgb(255, 136, 0);
+	    
+	  }
+    html, body {
         height: 100%;
         width: 100%;
         margin: 0;
-        font-family: 'Arial';		
+        font-family: "Monserrat", sans-serif;
       }
 
       .container {
@@ -25,6 +41,7 @@
         margin: 0 auto;
         padding: 15px;
         display: flex;
+        margin-top:5%;
       }
 
       /* Columns */
@@ -68,7 +85,7 @@
         text-decoration: none;
       }
       .product-description h1 {
-        font-weight: 300;
+        font-weight: 400;
         font-size: 52px;
         color: #000000;
         letter-spacing: -2px;
@@ -162,9 +179,10 @@
         align-items: center;
       }
 
+
       .product-price span {
-        font-size: 45px;
-        font-weight: 300;
+        font-size: 30px;
+        font-weight: 400;
         color: black;
         margin-right: 20px;
       }
@@ -291,6 +309,11 @@
         background-color: #a3a3a3;
 
       }
+      
+      #price- span{
+		
+			font-size: 20px;
+		}
 
       </style>
       <jsp:include page="nav.jsp" />

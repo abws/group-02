@@ -9,13 +9,38 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
 
-        html, body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            font-family: 'Arial';
-        }
+.hero-nav {
+   		 background-color: rgb(255, 136, 0);
+   		 
+   		}
+      
+      .navigation ul {
+	    list-style-type: none;
+	    margin: 0;
+	    padding: 0;
+	    overflow: hidden;
+	    font-size: 18px;
+	    font-family:"Monserrat", sans-serif;
+	    font-weight: 900;
+	    background-color: rgb(255, 136, 0);
+	    
+	  }
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        font-family: "Monserrat", sans-serif;
+      }
+    
 
+        .container1 {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+            display: flex;
+            margin-top: 10%;
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -370,7 +395,7 @@
 </head>
 
 <body id="recipe">
-<main class="container" >
+<main class="container1" >
 
     <!-- Left Column / Image -->
     <div>

@@ -23,6 +23,8 @@
             width: 33.33%;
 
         }
+        
+
 
         .cards {
             display: flex;
@@ -99,6 +101,10 @@
             color: white;;
         }
 
+		a{
+			text-decoration: none;
+			
+		}
         .pagination a:hover:not(.active) {
             background-color: rgb(248, 191, 152);
         }
@@ -158,21 +164,19 @@
             justify-content: center;
             display: flex;
             width: 100%;
-            height: 380px;
+         	height: 400px;
             background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/spice_hero.png");
 
         }
 
 
+		
         form .search {
-            width: 100%;
             position: relative;
             display: flex;
         }
 
         form .searchTerm {
-
-            width: 120%;
             border: 4px solid white;
             border-right: none;
             border-top: none;
@@ -183,8 +187,9 @@
             outline: none;
             color: #ffffff;
             background: transparent;
-
         }
+        
+     
 
 
         form .searchTerm:focus {
@@ -217,23 +222,23 @@
             font-size: 35px;
             font-family: arial;
             padding: 10px;
+            
         }
+        
+   
 
         .box {
-
-
             padding-right: 15px;
             padding-left: 15px;
             margin-right: auto;
             margin-left: auto;
             width: 1300px;
-
             display: flex;
-
         }
-
-        .searchform {
-            display: flex;
+        
+        .select{
+        	color:black;
+        	width: 21%;
         }
 
 
@@ -283,7 +288,7 @@
     </a>
 </div>
 
-<form name="sortby" class=select>
+<form name="sortby" class="select">
     <label for="sorting">Sort By:</label>
     <select name="sort" id="sort">
         <option selected disabled>${path}</option>

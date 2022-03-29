@@ -10,7 +10,58 @@
 
 <link href="/css/index/home.css" rel="stylesheet" type="text/css">
 	
+<style>
 
+.hero-nav{
+    position: absolute;
+    top: 0%;
+    width: 100%;
+}
+
+form {
+  
+  font-family: Arial;    
+  width: 50%;
+  text-align: center;
+  margin:10px;
+  color: white;
+  font-size: 20px;
+}
+
+
+input[type=text], input[type=submit] {
+  width: 40%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid white;
+  box-sizing: border-box;
+  background: transparent;
+  color: white;
+    font-size: 18px;
+}
+
+input[type=submit] {
+    background-color: #ff7f00;
+    color: white;
+    border: none;
+    width: 20%;
+    border-radius: 35px;
+}
+
+input[type=submit]:hover {
+  background-color: #ff6100;
+  cursor: pointer;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1;
+}
+</style>
 
 </head>
 
@@ -35,35 +86,19 @@
 
         <div class ="navigation">
 
-            <div id="myOverlay" class="h_overlay">
-                <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
-                <div class="h_overlay-content">
-                 
-      
-		            <form action="/spicesearch" class="searchform" method="GET">
-				    	<input name="spice" type="text" class="searchTerm" placeholder="What are you looking for?">
-		      			<button type="submit" class="searchButton">
-							<i class="fa-solid fa-magnifying-glass"></i>
-		     			</button>
-					</form>
-				
-
-		
-                </div>
-              </div>
-              
-       
+            
             <ul>
            
                 <li style="font-family:Bradley Hand; font-size: 28px;border-right:none; font: weight 900px;;text-decoration: none;" > <a href="/home">Spices R Us</a> </li>
                 <li><a href="/home"><i class="fa fa-home"></i>Home</a></li>
                
                 <li><a href="/spices"><i class="fa-solid fa-store"></i>Shop</a></li>
-                <li><a href="/recipes"><i class="fa-solid fa-receipt"></i>Recipe</a></li>
-                <li> <button class="openBtn" onclick="openSearch()"><i class="fa-solid fa-magnifying-glass"></i>Search</button></li>
+                <li><a href="/recipes" ><i class="fa-solid fa-receipt"></i>Recipe</a></li>
+                <li style="border-right:none;"><a href="/membership"><i class="fa-solid fa-bookmark"></i>Membership</a></li>
+                
    
                 
-                <li style="float:right"><a href="cart"><i class="fa-solid fa-cart-shopping"></i>Cart(${cartSize})</a></li>
+                <li style="float:right; border-right:none;"><a href="/cart"><i class="fa-solid fa-cart-shopping"></i>Cart</a></li>
 				<div class="user">
                     <c:choose>
                         <c:when test="${username == null}">
@@ -77,7 +112,7 @@
 				<div class="register">
                     <c:choose>
                         <c:when test="${username == null}">
-                            <li style="float:right; border-right:1px solid #bbb;"><a href="/register"><i class="fa-solid fa-user"></i>Register</a></li>
+                            <li style="float:right; border-right:1px solid #bbb;"><a href="/register"><i class="fa-solid fa-pen-to-square"></i>Register</a></li>
                         </c:when>
                         <c:otherwise>
                             <li style="float:right; border-right:1px solid #bbb;"><a href="/logout"><i class="fa fa-sign-out"></i>Log Out</a></li>
@@ -324,14 +359,6 @@
 </div> 
 
 
-  
-
-
-
-
-         
-
-
 <div class="subscribe_container">
 
 
@@ -351,6 +378,7 @@
     </form>
 
 </div>
+
 
 <footer>
     <p>&copy; 2022 Group 02, Software Engineering Project. All Rights Reserved</p>

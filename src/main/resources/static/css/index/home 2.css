@@ -21,6 +21,8 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    
+   ;
 }
 .hero-content {
     position: relative;
@@ -146,7 +148,6 @@ body {
     padding: 14px 16px;
     text-decoration: none;
     
-    
   }
 
 .navigation {
@@ -176,6 +177,15 @@ ul li i{
     
 }
 
+form {
+  
+  font-family: Arial;    
+  width: 50%;
+  text-align: center;
+  margin:10px;
+  color: white;
+  font-size: 20px;
+}
 
 .h_form{
   font-family: Arial;    
@@ -204,6 +214,38 @@ ul li i{
   
 }
 
+input[type=text], input[type=submit] {
+  width: 40%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid white;
+  box-sizing: border-box;
+  background: transparent;
+  color: white;
+    font-size: 18px;
+}
+
+input[type=submit] {
+    background-color: #ff7f00;
+    color: white;
+    border: none;
+    width: 20%;
+    border-radius: 35px;
+}
+
+input[type=submit]:hover {
+  background-color: #ff6100;
+  cursor: pointer;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1;
+}
 
 
 div.recipe {

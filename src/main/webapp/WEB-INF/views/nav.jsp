@@ -4,57 +4,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- bootstrap -->
-<style type="text/css">
-.navigation ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #fe7b00;
-    font:arial;
+<link href="/css/index/home.css" rel="stylesheet" type="text/css">
+<script src="https://kit.fontawesome.com/2f306254e3.js" crossorigin="anonymous"></script>
 
-  }
-
-  .navigation li {
-    float: left;
-    border-right:1px solid #bbb;
-  }
-
-  .navigation li:last-child {
-    border-right: none;
-  }
-
-  .navigation li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-
-  .navigation li a:hover{
-    background-color: #dc6a00;
-  }
-
-  .navigation .active {
-    background-color: #ed7200;
-  }
-
-
-</style>
 </head>
 <body>
-	<div class ="navigation">
-		<ul>
-		  <li><a href="/">Home</a></li>
-		  <li><a href="#news">News</a></li>
-		  <li><a href="/spices">Shop</a></li>
-		  <li><a href="/recipes">Recipe</a></li>
 
-		  <li style="float:right"><a class="active" href="/cart">Cart(${cartSize})</a></li>
-		  <li style="float:right"><a class="active" href="/login">Login</a></li>
-		</ul>
-	</div>
+	<div class="hero-nav">
+	
+	
+	        <div class ="navigation">
+
+                <ul>
+           
+                <li style="font-family:Bradley Hand; font-size: 28px;border-right:none; font: weight 900px;;text-decoration: none;" > <a href="/home">Spices R Us</a> </li>
+                <li><a href="/home"><i class="fa fa-home"></i>Home</a></li>
+               
+                <li><a href="/spices"><i class="fa-solid fa-store"></i>Shop</a></li>
+                <li><a href="/recipes"><i class="fa-solid fa-receipt"></i>Recipe</a></li>
+                <li style="border-right:none;"><a href="/membership"><i class="fa-solid fa-bookmark"></i>Membership</a></li>
+   
+                
+                <li style="float:right; border-right:none;"><a href="/cart"><i class="fa-solid fa-cart-shopping"></i>Cart(${cartSize})</a></li>
+				<div class="user">
+                    <c:choose>
+                        <c:when test="${username == null}">
+                            <li style="float:right; border-right:1px solid #bbb;"><a href="/login"><i class="fa-solid fa-user"></i>Login</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li style="float:right; border-right:1px solid #bbb; "><a href="/user?username=${username}"><i class="fa-solid fa-user"></i>${username}</a></li>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+				<div class="register">
+                    <c:choose>
+                        <c:when test="${username == null}">
+                            <li style="float:right; border-right:1px solid #bbb;"><a href="/register"><i class="fa-solid fa-pen-to-square"></i>Register</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li style="float:right; border-right:1px solid #bbb;"><a href="/logout"><i class="fa fa-sign-out"></i>Log Out</a></li>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+
+            </ul>
+				
+           
+
+        </div>
+
+    
+    </div>
+   
+
+
+	
 </body>
 </html>
