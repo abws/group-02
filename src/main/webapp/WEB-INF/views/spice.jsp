@@ -129,7 +129,6 @@
 
 
       .type-config {
-        border-bottom: 1px solid #E1E8EE;
         margin-bottom: 20px;
       }
       .quantity-config {
@@ -287,6 +286,12 @@
         cursor: not-allowed;
       }
 
+      #submit[disabled] {
+        cursor: not-allowed;
+        background-color: #a3a3a3;
+
+      }
+
       </style>
       <jsp:include page="nav.jsp" />
 	    <title>${spice.name}</title>
@@ -325,11 +330,11 @@
                 <div class="type-choose">
                   <span>Select Weight</span> 
                   <button class="quantity" onmousedown="flashImperial()" onmouseup="stayMetric()">See in Imperial</button> <br>
-                  <button id="b-25" class="quantity" onclick="manageWeight(25)">25g</button>
-                  <button id="b-50" class="quantity" onclick="manageWeight(50)">50g</button>
-                  <button id="b-100" class="quantity" onclick="manageWeight(100)">100g</button>
-                  <button id="b-250" class="quantity" onclick="manageWeight(250)">250g</button>
-                  <button id="b-500" class="quantity" onclick="manageWeight(500)">500g</button>
+                  <button id="b-25" class="quantity" onclick="manageWeight(0, 25)">25g</button>
+                  <button id="b-50" class="quantity" onclick="manageWeight(0, 50)">50g</button>
+                  <button id="b-100" class="quantity" onclick="manageWeight(0, 100)">100g</button>
+                  <button id="b-250" class="quantity" onclick="manageWeight(0, 250)">250g</button>
+                  <button id="b-500" class="quantity" onclick="manageWeight(0, 500)">500g</button>
                 </div>     
               </div>
 
@@ -341,15 +346,17 @@
                     <form:hidden id="input-large" class="unit_input" path="kilograms"/>
                     <form:hidden id="input-small" class="unit_input" path="grams"/>
                     
+                    <!--Quantity-->
+                    <span>Select Quantity</span>
                     <div class="type-choose">
                       <button class="btn btn-default btn-subtract" onclick="decrement()" type="button">-</button>
-                      <form:input class="quantity" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10" readonly="true" onfocus="this.blur()"/>
+                      <form:input class="unit_input" id="quantity" path="quantity" value="1" onkeyup="value=value.replace(/^./g,'')" min="1" max="10" readonly="true" onfocus="this.blur()"/>
                       <button class="btn btn-default btn-add" onclick="increment()" type="button">+</button>
                     </div>
 
                     <div class="product-price">
                       <span><p id="price-">&pound${spice.price} per 100g</p></span>
-                      <input type="submit" class="cart-btn" value="Add to Cart"> 
+                      <input type="submit" class="cart-btn" value="Add to Cart" id="submit" disabled> 
                     </div>     
                   </form:form>
                 </div>
@@ -370,11 +377,11 @@
                     <form:hidden path="spice" value="${spice.name}"/>
 
                     <!--kilograms/stones input depending on if button clicked-->
-                    <form:input id="input-large" class="unit_input" path="kilograms"/>
+                    <form:input id="input-large" class="unit_input" path="kilograms" type="number" min="0" onkeyup="value=value.replace('-','')"/>
                     <form:label id="label-large" path="kilograms">kg</form:label>
 
                     <!--grams/stones input depending on if button clicked-->
-                    <form:input id="input-small" class="unit_input" path="grams"/>
+                    <form:input id="input-small" class="unit_input" path="grams" type="number" min="0" max="999" onkeyup="value=value.replace('-','')"/>
                     <form:label id="label-small" path="grams">g</form:label>
                     
                     <button id="units" type="button" onclick="unitSwitch()">Switch to Imperial Units</button>
@@ -387,7 +394,7 @@
 
                     <div class="product-price">
                       <span><p id="price-">&pound${spice.price} per 100g</p></span>
-                      <input type="submit" class="cart-btn" value="Add to Cart"> 
+                      <input type="submit" class="cart-btn" value="Add to Cart" id="submit" disabled> 
                     </div>     
                   </form:form>
                 </div>
@@ -432,6 +439,14 @@
             weight.style.display = 'none';
           })
         }
+        var inputElements = document.querySelectorAll('#input-small, #input-large');
+
+
+        inputElements.forEach(el => {
+          ['keyup', 'mouseup'].forEach(event => {
+            el.addEventListener(event, showPrice, false);
+          })
+        })
 
         /**
          * Deals with changing item form
@@ -477,7 +492,8 @@
           if (quantity == 10) return 0;
           document.getElementById("quantity").value = Number(document.getElementById("quantity").value) + 1;
           var small = document.getElementById("input-small").value;
-          manageWeight(small);
+          var large = document.getElementById("input-large").value;
+          if (large > 0 || small > 0) manageWeight(large, small);
         }
 
         /**
@@ -487,21 +503,26 @@
           var quantity = Number(document.getElementById("quantity").value);
           if (quantity == 1) return 0;
           document.getElementById("quantity").value = document.getElementById("quantity").value - 1;
-          var small = document.getElementById("input-small").value;
-          manageWeight(small);
+          var small = document.getElementById("input-small").value
+          var large = document.getElementById("input-large").value;
+          if (large > 0 || small > 0) manageWeight(large, small);
         }
 
         /**
          * Manages users chosen weight and dynamically prints price
-         * @param {Number} weight The weight of the chosen product
+         * @param {Number} smallWeight The small weight of the chosen product
+         * @param {Number} largeWeight The large weight of the chosen product
          */
-        function manageWeight(weight) {
-          document.getElementById("input-large").value = '0';
-          document.getElementById("input-small").value = weight;
-          var value = Math.round(('${spice.price}') * weight) / 100;
+        function manageWeight(largeWeight, smallWeight) {
+          var type = document.getElementById("form").getAttribute("modelAttribute");
+          document.getElementById("input-large").value = largeWeight;
+          document.getElementById("input-small").value = smallWeight;
+          if (!allowAndCheckSubmition(smallWeight + largeWeight)) return;
+          
+          var value = Math.round(('${spice.price}') * smallWeight) / 100;
           document.getElementById("price-").innerHTML = "&pound" + 
                                                         value +
-                                                        " per " + weight + 
+                                                        " per " + smallWeight + 
                                                         "g jar";
 
           var quantity = Number(document.getElementById("quantity").value);
@@ -513,6 +534,7 @@
           document.getElementById("total-price").innerHTML = "Total: &pound" + 
                                                               Math.round((quantity * value) * 100)
                                                               / 100;
+          
         }
 
         /**
@@ -536,6 +558,57 @@
                                                           + "oz";
           }
         }
+
+        /**
+         * Undisables product submission form if weight is greater than 0
+         */
+        function allowAndCheckSubmition(weightPolarity) {
+          if (weightPolarity > 0) {
+            document.getElementById('submit').removeAttribute('disabled');
+            return true;
+          }
+
+          document.getElementById('submit').setAttribute('disabled', 'disabled');
+          var priceElement = document.getElementById("total-price");
+          if (priceElement != null) priceElement.remove();
+          return false;
+        }
+
+        /**
+         * Prints the price depending on whether weight was in imperial or metric
+         */
+        function showPrice() {
+          var unit = document.getElementById("form").getAttribute('action');
+          var smallWeight = document.getElementById("input-small").value;
+          var largeWeight = document.getElementById("input-large").value;
+          if (!allowAndCheckSubmition(smallWeight + largeWeight)) return; //don't show price is submition isn't yet allowed (i.e input=0)
+
+          if (unit == 'addItemGrams') {
+            var value = Math.round(('${spice.price}') * smallWeight) / 100;
+            var quantity = Number(document.getElementById("quantity").value);
+
+            var element = document.createElement("p");
+            element.setAttribute("id", "total-price");
+            document.getElementById("price-").appendChild(element);
+
+            document.getElementById("total-price").innerHTML = "Total: &pound" + 
+                                                                Math.round((quantity * value) * 100)
+                                                                / 100;
+          }
+
+          else {
+            console.log(largeWeight);
+          }
+          
+        }
+        /**
+         * 
+        function priceConverter(smallWeight, largeWeight, quantity, rate, unit) {
+          
+
+        }
+        */
+
         
       </script> 
     </body> 
