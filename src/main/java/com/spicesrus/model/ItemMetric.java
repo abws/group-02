@@ -43,9 +43,9 @@ public class ItemMetric extends Item{
 	@Override
 	public String toString() {
 		if (kilograms == 0)
-			return getSpice().getName() + ":" + this.grams + "grams";
+			return this.grams + "g";
 		else
-			return getSpice().getName() + ":" + this.kilograms + "kg " + this.grams + "g";
+			return this.kilograms + "kg " + this.grams + "g";
 	}
 
 	@Override

@@ -145,8 +145,10 @@ box-shadow: 0px 10px 10px -10px grey;
 .header{
     width:100%;
     text-align:center;
-    
-    
+}
+
+img {
+    width: 150%;
 }
 </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -171,15 +173,18 @@ box-shadow: 0px 10px 10px -10px grey;
 
         <table id="cart">
             <tr>
+                <th>Product</th>
                 <th>Product Name</th>
                 <th>Type</th>
                 <th>Quantity</th>
                 <th>Price/100g</th>
-                <th>Total</th>
+                <th>Total Weight</th>
+                <th>Total Price</th>
             </tr>
             <c:forEach items="${cart.items}" var="item">
 
             <tr>
+                <td><img src="${item.spice.picture}" alt=""></td>
                 <td>${item.spice.name}</td>
                 <td>${item.spice.category}</td>
                 <td>
@@ -191,6 +196,7 @@ box-shadow: 0px 10px 10px -10px grey;
                     </form>
                 </td>
                 <td>${item.spice.price}</td>
+                <td>${item.toString()}</td>
                 <td>${item.price}</td>
 
             </tr>
@@ -203,7 +209,7 @@ box-shadow: 0px 10px 10px -10px grey;
               <h1 style="text-align: center;">Summary</h1>
                <div class ="summary">
                   <p>Subtotal </p>
-                  <p>&pound${cart.price}</p>
+                  <p id="subtotal">${cart.price}</p>
                </div>
                
                  <div class ="summary">
@@ -229,18 +235,20 @@ box-shadow: 0px 10px 10px -10px grey;
      </c:otherwise>
  </c:choose>
          <script>
-            document.getElementById("total").innerHTML = "&pound" + Math.round(Number(${cart.price} + 6.8) * 100) / 100;
+            document.getElementById("total").innerHTML = "&pound" + Number(${cart.price} + 6.8).toFixed(2);
+            document.getElementById("subtotal").innerHTML = "&pound" + Number(${cart.price}).toFixed(2)
 
-            function increment(x) {
-                let val = Number(document.getElementById("quantity" + x).value);
+
+            function increment(id) {
+                let val = Number(document.getElementById("quantity" + id).value);
                 if (val == 10) return 0; //the button deactivates for values over 10 or below 0
-                document.getElementById("quantity" + x).value = Number(document.getElementById("quantity" + x).value) + 1;
+                document.getElementById("quantity" + id).value = Number(document.getElementById("quantity" + id).value) + 1;
           }
 
-            function decrement(x) {
-                let val = Number(document.getElementById("quantity" + x).value);
+            function decrement(id) {
+                let val = Number(document.getElementById("quantity" + id).value);
                 if (val == 1) return 0;
-                document.getElementById("quantity" + x).value = Number(document.getElementById("quantity"  + x).value) - 1;
+                document.getElementById("quantity" + id).value = Number(document.getElementById("quantity"  + id).value) - 1;
           }
 
         </script>

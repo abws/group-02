@@ -45,9 +45,9 @@ public class ItemImperial extends Item{
 	@Override
 	public String toString() {
 		if (this.pounds == 0)
-			return getSpice().getName() + ":" + this.ounces + " lb";
+			return this.ounces + " lb";
 		else
-			return getSpice().getName() + ":" + this.pounds + " lb " + this.pounds + " oz.";
+			return this.pounds + " lb " + this.pounds + " oz.";
 	}
 	
 	@Override
