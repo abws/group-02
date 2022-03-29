@@ -29,8 +29,7 @@ public class CartController {
 	
 	@GetMapping("/cart")
 	public String showCart(HttpServletRequest request, Model model) {
-		Cart cart = CartHelper.createOrRetrieveCart(model, request);
-		//System.out.println(cart.getItems().get(0).getQuantity() + "now"); //debugging
+		CartHelper.createOrRetrieveCart(model, request);
 		return "cart/cart";
 	}
 	
@@ -49,6 +48,24 @@ public class CartController {
 		else
 			iRepo.delete(i);
 		return "redirect:cart";	
+	}
+	
+	@PostMapping("deleteItem")
+	public String deleteItem(@RequestParam int itemId, HttpServletRequest request) {
+		Cart cart = CartHelper.createOrRetrieveCart(request);
+		Item item = iRepo.deleteById(itemId);
+		
+		cart.getItems().forEach(i -> {
+		if (i == item) {
+			cart.getItems().remove(item);
+			return;
+		}
+		});
+		cRepo.save(cart);
+		request.getSession().setAttribute("cart", cart);
+		CartHelper.setCartSize(cart.getItems().size());
+
+		return "redirect:/cart";
 	}
 	
 	

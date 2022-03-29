@@ -8,4 +8,4 @@ import com.spicesrus.model.Cart;
 @Repository
 public interface CartRepository extends CrudRepository<Cart, Integer> {
 	
-	}
+}

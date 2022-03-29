@@ -77,7 +77,7 @@ button:hover {
 }
 
 .right-column {
-  width: 40%;
+  width: 60%;
   margin-top: 30px;
 
   background-color: #ffe1ca;;
@@ -150,6 +150,16 @@ box-shadow: 0px 10px 10px -10px grey;
 img {
     width: 150%;
 }
+
+.delete-row {
+    padding: 0px !important;
+}
+
+.delete-row input[value] {
+    color: red;
+    width: 100%;
+}
+
 </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -173,17 +183,24 @@ img {
 
         <table id="cart">
             <tr>
+                <th></th>
                 <th>Product</th>
                 <th>Product Name</th>
                 <th>Type</th>
                 <th>Quantity</th>
                 <th>Price/100g</th>
-                <th>Total Weight</th>
+                <th>Weight/Unit</th>
                 <th>Total Price</th>
             </tr>
             <c:forEach items="${cart.items}" var="item">
 
             <tr>
+                <td class="delete-row">
+                    <form action="/deleteItem" method="POST">
+                        <input name="itemId" value="${item.id}" hidden>
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
                 <td><img src="${item.spice.picture}" alt=""></td>
                 <td>${item.spice.name}</td>
                 <td>${item.spice.category}</td>
@@ -195,9 +212,9 @@ img {
                         <button class="btn btn-default btn-add" onclick="increment(${item.id})">+</button>
                     </form>
                 </td>
-                <td>${item.spice.price}</td>
+                <td>&pound${item.spice.price}</td>
                 <td>${item.toString()}</td>
-                <td>${item.price}</td>
+                <td>&pound${item.price}</td>
 
             </tr>
             </c:forEach>
@@ -236,8 +253,7 @@ img {
  </c:choose>
          <script>
             document.getElementById("total").innerHTML = "&pound" + Number(${cart.price} + 6.8).toFixed(2);
-            document.getElementById("subtotal").innerHTML = "&pound" + Number(${cart.price}).toFixed(2)
-
+            document.getElementById("subtotal").innerHTML = "&pound" + Number(${cart.price}).toFixed(2);
 
             function increment(id) {
                 let val = Number(document.getElementById("quantity" + id).value);
