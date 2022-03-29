@@ -21,7 +21,7 @@ public class CartHelper {
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
 		if (cart == null) {
 			cart = cRepo.save(new Cart());
-			request.setAttribute("cart", cart);
+			request.getSession().setAttribute("cart", cart);
 		}
 		else {
 			cart = cRepo.findById(cart.getId()).get();
@@ -29,9 +29,24 @@ public class CartHelper {
 		model.addAttribute("cart", cart);
 		return cart;	
 	}
+	
+	public static Cart createOrRetrieveCart(HttpServletRequest request) {
+		Cart cart = (Cart) request.getSession().getAttribute("cart");
+		if (cart == null) {
+			cart = cRepo.save(new Cart());
+			request.getSession().setAttribute("cart", cart);
+		}
+		else {
+			cart = cRepo.findById(cart.getId()).get();
+		}
+
+		return cart;	
+	}
+	
 	public static int getCartSize() {
 		return cartSize;
 	}
+	
 	public static void setCartSize(int cartSize) {
 		CartHelper.cartSize = cartSize;
 	}

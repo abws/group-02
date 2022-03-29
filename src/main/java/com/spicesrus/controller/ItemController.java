@@ -1,12 +1,7 @@
 package com.spicesrus.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,18 +9,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.spicesrus.model.Cart;
 import com.spicesrus.model.Item;
 import com.spicesrus.model.ItemImperial;
 import com.spicesrus.model.ItemMetric;
 import com.spicesrus.model.Spices;
-import com.spicesrus.model.UDetails;
 import com.spicesrus.model.User;
 import com.spicesrus.repository.CartRepository;
 import com.spicesrus.repository.ItemRepository;
 import com.spicesrus.repository.SpicesRepository;
-import com.spicesrus.repository.UDetailsRepo;
 import com.spicesrus.repository.UserRepository;
 import com.spicesrus.service.CartHelper;
 
@@ -64,8 +56,8 @@ public class ItemController {
 		//get spice to view and item ready 
 		Spices s = sRepo.findByName(spice); //same as finding by id since the name is the id
 		model.addAttribute("spice", s);
-		model.addAttribute("itemPound", new ItemImperial());
-		model.addAttribute("itemGram", new ItemMetric());
+		model.addAttribute("itemImperial", new ItemImperial());
+		model.addAttribute("itemMetric", new ItemMetric());
 		
 		
 		//user privileges
@@ -82,30 +74,7 @@ public class ItemController {
 		model.addAttribute("level", level.toLowerCase());
 	
 		
-		//session management
-		if (request.getSession().getAttribute("cart") == null) {
-			System.out.println("I'm here");
-			Cart cart = new Cart();
-			cart = cRepo.save(cart);
-			
-			request.getSession().setAttribute("cart", cart);
-			model.addAttribute("cart", cart);
-			model.addAttribute("items", 0);
-		}
-		
-		/*
-		 * Either end session or make sure cart is 
-		 * instantiated with session cart as cart 
-		 * database is dropped with every restart of application
-		 */
-		else {
-			Cart cart = (Cart) request.getSession().getAttribute("cart");
-			cart = cRepo.findById(cart.getId()).get();
-			model.addAttribute("cart", cart);
-			model.addAttribute("items", cart.getItems().size());
-		}
-		
-		//just in case user types the spice name into the url
+		//in the case user types the spice name into the url
 		if (s != null)
 			model.addAttribute("spice", s);
 		else
@@ -115,7 +84,7 @@ public class ItemController {
 	
 	
 	/**
-	 * Adds an item in grams format to database
+	 * Adds an item in metric format to database
 	 * Item form takes us here
 	 * @param item
 	 * @return "spice" jsp page
@@ -124,11 +93,7 @@ public class ItemController {
 	public String addItemMetric(@ModelAttribute ItemMetric item, HttpServletRequest request) {
 		System.out.println(item.getWeight());
 			
-		Cart cart = (Cart) request.getSession().getAttribute("cart");
-		if (cRepo.findById(cart.getId()).isPresent())
-			cart = cRepo.findById(cart.getId()).get();
-		else
-			cart = cRepo.save(cart);
+		Cart cart = CartHelper.createOrRetrieveCart(request);
 		item.setCart(cart);
 
 		cart.getItems().add(item);
@@ -139,25 +104,20 @@ public class ItemController {
 		i = iRepo.findById(i.getId());
 		
 		CartHelper.setCartSize(cart.getItems().size());
-		return "redirect:/spice?spice=" + item.getSpice().getName(); //change to shop after testing
-		//return "redirect:/spices";
+		//return "redirect:/spice?spice=" + item.getSpice().getName(); //change to shop after testing
+		return "redirect:/spices";
 	}
 	
 	/**
-	 * Adds an item in pounds format to database
+	 * Adds an item in imperial format to database
 	 * Item form takes us here
 	 * @param item
 	 * @return "spice" jsp page
 	 */
 	@PostMapping("addItemImperial")
 		public String addItemPounds(@ModelAttribute ItemImperial item, HttpServletRequest request) {
-		String x = item.getWeight();
 			
-		Cart cart = (Cart) request.getSession().getAttribute("cart");
-		if (cRepo.findById(cart.getId()).isPresent())
-			cart = cRepo.findById(cart.getId()).get();
-		else
-			cart = cRepo.save(cart);
+		Cart cart = CartHelper.createOrRetrieveCart(request);
 		item.setCart(cart);
 	
 		cart.getItems().add(item);
@@ -166,10 +126,9 @@ public class ItemController {
 		item.setCart(cart);
 		Item i = iRepo.save(item);
 		i = iRepo.findById(i.getId());
-		System.out.println(x);
 		
 		CartHelper.setCartSize(cart.getItems().size());
-		return "redirect:/spice?spice=" + item.getSpice().getName(); //change to shop after testing
-		//return "redirect:/spices";
+		//return "redirect:/spice?spice=" + item.getSpice().getName(); //change to shop after testing
+		return "redirect:/spices";
 	}
 }

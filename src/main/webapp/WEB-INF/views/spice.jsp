@@ -341,7 +341,7 @@
               <!--Hidden Form for Server-Side-->
               <div class="quantity-config">            
                 <div class="type-choose">
-                  <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
+                  <form:form id="form" action="addItemMetric" modelAttribute="itemMetric">
                     <form:hidden path="spice" value="${spice.name}"/>
                     <form:hidden id="input-large" class="unit_input" path="kilograms"/>
                     <form:hidden id="input-small" class="unit_input" path="grams"/>
@@ -373,7 +373,7 @@
                   <span>Select Weight</span> 
 
                   <!--form action and model attribute will change onclick via js-->
-                  <form:form id="form" action="addItemGrams" modelAttribute="itemGram">
+                  <form:form id="form" action="addItemMetric" modelAttribute="itemMetric">
                     <form:hidden path="spice" value="${spice.name}"/>
 
                     <!--kilograms/stones input depending on if button clicked-->
@@ -456,8 +456,8 @@
             metric = true;
             document.getElementById("units").innerHTML = "Switch to Metric Units";
 
-            document.getElementById("form").action = "addItemPounds";
-            document.getElementById("form").modelAttribute = "itemPound";
+            document.getElementById("form").action = "addItemImperial";
+            document.getElementById("form").modelAttribute = "itemImperial";
 
             document.getElementById("input-large").setAttribute('path', 'pounds');
             document.getElementById("input-small").setAttribute('path', 'ounces');
@@ -472,8 +472,8 @@
             metric = false;
             document.getElementById("units").innerHTML = "Switch to Imperial Units";
 
-            document.getElementById("form").action = "addItemGrams";
-            document.getElementById("form").modelAttribute = "itemGram";
+            document.getElementById("form").action = "addItemMetric";
+            document.getElementById("form").modelAttribute = "itemMetric";
 
             document.getElementById("input-large").setAttribute('path', "kilograms");
             document.getElementById("input-small").setAttribute('path', "grams");

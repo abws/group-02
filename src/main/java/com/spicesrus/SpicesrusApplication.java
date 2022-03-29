@@ -16,11 +16,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.ui.Model;
 
 import com.spicesrus.model.Recipes;
 import com.spicesrus.model.Spices;
-import com.spicesrus.service.CartHelper;
 import com.spicesrus.service.EmailHandler;
 import com.spicesrus.model.UDetails;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -71,7 +69,7 @@ public class SpicesrusApplication implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         initData();
     }
-        //httpSession.setAttribute("cart", new Cart()); //for testing purposes. add this permanently later for all session objects
+
     private void initData() {
 
         createUser("michaeljordan", "password", "mcj@google.com", "Michael", "Jordan");
@@ -157,12 +155,8 @@ Now add the warmed milk and cream, whisking constantly, before returning everyth
         r3.setDescription("A long-term favourite for picking up from the deli counter, there are as many recipes for hummus as there are chickpeas in a sack, but we make no apology for stating that this recipe is the best!");
         r3.setName("Hummus");
         r3.setPicture("https://img.freepik.com/darmowe-zdjecie/pyszny-hummus_144627-19472.jpg?t=st=1647339211~exp=1647339811~hmac=7acf2f4c66577fc8170c8d045d58c18130f442687f5dcbd5d8284b22fe5b40e2&w=740");
-        r3.setFullDescription("");//A long-term favourite for picking up from the deli counter, there are as many recipes for hummus as there are chickpeas in a sack, but we make no apology for stating that this recipe is the best! The reason for the variety in recipes is that hummus is a staple in most of the countries surrounding the eastern Mediterranean and into the Middle East, all of which have their own little foibles when it comes to seasoning the hummus. Our take is based on the Israeli version, which is always served with a blob of harissa-style hot sauce in the middle – this procedure is highly recommended. Tinned chickpeas are far and away the easiest (and fortunately the best) to use for the recipe.
-        ArrayList<Spices> r3spices = new ArrayList<Spices>();
-        r3spices.add(spicesRepo.findByName("BLACK PEPPER"));
-        r3.setSpicesInvolved(r3spices);
-        System.out.println(r3spices.isEmpty());
-        r3.setIngredients(List.of("2 Tins Chickpeas", "1tbs olive oil", "1tbs tahini paste"));/*2 tins chickpeas\n"
+        r2.setFullDescription("");//A long-term favourite for picking up from the deli counter, there are as many recipes for hummus as there are chickpeas in a sack, but we make no apology for stating that this recipe is the best! The reason for the variety in recipes is that hummus is a staple in most of the countries surrounding the eastern Mediterranean and into the Middle East, all of which have their own little foibles when it comes to seasoning the hummus. Our take is based on the Israeli version, which is always served with a blob of harissa-style hot sauce in the middle – this procedure is highly recommended. Tinned chickpeas are far and away the easiest (and fortunately the best) to use for the recipe.
+        r2.setIngredients(List.of("2 Tins Chickpeas", "1tbs olive oil", "1tbs tahini paste"));/*2 tins chickpeas\n"
     			+ "1tbs olive oil\n"
     			+ "1tbs tahini paste, available from our Borough Market shop\n"
     			+ "1tsp garlic powder or granules\n"
@@ -170,7 +164,7 @@ Now add the warmed milk and cream, whisking constantly, before returning everyth
     			+ "salt and pepper\n"
     			+ "1tsp ground cumin\n"
     			+ "½ tsp cayenne pepper*/
-        r3.setMethod(List.of("Drain the chickpeas and blend with other dry ingredients and the tahini", "Pour in the oliver oil and lemon jucice while blending", "..."));/*1
+        r2.setMethod(List.of("Drain the chickpeas and blend with other dry ingredients and the tahini", "Pour in the oliver oil and lemon jucice while blending", "..."));/*1
 Drain the chickpeas and place in a blender together with the other dry ingredients and the tahini.
 2
 Whizz together, and while it is whizzing, pour in the olive oil then the lemon juice. The consistency of tinned chickpeas varies quite a lot, some come out drier than others, so you may need to add a splash of water (or more lemon juice).
@@ -183,8 +177,8 @@ You will need to blend the hummus for five minutes or so. Check the hummus for s
         r4.setDescription("Any fan of Japanese food will be aware that a Katsu Curry is a heavenly experience! What sets it apart are a couple of things – First, the chicken is breadcrumbed and fried, second the");
         r4.setName("Chicken Katsu Curry");
         r4.setPicture("https://us.123rf.com/450wm/amnajtandee/amnajtandee1704/amnajtandee170400026/75769947-curry-ryż-z-smażącą-wieprzowiną-japońskie-jedzenie-tonkatsu-curry-rice-na-białym-tle-.jpg?ver=6");
-        r4.setFullDescription("");//Any fan of Japanese food will be aware that a Katsu Curry is a heavenly experience! What sets it apart are a couple of things – First, the chicken is breadcrumbed and fried, second the sauce is made separately and then used to smother the crispy chicken in a blanket of smooth, silky luxury. The sauce is not hot by any means, more warm and aromatic with distinctive fruity notes. It has a marked sweetness, especially once the honey is added. The texture of the sauce makes for a wonderful contrast with the crunch of the chicken. This recipe is perfect as a midweek supper, and due to the mild, fruity flavour of the sauce kids will love it. To sum up – a combination of fried chicken and yummy curry sauce? Yes please!
-        r4.setIngredients(List.of("2 chicken breasts", "1 egg beaten", "100g panko breadcrumbs", "50g flour"));/*2 chicken breasts\n"
+        r2.setFullDescription("");//Any fan of Japanese food will be aware that a Katsu Curry is a heavenly experience! What sets it apart are a couple of things – First, the chicken is breadcrumbed and fried, second the sauce is made separately and then used to smother the crispy chicken in a blanket of smooth, silky luxury. The sauce is not hot by any means, more warm and aromatic with distinctive fruity notes. It has a marked sweetness, especially once the honey is added. The texture of the sauce makes for a wonderful contrast with the crunch of the chicken. This recipe is perfect as a midweek supper, and due to the mild, fruity flavour of the sauce kids will love it. To sum up – a combination of fried chicken and yummy curry sauce? Yes please!
+        r2.setIngredients(List.of("2 chicken breasts", "1 egg beaten", "100g panko breadcrumbs", "50g flour"));/*2 chicken breasts\n"
     			+ "1 egg, beaten\n"
     			+ "100g panko breadcrumbs\n"
     			+ "50g flour, seasoned with salt and pepper\n"
@@ -194,7 +188,7 @@ You will need to blend the hummus for five minutes or so. Check the hummus for s
     			+ "1 bay leaf\n"
     			+ "1tbs plain flour\n"
     			+ "250ml water or chicken stock*/
-        r4.setMethod(List.of("Heat 1tbs sunflour oil and add the flour", "Cook for a minute then add the Katsu curry blend", "..."));/*1
+        r2.setMethod(List.of("Heat 1tbs sunflour oil and add the flour", "Cooke for a minute then add the Katsu curry blend", "..."));/*1
 First make the sauce. Heat 1tbs sunflower oil in a saucepan and add the flour. Cook the mixture for under a minute before adding the Katsu curry blend. Stir this spiced mixture in and cook for a further minute.
 2
 Slowly pour in the water or chicken stock, stirring all the time to avoid any lumps. Add the honey, soy sauce and a bay leaf.
@@ -207,49 +201,12 @@ Heat an inch or two of sunflower oil in a heavy, deep frying pan. To check the t
 6
 To serve, slice the chicken diagonally then smother it with your katsu sauce, alongside plain steamed rice and a crispy salad.
 */
-        r4 = recipesRepo.save(r4);
+//        r4 = recipesRepo.save(r4);
 
-        Recipes r5 = new Recipes();
-        r5.setCategory("Dinner");
-        r5.setDescription("A hearty noodle dish for those cold nights.");
-        r5.setName("Chicken Ramen");
-        r5.setPicture("https://www.modernhoney.com/wp-content/uploads/2018/07/Homemade-Chicken-Ramen-1.jpg");
-        r5.setFullDescription("");//Ramen is a noodle soup dish. Shoyu ramen soup is a clear, brown broth flavored with soy sauce (shoyu). The soup is made of chicken broth. Ramen are eaten with chopsticks, a Chinese-style spoon is often provided as well to help with small toppings and for drinking the soup.
-        r5.setIngredients(List.of("1.2l good-quality chicken stock", "coriander, stalks and leaves separated", "1 red chilli", "2 tbsp light soy sauce"));/*1.2l good-quality chicken stock
-coriander, stalks and leaves separated
-1 red chilli
-2 tbsp light soy sauce
-100g grey oyster mushrooms, sliced
-100g pack baby pak choi
-2 skinless cooked chicken breasts, sliced
-100g egg noodles
-50g sliced bamboo shoots */
-        
-        r5.setMethod(List.of("Heat 1tbs sunflour oil and add the flour", "Cooke for a minute then add the Katsu curry blend", "..."));/*1
-        Set a large saucepan over a medium heat and pour in the stock. Finely chop the coriander stalks and add to the stock with most of a sliced chilli.
-        2
-        Bring to the boil and add 200ml water. Once boiled, reduce the heat and simmer for 5-10 mins to infuse the coriander and chilli.
-        3
-        Add the soy sauce and a grinding of black pepper, then the mushrooms, pak choi, chicken and noodles.
-        4
-        Simmer for 2 mins until the noodles soften, before adding the bamboo shoots.
-        5
-        Serve in deep bowls topped with coriander leaves and the remaining chilli slices.
-        */
-        
-        r5 = recipesRepo.save(r5);
-        
-        r4.addComplimentaryRecipes(r5);
-        r5.addComplimentaryRecipes(r4);
-        
-        r4 = recipesRepo.save(r4);
-        r5 = recipesRepo.save(r5);
-        
         recipes.add(r1);
         recipes.add(r2);
         recipes.add(r3);
-        recipes.add(r4);
-        recipes.add(r5);
+//        recipes.add(r4);
 
         spicesRepo.findAll().forEach(spice -> spices.add(spice));
         recipesRepo.save(r1);
@@ -280,8 +237,6 @@ coriander, stalks and leaves separated
         spice.setPicture(picture);
         spicesRepo.save(spice);
     }
-    
-
 
 
 

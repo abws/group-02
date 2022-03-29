@@ -10,21 +10,15 @@ import org.springframework.web.bind.annotation.*;
 import com.spicesrus.model.Cart;
 import com.spicesrus.model.Item;
 import com.spicesrus.repository.CartRepository;
-import com.spicesrus.repository.ItemImperialRepository;
-import com.spicesrus.repository.ItemMetricRepository;
+
 import com.spicesrus.repository.ItemRepository;
 import com.spicesrus.repository.RecipesRepository;
+import com.spicesrus.service.CartHelper;
 
 @Controller
 public class CartController {
 	@Autowired
 	RecipesRepository rRepo;
-	
-	@Autowired
-	ItemMetricRepository imRepo;
-	
-	@Autowired 
-	ItemImperialRepository iiRepo;
 	
 	@Autowired
 	ItemRepository iRepo;
@@ -34,19 +28,9 @@ public class CartController {
 	
 	
 	@GetMapping("/cart")
-	public String getCart(HttpServletRequest request, Model model) {
-		if (request.getSession().getAttribute("cart") == null) {
-			Cart cart = new Cart();
-			cart = cRepo.save(cart);
-			request.getSession().setAttribute("cart", cart);
-		}
-		
-		Cart cart = (Cart) request.getSession().getAttribute("cart");
-		cart = cRepo.findById(cart.getId()).get();
-		request.getSession().setAttribute("cart", cart);
+	public String showCart(HttpServletRequest request, Model model) {
+		Cart cart = CartHelper.createOrRetrieveCart(model, request);
 		//System.out.println(cart.getItems().get(0).getQuantity() + "now"); //debugging
-		
-		model.addAttribute("cart", cart);
 		return "cart/cart";
 	}
 	
