@@ -346,6 +346,21 @@
 
 
         }
+	  
+        div button{
+		display: inline-block;
+            background-color: #fd8d0c;
+            border-radius: 10px;
+            font-size: 18px;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 12px 30px;
+            transition: all .5s;
+            border: none;
+            cursor: pointer;
+		float: right;
+
+	  }
 
 
     </style>
@@ -354,8 +369,8 @@
     <title>${recipe.name}</title>
 </head>
 
-<body>
-<main class="container">
+<body id="recipe">
+<main class="container" >
 
     <!-- Left Column / Image -->
     <div>
@@ -363,7 +378,34 @@
     </div>
     <!-- Right Column -->
     <div class="right-column">
-
+	  
+	  <div>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
+	  <script>
+	  window.onload = function(){
+	  	document.getElementById("download").
+	  	addEventListener("click", ()=>{
+	  	const recipe = this.document.getElementById("recipe");
+	  	console.log(recipe);
+	  	console.log(window);
+	  	var opt = {
+  margin:       0,
+  filename:     'recipe.pdf',
+  image:        { type: 'jpeg', quality: 0.98 },
+  html2canvas:  { scale: 2, useCORS: true, allowTaint: true },
+  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+};
+	  	html2pdf().from(recipe).set(opt).save();
+	  	})
+	  }
+	  </script>
+		<button class="button" id="download"> Download</button>
+        </div>
+	  
+	  
+	  
+	   
+	  	
         <!-- Product Description -->
         <div class="recipe-description">
             <span>${recipe.category}</span>
