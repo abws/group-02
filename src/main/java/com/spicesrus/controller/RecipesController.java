@@ -222,7 +222,7 @@ public class RecipesController {
 
         if (r.isRestricted()) {
             if (principal == null) {
-                return "redirect:/login";
+                return "restricted_page";
             }
             User user = userRepository.findByUsername(principal.getName());
             if (!user.getAuthorities().contains("NOVICE") && !user.getAuthorities().contains("EXPERT")) {

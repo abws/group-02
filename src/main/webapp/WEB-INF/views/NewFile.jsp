@@ -411,7 +411,7 @@
                     </div>
 
                     <div class="product-price">
-                      <span><p id="price-">&pound${spice.price} <span>per 100g</span></p></span>                    
+                      <span><p id="price-">&pound${spice.price} per 100g</p></span>                    
                     </div> 
                     <input type="submit" class="cart-btn" value="Add to Cart" id="submit" disabled>     
                   </form:form>
@@ -449,7 +449,7 @@
                     </div>
 
                     <div class="product-price">
-                      <span><p id="price-">&pound${spice.price} <span>per 100g</span></p></span>
+                      <span><p id="price-">&pound${spice.price} per 100g</p></span>
                     </div>   
                     <input type="submit" class="cart-btn" value="Add to Cart" id="submit" disabled> 
                       

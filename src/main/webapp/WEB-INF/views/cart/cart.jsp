@@ -176,6 +176,7 @@ img {
 
 .delete-row input[value]:hover {
     cursor:pointer;
+    text-decoration:underline;
 }
 
 .pic {
@@ -244,9 +245,9 @@ img {
                 <td>
                     <form action="increaseItem" method="post">
                         <button class="btn btn-default btn-subtract3" onclick="decrement(${item.id})">-</button>
-                            <input type="text" name="quantity" id="quantity${item.id}" value="${item.quantity}" class="form-control no-padding text-center item-quantity3"/>
+                            <input type="text" name="quantity" id="quantity${item.id}" value="${item.quantity}" />
                             <input type="text" name="itemId" value="${item.id}" hidden="true">
-                        <button class="btn btn-default btn-add" onclick="increment(${item.id})">+</button>
+                        <button  onclick="increment(${item.id})">+</button>
                     </form>
                 </td>
                 <td>&pound${item.spice.price}</td>
@@ -286,7 +287,7 @@ img {
          </main>
      </c:when>
      <c:otherwise>
-     <h1>Shopping cart empty</h1>
+     <h1 style="text-align:center;">Shopping cart empty</h1>
      </c:otherwise>
  </c:choose>
          <script>

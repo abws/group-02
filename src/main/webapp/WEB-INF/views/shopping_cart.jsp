@@ -169,7 +169,7 @@ padding: 0 50 0 50;
   <tr>
     <td>${name}</td>
     <td>${type}</td>
-    <td><button class="btn btn-default btn-subtract3" id = "3" onclick="decrementValue(this.id)">-</button><input id="number3" class="form-control no-padding text-center item-quantity3" value="${quantity}"><button class="btn btn-default btn-add" id = "3" onclick="incrementValue(this.id)">+</button></td>
+    <td><button id = "3" onclick="decrementValue(this.id)">-</button><input id="number3" value="${quantity}"><button id = "3" onclick="incrementValue(this.id)">+</button></td>
     <td id="price3">£${price}</td>
     <td id="total3">£${total}</td>
   </tr>

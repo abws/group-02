@@ -16,12 +16,16 @@
             margin-right: 20px;
             margin-bottom: 20px;
             text-align: center;
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
             flex: 0 1 33%;
             padding: 0 10px;
             float: left;
             width: 33.33%;
 
+        }
+        
+        h1{
+        	font-weight: 900px;
         }
         
 
@@ -35,8 +39,9 @@
 
 
         .price {
-            color: rgb(252, 168, 90);
+            color: rgb(255 140 32);
             font-size: 22px;
+            font-weight: 900;
         }
 
         .card button {
@@ -132,7 +137,7 @@
 
         body {
             background-color: #fae3cc;
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
             padding: 0;
             margin: 0;
         }
@@ -143,7 +148,7 @@
             font-size: 40px;
 
 
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
 
             color: #321800;
         }
@@ -199,7 +204,7 @@
 
         ::placeholder {
             color: white;
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
             font-size: 30px;
 
         }
@@ -220,7 +225,7 @@
 
         form input.searchTerm {
             font-size: 35px;
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
             padding: 10px;
             
         }
@@ -320,18 +325,18 @@
             <p> Category: ${spice.getCategory()}</p>
             <c:choose>
                 <c:when test="${isMember}">
-                    <p class="price">Non Member Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                    <p class="price" style="text-decoration: line-through; color: black; font-size:17px;"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
                                                        minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber>
                         per 100g</p>
-                    <p class="price">Your Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                    <p class="price">Now: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
                                                        minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber>
                         per 100g</p>
                 </c:when>
                 <c:otherwise>
-                    <p class="price">Member Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                    <p class="price" style="font-size:17px;">Member Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
                                                                    minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber>
                         per 100g</p>
-                    <p class="price">Your Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                    <p class="price">Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
                                                                          minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber>
                         per 100g</p>
 
