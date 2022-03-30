@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Manages all requests to the homepage
+ * 
  * @author
  * @version 1
  */
@@ -25,14 +26,11 @@ public class IndexController {
 		model.addAttribute("username", username);
 		return "index/home";
 	}
-	
+
 	/**
-	 * For testing purposes only!
-	 * Before closing the application,
-	 * enter this endpoint to avoid
-	 * any data mismatch problems later,
-	 * especially for those using cart.
-	 * Also do this for every relaunch of app
+	 * For testing purposes only! Before closing the application, enter this
+	 * endpoint to avoid any data mismatch problems later, especially for those
+	 * using cart. Also do this for every relaunch of app
 	 */
 	@RequestMapping("/end")
 	public String endSession(HttpSession s) {
@@ -40,6 +38,7 @@ public class IndexController {
 		CartHelper.setCartSize(0);
 		return "redirect:/";
 	}
+
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Principal principal, Model model, HttpServletRequest request) {
 		String username = principal != null ? principal.getName() : null;
@@ -47,5 +46,3 @@ public class IndexController {
 		return "index/home";
 	}
 }
-
-

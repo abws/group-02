@@ -82,14 +82,16 @@
                 <div class="form-group row">
                     <label class="col-sm-3" for="description">Full Description:</label>
                     <div class="col-sm-9">
-                        <form:textarea class="form-control col-sm-9" type="text" id="fullDescription" path="fullDescription"/>
+                        <form:textarea class="form-control col-sm-9" type="text" id="fullDescription"
+                                       path="fullDescription"/>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-sm-3" for="spicesComp">Complimentary Spices:</label>
                     <div class="col-sm-9">
-                        <form:select class="form-control col-sm-9" path="complimentarySpices" items="${allSpices}" multiple="true" id="spicesComp">
+                        <form:select class="form-control col-sm-9" path="complimentarySpices" items="${allSpices}"
+                                     multiple="true" id="spicesComp">
                             <c:forEach var="spice" items="complimentarySpices">
                                 <form:option value="${spice}" selected="true"></form:option>
                             </c:forEach>
@@ -113,7 +115,8 @@
                 <div class="form-group row">
                     <label class="col-sm-3" for="recipeComp">Complimentary Recipes:</label>
                     <div class="col-sm-9">
-                        <form:select class="form-control col-sm-9" path="complimentaryRecipes" items="${allRecipes}" multiple="true" id="recipeComp">
+                        <form:select class="form-control col-sm-9" path="complimentaryRecipes" items="${allRecipes}"
+                                     multiple="true" id="recipeComp">
                             <c:forEach var="recipe" items="compRecipe">
                                 <form:option value="${recipe}" selected="true"></form:option>
                             </c:forEach>
@@ -124,7 +127,8 @@
                 <div class="form-group row">
                     <label class="col-sm-3" for="name">Restricted:</label>
                     <div class="col-sm-9">
-                        <form:checkbox cssStyle="float:left;" class="form-control col-sm-9" id="restricted" path="restricted"/>
+                        <form:checkbox cssStyle="float:left;" class="form-control col-sm-9" id="restricted"
+                                       path="restricted"/>
                     </div>
                 </div>
 
@@ -166,14 +170,16 @@
                 <div class="form-group row">
                     <label class="col-sm-3" for="description">Full Description:</label>
                     <div class="col-sm-9">
-                        <form:textarea class="form-control col-sm-9" type="text" id="fullDescription" path="fullDescription"/>
+                        <form:textarea class="form-control col-sm-9" type="text" id="fullDescription"
+                                       path="fullDescription"/>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-sm-3" for="spicesComp">Complimentary Spices:</label>
                     <div class="col-sm-9">
-                        <form:select class="form-control col-sm-9" path="complimentarySpices" items="${allSpices}" multiple="true" id="spicesComp">
+                        <form:select class="form-control col-sm-9" path="complimentarySpices" items="${allSpices}"
+                                     multiple="true" id="spicesComp">
                         </form:select>
                     </div>
                 </div>
@@ -194,7 +200,8 @@
                 <div class="form-group row">
                     <label class="col-sm-3" for="spiceRoles">Complimentary Recipes:</label>
                     <div class="col-sm-9">
-                        <form:select class="form-control col-sm-9" path="complimentaryRecipes" items="${allRecipes}" multiple="true" id="recipeComp">
+                        <form:select class="form-control col-sm-9" path="complimentaryRecipes" items="${allRecipes}"
+                                     multiple="true" id="recipeComp">
                         </form:select>
                     </div>
                 </div>
@@ -213,17 +220,18 @@
         </div>
     </c:when>
 </c:choose>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
-</html></title>
+</html>
+</title>
 </head>
 <body>
 

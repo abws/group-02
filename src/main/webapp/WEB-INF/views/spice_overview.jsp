@@ -6,8 +6,9 @@
 <html>
 <head>
     <script src="https://kit.fontawesome.com/2f306254e3.js" crossorigin="anonymous"></script>
-    
+
     <style>
+
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             max-width: 370px;
@@ -16,18 +17,16 @@
             margin-right: 20px;
             margin-bottom: 20px;
             text-align: center;
-            font-family:"Monserrat", sans-serif;
+            font-family: "Monserrat", sans-serif;
             flex: 0 1 33%;
             padding: 0 10px;
             float: left;
             width: 33.33%;
+        }
 
+        h1 {
+            font-weight: 900px;
         }
-        
-        h1{
-        	font-weight: 900px;
-        }
-        
 
 
         .cards {
@@ -77,7 +76,7 @@
             display: flex;
             flex-wrap: wrap;
             width: 100%;
-            justify-content: space-between;
+
 
         }
 
@@ -107,10 +106,11 @@
             color: white;;
         }
 
-		a{
-			text-decoration: none;
-			
-		}
+        a {
+            text-decoration: none;
+
+        }
+
         .pagination a:hover:not(.active) {
             background-color: rgb(248, 191, 152);
         }
@@ -138,7 +138,7 @@
 
         body {
             background-color: #f9efe6;
-            font-family:"Monserrat", sans-serif;
+            font-family: "Monserrat", sans-serif;
             padding: 0;
             margin: 0;
         }
@@ -149,7 +149,7 @@
             font-size: 40px;
 
 
-            font-family:"Monserrat", sans-serif;
+            font-family: "Monserrat", sans-serif;
 
             color: #321800;
         }
@@ -170,13 +170,12 @@
             justify-content: center;
             display: flex;
             width: 100%;
-         	height: 400px;
+            height: 400px;
             background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/spice_hero.png");
 
         }
 
 
-		
         form .search {
             position: relative;
             display: flex;
@@ -194,8 +193,6 @@
             color: #ffffff;
             background: transparent;
         }
-        
-     
 
 
         form .searchTerm:focus {
@@ -205,7 +202,7 @@
 
         ::placeholder {
             color: white;
-            font-family:"Monserrat", sans-serif;
+            font-family: "Monserrat", sans-serif;
             font-size: 30px;
 
         }
@@ -226,26 +223,26 @@
 
         form input.searchTerm {
             font-size: 35px;
-            font-family:"Monserrat", sans-serif;
+            font-family: "Monserrat", sans-serif;
             padding: 10px;
-            
+
         }
-        
-   
+
 
         .box {
-           width: 1300px;
-   			margin-inline: auto;
-            
+            width: 1300px;
+            margin-inline: auto;
+
         }
-        
-        .select{
-        	color:black;
-        	width: 21%;
+
+        .select {
+            color: black;
+            width: 21%;
         }
 
 
     </style>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <jsp:include page="nav.jsp"/>
     <title>Spices</title>
@@ -257,19 +254,19 @@
 
 <div id="back">
 
-		<div class="pic">
+    <div class="pic">
 
-		<form action="/spicesearch" class="searchform" method="GET">
-		    <input name="spice" type="text" class="searchTerm" placeholder="What are you looking for?">
-      		<button type="submit" class="searchButton">
-				<i class="fa-solid fa-magnifying-glass"></i>
-     		</button>
-        </div>
+        <form action="/spicesearch" class="searchform" method="GET">
+            <input name="spice" type="text" class="searchTerm" placeholder="What are you looking for?">
+            <button type="submit" class="searchButton">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+    </div>
 
-		</form>
+    </form>
 
-		</div>
-	</div>
+</div>
+</div>
 
 
 <h2>Products</h2>
@@ -313,42 +310,48 @@
 </script>
 
 <div class="box">
-<div class="row">
+    <div class="row">
 
-    <c:forEach items="${spices}" var="spice">
-        <div class="card">
+        <c:forEach items="${spices}" var="spice">
+            <div class="card">
                 <a href="/spice?spice=${spice.name}">
-                <img src="${spice.getPicture()}" alt="${spice.getName()}" width="500"
-                                                      height="300" style="width:100%">
-            </a>
-            <h1> ${spice.getName()}</h1>
-            <p> Category: ${spice.getCategory()}</p>
-            <c:choose>
-                <c:when test="${isMember}">
-                    <p class="price" style="text-decoration: line-through; color: black; font-size:17px;"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
-                                                       minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber>
-                        per 100g</p>
-                    <p class="price">Now: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
-                                                       minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber>
-                        per 100g</p>
-                </c:when>
-                <c:otherwise>
-                    <p class="price" style="font-size:17px;">Member Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
-                                                                   minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber>
-                        per 100g</p>
-                    <p class="price">Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
-                                                                         minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber>
-                        per 100g</p>
+                    <img src="${spice.getPicture()}" alt="${spice.getName()}" width="500"
+                         height="300" style="width:100%">
+                </a>
+                <h1> ${spice.getName()}</h1>
+                <p> Category: ${spice.getCategory()}</p>
+                <c:choose>
+                    <c:when test="${isMember}">
+                        <p class="price" style="text-decoration: line-through; color: black; font-size:17px;">
+                            <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                              minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber>
+                            per 100g</p>
+                        <p class="price">Now: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                                                minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber>
+                            per 100g</p>
+                    </c:when>
+                    <c:otherwise>
+                        <p class="price" style="font-size:17px;">Member Price: <fmt:formatNumber type="currency"
+                                                                                                 currencySymbol="£"
+                                                                                                 maxFractionDigits="2"
+                                                                                                 minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber>
+                            per 100g</p>
+                        <p class="price">Price: <fmt:formatNumber type="currency" currencySymbol="£"
+                                                                  maxFractionDigits="2"
+                                                                  minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber>
+                            per 100g</p>
 
-                </c:otherwise>
-            </c:choose>
-            <p>${spice.description}</p>
-            <p>
-                <a href="/spice?spice=${spice.name}"><button>View Details</button></a>
-            </p>
-        </div>
-    </c:forEach>
-</div>
+                    </c:otherwise>
+                </c:choose>
+                <p>${spice.description}</p>
+                <p>
+                    <a href="/spice?spice=${spice.name}">
+                        <button>View Details</button>
+                    </a>
+                </p>
+            </div>
+        </c:forEach>
+    </div>
 </div>
 <div class="center">
     <div class="pagination">

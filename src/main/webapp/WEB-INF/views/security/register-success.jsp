@@ -7,41 +7,42 @@
 
 <style>
 
-.hero-nav {
-   		 background-color: rgb(255, 136, 0);
-   		 
-   		}
-      
-      .navigation ul {
-	    list-style-type: none;
-	    margin: 0;
-	    padding: 0;
-	    overflow: hidden;
-	    font-size: 18px;
-	    font-family:"Monserrat", sans-serif;
-	    font-weight: 900;
-	    background-color: rgb(255, 136, 0);
-	    
-	  }
-body{
-	
-	color: #333;
-	
-	font-family:"Monserrat", sans-serif;
-}
+    .hero-nav {
+        background-color: rgb(255, 136, 0);
 
-.msg{
+    }
 
-text-align:center;
+    .navigation ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        font-size: 18px;
+        font-family: "Monserrat", sans-serif;
+        font-weight: 900;
+        background-color: rgb(255, 136, 0);
 
+    }
 
- position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    body {
+
+        color: #333;
+
+        font-family: "Monserrat", sans-serif;
+    }
+
+    .msg {
+
+        text-align: center;
 
 
-}
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+
+    }
 
 </style>
 
@@ -50,11 +51,11 @@ text-align:center;
 
 <div class="msg">
 
-<img src="../../images/success.webp" width="600" height="400">
+    <img src="../../images/success.webp" width="600" height="400">
 
-<h1>Registration Success</h1>
+    <h1>Registration Success</h1>
 
-<p>You have successfully registered on the website! You can now access a price discount.</p>
+    <p>You have successfully registered on the website! You can now access a price discount.</p>
 
 </div>
 

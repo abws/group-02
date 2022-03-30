@@ -22,6 +22,13 @@ host=localhost
 username=root
 ```
 
+5.) Inside of the `applications.properties` file you also need to edit the following values to lead to a mail server of your choice
+```
+spring.mail.host=smtp.ethereal.email
+spring.mail.port=587
+spring.mail.username=hoyt.blanda12@ethereal.email
+spring.mail.password=3C2fnYZBMujWVa2BVw
+```
 6.) You can then re-run `gradlew bootrun` and locate the website at url `http://localhost:8080`
 
 

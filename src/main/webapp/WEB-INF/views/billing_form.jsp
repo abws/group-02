@@ -126,27 +126,27 @@ display: table;
             
             <form:label for="firstName" path="firstName">First Name:</form:label>
     		<form:input id="fname" path="firstName"/>
-    		 <form:errors path="firstName"/>
+    		<form:errors path="firstName"/>
     		
     
-			    <form:label for="surname" path="surname">Last Name:</form:label>
-			    <form:input id="lname" path="surname"/>
-			    <form:errors path="surname"/>
+			<form:label for="surname" path="surname">Last Name:</form:label>
+		    <form:input id="lname" path="surname"/>
+		    <form:errors path="surname"/>
 			   
             
              <form:label for="customerEmail" path="customerEmail">Email:</form:label>
    			 <form:input path="customerEmail" id="email" placeholder="john@example.com"/>
-   			     <form:errors path="customerEmail"/>
+		     <form:errors path="customerEmail"/>
  
    			 
             
-            <form:label for="customerAddress" path="customerAddress"> Address:</form:label>
-    		<form:input id="adr" path="customerAddress"/>
-    		<form:errors path="customerAddress"/>
+             <form:label for="customerAddress" path="customerAddress"> Address:</form:label>
+    		 <form:input id="adr" path="customerAddress"/>
+    		 <form:errors path="customerAddress"/>
             
-            <form:label for="customerPostcode" path="customerPostcode">Postcode:</form:label>
+             <form:label for="customerPostcode" path="customerPostcode">Postcode:</form:label>
    			 <form:input id="city" path="customerAddress"/>
-              <form:errors path="customerAddress"/>
+             <form:errors path="customerAddress"/>
 </div>             
 
     
@@ -155,27 +155,28 @@ display: table;
             <h3>Payment Details</h3>
            
             
-             <form:label for="cardholderName " path="cardholderName"> Card holder name:</form:label>
-   			 <form:input id="cname" path ="cardholderName"/>
+            <form:label for="cardholderName " path="cardholderName"> Card holder name:</form:label>
+   			<form:input id="cname" path ="cardholderName"/>
             <form:errors path ="cardholderName"/>
             
             <form:label for="cardNumber" path="cardNumber"> Card Number:</form:label>
 		    <form:input id="ccnum" placeholder="1111-2222-3333-4444" path ="cardNumber"/>
 		    <form:errors path ="cardNumber"/>
             
-                <form:label  for="expiryDate" path="expiryDate"> Expiry Date:</form:label>
-   				 <form:input placeholder="mm/yy" path = "expiryDate"/>
-    			<form:errors path = "expiryDate"/>
+            <form:label  for="expiryDate" path="expiryDate"> Expiry Date:</form:label>
+			<form:input placeholder="mm/yy" path = "expiryDate"/>
+			<form:errors path = "expiryDate"/>
     			
    
               <div class="col-50">
               
-                 <form:label for="cvvNumber" path="cvvNumber"> CVV Number:</form:label>
+              	<form:label for="cvvNumber" path="cvvNumber"> CVV Number:</form:label>
                 <form:input id="cvv"  placeholder="352" path = "cvvNumber"/>
                 <form:errors path = "cvvNumber"/>
                 
               </div>
-                      <input type="submit" value="Order" class="btn">
+              
+              <input type="submit" value="Order" class="btn">
               
         
  </div>        
@@ -184,7 +185,7 @@ display: table;
        
         
     	
-    	</form:form>
+ </form:form>
  </div>
 
 

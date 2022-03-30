@@ -89,7 +89,8 @@
                 <div class="form-group row">
                     <label class="col-sm-3" for="spiceRoles">Complimentary Spices:</label>
                     <div class="col-sm-9">
-                        <form:select class="form-control col-sm-9" path="complimentarySpices" items="${allSpices}" multiple="true" id="spiceRoles">
+                        <form:select class="form-control col-sm-9" path="complimentarySpices" items="${allSpices}"
+                                     multiple="true" id="spiceRoles">
                             <c:forEach var="spice" items="compSpice">
                                 <form:option value="${spice}" selected="true"></form:option>
                             </c:forEach>
@@ -142,7 +143,8 @@
                 <div class="form-group row">
                     <label class="col-sm-3" for="spiceRoles">Complimentary Spices:</label>
                     <div class="col-sm-9">
-                        <form:select class="form-control col-sm-9" path="complimentarySpices" items="${allSpices}" multiple="true" id="spiceRoles">
+                        <form:select class="form-control col-sm-9" path="complimentarySpices" items="${allSpices}"
+                                     multiple="true" id="spiceRoles">
                         </form:select>
                     </div>
                 </div>
@@ -154,17 +156,18 @@
     </c:when>
 </c:choose>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
-</html></title>
+</html>
+</title>
 </head>
 <body>
 

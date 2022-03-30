@@ -42,34 +42,21 @@
 
     }
 
-    button {
-        color: white;
-        background: #fe8700;
-        border: none;
-        width: 30%;
-        padding: 15px;
-        border-radius: 10px;
-        font-size: 18px;
-        font-weight: 500;
-
-    }
-
-    button:hover {
-        color: white;
-        background: black;
-        cursor: pointer;
-    }
-
 </style>
+
 <body>
+
 <div class="msg">
-    <img src="../../images/denied.gif" width="600" height="400">
 
+    <img src="../../images/success.webp" width="600" height="400">
 
-    <h1>Please upgrade to Novice membership to access this recipe.</h1>
-    <button onclick="location.href='/membership'">View Membership</button>
+    <h1>Order Complete</h1>
+
+    <p>You have successfully completed your order. A confirmation email has been sent to your email</p>
 
 
 </div>
+
 </body>
+
 </html>

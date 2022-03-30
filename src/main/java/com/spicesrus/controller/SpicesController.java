@@ -22,6 +22,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+* Manages the spices by searching for the spices by the categories and sorting them by names and price
+* 
+* 
+*/
 
 @Controller
 public class SpicesController {
@@ -31,9 +36,11 @@ public class SpicesController {
 	private CartRepository cRepo;
 	@Autowired
 	private UserRepository userRepository;
-
+	
 	@RequestMapping("/spices")
-	public String Spices(Principal principal, Model model, @RequestParam(name = "sort", required = false, defaultValue = "a-z") String sortType, HttpServletRequest request) {
+	public String Spices(Principal principal, Model model,
+			@RequestParam(name = "sort", required = false, defaultValue = "a-z") String sortType,
+			HttpServletRequest request) {
 		String username = principal != null ? principal.getName() : null;
 		model.addAttribute("username", username);
 		Iterable<Spices> spiceListFromDatabase = spicesRepo.findAll();
@@ -42,14 +49,14 @@ public class SpicesController {
 			User user = query.get();
 			if (user.getAuthorities().contains("NOVICE") || user.getAuthorities().contains("EXPERT")) {
 				model.addAttribute("isMember", true);
-			}else{
+			} else {
 				model.addAttribute("isMember", false);
 			}
-		}else{
+		} else {
 			model.addAttribute("isMember", false);
 		}
 		List<Spices> displayed = new ArrayList<>();
-
+		//searching for item by category salts
 		if (sortType.equals("salts")) {
 			model.addAttribute("path", "Relevant");
 			spiceListFromDatabase.forEach(spice -> {
@@ -57,55 +64,60 @@ public class SpicesController {
 					displayed.add(spice);
 				}
 			});
-		}else if (sortType.equals("peppers")) {
+			//searching for item by category peppers
+		} else if (sortType.equals("peppers")) {
 			model.addAttribute("path", "Relevant");
 			spiceListFromDatabase.forEach(spice -> {
 				if (spice.getCategory().equals("Peppers")) {
 					displayed.add(spice);
 				}
 			});
-		}else if (sortType.equals("spiceBlends")) {
+			//searching for item by category spice blends
+		} else if (sortType.equals("spiceBlends")) {
 			model.addAttribute("path", "Relevant");
 			spiceListFromDatabase.forEach(spice -> {
 				if (spice.getCategory().equals("Spice Blends")) {
 					displayed.add(spice);
 				}
 			});
-		}else if (sortType.equals("a-z")) {
+			//sorting items by their name from a to z
+		} else if (sortType.equals("a-z")) {
 			model.addAttribute("path", "A-Z");
 			spiceListFromDatabase.forEach(displayed::add);
 			displayed.sort(Comparator.comparing(Spices::getName));
+			//sorting items by their name from z to a
 		} else if (sortType.equals("z-a")) {
 			model.addAttribute("path", "Z-A");
 			spiceListFromDatabase.forEach(displayed::add);
 			displayed.sort(Comparator.comparing(Spices::getName));
 			Collections.reverse(displayed);
-		}else if (sortType.equals("price_asc")) {
+			//sorting items by their price ascending
+		} else if (sortType.equals("price_asc")) {
 			model.addAttribute("path", "Price Ascending");
 			spiceListFromDatabase.forEach(displayed::add);
 			displayed.sort(Comparator.comparing(Spices::getPrice));
-		}else if (sortType.equals("price_dsc")) {
+			//sorting items by their price descending
+		} else if (sortType.equals("price_dsc")) {
 			model.addAttribute("path", "Price Descending");
 			spiceListFromDatabase.forEach(displayed::add);
 			displayed.sort(Comparator.comparing(Spices::getPrice));
 			Collections.reverse(displayed);
-		}else{
+		} else {
 			spiceListFromDatabase.forEach(displayed::add);
 		}
 		model.addAttribute("spices", displayed);
-		
-		return "allSpices";
+
+		return "spice_overview";
 	}
-	
+
 	@GetMapping("/spicesearch")
 	public String search(Model model, @RequestParam String spice, Principal principal) {
 		String username = principal != null ? principal.getName() : null;
 		model.addAttribute("username", username);
 		List<Spices> spices = spicesRepo.findByNameContainingIgnoreCase(spice);
-		model.addAttribute("spices", spices);	
-		return "allSpices";
-		
+		model.addAttribute("spices", spices);
+		return "spice_overview";
+
 	}
-	
-	
+
 }

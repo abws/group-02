@@ -7,12 +7,11 @@ import com.spicesrus.service.CartHelper;
 
 /**
  * Adds a model attribute 'cartSize' for every request.
- * @author Abdiwahab
- *
+ * @author
  */
 @ControllerAdvice
 public class CartControllerAdvice {
-	
+
 	@ModelAttribute("cartSize")
 	public int addCartSize() {
 		return CartHelper.getCartSize();

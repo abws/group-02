@@ -14,11 +14,11 @@ import javax.persistence.OneToOne;
 public class Basket {
 	@Id
 	@GeneratedValue
-	private int id; //a session will point to a basket
-	
+	private int id; // a session will point to a basket
+
 	@OneToOne
 	private UDetails user;
-	
+
 	@OneToMany
 	@JoinColumn
 	private List<Spices> items = new ArrayList<Spices>();
@@ -30,11 +30,11 @@ public class Basket {
 	public void setItems(List<Spices> items) {
 		this.items = items;
 	}
-	
+
 	public void addItems(Spices item) {
 		this.items.add(item);
 	}
-	
+
 	public void deleteItems(Spices item) {
 		this.items.remove(item);
 	}

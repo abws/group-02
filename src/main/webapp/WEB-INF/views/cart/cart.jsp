@@ -316,14 +316,13 @@
 </c:choose>
 <script>
     <sec:authorize access="hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
-        document.getElementById("total").innerHTML = "&pound" + Number(${cart.getUserPrice()} +6.8).toFixed(2);
-        document.getElementById("subtotal").innerHTML = "&pound" + Number(${cart.getUserPrice()}).toFixed(2);
+    document.getElementById("total").innerHTML = "&pound" + Number(${cart.getUserPrice()} +6.8).toFixed(2);
+    document.getElementById("subtotal").innerHTML = "&pound" + Number(${cart.getUserPrice()}).toFixed(2);
     </sec:authorize>
     <sec:authorize access="!hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
-        document.getElementById("total").innerHTML = "&pound" + Number(${cart.price} +6.8).toFixed(2);
-        document.getElementById("subtotal").innerHTML = "&pound" + Number(${cart.price}).toFixed(2);
+    document.getElementById("total").innerHTML = "&pound" + Number(${cart.price} +6.8).toFixed(2);
+    document.getElementById("subtotal").innerHTML = "&pound" + Number(${cart.price}).toFixed(2);
     </sec:authorize>
-
 
 
     function increment(id) {

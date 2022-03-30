@@ -426,11 +426,13 @@
 
                             <div class="product-price">
                                 <sec:authorize access="hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
-                                    <span><p id="price-"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                    <span><p id="price-"><fmt:formatNumber type="currency" currencySymbol="£"
+                                                                           maxFractionDigits="2"
                                                                            minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber><span>&nbsp;per 100g</span></p></span>
                                 </sec:authorize>
                                 <sec:authorize access="!hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
-                                    <span><p id="price-"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                    <span><p id="price-"><fmt:formatNumber type="currency" currencySymbol="£"
+                                                                           maxFractionDigits="2"
                                                                            minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber><span>&nbsp;per 100g</span></p></span>
                                 </sec:authorize>
                             </div>
@@ -476,11 +478,13 @@
 
                             <div class="product-price">
                                 <sec:authorize access="hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
-                                    <span><p id="price-"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                    <span><p id="price-"><fmt:formatNumber type="currency" currencySymbol="£"
+                                                                           maxFractionDigits="2"
                                                                            minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber><span>&nbsp;per 100g</span></p></span>
                                 </sec:authorize>
                                 <sec:authorize access="!hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
-                                    <span><p id="price-"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                    <span><p id="price-"><fmt:formatNumber type="currency" currencySymbol="£"
+                                                                           maxFractionDigits="2"
                                                                            minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber><span>&nbsp;per 100g</span></p></span>
                                 </sec:authorize>
                             </div>
@@ -495,7 +499,6 @@
     </div>
 </main>
 
-<!--Temporary Placeholder Recipes (Hardcoded)-->
 <h2 style="text-align:center;">Related Recipes</h2>
 <div class="recipe">
     <c:forEach var="ingredient" items="${related}">

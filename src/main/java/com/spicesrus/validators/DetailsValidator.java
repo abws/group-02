@@ -7,6 +7,10 @@ import com.spicesrus.repository.UserRepository;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+/**Adds validation to the user details when logging in.
+ * 
+ */
+
 public class DetailsValidator implements Validator {
 
     private UserRepository userRepository;

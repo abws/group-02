@@ -4,154 +4,153 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Spices R Us</title>
+    <meta charset="UTF-8">
+    <title>Spices R Us</title>
 
-<script src="https://kit.fontawesome.com/2f306254e3.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/2f306254e3.js" crossorigin="anonymous"></script>
 
-<link href="/css/index/home.css" rel="stylesheet" type="text/css">
-	
-<style>
+    <link href="/css/index/home.css" rel="stylesheet" type="text/css">
 
-.hero-nav{
-    position: absolute;
-    top: 0%;
-    width: 100%;
-}
+    <style>
 
-form {
-  
-  font-family: Arial;    
-  width: 50%;
-  text-align: center;
-  margin:10px;
-  color: white;
-  font-size: 20px;
-}
+        .hero-nav {
+            position: absolute;
+            top: 0%;
+            width: 100%;
+        }
+
+        form {
+
+            font-family: Arial;
+            width: 50%;
+            text-align: center;
+            margin: 10px;
+            color: white;
+            font-size: 20px;
+        }
 
 
-input[type=text], input[type=submit] {
-  width: 40%;
-  padding: 12px;
-  margin: 8px 0;
-  display: inline-block;
-  border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid white;
-  box-sizing: border-box;
-  background: transparent;
-  color: white;
-    font-size: 18px;
-}
+        input[type=text], input[type=submit] {
+            width: 40%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: 1px solid white;
+            box-sizing: border-box;
+            background: transparent;
+            color: white;
+            font-size: 18px;
+        }
 
-input[type=submit] {
-    background-color: #ff7f00;
-    color: white;
-    border: none;
-    width: 20%;
-    border-radius: 35px;
-}
+        input[type=submit] {
+            background-color: #ff7f00;
+            color: white;
+            border: none;
+            width: 20%;
+            border-radius: 35px;
+        }
 
-input[type=submit]:hover {
-  background-color: #ff6100;
-  cursor: pointer;
-}
+        input[type=submit]:hover {
+            background-color: #ff6100;
+            cursor: pointer;
+        }
 
-::placeholder {
-  color: white;
-  opacity: 1;
-}
-</style>
+        ::placeholder {
+            color: white;
+            opacity: 1;
+        }
+    </style>
 
 </head>
 
 <script>
     function openSearch() {
-      document.getElementById("myOverlay").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
     }
-    
+
     function closeSearch() {
-      document.getElementById("myOverlay").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
     }
-    </script>
+</script>
 
 <body>
 
-
-   
 
 <section class="hero">
     <div class="hero-nav">
 
 
-        <div class ="navigation">
+        <div class="navigation">
 
-            
+
             <ul>
-           
-                <li style="font-family:Bradley Hand; font-size: 28px;border-right:none; font: weight 900px;;text-decoration: none;" > <a href="/">Spices R Us</a> </li>
+
+                <li style="font-family:Bradley Hand; font-size: 28px;border-right:none; font: weight 900px;;text-decoration: none;">
+                    <a href="/">Spices R Us</a></li>
                 <li><a href="/home"><i class="fa fa-home"></i>Home</a></li>
-               
+
                 <li><a href="/spices"><i class="fa-solid fa-store"></i>Shop</a></li>
-                <li><a href="/recipes" ><i class="fa-solid fa-receipt"></i>Recipe</a></li>
+                <li><a href="/recipes"><i class="fa-solid fa-receipt"></i>Recipe</a></li>
                 <li><a href="/membership"><i class="fa-solid fa-bookmark"></i>Membership</a></li>
                 <sec:authorize access="hasAuthority('ADMIN')">
                     <li><a href="/admin"><i class="fa-solid fa-user"></i>Admin Panel</a></li>
                 </sec:authorize>
 
 
-
-                <li style="float:right; border-right:none;"><a href="/cart"><i class="fa-solid fa-cart-shopping"></i>Cart(${cartSize})</a></li>
-				<div class="user">
+                <li style="float:right; border-right:none;"><a href="/cart"><i class="fa-solid fa-cart-shopping"></i>Cart(${cartSize})</a>
+                </li>
+                <div class="user">
                     <c:choose>
                         <c:when test="${username == null}">
-                            <li style="float:right; border-right:1px solid #bbb;"><a href="/login"><i class="fa-solid fa-user"></i>Login</a></li>
+                            <li style="float:right; border-right:1px solid #bbb;"><a href="/login"><i
+                                    class="fa-solid fa-user"></i>Login</a></li>
                         </c:when>
                         <c:otherwise>
-                            <li style="float:right; border-right:1px solid #bbb; "><a href="/user?username=${username}"><i class="fa-solid fa-user"></i>${username}</a></li>
+                            <li style="float:right; border-right:1px solid #bbb; "><a href="/user?username=${username}"><i
+                                    class="fa-solid fa-user"></i>${username}</a></li>
                         </c:otherwise>
                     </c:choose>
                 </div>
-				<div class="register">
+                <div class="register">
                     <c:choose>
                         <c:when test="${username == null}">
-                            <li style="float:right; border-right:1px solid #bbb;"><a href="/register"><i class="fa-solid fa-pen-to-square"></i>Register</a></li>
+                            <li style="float:right; border-right:1px solid #bbb;"><a href="/register"><i
+                                    class="fa-solid fa-pen-to-square"></i>Register</a></li>
                         </c:when>
                         <c:otherwise>
-                            <li style="float:right; border-right:1px solid #bbb;"><a href="/logout"><i class="fa fa-sign-out"></i>Log Out</a></li>
+                            <li style="float:right; border-right:1px solid #bbb;"><a href="/logout"><i
+                                    class="fa fa-sign-out"></i>Log Out</a></li>
                         </c:otherwise>
                     </c:choose>
                 </div>
 
             </ul>
-				
-           
+
 
         </div>
 
-    
+
     </div>
-    
+
     <div class="hero-content">
-        
-       <h1 class="hero-title">
-            Discover the  Nature
-       </h1>
-         
-       <h2 class="hero-subtitle">
+
+        <h1 class="hero-title">
+            Discover the Nature
+        </h1>
+
+        <h2 class="hero-subtitle">
             We offer the best and organic spices.
-       </h2>
+        </h2>
 
-    
-        
-       <button type="button" class="hero-button" onclick="location.href='/spices'">
+
+        <button type="button" class="hero-button" onclick="location.href='/spices'">
             View our spices <i class="fa-solid fa-angles-right"></i>
-       </button>
+        </button>
 
-      
-    
-  
+
     </div>
 
 </section>
@@ -170,28 +169,27 @@ input[type=submit]:hover {
             <p>
                 Spices have a long and old history, they are used across the world, where they are a part of life and
                 culture.
-            <br><br> 
+                <br><br>
                 In each home and in each region the nation over, various spices and mixes are used to make unique
-                and unmistakable preferences for dishes. 
-            <br><br> 
+                and unmistakable preferences for dishes.
+                <br><br>
                 Before the modern age, housewives used to prepare their spices
-                physically at home and make their own mixes for use in their cooking. 
+                physically at home and make their own mixes for use in their cooking.
 
-        
 
-                <br><br> 
+                <br><br>
                 Spices R Us aims to make this process
-                easier for you to get quality products for the best price. 
-            <br>  <br> 
+                easier for you to get quality products for the best price.
+                <br> <br>
                 Our founder aimed to source and provide
                 quantities suitable for cooking and we hope that everyone can experience the joy of good food.
-            </p> 
-          
+            </p>
+
         </div>
 
-        <div class= "f_left">
-            <div class = "f_img">
-                <img src= "../../images/recipe.webp" >
+        <div class="f_left">
+            <div class="f_img">
+                <img src="../../images/recipe.webp">
             </div>
 
         </div>
@@ -202,21 +200,20 @@ input[type=submit]:hover {
 </div>
 
 
-
-<div class="spices_container">   
+<div class="spices_container">
     <div class="s_text">
-     
-        <h1 > Pure Organic Spices</h1>
+
+        <h1> Pure Organic Spices</h1>
         <p>Our natural and organic range includes peppers, salts, and blends spices.</p>
         <div class="s_text">
-            <button class= "s_button" onclick="location.href='/spices'" > Explore Our Spices <i class="fa-solid fa-angles-right"></i></button>
-      
-        </div> 
-    </div> 
-   
-         
-</div>
+            <button class="s_button" onclick="location.href='/spices'"> Explore Our Spices <i
+                    class="fa-solid fa-angles-right"></i></button>
 
+        </div>
+    </div>
+
+
+</div>
 
 
 <div class="container_category">
@@ -224,7 +221,7 @@ input[type=submit]:hover {
     <div class="title">
         <h1>
             Shop by Category
-           
+
         </h1>
 
     </div>
@@ -233,65 +230,72 @@ input[type=submit]:hover {
         <div class="column">
             <div class="category">
                 <a href="/spices">
-                    <img  style="border-radius: 25px;"src="https://static.onecms.io/wp-content/uploads/sites/43/2020/01/GettyImages-500491224-2000.jpg" alt="Mountains" width="200px" height="200px">
+                    <img style="border-radius: 25px;"
+                         src="https://static.onecms.io/wp-content/uploads/sites/43/2020/01/GettyImages-500491224-2000.jpg"
+                         alt="Mountains" width="200px" height="200px">
                 </a>
                 <button style="text-align: center;" onclick="location.href='/spices'"> ALL CATEGORY</button>
-                
+
             </div>
         </div>
 
         <div class="column">
             <div class="category">
                 <a href="/spices?sort=salts">
-                    <img style="border-radius: 25px;"src="https://www.thesprucecrafts.com/thmb/X76BKNZAdN5P2dF5yUXaO6wSxU8=/2576x2576/smart/filters:no_upscale()/salt-from-the-sea-149456195-58adf8b75f9b58a3c9f8d6bd.jpg" width="200px" height="200px">
+                    <img style="border-radius: 25px;"
+                         src="https://www.thesprucecrafts.com/thmb/X76BKNZAdN5P2dF5yUXaO6wSxU8=/2576x2576/smart/filters:no_upscale()/salt-from-the-sea-149456195-58adf8b75f9b58a3c9f8d6bd.jpg"
+                         width="200px" height="200px">
                 </a>
                 <button style="text-align: center;" onclick="location.href='/spices?sort=salts'">SALTS</button>
 
-               
+
             </div>
         </div>
-    
+
         <div class="column">
             <div class="category">
                 <a href="/spices?sort=spiceBlends">
-                    <img style="border-radius: 25px;"src="https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2Farchive%2F82e15235d90e93b6ea79f08debb52cb5ffb2d8e7" alt="Mountains" width="200px" height="200px">
+                    <img style="border-radius: 25px;"
+                         src="https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2Farchive%2F82e15235d90e93b6ea79f08debb52cb5ffb2d8e7"
+                         alt="Mountains" width="200px" height="200px">
                 </a>
-                <Button style="text-align: center;" onclick="location.href='/spices?sort=spiceBlends'">SPICE BLENDS</button>
-                
+                <Button style="text-align: center;" onclick="location.href='/spices?sort=spiceBlends'">SPICE BLENDS
+                </button>
+
             </div>
         </div>
-    
-        
+
+
         <div class="column">
             <div class="category">
                 <a href="/spices?sort=peppers">
-                    <img style="border-radius: 25px;"src="https://assets.epicurious.com/photos/5806941b9bb3c66e1f64bc50/1:1/w_1332,h_1332,c_limit/black_peppercorns_wooden_spoon_19102016.jpg" alt="Mountains" width="200px" height="200px">
+                    <img style="border-radius: 25px;"
+                         src="https://assets.epicurious.com/photos/5806941b9bb3c66e1f64bc50/1:1/w_1332,h_1332,c_limit/black_peppercorns_wooden_spoon_19102016.jpg"
+                         alt="Mountains" width="200px" height="200px">
                 </a>
 
                 <button style="text-align: center;" onclick="location.href='/spices?sort=peppers'">PEPPERS</button>
 
-                
+
             </div>
         </div>
     </div>
-</div> 
+</div>
 
 
-
-
-
-<div class="dinner_container">   
+<div class="dinner_container">
     <div class="d_text">
-     
-        <h1 > What's For Dinner Tonight?</h1>
+
+        <h1> What's For Dinner Tonight?</h1>
         <p>Discover our recipe collection with traditional recipes from different regions.</p>
         <div class="d_text">
-            <button class= "d_button" onclick="location.href='/recipes'"> Explore Our Recipes <i class="fa-solid fa-angles-right"></i> </button>
-      
-        </div> 
-    </div> 
-   
-         
+            <button class="d_button" onclick="location.href='/recipes'"> Explore Our Recipes <i
+                    class="fa-solid fa-angles-right"></i></button>
+
+        </div>
+    </div>
+
+
 </div>
 
 
@@ -300,7 +304,8 @@ input[type=submit]:hover {
         <div class="column">
             <div class="recipe">
                 <a href="">
-                    <img src="https://www.acouplecooks.com/wp-content/uploads/2020/12/Honey-Garlic-Shrimp-026.jpg" alt="Mountains">
+                    <img src="https://www.acouplecooks.com/wp-content/uploads/2020/12/Honey-Garlic-Shrimp-026.jpg"
+                         alt="Mountains">
                 </a>
 
                 <div class="overlay">
@@ -315,7 +320,8 @@ input[type=submit]:hover {
         <div class="column">
             <div class="recipe">
                 <a target="" href="">
-                    <img src="https://www.acouplecooks.com/wp-content/uploads/2021/06/Vegan-Meatballs-018.jpg" alt="Mountains" >
+                    <img src="https://www.acouplecooks.com/wp-content/uploads/2021/06/Vegan-Meatballs-018.jpg"
+                         alt="Mountains">
                 </a>
 
                 <div class="overlay">
@@ -326,11 +332,12 @@ input[type=submit]:hover {
                 </div>
             </div>
         </div>
-    
+
         <div class="column">
             <div class="recipe">
                 <a target="_blank" href="">
-                    <img src="https://www.acouplecooks.com/wp-content/uploads/2021/06/Arugula-Pizza-003.jpg" alt="Mountains">
+                    <img src="https://www.acouplecooks.com/wp-content/uploads/2021/06/Arugula-Pizza-003.jpg"
+                         alt="Mountains">
                 </a>
 
                 <div class="overlay">
@@ -341,14 +348,13 @@ input[type=submit]:hover {
                 </div>
             </div>
         </div>
-        
-        
-      
-        
+
+
         <div class="column">
             <div class="recipe">
                 <a target="_blank" href="">
-                    <img src="https://www.acouplecooks.com/wp-content/uploads/2020/01/Broiled-Salmon-011.jpg" alt="Mountains">
+                    <img src="https://www.acouplecooks.com/wp-content/uploads/2020/01/Broiled-Salmon-011.jpg"
+                         alt="Mountains">
                 </a>
 
                 <div class="overlay">
@@ -360,24 +366,23 @@ input[type=submit]:hover {
             </div>
         </div>
     </div>
-</div> 
+</div>
 
 
 <div class="subscribe_container">
 
 
-
     <form action="/action_page.php">
         <div class="subscribe">
-        <h1>Newsletter</h1>
-        <p>Sign up now and get 20% on your order!</p>
+            <h1>Newsletter</h1>
+            <p>Sign up now and get 20% on your order!</p>
         </div>
-    
+
         <div class="subscribe">
-    
-        <input type="text" placeholder="Enter your email address" name="mail" required>
-    
-        <input type="submit" value="Subscribe">
+
+            <input type="text" placeholder="Enter your email address" name="mail" required>
+
+            <input type="submit" value="Subscribe">
         </div>
     </form>
 
