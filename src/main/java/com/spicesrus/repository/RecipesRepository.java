@@ -11,5 +11,6 @@ public interface RecipesRepository extends CrudRepository<Recipes, String> {
     public Recipes findByName(String name);
 
     public List<Recipes> findByNameContainingIgnoreCase(String name);
+
 }
 

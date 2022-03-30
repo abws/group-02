@@ -30,6 +30,10 @@ public class UserService implements UserDetailsService {
     private SimpleGrantedAuthority admin = new SimpleGrantedAuthority("ADMIN");
     private List<SimpleGrantedAuthority> roles = List.of(basic, novice, expert, admin);
 
+
+    public List<SimpleGrantedAuthority> getRoles() {
+        return roles;
+    }
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         Optional<com.spicesrus.model.User> query = userRepository.findByUsername(login);
