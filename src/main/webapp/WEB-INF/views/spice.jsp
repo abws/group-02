@@ -1,6 +1,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ page pageEncoding="UTF-8" %>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8 /">
 
 <!--JSP Page Contains HTML, CSS and JAVASCRIPT-->
@@ -424,10 +426,12 @@
 
                             <div class="product-price">
                                 <sec:authorize access="hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
-                                    <span><p id="price-">&pound${spice.getUserPrice()} <span>per 100g</span></p></span>
+                                    <span><p id="price-"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                                                           minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber><span> per 100g</span></p></span>
                                 </sec:authorize>
                                 <sec:authorize access="!hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
-                                    <span><p id="price-">&pound${spice.price} <span>per 100g</span></p></span>
+                                    <span><p id="price-"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                                                           minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber><span> per 100g</span></p></span>
                                 </sec:authorize>
                             </div>
                             <input type="submit" class="cart-btn" value="Add to Cart" id="submit" disabled>

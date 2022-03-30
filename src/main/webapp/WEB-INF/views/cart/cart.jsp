@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ page pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html>
@@ -257,9 +259,11 @@
                             </td>
 
                             <sec:authorize access="hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
-                                <td>&pound${item.spice.getUserPrice()}</td>
+                                <td><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                                      minFractionDigits="2">${item.spice.getUserPrice()}</fmt:formatNumber></td>
                                 <td>${item.toString()}</td>
-                                <td>&pound${item.getUserPrice()}</td>
+                                <td><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                                      minFractionDigits="2">${item.getUserPrice()}</fmt:formatNumber></td>
                             </sec:authorize>
                             <sec:authorize access="!hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
                                 <td>&pound${item.spice.price}</td>
