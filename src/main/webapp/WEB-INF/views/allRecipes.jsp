@@ -5,257 +5,255 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://kit.fontawesome.com/2f306254e3.js" crossorigin="anonymous"></script>
-    
-<style>
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 370px;
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-family:"Monserrat", sans-serif;
-
-    flex: 0 1 33%;
-    padding: 0 10px;
-    float: left;
-    width: 33.33%;
-
-}
-
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
-}
-
-
-.price {
-    color: rgb(252, 168, 90);
-    font-size: 22px;
-}
-
-.card button {
-    border: none;
-    outline: 0;
-    padding: 12px;
-    color: white;
-    background-color: #ff8c21;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-    border-radius: 10px
-
-}
-
-.card button:hover {
-    opacity: 9.0;
-
-}
-
-.card button:active {
-    background-color: #fe7b00;
-    box-shadow: 0 5px;
-    transform: translateY(4px);
-}
-
-* {
-    box-sizing: border-box;
-}
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-   
-    
-
-}
-
-.center {
-    text-align: center;
-}
-
-.pagination {
-    display: inline-block;
-
-}
-
-.pagination a {
-    color: rgb(252, 167, 111);
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid rgb(248, 191, 152);
-    background: white;
-
-    margin: 0 4px;
-}
-
-.pagination a.active {
-    background-color: rgb(252, 168, 90);
-    color: white;;
-}
-
-.pagination a:hover:not(.active) {
-    background-color: rgb(248, 191, 152);
-}
+    <script src="https://kit.fontawesome.com/2f306254e3.js" crossorigin="anonymous"></script>
+
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 370px;
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: "Monserrat", sans-serif;
+
+            flex: 0 1 33%;
+            padding: 0 10px;
+            float: left;
+            width: 33.33%;
+
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+        }
+
+
+        .price {
+            color: rgb(252, 168, 90);
+            font-size: 22px;
+        }
+
+        .card button {
+            border: none;
+            outline: 0;
+            padding: 12px;
+            color: white;
+            background-color: #ff8c21;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            border-radius: 10px
+
+        }
+
+        .card button:hover {
+            opacity: 9.0;
+
+        }
+
+        .card button:active {
+            background-color: #fe7b00;
+            box-shadow: 0 5px;
+            transform: translateY(4px);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
 
-.vertical-menu .cata button:active {
-    border: 2px solid #F28123;
-    background-color: #F28123;
-    color: #fff;
-}
 
-.vertical-menu .cata button {
-    display: inline-block;
-    font-weight: 700;
-    font-size: 18px;
-    margin: 15px;
-    border: 2px solid #FB9350;
-    cursor: pointer;
-    padding: 8px 20px;
-    border-radius: 25px;
-    text-align: center;
-    background-color: #FB9350;
-    color: #fff;
+        }
+
+        .center {
+            text-align: center;
+        }
 
-}
+        .pagination {
+            display: inline-block;
 
-body {
-    background-color: #f9efe6;
-    font-family:"Monserrat", sans-serif;
+        }
+
+        .pagination a {
+            color: rgb(252, 167, 111);
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid rgb(248, 191, 152);
+            background: white;
 
-    padding: 0;
-    margin: 0;
-}
+            margin: 0 4px;
+        }
 
-h2 {
-    text-align: center;
-    font-weight: 900px;
-    font-size: 40px;
+        .pagination a.active {
+            background-color: rgb(252, 168, 90);
+            color: white;;
+        }
 
+        .pagination a:hover:not(.active) {
+            background-color: rgb(248, 191, 152);
+        }
 
-    font-family:"Monserrat", sans-serif;
+        .vertical-menu .cata button:active {
+            border: 2px solid #F28123;
+            background-color: #F28123;
+            color: #fff;
+        }
 
+        .vertical-menu .cata button {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 15px;
+            border: 2px solid #FB9350;
+            cursor: pointer;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-align: center;
+            background-color: #FB9350;
+            color: #fff;
 
-    color: #321800;
-}
+        }
 
-.select {
-    float: right;
-    margin-right: 30px;
+        body {
+            background-color: #f9efe6;
+            font-family: "Monserrat", sans-serif;
 
-}
+            padding: 0;
+            margin: 0;
+        }
 
-* {
-    outline: none;
-}
+        h2 {
+            text-align: center;
+            font-weight: 900px;
+            font-size: 40px;
 
 
-.pic {
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    width: 100%;
- 	height: 400px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/recipeback.png");
+            font-family: "Monserrat", sans-serif;
 
 
-}
+            color: #321800;
+        }
 
+        .select {
+            float: right;
+            margin-right: 30px;
 
-form .search {
-    width: 100%;
-    position: relative;
-    display: flex;
-}
+        }
 
-form .searchTerm {
+        * {
+            outline: none;
+        }
 
-    border: 4px solid white;
-    border-right: none;
-    border-top: none;
-    border-left: none;
-    padding: 5px;
-    height: 45px;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    color: #ffffff;
-    background: transparent;
 
-}
+        .pic {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            width: 100%;
+            height: 400px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/recipeback.png");
 
 
-form .searchTerm:focus {
-    color: white;
+        }
 
-}
 
-::placeholder {
-    color: white;
-    font-family:"Monserrat", sans-serif;
+        form .search {
+            width: 100%;
+            position: relative;
+            display: flex;
+        }
 
-    font-size: 30px;
+        form .searchTerm {
 
-}
+            border: 4px solid white;
+            border-right: none;
+            border-top: none;
+            border-left: none;
+            padding: 5px;
+            height: 45px;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            color: #ffffff;
+            background: transparent;
 
-a{
+        }
 
-	text-decoration: none;
 
-}
+        form .searchTerm:focus {
+            color: white;
 
+        }
 
-.select{
-	color:black;
-	width: 20%;
-}
+        ::placeholder {
+            color: white;
+            font-family: "Monserrat", sans-serif;
 
-#sort{
-	width:100px;
-}
+            font-size: 30px;
 
-form .searchButton {
-      width: 40px;
-      height: 46px;
-      border: transparent;
-      background: transparent;
-      text-align: center;
-      color: #fff;
-      border-radius: 0 10px 10px 0;
-      cursor: pointer;
-      font-size: 30px;
+        }
 
+        a {
 
-}
+            text-decoration: none;
 
-form input.searchTerm {
-    font-size: 35px;
-    font-family:"Monserrat", sans-serif;
+        }
 
-    padding: 10px;
-}
 
-.box {
+        .select {
+            color: black;
+            width: 20%;
+        }
 
+        #sort {
+            width: 100px;
+        }
 
-     width: 1300px;
-	 margin-inline: auto;
+        form .searchButton {
+            width: 40px;
+            height: 46px;
+            border: transparent;
+            background: transparent;
+            text-align: center;
+            color: #fff;
+            border-radius: 0 10px 10px 0;
+            cursor: pointer;
+            font-size: 30px;
 
-}
-  
-h1{
 
-	 font-weight: bold;
+        }
 
-}
+        form input.searchTerm {
+            font-size: 35px;
+            font-family: "Monserrat", sans-serif;
 
+            padding: 10px;
+        }
+
+        .box {
+
+
+            width: 1300px;
+            margin-inline: auto;
+
+        }
+
+        h1 {
+
+            font-weight: bold;
+
+        }
 
 
     </style>
@@ -271,26 +269,26 @@ h1{
 
     <div class="pic">
 
-    <form action="/recipesearch" class="searchform" method="GET">
-        <input name="recipe" type="text" class="searchTerm" placeholder="What are you looking for?">
-          <button type="submit" class="searchButton">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
+        <form action="/recipesearch" class="searchform" method="GET">
+            <input name="recipe" type="text" class="searchTerm" placeholder="What are you looking for?">
+            <button type="submit" class="searchButton">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
     </div>
 
     </form>
 
-    </div>
+</div>
 </div>
 
 
 <h2>Categories</h2>
 <div class="vertical-menu" style="text-align: center">
 
-    <a href="/recipes" class="cata" >
-        <button >All</button>
+    <a href="/recipes" class="cata">
+        <button>All</button>
     </a>
-        
+
     <a href="/recipes/Breakfast" class="cata">
         <button>Breakfast</button>
     </a>
@@ -312,10 +310,10 @@ h1{
 <form name="sortby" class="select">
     <label for="sorting">Sort By:</label>
     <select name="sort" id="sort">
-        <option id ="fixed_sort"selected disabled>Select</option>        
+        <option id="fixed_sort" selected disabled>Select</option>
         <option id="sort_a-z" value="/recipes/a-z">A-Z</option>
         <option id="sort_z-a" value="/recipes/z-a">Z-A</option>
-    
+
     </select>
 
 </form>
@@ -325,29 +323,30 @@ h1{
     sortmenu.onchange = function () {
         window.open(this.options[this.selectedIndex].value, "_self");
     };
-    
+
 
 </script>
 
 
-
-
 <div class="box">
-<div class="row">
-    
-    <c:forEach items="${recipes}" var="recipe">
-        <div class="card">
-            <a href="/recipe?recipe=${recipe.name}"><img src="${recipe.getPicture()}" alt="${recipe.getName()}" width="500"
-                                                          height="300" style="width:100%"></a>
-            <h1> ${recipe.getName()}</h1>
-            <p> Category: ${recipe.getCategory()}</p>
-            <p>${recipe.description}</p>
-            <p>
-                <a href="/recipe?recipe=${recipe.name}"><button>View Details</button></a>
-            </p>
-        </div>
-    </c:forEach>
-</div>
+    <div class="row">
+
+        <c:forEach items="${recipes}" var="recipe">
+            <div class="card">
+                <a href="/recipe?recipe=${recipe.name}"><img src="${recipe.getPicture()}" alt="${recipe.getName()}"
+                                                             width="500"
+                                                             height="300" style="width:100%"></a>
+                <h1> ${recipe.getName()}</h1>
+                <p> Category: ${recipe.getCategory()}</p>
+                <p>${recipe.description}</p>
+                <p>
+                    <a href="/recipe?recipe=${recipe.name}">
+                        <button>View Details</button>
+                    </a>
+                </p>
+            </div>
+        </c:forEach>
+    </div>
 </div>
 <div class="center">
     <div class="pagination">

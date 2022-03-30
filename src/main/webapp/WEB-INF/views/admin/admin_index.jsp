@@ -17,9 +17,10 @@
 
 <nav class="navbar navbar-light" style="background-color: rgba(120,198,255,0.45)">
     <ul class="nav nav-pills">
-            <a class="nav-link nav-link-active">Dashboard</a>
+        <a class="nav-link nav-link-active">Dashboard</a>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="tree" aria-expanded="false">Manage</a>
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="tree"
+               aria-expanded="false">Manage</a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="/admin/manage/users">Manage Users</a>
                 <a class="dropdown-item" href="/admin/manage/spices">Manage Spices</a>

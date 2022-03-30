@@ -8,7 +8,6 @@
 </head>
 
 
-
 <script>
     function toggle() {
         element = document.getElementById("password");
@@ -26,129 +25,129 @@
 
 <style>
 
-body{
-	background: url("../../images/back.jpg") no-repeat;
-	background-size: cover;
-	color: #333;
-	font-size: 18px;
-	font-family:"Monserrat", sans-serif;
-}
+    body {
+        background: url("../../images/back.jpg") no-repeat;
+        background-size: cover;
+        color: #333;
+        font-size: 18px;
+        font-family: "Monserrat", sans-serif;
+    }
 
 
-.container1{
-    width:35%;
-  
-    background: #ffffffe8;
-    padding:20px;
-    border-radius:10px;
-    margin: 0;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  
-    
-}
+    .container1 {
+        width: 35%;
 
-.error{
-
-	font-size: 16px;
-    color: red;
-    text-align:center;
-}
-
-.registerform{
-
-	height:auto;
-
-}
+        background: #ffffffe8;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 0;
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
 
-.input1{
-    display: block;
-    font-size: 0.5em;
-    font-weight: 600;
-    padding-left: 0.5em;
-    text-transform: uppercase;
-    -webkit-transition: all 0.25s;
-    transition: all 0.25s;
-    width:20%;
-    
-}
+    }
 
-input:focus{
-    outline: none;
-}
+    .error {
 
-.input2{
-    background: none;
-    border: none;
-    line-height: 1em;
-    font-weight: 300;
-    padding: 0.125em 0.25em;
-    width: 80%;
+        font-size: 16px;
+        color: red;
+        text-align: center;
+    }
 
-}
+    .registerform {
 
-.label1{
-    border-bottom: 1px solid #333;
-    display: block;
-    font-size: 1.25em;
-    margin-bottom: 0.5em;
-    -webkit-transition: all 0.25s;
-    transition: all 0.25s;
-    display:flex;
-    
-}
+        height: auto;
 
-.input3{
-    background: none;
-    border: none;
-    line-height: 1em;
-    font-weight: 300;
-    padding: 0.125em 0.25em;
-    width: 80%;
-
-}
-
-.buttonsubimit{
-    
-    border: 1px solid #333;
-    line-height: 1em;
-    padding: 0.5em 0.5em;
-    -webkit-transition: all 0.25s;
-    transition: all 0.25s;
-    margin-top:10px;
-    font-size: 20px;
-    border-radius: 5px;
-}
-
-.buttonsubimit:hover{
-
-    background: black;
-    color:white;
-    cursor:pointer;
-   
-}
-
-.button{
+    }
 
 
-    border: none;
-    font-size: 16px;
-    float: right;
-  
-}
+    .input1 {
+        display: block;
+        font-size: 0.5em;
+        font-weight: 600;
+        padding-left: 0.5em;
+        text-transform: uppercase;
+        -webkit-transition: all 0.25s;
+        transition: all 0.25s;
+        width: 20%;
 
-.button:hover{
-	cursor:pointer;
-}
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    .input2 {
+        background: none;
+        border: none;
+        line-height: 1em;
+        font-weight: 300;
+        padding: 0.125em 0.25em;
+        width: 80%;
+
+    }
+
+    .label1 {
+        border-bottom: 1px solid #333;
+        display: block;
+        font-size: 1.25em;
+        margin-bottom: 0.5em;
+        -webkit-transition: all 0.25s;
+        transition: all 0.25s;
+        display: flex;
+
+    }
+
+    .input3 {
+        background: none;
+        border: none;
+        line-height: 1em;
+        font-weight: 300;
+        padding: 0.125em 0.25em;
+        width: 80%;
+
+    }
+
+    .buttonsubimit {
+
+        border: 1px solid #333;
+        line-height: 1em;
+        padding: 0.5em 0.5em;
+        -webkit-transition: all 0.25s;
+        transition: all 0.25s;
+        margin-top: 10px;
+        font-size: 20px;
+        border-radius: 5px;
+    }
+
+    .buttonsubimit:hover {
+
+        background: black;
+        color: white;
+        cursor: pointer;
+
+    }
+
+    .button {
 
 
-.submit{
-	width:100%;
-	text-align: center;
-}
+        border: none;
+        font-size: 16px;
+        float: right;
+
+    }
+
+    .button:hover {
+        cursor: pointer;
+    }
+
+
+    .submit {
+        width: 100%;
+        text-align: center;
+    }
 
 </style>
 
@@ -181,7 +180,8 @@ input:focus{
                 <form:password cssClass="input3" id="password" path="confirmedPassword"
                                value="${details.password}" readonly="true"></form:password>
                 <form:errors cssClass="error" path="password"/>
-                <button class="button" type="button" id="passwordButton" onclick="toggle()"><i class="fa-solid fa-eye"></i></button>
+                <button class="button" type="button" id="passwordButton" onclick="toggle()"><i
+                        class="fa-solid fa-eye"></i></button>
             </div>
             <form:hidden cssClass="input2" path="password"></form:hidden>
             <div class="label1">
@@ -194,12 +194,12 @@ input:focus{
                 <form:input cssClass="input2" path="lastName"></form:input>
                 <form:errors cssClass="error" path="lastName"/><br>
             </div>
-            
-             <div class="submit">
-            	 <input class="buttonsubimit" type="submit" value="Complete Registration">
-            
-           	</div>
-           	 
+
+            <div class="submit">
+                <input class="buttonsubimit" type="submit" value="Complete Registration">
+
+            </div>
+
         </form:form>
     </div>
 </div>
