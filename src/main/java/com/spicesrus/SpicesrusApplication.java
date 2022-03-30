@@ -23,6 +23,9 @@ import com.spicesrus.service.EmailHandler;
 import com.spicesrus.model.UDetails;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.sql.DataSource;
 
 @SpringBootApplication
@@ -84,14 +87,30 @@ public class SpicesrusApplication implements ApplicationRunner {
         createSpice("Peppers", "BLACK PEPPER", "Black Pepper adds flavor to almost every food of every nation in the world. It is used in rubs, spice blends and peppercorn blends.", 0.99, "https://stamboulbazaar.com/wp-content/uploads/nc/catalog/Product/Baharatlar/turkish-black-pepper-spice-ground.jpg");
         createSpice("Salts", "GARLIC SALT", "Ideal to have on hand for that garlic flavour.Just add to sauces and dips, on pizzas and in salad dressings..", 1.20, "https://thekitchencommunity.org/wp-content/uploads/2021/04/Garlic-Powder-1200x900.jpg");
         createSpice("Peppers", "LONG PEPPER", "This pepper is mostly used in slow cooked dishes & pickels.It smells sweetley fragrant, but has a biting aftertaste.", 3.00, "https://www.seeds-gallery.shop/7492-large_default/indian-long-pepper-spice-whole-piper-longum.jpg");
-
+       
+        /*
         Recipes r1 = new Recipes();
         r1.setRestricted(true); // can only be accessed by novice+
-        r1.setCategory("Breakfast");
-        r1.setDescription("Eggs for breakfast is a genuinely global phenomenon and there is a dazzling array of recipes from around the world using them. This one is from North Africa (versions of it are popular throughout the Middle East)");
-        r1.setName("Shakshuka");
-        r1.setPicture("https://www.spicemountain.co.uk/wp-content/uploads/2019/08/shakshuka.jpg");
-        r1.setFullDescription(""); //Eggs for breakfast is a genuinely global phenomenon and there is a dazzling array of recipes from around the world using them. This one is from North Africa (versions of it are popular throughout the Middle East), and the other main ingredient apart from egg is tomato. Various veggies can be added depending on which country’s recipe you are following, but we like it best just adding plenty of sweet peppers, whichever colour you choose. It is spiced with cumin seeds, caraway seeds, cayenne and paprika (our Harissa spice blend does the job perfectly), and is lovely served with a hunk of bread, or a warm pitta bread. Along with the similar Mexican Huevos Rancheros, this is one of our favourite Sunday brunch treats.
+        r1.setCategory("Lunch");
+        r1.setDescription("This style of pizza is a bit different than the standard circular variety, but it’s become an instant favorite around here.");
+        r1.setName("Sheet Pan Pizza");
+        r1.setPicture("https://www.acouplecooks.com/wp-content/uploads/2021/06/Arugula-Pizza-003.jpg");
+        r1.setFullDescription("Sheet pan pizza is a style of pizza where you make the dough in a sheet pan, instead of stretching it into a circle like our traditional Italian pizza dough. You can also skip using a pizza peel and stone, because you’ll bake it right in the pan. This method is great for pizza beginners and lets you bypass several standard steps in the process"); 
+        r1.setIngredients(List.of("1.5 cup pizza sauce (purchased or our favorite Easy Pizza Sauce)","1 cup (3 ounces) shredded smoked gouda cheese","0.5 cup shredded Parmesan cheese","6 ounces fresh mozzarella cheese","Optional topping: 4 cups (3 ounces) baby arugula", "1 tablespoon olive oil",  "1/4 teaspoon kosher salt"));
+        r1.setMethod(List.of("Make the dough (5 minutes): In a large bowl, stir together the all-purpose flour, yeast, kosher salt, oregano and garlic powder. Add the warm water and olive oil and stir until flour is incorporated.","Knead the dough (8 minutes): Knead the dough by pushing with the base of your palm, then reforming it into a ball. Continue kneading for 8 minutes until the dough feels pillowy and has a smooth, stretchy exterior. If the dough is very sticky, add a small amount of flour while kneading. Alternatively: attach the dough hook to a stand mixer and start the mixer on medium-low speed, then allow the mixer to knead for 8 minutes.","Roll out and rest the dough in a sheet pan (15 minutes): Using floured hands, gently shape the dough into a boule (ball shape) by folding the dough under itself. Add a light sprinkle of flour to the boule. Then roll out dough on floured surface to roughly the shape of the 13×18 sheet pan. Brush 3 tablespoons olive oil on the bottom and sides of a standard 13″x 18″ sheet pan. Add the dough and brush it lightly with oil. Cover the pan with plastic wrap and rest for 15 minutes to relax the dough."));	
+        r1.setTimeRequired(45);
+        r1 = recipesRepo.save(r1);*/
+        
+        Recipes r1 = new Recipes();
+        r1.setRestricted(true); // can only be accessed by novice+
+        r1.setCategory("Dinner");
+        r1.setDescription("Sheet pan pizza is a style of pizza where you make the dough in a sheet pan, instead of stretching it into a circle like our traditional Italian pizza dough. You can also skip using a pizza peel and stone."); 
+        r1.setName("Sheet Pan Pizza");
+        r1.setPicture("https://www.acouplecooks.com/wp-content/uploads/2021/06/Arugula-Pizza-003.jpg");
+        r1.setIngredients(List.of("1.5 cup pizza sauce (purchased or our favorite Easy Pizza Sauce)","1 cup (3 ounces) shredded smoked gouda cheese","0.5 cup shredded Parmesan cheese","6 ounces fresh mozzarella cheese","Optional topping: 4 cups (3 ounces) baby arugula", "1 tablespoon olive oil",  "1/4 teaspoon kosher salt"));
+        r1.setMethod(List.of("Make the dough (5 minutes): In a large bowl, stir together the all-purpose flour, yeast, kosher salt, oregano and garlic powder.","Add the warm water and olive oil and stir until flour is incorporated.","Continue kneading for 8 minutes until the dough feels pillowy and has a smooth, stretchy exterior. "));	
+        r1.setTimeRequired(45);
+        //Eggs for breakfast is a genuinely global phenomenon and there is a dazzling array of recipes from around the world using them. This one is from North Africa (versions of it are popular throughout the Middle East), and the other main ingredient apart from egg is tomato. Various veggies can be added depending on which country’s recipe you are following, but we like it best just adding plenty of sweet peppers, whichever colour you choose. It is spiced with cumin seeds, caraway seeds, cayenne and paprika (our Harissa spice blend does the job perfectly), and is lovely served with a hunk of bread, or a warm pitta bread. Along with the similar Mexican Huevos Rancheros, this is one of our favourite Sunday brunch treats.
 //        r1.setIngredients("2tbs Olive Oil\n"
 //                + "1 Onion, finely sliced\n"
 //                + "1 Red Pepper, diced\n"
@@ -105,8 +124,8 @@ public class SpicesrusApplication implements ApplicationRunner {
 //                + "1tsp Sugar\n"
 //                + "4 Eggs\n"
 //                + "2tsp Lemon Juice");
-        r1.setIngredients(List.of("2tbs olive oil", "1 onion", "1 red pepper"));
-        r1.setMethod(List.of("Heat olive oil and cook onion", "Cook peppers", "..."));/*Method
+       
+        /*Method
 1
 In a large, lidded frying pan, heat the olive oil and add the onion, cooking until just starting to turn golden. Add the peppers and keep sauteeing until soft, then add the garlic and spices and cook for another couple of minutes.
 2
@@ -117,7 +136,7 @@ Now make a few wells in the sauce, and break in the eggs. Season lightly, then t
 
         Recipes r2 = new Recipes();
         r2.setCategory("Pastries");
-        r2.setDescription("An Autumn Sunday, a walk in the woods (or the park) and a lovely crumble waiting to be enjoyed when you get home, smothered in creamy custard to take the chill out of your bones.");
+        r2.setDescription("An Autumn Sunday, a walk in the woods (or the park) and a lovely crumble waiting to be enjoyed when you get home, smothered in creamy custard to take the chill.");
         r2.setName("Apple and Blackberry Crumble Custard");
         r2.setPicture("https://media.istockphoto.com/photos/ice-cream-apple-crisp-picture-id185229208?k=20&m=185229208&s=612x612&w=0&h=xuxEGADJhuIGW-9Kkn9io6RxLvcPR-1el68wR01EvOA=");
         r2.setFullDescription("");//An Autumn Sunday, a walk in the woods (or the park) and a lovely crumble waiting to be enjoyed when you get home, smothered in creamy custard to take the chill out of your bones. Apple and blackberry are bang in season at this time of year, and though of course there is merit in rhubarb for the crumble, the apple and blackberry pairing just sums up English sweets for us. This recipe uses our cinnamon sugar blend in the crumble, and our vanilla sugar for the custard, just for extra luxury.
@@ -149,14 +168,14 @@ For the custard, put the cream and milk into a large pan and slowly bring it to 
 Now add the warmed milk and cream, whisking constantly, before returning everything to the pan and heating gently, stirring all the time, until the custard thickens.
 */
         r2 = recipesRepo.save(r2);
-
+/*
         Recipes r3 = new Recipes();
         r3.setCategory("Lunch");
         r3.setDescription("A long-term favourite for picking up from the deli counter, there are as many recipes for hummus as there are chickpeas in a sack, but we make no apology for stating that this recipe is the best!");
         r3.setName("Hummus");
         r3.setPicture("https://img.freepik.com/darmowe-zdjecie/pyszny-hummus_144627-19472.jpg?t=st=1647339211~exp=1647339811~hmac=7acf2f4c66577fc8170c8d045d58c18130f442687f5dcbd5d8284b22fe5b40e2&w=740");
         r2.setFullDescription("");//A long-term favourite for picking up from the deli counter, there are as many recipes for hummus as there are chickpeas in a sack, but we make no apology for stating that this recipe is the best! The reason for the variety in recipes is that hummus is a staple in most of the countries surrounding the eastern Mediterranean and into the Middle East, all of which have their own little foibles when it comes to seasoning the hummus. Our take is based on the Israeli version, which is always served with a blob of harissa-style hot sauce in the middle – this procedure is highly recommended. Tinned chickpeas are far and away the easiest (and fortunately the best) to use for the recipe.
-        r2.setIngredients(List.of("2 Tins Chickpeas", "1tbs olive oil", "1tbs tahini paste"));/*2 tins chickpeas\n"
+        r2.setIngredients(List.of("2 Tins Chickpeas", "1tbs olive oil", "1tbs tahini paste"));*/ /*2 tins chickpeas\n"
     			+ "1tbs olive oil\n"
     			+ "1tbs tahini paste, available from our Borough Market shop\n"
     			+ "1tsp garlic powder or granules\n"
@@ -164,13 +183,14 @@ Now add the warmed milk and cream, whisking constantly, before returning everyth
     			+ "salt and pepper\n"
     			+ "1tsp ground cumin\n"
     			+ "½ tsp cayenne pepper*/
-        r2.setMethod(List.of("Drain the chickpeas and blend with other dry ingredients and the tahini", "Pour in the oliver oil and lemon jucice while blending", "..."));/*1
+        //r2.setMethod(List.of("Drain the chickpeas and blend with other dry ingredients and the tahini", "Pour in the oliver oil and lemon jucice while blending", "..."));
+        /*1
 Drain the chickpeas and place in a blender together with the other dry ingredients and the tahini.
 2
 Whizz together, and while it is whizzing, pour in the olive oil then the lemon juice. The consistency of tinned chickpeas varies quite a lot, some come out drier than others, so you may need to add a splash of water (or more lemon juice).
 3
 You will need to blend the hummus for five minutes or so. Check the hummus for seasoning, and it is ready to serve. It will keep in the fridge for a couple of days, so hummus is great to make in advance for a lunchbox or tomorrow's sundowner snack.*/
-        r3 = recipesRepo.save(r3);
+       // r3 = recipesRepo.save(r3);
 
         Recipes r4 = new Recipes();
         r4.setCategory("Dinner");
@@ -205,11 +225,16 @@ To serve, slice the chicken diagonally then smother it with your katsu sauce, al
 
         recipes.add(r1);
         recipes.add(r2);
-        recipes.add(r3);
+        //recipes.add(r3);
 //        recipes.add(r4);
 
         spicesRepo.findAll().forEach(spice -> spices.add(spice));
         recipesRepo.save(r1);
+        
+        
+        
+        
+        
     }
 
 
@@ -237,6 +262,9 @@ To serve, slice the chicken diagonally then smother it with your katsu sauce, al
         spice.setPicture(picture);
         spicesRepo.save(spice);
     }
+
+   
+    
 
 
 
