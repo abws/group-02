@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import com.spicesrus.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -225,8 +224,7 @@ public class RecipesController {
             if (principal == null) {
                 return "restricted_page";
             }
-            Optional<User> query = userRepository.findByUsername(principal.getName());
-            User user = query.get();
+            User user = userRepository.findByUsername(principal.getName());
             if (!user.getAuthorities().contains("NOVICE") && !user.getAuthorities().contains("EXPERT")) {
 				return "restricted_recipe";
             }
