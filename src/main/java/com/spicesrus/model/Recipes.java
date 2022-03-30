@@ -1,7 +1,10 @@
 package com.spicesrus.model;
 
+import com.spicesrus.dto.RecipeDTO;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 import javax.persistence.*;
 
@@ -12,6 +15,7 @@ public class Recipes {
 	 */
 	@Id
 	private String name;
+
 	private String category;
 	private String description;
 	private String FullDescription;
@@ -43,6 +47,7 @@ public class Recipes {
 	public String getCategory() {
 		return category;
 	}
+
 	public void setCategory(String category) {
 		this.category = category;
 	}
@@ -107,4 +112,22 @@ public class Recipes {
 		this.restricted = restricted;
 	}
 
+	public RecipeDTO toDTO() {
+		RecipeDTO dto = new RecipeDTO();
+		dto.setName(name);
+		dto.setCategory(category);
+		dto.setDescription(description);
+		dto.setFullDescription(FullDescription);
+		dto.setPicture(picture);
+		dto.setRestricted(restricted);
+		StringBuilder methodBuidler = new StringBuilder();
+		method.forEach(m -> methodBuidler.append(m + "\n"));
+		StringBuilder ingBuilder = new StringBuilder();
+		ingredients.forEach(i -> ingBuilder.append(i + "\n"));
+		dto.setMethod(methodBuidler.toString());
+		dto.setIngredients(ingBuilder.toString());
+		dto.setComplimentaryRecipes(complimentaryRecipes);
+		dto.setComplimentarySpices(spicesInvolved);
+		return dto;
+	}
 }

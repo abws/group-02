@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Arrays;
+import java.util.Optional;
 
 @Controller
 public class DetailsController {
@@ -45,7 +46,9 @@ public class DetailsController {
         }
 
 
-        User actual = userRepository.findByUsername(principal.getName());
+
+        Optional<User> query = userRepository.findByUsername(principal.getName());
+        User actual = query.get();
         UserDTO dto = UserDTO.fromUser(actual);
         dto.setPassword("*******");
 
@@ -58,7 +61,9 @@ public class DetailsController {
     public String user(Principal principal, @Valid @ModelAttribute(name = "user") UserDTO user, BindingResult result, Model model) {
 
         BindingResult tmp = new BeanPropertyBindingResult(user, "user");
-        UserDTO actual = UserDTO.fromUser(userRepository.findByUsername(principal.getName()));
+        Optional<User> query = userRepository.findByUsername(principal.getName());
+        User u = query.get();
+        UserDTO actual = UserDTO.fromUser(u);
 
         if (!principal.getName().equals(user.getUsername())) {
             result.reject("username", "You are not allowed to change your username"); // Prevents username being chnaged (Primary Key)
