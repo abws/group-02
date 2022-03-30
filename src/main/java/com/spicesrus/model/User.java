@@ -1,5 +1,7 @@
 package com.spicesrus.model;
 
+import com.spicesrus.dto.UserDTO;
+
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,6 +28,18 @@ public class User {
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> authorities = new ArrayList<>();
+
+    public User() {
+
+    }
+
+    public User(UserDTO dto) {
+        this.username = dto.getUsername();
+        this.email = dto.getEmail();
+        this.firstName = dto.getFirstName();
+        this.lastName = dto.getLastName();
+        this.authorities = dto.getAuthorities();
+    }
 
     public String getUsername() {
         return username;
@@ -82,5 +96,7 @@ public class User {
     public void setAuthorities(List<String> authorities) {
         this.authorities = authorities;
     }
+
+
 }
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MembershipController {
@@ -31,7 +32,8 @@ public class MembershipController {
         if (principal == null) {
             membership = "NONE";
         }else{
-            User user = repo.findByUsername(principal.getName());
+            Optional<User> query = repo.findByUsername(principal.getName());
+            User user = query.get();
             if (user.getAuthorities().contains("EXPERT")) membership = "EXPERT";
             else if (user.getAuthorities().contains("ADMIN")) membership = "EXPERT"; // display admin as expert
             else if (user.getAuthorities().contains("NOVICE")) membership = "NOVICE";
@@ -46,7 +48,8 @@ public class MembershipController {
     @PostMapping("/membership/basic")
     public String basic(Principal principal, HttpSession session) {
         if (principal == null) return "redirect:/login";
-        User user = repo.findByUsername(principal.getName());
+        Optional<User> query = repo.findByUsername(principal.getName());
+        User user = query.get();
         user.getAuthorities().add("BASIC");
         user.getAuthorities().removeAll(List.of("NOVICE, EXPERT"));
         repo.save(user);
@@ -58,7 +61,8 @@ public class MembershipController {
     @PostMapping("/membership/novice")
     public String novice(Principal principal, HttpSession session) {
         if (principal == null) return "redirect:/login";
-        User user = repo.findByUsername(principal.getName());
+        Optional<User> query = repo.findByUsername(principal.getName());
+        User user = query.get();
         user.getAuthorities().add("NOVICE");
         user.getAuthorities().removeAll(List.of("EXPERT", "BASIC"));
         repo.save(user);
@@ -70,7 +74,8 @@ public class MembershipController {
     @PostMapping("/membership/expert")
     public String expert(Principal principal, HttpSession session) {
         if (principal == null) return "redirect:/login";
-        User user = repo.findByUsername(principal.getName());
+        Optional<User> query = repo.findByUsername(principal.getName());
+        User user = query.get();
         user.getAuthorities().add("EXPERT");
         user.getAuthorities().removeAll(List.of("NOVICE", "BASIC"));
         repo.save(user);

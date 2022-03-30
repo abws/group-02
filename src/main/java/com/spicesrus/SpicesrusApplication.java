@@ -30,7 +30,7 @@ import javax.sql.DataSource;
 
 @SpringBootApplication
 @Configuration
-public class SpicesrusApplication implements ApplicationRunner {
+public class    SpicesrusApplication implements ApplicationRunner {
 
     @Autowired
     private SpicesRepository spicesRepo;

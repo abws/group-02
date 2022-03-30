@@ -1,15 +1,17 @@
-# GitLab repository for CO2201 Group Projects
+# SpicesRUS Website
 
-## Installation Instructions
+### Installation Instructions
 
-1. Press the clone button on this page and copy the project url 
-2. Open the command-line interface on an empty folder
-3. Type `git clone ` followed by the url copied earlier
-4. Enter the produced repository by typing `cd group-02`
-5. Type `./gradlew bootrun`
-6. The application will start running, before crashing
-7. Inside your home directory there will now be a file named **spicesrus.properties** 
-8. Inside this file, you must edit the database configuration to point to a MySQL server
+1.) Navigate to https://dev.mysql.com/doc/mysql-getting-started/en/ and follow the instructions to install a MySQL server.
+
+2.) Using the same guide createa a database and user account for this system to access.
+
+3.) Clone this repository and execute `gradlew bootrun` inside of the directory
+
+4.) The application will then stop after generating a `spicesrus.properties` file inside of your home directory
+
+5.) Enter the details of the MySQL server into the required fields
+
 ```
 spicesrus.properties
 
@@ -18,7 +20,9 @@ database=someDatabase
 port=3306
 host=localhost
 username=root
-
 ```
-9. Rerun the application by typing `./gradlew bootrun`
-10. Open your browser and enter `localhost:8080` as the url
+
+6.) You can then re-run `gradlew bootrun` and locate the website at url `http://localhost:8080`
+
+
+##
