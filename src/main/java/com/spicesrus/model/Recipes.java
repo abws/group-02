@@ -18,7 +18,10 @@ public class Recipes {
 
 	private String category;
 	private String description;
+
+	@Column(columnDefinition="TEXT")
 	private String FullDescription;
+
 	private int timeRequired;
 	private String minimumRoleRequired;
 
