@@ -614,7 +614,7 @@
         var rate = '${spice.price}';
 
         <sec:authorize access="hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
-            rate = '${spice.getUserPrice()}';
+        rate = '${spice.getUserPrice()}';
         </sec:authorize>
 
         document.getElementById("input-large").value = largeWeight;
