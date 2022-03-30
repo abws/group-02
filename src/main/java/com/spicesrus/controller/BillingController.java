@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import com.spicesrus.validators.BillingValidator;
 import com.spicesrus.model.BillingDetails;
 import com.spicesrus.repository.BillingDetailsRepo;
+import com.spicesrus.service.CartHelper;
 import com.spicesrus.service.EmailHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.thymeleaf.context.Context;
+import javax.servlet.http.HttpServletRequest;
+
 
 /**The billing controller links to the billing form page.
  * It encodes and saves billing information for payment processing.
@@ -53,7 +56,8 @@ public class BillingController {
 	    }
 	 
 	 @RequestMapping(value = "/billing", method = RequestMethod.POST)
-	    public String billing(Principal principal, Model model, @Valid @ModelAttribute("billing") BillingDetails details, BindingResult result) {
+	    public String billing(Principal principal, Model model, @Valid @ModelAttribute("billing") BillingDetails details, 
+								BindingResult result, HttpServletRequest request) {
 		 	String username = principal != null ? principal.getName() : null;
 			model.addAttribute("username", username);
 		 	if (result.hasErrors()) {
@@ -71,6 +75,7 @@ public class BillingController {
 	        	context.setVariable("firstName", details.getFirstName());
 	        	context.setVariable("customerAddress", details.getCustomerAddress());
 	        	context.setVariable("customerPostcode", details.getCustomerPostcode());
+				context.setVariable("cart", CartHelper.createOrRetrieveCart(request));
 	            handler.dispatchEmail(details.getCustomerEmail(), "Billing Confirmation", "billing_template.html", context);
 	        }catch (MessagingException e) {
 	            e.printStackTrace();

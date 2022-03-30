@@ -717,7 +717,7 @@
                 document.getElementById("price-").innerHTML = "&pound" +
                     pricePerUnit.toFixed(2) +
                     " <span> per " + smallWeight +
-                    "oz. jar</span>";
+                    " oz. jar</span>";
             } else {
                 document.getElementById("price-").innerHTML = "&pound" +
                     pricePerUnit.toFixed(2) +

@@ -20,12 +20,35 @@
 </div>
 
 <h1>Order Confirmation</h1>
-<p>Thanks <span th:text="${firstName}"></span> for ordering from SpicesRUS. Your order will now be processed and prepared for delivery to the following address:
+<p>Thanks <span th:text="${firstName}"></span> for ordering from Spices R Us. Your order will now be processed and prepared for delivery to the following address:
 </p>
 <p>
 <span th:text="${customerAddress}"></span>   
-<span th:text="${customerPostcode}"></span>   
+<span th:text=" ${customerPostcode}"></span>   
 </p>
 
+<hr>
+<h1>Order Details:</h1>
+<table>
+<thead>
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Weight Per Unit</th>
+        <th>Product Price</th>
+    </tr>
+</thead>
+
+<tbody>
+    <th:block th:each="item: ${cart.getItems()}">
+        <tr>
+            <td th:text="${item.spice.name}"></td>
+            <td th:text="${item.quantity}"></td>
+            <td th:text="${item.toString()}"></td>
+            <td th:text="&pound;${item.price}"></td>
+        </tr>
+    </th:block>
+</tbody>
+</table>
 </body>
 </html>
