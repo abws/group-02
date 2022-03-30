@@ -111,7 +111,7 @@ public class ItemController {
      * @param item
      * @return "spice" jsp page
      */
-    @PostMapping("addItemGrams")
+    @PostMapping("addItemMetric")
     public String addItemGrams(@ModelAttribute ItemMetric item, HttpServletRequest request) {
 
         Cart cart = (Cart) request.getSession().getAttribute("cart");
