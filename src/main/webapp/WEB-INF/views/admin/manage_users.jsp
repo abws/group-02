@@ -32,10 +32,9 @@
                 <a class="dropdown-item" href="/admin/manage/recipes">Manage Recipes</a>
             </div>
         </li>
-        <a class="nav-link">Change Variables</a>
     </ul>
     <ul class="nav nav-pills navbar-right">
-        <a class="btn btn=danger nav-link">Exit Admin Panel</a>
+        <a class="btn btn=danger nav-link" href="/">Exit Admin Panel</a>
     </ul>
 </nav>
 <div class="container-fluid">
@@ -52,7 +51,7 @@
 
 <c:choose>
     <c:when test="${searched}">
-        <h2 class="text-center">Spice - ${userDTO.getUsername()}</h2>
+        <h2 class="text-center">Users - ${userDTO.getUsername()}</h2>
         <div class="content col-sm-4 mx-auto">
             <form:form class="text-center" modelAttribute="userDTO" action="edit" method="post">
 
@@ -106,7 +105,7 @@
         </div>
     </c:when>
     <c:when test="${not searched}">
-        <h2 class="text-center">Spice - New User</h2>
+        <h2 class="text-center">Users - New User</h2>
         <div class="content col-sm-4 mx-auto">
             <form:form class="text-center" modelAttribute="userDTO" action="users/create" method="post">
 

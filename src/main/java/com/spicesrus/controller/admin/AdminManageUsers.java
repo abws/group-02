@@ -32,8 +32,6 @@ public class AdminManageUsers {
     public String index(Model model, @RequestParam(name = "query", required = false) String query) {
         model.addAttribute("searched", query != null);
 
-        System.out.println("query=" + query);
-
         if (query != null) {
             if (query.contains("@")) {
                 Optional<User> q = userRepository.findByEmail(query);
@@ -67,8 +65,6 @@ public class AdminManageUsers {
         }else{
             model.addAttribute("userDTO" , new UserDTO());
         }
-
-        System.out.println(model.getAttribute("userDTO"));
         model.addAttribute("roles", service.getRoles().stream().map(SimpleGrantedAuthority::getAuthority).collect(Collectors.toList()));
         return "admin/manage_users";
     }

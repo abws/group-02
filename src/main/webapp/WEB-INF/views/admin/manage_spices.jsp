@@ -32,10 +32,9 @@
                 <a class="dropdown-item" href="/admin/manage/recipes">Manage Recipes</a>
             </div>
         </li>
-        <a class="nav-link">Change Variables</a>
     </ul>
     <ul class="nav nav-pills navbar-right">
-        <a class="btn btn=danger nav-link">Exit Admin Panel</a>
+        <a class="btn btn=danger nav-link" href="/">Exit Admin Panel</a>
     </ul>
 </nav>
 <div class="container-fluid">

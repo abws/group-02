@@ -54,7 +54,6 @@ public class AdminManageRecipes {
     @PostMapping("/edit")
     public String edit(@ModelAttribute(name = "recipeDTO") RecipeDTO dto) {
         Recipes current = recipesRepository.findByName(dto.getName());
-        System.out.println("here");
         if (current == null) {
             return "redirect:/admin/manage/recipes";
         }
@@ -78,7 +77,6 @@ public class AdminManageRecipes {
 
     @PostMapping("/create")
     public String create(@ModelAttribute(name = "recipeDTO") RecipeDTO dto) {
-        System.out.println("here 2");
         Recipes newRecipe = new Recipes();
         newRecipe.setDescription(dto.getDescription());
         newRecipe.setFullDescription(dto.getFullDescription());
@@ -92,7 +90,6 @@ public class AdminManageRecipes {
         List<String> ingredients = new ArrayList<>(Arrays.asList(dto.getIngredients().split("\n")));
         newRecipe.setMethod(method);
         newRecipe.setIngredients(ingredients);
-        System.out.println(newRecipe);
         recipesRepository.save(newRecipe);
         return "redirect:/admin/manage/recipes";
     }

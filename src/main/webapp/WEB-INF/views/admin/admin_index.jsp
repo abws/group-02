@@ -26,10 +26,9 @@
                 <a class="dropdown-item" href="/admin/manage/recipes">Manage Recipes</a>
             </div>
         </li>
-        <a class="nav-link">Change Variables</a>
     </ul>
     <ul class="nav nav-pills navbar-right">
-        <a class="btn btn=danger nav-link">Exit Admin Panel</a>
+        <a class="btn btn=danger nav-link" href="/">Exit Admin Panel</a>
     </ul>
 </nav>
 
@@ -43,8 +42,7 @@
                     <h5 class="card-header text-center">Spices</h5>
                     <div class="card-body">
                         <h5>Site Information:</h5>
-                        <p>Total Spices: 102</p>
-                        <p>Most Popular: 102</p>
+                        <p>Total Spices: ${total_spices}</p>
                     </div>
                     <a href="/admin/manage/spices" class="btn btn-primary text-center">Manage Spices</a>
                 </div>
@@ -54,9 +52,9 @@
                     <h5 class="card-header text-center">Users</h5>
                     <div class="card-body">
                         <h5>Site Information:</h5>
-                        <p>Registered Users: 102</p>
-                        <p>Novice Users: 102</p>
-                        <p>Expert Users: 102</p>
+                        <p>Registered Users: ${registered}</p>
+                        <p>Novice Users: ${novice_users}</p>
+                        <p>Expert Users: ${expert_users}</p>
                     </div>
                     <a href="/admin/manage/users" class="btn btn-primary text-center">Manage Users</a>
                 </div>
@@ -66,9 +64,8 @@
                     <h5 class="card-header text-center">Recipes</h5>
                     <div class="card-body">
                         <h5>Site Information:</h5>
-                        <p>Total Recipes: 102</p>
-                        <p>Total Restricted: 102</p>
-                        <p>Most Viewed: 102</p>
+                        <p>Total Recipes: ${total_recipes}</p>
+                        <p>Total Restricted: ${total_restricted_recipes}</p>
                     </div>
                     <a href="/admin/manage/recipes" class="btn btn-primary text-center">Manage Recipes</a>
                 </div>
