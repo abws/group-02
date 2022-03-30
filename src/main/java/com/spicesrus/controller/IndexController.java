@@ -40,6 +40,12 @@ public class IndexController {
 		CartHelper.setCartSize(0);
 		return "redirect:/";
 	}
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home(Principal principal, Model model, HttpServletRequest request) {
+		String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
+		return "index/home";
+	}
 }
 
 

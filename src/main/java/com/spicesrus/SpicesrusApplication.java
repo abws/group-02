@@ -95,7 +95,7 @@ public class    SpicesrusApplication implements ApplicationRunner {
         r1.setName("Shakshuka");
         r1.setPicture("https://www.spicemountain.co.uk/wp-content/uploads/2019/08/shakshuka.jpg");
         r1.setFullDescription("Eggs for breakfast is a genuinely global phenomenon and there is a dazzling array of recipes from around the world using them. This one is from North Africa (versions of it are popular throughout the Middle East), "
-        		+ "and the other main ingredient apart from egg is tomato. Various veggies can be added depending on which country�s recipe you are following, but we like it best just adding plenty of sweet peppers, whichever colour you choose."
+        		+ "and the other main ingredient apart from egg is tomato. Various veggies can be added depending on which country's recipe you are following, but we like it best just adding plenty of sweet peppers, whichever colour you choose."
         		+ " It is spiced with cumin seeds, caraway seeds, cayenne and paprika (our Harissa spice blend does the job perfectly), and is lovely served with a hunk of bread, or a warm pitta bread. Along with the similar Mexican Huevos Rancheros, "
         		+ "this is one of our favourite Sunday brunch treats."); 
         r1.setIngredients(List.of("2tbs Olive Oil", "1 Onion, finely sliced", "1 Red Pepper, diced","1 Yellow Pepper, diced", "3 cloves Garlic, finely chopped",
@@ -161,7 +161,7 @@ public class    SpicesrusApplication implements ApplicationRunner {
         r5.setCategory("Dinner");
         r5.setDescription("Any fan of Japanese food will be aware that a Katsu Curry is a heavenly experience! What sets it apart are a couple of things – First, the chicken is breadcrumbed and fried, second the");
         r5.setName("Chicken Katsu Curry");
-        r5.setPicture("https://us.123rf.com/450wm/amnajtandee/amnajtandee1704/amnajtandee170400026/75769947-curry-ryż-z-smażącą-wieprzowiną-japońskie-jedzenie-tonkatsu-curry-rice-na-białym-tle-.jpg?ver=6");
+        r5.setPicture("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb_ELtX64bxZYTvGhsUPkec9URf86Gv145cQ&usqp=CAU");
         r5.setFullDescription("Any fan of Japanese food will be aware that a Katsu Curry is a heavenly experience! What sets it apart are a couple of things; First, the chicken is breadcrumbed and fried, second the sauce is made separately "
         		+ "and then used to smother the crispy chicken in a blanket of smooth, silky luxury. The sauce is not hot by any means, more warm and aromatic with distinctive fruity notes. It has a marked sweetness, especially once the honey is added. "
         		+ "The texture of the sauce makes for a wonderful contrast with the crunch of the chicken. This recipe is perfect as a midweek supper, and due to the mild, fruity flavour of the sauce kids will love it. To sum up, a combination of fried chicken and yummy curry sauce? Yes please!");

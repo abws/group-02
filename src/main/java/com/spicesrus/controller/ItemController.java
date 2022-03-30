@@ -1,7 +1,11 @@
 package com.spicesrus.controller;
 
 import java.security.Principal;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+
+import com.spicesrus.model.*;
+import com.spicesrus.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,16 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.spicesrus.model.Cart;
-import com.spicesrus.model.Item;
-import com.spicesrus.model.ItemImperial;
-import com.spicesrus.model.ItemMetric;
-import com.spicesrus.model.Spices;
-import com.spicesrus.model.User;
-import com.spicesrus.repository.CartRepository;
-import com.spicesrus.repository.ItemRepository;
-import com.spicesrus.repository.SpicesRepository;
-import com.spicesrus.repository.UserRepository;
 import com.spicesrus.service.CartHelper;
 
 /**
@@ -40,7 +34,9 @@ public class ItemController {
 	
 	@Autowired
 	UserRepository uRepo;
-	
+
+	@Autowired
+	private RecipesRepository recipesRepository;
 	
 	/**
 	 * Individual spice page
@@ -58,7 +54,11 @@ public class ItemController {
 		model.addAttribute("spice", s);
 		model.addAttribute("itemImperial", new ItemImperial());
 		model.addAttribute("itemMetric", new ItemMetric());
-		
+
+		List<Recipes> recipesList = recipesRepository.findBySpicesInvolvedContaining(s);
+		recipesList.subList(0, Math.min(recipesList.size(), 3));
+		System.out.println(recipesList);
+		model.addAttribute("related", recipesList);
 		
 		//user privileges
 		User userDetails = null;
