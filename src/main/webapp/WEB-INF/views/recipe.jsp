@@ -456,34 +456,34 @@
                 </c:forEach>
             </ol>
         </div>
-   </main>
+    </main>
 
-<h2 style="text-align:center;">Buy Spices Needed</h2>
-<div class="product">
-	
-	<c:forEach var="ingredient" items="${recipe.getSpicesInvolved()}">
-		<div>
-        	<a href="/spice?spice=${ingredient.name}">
-        	<img src="${ingredient.getPicture()}" alt="${ingredient.getName()}" width="304" height="236">
-             ${ingredient.name}
-            </a>
-    	</div>
-    </c:forEach>
+    <h2 style="text-align:center;">Buy Spices Needed</h2>
+    <div class="product">
+
+        <c:forEach var="ingredient" items="${recipe.getSpicesInvolved()}">
+            <div>
+                <a href="/spice?spice=${ingredient.name}">
+                    <img src="${ingredient.getPicture()}" alt="${ingredient.getName()}" width="304" height="236">
+                        ${ingredient.name}
+                </a>
+            </div>
+        </c:forEach>
+    </div>
+
+    <h2 style="text-align:center;">Related Recipe</h2>
+    <div class="product">
+
+        <c:forEach var="ingredient" items="${recipe.getComplimentaryRecipes()}">
+            <div>
+                <a href="/recipe?recipe=${ingredient.name}">
+                    <img src="${ingredient.getPicture()}" alt="${ingredient.getName()}" width="304" height="236"> </a>
+                <p>${ingredient.name}</p>
+            </div>
+        </c:forEach>
+
+    </div>
 </div>
-
-<h2 style="text-align:center;">Related Recipe</h2>
-<div class="product">
-	
-	<c:forEach var="ingredient" items="${recipe.getComplimentaryRecipes()}">
-		<div>
-			<a href="/recipe?recipe=${ingredient.name}"> 
-			<img src="${ingredient.getPicture()}" alt="${ingredient.getName()}" width="304" height="236"> </a> 
-        	<p>${ingredient.name}</p> 
-    	</div>
-    </c:forEach>
-
-</div>
-</main>
 
 </body>
 
