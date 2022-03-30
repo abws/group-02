@@ -4,18 +4,18 @@ import javax.persistence.Entity;
 import javax.persistence.Transient;
 
 /**
- * Child class of Item
- * Represents items in metric format
+ * Child class of Item Represents items in metric format
+ * 
  * @author Abdiwahab
  *
  */
 @Entity
-public class ItemMetric extends Item{
+public class ItemMetric extends Item {
 	private int kilograms;
 	private int grams;
-	@Transient //transient annotation stops these fields from being persisted
+	@Transient // transient annotation stops these fields from being persisted
 	private double price;
-	
+
 	public int getKilograms() {
 		return kilograms;
 	}
@@ -33,10 +33,10 @@ public class ItemMetric extends Item{
 	}
 
 	public double getPrice() {
-		//get the price of 1 gram and multiply it by the number of grams we have (LHS)
+		// get the price of 1 gram and multiply it by the number of grams we have (LHS)
 		this.price = ((kilograms * 1000) + grams) * (getSpice().getPrice() / 100);
 		this.price = this.price * this.getQuantity();
-		this.price = Math.round(this.price * 100.0) / 100.0; //round to 2 decimal places
+		this.price = Math.round(this.price * 100.0) / 100.0; // round to 2 decimal places
 		return price;
 	}
 

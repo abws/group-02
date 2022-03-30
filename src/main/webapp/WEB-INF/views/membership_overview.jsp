@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Londrina+Solid&display=swap"
           rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-     <jsp:include page="base.jsp" />
+    <jsp:include page="base.jsp" />
     <title>Membership</title>
 
 </head>
@@ -162,7 +162,7 @@ margin:20px;
 
 
 
-    <div class="columns">
+    	<div class="columns">
 
                 
                 <div class="price">
@@ -190,9 +190,9 @@ margin:20px;
                             </form>
                         </c:when>
                     </c:choose>
-                       </div>
-                </div>
-            </div>
+                    </div>
+                 </div>
+        	</div>
             
             <div class="columns">
                

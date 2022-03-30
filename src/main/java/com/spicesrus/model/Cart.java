@@ -8,12 +8,13 @@ import javax.persistence.*;
 
 /**
  * A class to represent a shopping cart
+ * 
  * @author Abdiwahab
  * @version 1
  *
  */
 @Entity
-public class Cart  implements Serializable {
+public class Cart implements Serializable {
 	/**
 	 * Session attribute needs to serialise and deserialise all cart objects
 	 */
@@ -21,14 +22,12 @@ public class Cart  implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private int id; //a session will point to a basket
-	
-	@OneToMany (mappedBy="cart",
-				cascade = CascadeType.ALL,
-				orphanRemoval = true)
+	private int id; // a session will point to a basket
+
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Item> items = new ArrayList<>();
-	
-	@Transient //we don't want to persist the price as it can be generated on-load
+
+	@Transient // we don't want to persist the price as it can be generated on-load
 	private double price;
 
 	public int getId() {
@@ -39,7 +38,8 @@ public class Cart  implements Serializable {
 		this.id = id;
 	}
 
-	public List<Item> getItems() { //getItems.add() will allow adding items. getItems.remove() will allow us to remove items
+	public List<Item> getItems() { // getItems.add() will allow adding items. getItems.remove() will allow us to
+									// remove items
 		return items;
 	}
 
@@ -47,9 +47,9 @@ public class Cart  implements Serializable {
 		this.items = items;
 	}
 
-	public double getPrice() { //loop through each item and return total price of them
+	public double getPrice() { // loop through each item and return total price of them
 		double total = 0;
-		
+
 		for (Item i : items) {
 			total += i.getPrice();
 		}

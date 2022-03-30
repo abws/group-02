@@ -269,7 +269,7 @@
 		</form>
 
 		</div>
-	</div>
+</div>
 
 
 <h2>Products</h2>
@@ -320,7 +320,7 @@
                 <a href="/spice?spice=${spice.name}">
                 <img src="${spice.getPicture()}" alt="${spice.getName()}" width="500"
                                                       height="300" style="width:100%">
-            </a>
+            	</a>
             <h1> ${spice.getName()}</h1>
             <p> Category: ${spice.getCategory()}</p>
             <c:choose>

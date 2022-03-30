@@ -7,7 +7,7 @@ import com.spicesrus.service.CartHelper;
 
 @ControllerAdvice
 public class CartControllerAdvice {
-	
+
 	@ModelAttribute("cartSize")
 	public int addCartSize() {
 		return CartHelper.getCartSize();

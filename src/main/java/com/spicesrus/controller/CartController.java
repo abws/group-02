@@ -21,14 +21,13 @@ import com.spicesrus.service.CartHelper;
 public class CartController {
 	@Autowired
 	RecipesRepository rRepo;
-	
+
 	@Autowired
 	ItemRepository iRepo;
-	
+
 	@Autowired
 	CartRepository cRepo;
-	
-	
+
 	@GetMapping("/cart")
 	public String showCart(HttpServletRequest request, Principal principal, Model model) {
 		String username = principal != null ? principal.getName() : null;
@@ -36,34 +35,33 @@ public class CartController {
 		CartHelper.createOrRetrieveCart(model, request);
 		return "cart/cart";
 	}
-	
+
 	@PostMapping("increaseItem")
 	public String increaseItem(@RequestParam int itemId, @RequestParam int quantity) {
 		System.out.println(quantity);
-		
+
 		Item i = iRepo.findById(itemId);
-		
+
 		System.out.println(i);
-	
+
 		if (quantity > 0) {
 			i.setQuantity(quantity);
 			iRepo.save(i);
-		}
-		else
+		} else
 			iRepo.delete(i);
-		return "redirect:cart";	
+		return "redirect:cart";
 	}
-	
+
 	@PostMapping("deleteItem")
 	public String deleteItem(@RequestParam int itemId, HttpServletRequest request) {
 		Cart cart = CartHelper.createOrRetrieveCart(request);
 		Item item = iRepo.deleteById(itemId);
-		
+
 		cart.getItems().forEach(i -> {
-		if (i == item) {
-			cart.getItems().remove(item);
-			return;
-		}
+			if (i == item) {
+				cart.getItems().remove(item);
+				return;
+			}
 		});
 		cRepo.save(cart);
 		request.getSession().setAttribute("cart", cart);
@@ -71,8 +69,5 @@ public class CartController {
 
 		return "redirect:/cart";
 	}
-	
-	
-
 
 }

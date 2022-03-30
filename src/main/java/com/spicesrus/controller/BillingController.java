@@ -70,7 +70,7 @@ public class BillingController {
 	        details.setExpiryDate(encoder.encode(details.getExpiryDate()));
 	        repo.save(details);
 	        //Sends a billing confirmation email using billing template HTML once the user submits the form.
-	        try {
+	        try {	
 	        	Context context = new Context();
 	        	context.setVariable("firstName", details.getFirstName());
 	        	context.setVariable("customerAddress", details.getCustomerAddress());

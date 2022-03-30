@@ -16,41 +16,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.spicesrus.service.CartHelper;
 
 /**
- * Manages the creation and destruction of item objects, and their addition to a cart
- * @author Abdiwahab
- * version 3
+ * Manages the creation and destruction of item objects, and their addition to a
+ * cart
+ * 
+ * @author Abdiwahab version 3
  */
 
 @Controller
 public class ItemController {
 	@Autowired
 	SpicesRepository sRepo;
-	
+
 	@Autowired
 	ItemRepository iRepo;
-	
+
 	@Autowired
 	CartRepository cRepo;
-	
+
 	@Autowired
 	UserRepository uRepo;
 
 	@Autowired
 	private RecipesRepository recipesRepository;
-	
+
 	/**
-	 * Individual spice page
-	 * Checks if a spice exists in the database.
-	 * Couldn't handle "/spices..." requests as its implemented elsewhere
+	 * Individual spice page Checks if a spice exists in the database. Couldn't
+	 * handle "/spices..." requests as its implemented elsewhere
+	 * 
 	 * @param spice
 	 * @param model
 	 * @return "spice" jsp page
 	 */
-	@RequestMapping("/spice") //by default manages get requests
+	@RequestMapping("/spice") // by default manages get requests
 	public String showSpice(@RequestParam String spice, Model model, HttpServletRequest request, Principal user) {
-		
-		//get spice to view and item ready 
-		Spices s = sRepo.findByName(spice); //same as finding by id since the name is the id
+
+		// get spice to view and item ready
+		Spices s = sRepo.findByName(spice); // same as finding by id since the name is the id
 		model.addAttribute("spice", s);
 		model.addAttribute("itemImperial", new ItemImperial());
 		model.addAttribute("itemMetric", new ItemMetric());
@@ -59,96 +60,93 @@ public class ItemController {
 		recipesList.subList(0, Math.min(recipesList.size(), 3));
 		System.out.println(recipesList);
 		model.addAttribute("related", recipesList);
-		
-		//user privileges
+
+		// user privileges
 		User userDetails = null;
 		String level;
-		
+
 		if (user == null) {
 			level = "none";
-		}
-		else {
+		} else {
 			userDetails = uRepo.findByUsername(user.getName()).get();
 			level = userDetails.getAuthorities().get(userDetails.getAuthorities().size() - 1);
 		}
-		
+
 		model.addAttribute("level", level.toLowerCase());
-	
-		
-		//in the case user types the spice name into the url
+
+		// in the case user types the spice name into the url
 		if (s != null)
 			model.addAttribute("spice", s);
 		else
 			return "spice-not-found-page";
-		return "spice";	
-	}	
-	
-	
+		return "spice";
+	}
+
 	/**
-	 * Adds an item in metric format to database
-	 * Item form takes us here
+	 * Adds an item in metric format to database Item form takes us here
+	 * 
 	 * @param item
 	 * @return "spice" jsp page
 	 */
 	@PostMapping("addItemMetric")
 	public String addItemMetric(@ModelAttribute ItemMetric item, HttpServletRequest request) {
-		
+
 		Cart cart = CartHelper.createOrRetrieveCart(request);
-		
-		for(Item i : cart.getItems()) {
+
+		for (Item i : cart.getItems()) {
 			if (item.getWeight().equals(i.getWeight()) && item.getSpice().getName().equals(i.getSpice().getName())) {
-				if (item.getQuantity() + i.getQuantity() > 10) 
+				if (item.getQuantity() + i.getQuantity() > 10)
 					i.setQuantity(10);
-				else 
+				else
 					i.setQuantity(item.getQuantity() + i.getQuantity());
-				
+
 				return "redirect:/spices";
 			}
 		}
-		
+
 		item.setCart(cart);
 
 		cart.getItems().add(item);
 		request.getSession().setAttribute("cart", cart);
-		
+
 		item.setCart(cart);
 		Item i = iRepo.save(item);
 		i = iRepo.findById(i.getId());
-		
+
 		CartHelper.setCartSize(cart.getItems().size());
 		return "redirect:/spices";
 	}
-	
+
 	/**
-	 * Adds an item in imperial format to database
-	 * Item form takes us here
+	 * Adds an item in imperial format to database Item form takes us here
+	 * 
 	 * @param item
 	 * @return "spice" jsp page
 	 */
 	@PostMapping("addItemImperial")
-		public String addItemImperial(@ModelAttribute ItemImperial item, HttpServletRequest request) {
-			
+	public String addItemImperial(@ModelAttribute ItemImperial item, HttpServletRequest request) {
+
 		Cart cart = CartHelper.createOrRetrieveCart(request);
-		
-		for(Item i : cart.getItems()) {
+
+		for (Item i : cart.getItems()) {
 			if (item.getWeight().equals(i.getWeight()) && item.getSpice().getName().equals(i.getSpice().getName())) {
-				if (item.getQuantity() + i.getQuantity() > 10) 
+				if (item.getQuantity() + i.getQuantity() > 10)
 					i.setQuantity(10);
-				else 
+				else
 					i.setQuantity(item.getQuantity() + i.getQuantity());
 				return "redirect:/spices";
 			}
 		}
-		
+
 		item.setCart(cart);
-	
+
 		cart.getItems().add(item);
 		request.getSession().setAttribute("cart", cart);
-		
+
 		item.setCart(cart);
 		Item i = iRepo.save(item);
 		i = iRepo.findById(i.getId());
-		
+
 		CartHelper.setCartSize(cart.getItems().size());
 		return "redirect:/spices";
 	}
