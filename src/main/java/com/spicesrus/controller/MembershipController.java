@@ -15,7 +15,9 @@ import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
-
+/**The membership controller manages the user to have the privileges.
+*
+*/
 @Controller
 public class MembershipController {
 

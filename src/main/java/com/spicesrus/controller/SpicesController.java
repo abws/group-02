@@ -22,6 +22,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+* Manages the spices by searching for the spices by the categories and sorting them by names and price
+* 
+* 
+*/
+
 @Controller
 public class SpicesController {
 	@Autowired
@@ -30,7 +36,7 @@ public class SpicesController {
 	private CartRepository cRepo;
 	@Autowired
 	private UserRepository userRepository;
-
+	
 	@RequestMapping("/spices")
 	public String Spices(Principal principal, Model model,
 			@RequestParam(name = "sort", required = false, defaultValue = "a-z") String sortType,
@@ -50,7 +56,7 @@ public class SpicesController {
 			model.addAttribute("isMember", false);
 		}
 		List<Spices> displayed = new ArrayList<>();
-
+		//searching for item by category salts
 		if (sortType.equals("salts")) {
 			model.addAttribute("path", "Relevant");
 			spiceListFromDatabase.forEach(spice -> {
@@ -58,6 +64,7 @@ public class SpicesController {
 					displayed.add(spice);
 				}
 			});
+			//searching for item by category peppers
 		} else if (sortType.equals("peppers")) {
 			model.addAttribute("path", "Relevant");
 			spiceListFromDatabase.forEach(spice -> {
@@ -65,6 +72,7 @@ public class SpicesController {
 					displayed.add(spice);
 				}
 			});
+			//searching for item by category spice blends
 		} else if (sortType.equals("spiceBlends")) {
 			model.addAttribute("path", "Relevant");
 			spiceListFromDatabase.forEach(spice -> {
@@ -72,19 +80,23 @@ public class SpicesController {
 					displayed.add(spice);
 				}
 			});
+			//sorting items by their name from a to z
 		} else if (sortType.equals("a-z")) {
 			model.addAttribute("path", "A-Z");
 			spiceListFromDatabase.forEach(displayed::add);
 			displayed.sort(Comparator.comparing(Spices::getName));
+			//sorting items by their name from z to a
 		} else if (sortType.equals("z-a")) {
 			model.addAttribute("path", "Z-A");
 			spiceListFromDatabase.forEach(displayed::add);
 			displayed.sort(Comparator.comparing(Spices::getName));
 			Collections.reverse(displayed);
+			//sorting items by their price ascending
 		} else if (sortType.equals("price_asc")) {
 			model.addAttribute("path", "Price Ascending");
 			spiceListFromDatabase.forEach(displayed::add);
 			displayed.sort(Comparator.comparing(Spices::getPrice));
+			//sorting items by their price descending
 		} else if (sortType.equals("price_dsc")) {
 			model.addAttribute("path", "Price Descending");
 			spiceListFromDatabase.forEach(displayed::add);
