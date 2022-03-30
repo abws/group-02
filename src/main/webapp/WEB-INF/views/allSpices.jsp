@@ -16,13 +16,19 @@
             margin-right: 20px;
             margin-bottom: 20px;
             text-align: center;
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
             flex: 0 1 33%;
             padding: 0 10px;
             float: left;
             width: 33.33%;
 
         }
+        
+        h1{
+        	font-weight: 900px;
+        }
+        
+
 
         .cards {
             display: flex;
@@ -33,8 +39,9 @@
 
 
         .price {
-            color: rgb(252, 168, 90);
+            color: rgb(255 140 32);
             font-size: 22px;
+            font-weight: 900;
         }
 
         .card button {
@@ -70,6 +77,7 @@
             display: flex;
             flex-wrap: wrap;
             width: 100%;
+            justify-content: space-between;
 
         }
 
@@ -99,6 +107,10 @@
             color: white;;
         }
 
+		a{
+			text-decoration: none;
+			
+		}
         .pagination a:hover:not(.active) {
             background-color: rgb(248, 191, 152);
         }
@@ -125,8 +137,8 @@
         }
 
         body {
-            background-color: #fae3cc;
-            font-family: arial;
+            background-color: #f9efe6;
+            font-family:"Monserrat", sans-serif;
             padding: 0;
             margin: 0;
         }
@@ -137,7 +149,7 @@
             font-size: 40px;
 
 
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
 
             color: #321800;
         }
@@ -158,21 +170,19 @@
             justify-content: center;
             display: flex;
             width: 100%;
-            height: 380px;
+         	height: 400px;
             background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/spice_hero.png");
 
         }
 
 
+		
         form .search {
-            width: 100%;
             position: relative;
             display: flex;
         }
 
         form .searchTerm {
-
-            width: 120%;
             border: 4px solid white;
             border-right: none;
             border-top: none;
@@ -183,8 +193,9 @@
             outline: none;
             color: #ffffff;
             background: transparent;
-
         }
+        
+     
 
 
         form .searchTerm:focus {
@@ -194,7 +205,7 @@
 
         ::placeholder {
             color: white;
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
             font-size: 30px;
 
         }
@@ -215,25 +226,22 @@
 
         form input.searchTerm {
             font-size: 35px;
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
             padding: 10px;
+            
         }
+        
+   
 
         .box {
-
-
-            padding-right: 15px;
-            padding-left: 15px;
-            margin-right: auto;
-            margin-left: auto;
-            width: 1300px;
-
-            display: flex;
-
+           width: 1300px;
+   			margin-inline: auto;
+            
         }
-
-        .searchform {
-            display: flex;
+        
+        .select{
+        	color:black;
+        	width: 21%;
         }
 
 
@@ -283,7 +291,7 @@
     </a>
 </div>
 
-<form name="sortby" class=select>
+<form name="sortby" class="select">
     <label for="sorting">Sort By:</label>
     <select name="sort" id="sort">
         <option selected disabled>${path}</option>
@@ -317,18 +325,18 @@
             <p> Category: ${spice.getCategory()}</p>
             <c:choose>
                 <c:when test="${isMember}">
-                    <p class="price">Non Member Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                    <p class="price" style="text-decoration: line-through; color: black; font-size:17px;"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
                                                        minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber>
                         per 100g</p>
-                    <p class="price">Your Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                    <p class="price">Now: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
                                                        minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber>
                         per 100g</p>
                 </c:when>
                 <c:otherwise>
-                    <p class="price">Member Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                    <p class="price" style="font-size:17px;">Member Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
                                                                    minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber>
                         per 100g</p>
-                    <p class="price">Your Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                    <p class="price">Price: <fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
                                                                          minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber>
                         per 100g</p>
 

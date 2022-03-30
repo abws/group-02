@@ -1,248 +1,343 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ page pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html>
 <head>
     <style>
 
-#cart {
-  font-family: Arial;
-  border-collapse: collapse;
-  width: 60%;
-}
 
-#cart td, #cart th {
-    border: 1px solid #c5c5c5;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    padding: 40px;
-    text-align: center;
-    font-size:16px;
-}
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            font-family: "Monserrat", sans-serif;
+        }
 
-#cart tr:nth-child(even){background-color: #f2f2f2;}
+        #cart {
+            font-family: 'Monserrat, sans-serif';
+            border-collapse: collapse;
+            width: 100%;
 
-#cart tr:hover {background-color: #ddd;}
+        }
 
-#cart th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
+        #cart td, #cart th {
+            border: 1px solid #c5c5c5;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            text-align: center;
+            font-size: 16px;
+            width: 900px;
+        }
 
-  color: black;
-  
- }
- 
-input{
+        #cart tr:hover {
+            background-color: #ece8e8;
+        }
 
-width:30%;
-   border-bottom: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    text-align:center;
-    background:transparent;
-    font-size:14px;
-    
+        #cart th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
 
-}
+            color: black;
 
-button{
+        }
 
-border-radius:40px;
-background:white;
-border: 1px solid #fb892c;
-color:#fb892c;
+        input {
 
-}
-
-button:hover {
-  background-color: #fd8d0c;
-  color: white;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 25px;
-  display: flex;
-  border-top: 1px solid black;
-}
-
-/* Columns */
-.left-column {
-  width: 80%;
-  position: relative;
-}
-
-.right-column {
-  width: 40%;
-  margin-top: 30px;
-
-  background-color: #ffe1ca;;
-  border-radius: 35px;
-  font-family: 'Helvetica';
+            width: 30%;
+            border-bottom: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            text-align: center;
+            background: transparent;
+            font-size: 14px;
 
 
-  -webkit-box-shadow: 10px 10px 5px #d9d9d9;
-}
+        }
 
-.checkout{
-    text-align:center;
-}
+        button {
 
-.checkout button{
-    background-color: #f17a1c;
-    border-radius: 25px;
-    color: white;
-   
-    cursor: pointer;
-   
-    width: 60%;
-    height: 50px;
-    font-size: 22px;
-    cursor: pointer;
+            border-radius: 40px;
+            background: white;
+            border: 1px solid #fb892c;
+            color: #fb892c;
 
-    margin: 30px;
-}
+        }
 
-.checkout button:hover {
-  background-color: #ff6600;
-}
+        button:hover {
+            background-color: #fd8d0c;
+            color: white;
+        }
 
-.summary{
-display: flex; 
-justify-content: space-between; 
-padding: 0 50 0 50;
-margin-top: 10px;
-box-shadow: 0px 10px 10px -10px grey;
-}
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 25px;
+            display: flex;
 
-.summary p{
-    color: black;
-        font-size: 16px;
-    font-weight: 800;
+        }
 
-}
+        /* Columns */
+        .left-column {
+            width: 80%;
+            position: relative;
+            margin-top: 20px;
+        }
 
-.total {
-    margin-top: 15px;
-    display:flex;
-    justify-content: space-between;
-    font-size: 2em; 
-}
+        .right-column {
+            width: 28%;
+            margin-top: 30px;
+            height: 30%;
+            background-color: #ffe1ca;;
+            border-radius: 35px;
+            font-family: 'Monserrat, sans-serif';
+            -webkit-box-shadow: 10px 10px 5px #d9d9d9;
+            margin-left: 20px;
+        }
 
-.total .final-price {
-    margin-top: 20px;
-    font-size: 2.5em;
-}
+        .checkout {
+            text-align: center;
+        }
 
-.right-column h1{
-    color: black;
-}
+        .checkout button {
+            background-color: #f17a1c;
+            border-radius: 25px;
+            color: white;
 
-.header{
-    width:100%;
-    text-align:center;
-    
-    
-}
-</style>
+            cursor: pointer;
+
+            width: 60%;
+            height: 50px;
+            font-size: 22px;
+            cursor: pointer;
+
+            margin: 30px;
+        }
+
+        .checkout button:hover {
+            background-color: #ff6600;
+        }
+
+        .summary {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            border-bottom: solid 1px #808080;
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+
+        .summary p {
+            color: black;
+            font-size: 16px;
+            font-weight: 800;
+
+        }
+
+        .total {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 2em;
+            font-family: 'Monserrat, sans-serif';
+
+        }
+
+        .total .final-price {
+            margin-top: 20px;
+            margin-right: 20px;
+            font-family: 'Monserrat, sans-serif';
+        }
+
+        .right-column h1 {
+            color: black;
+            margin-top: 20px;
+        }
+
+
+        .header {
+            width: 100%;
+            text-align: center;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .delete-row {
+            padding: 0px !important;
+        }
+
+        .delete-row input[value] {
+            color: red;
+            width: 100%;
+        }
+
+        .delete-row input[value]:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .pic {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            width: 100%;
+            height: 400px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../images/cartback.webp");
+
+
+        }
+
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Londrina+Solid&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Londrina+Solid&display=swap"
+          rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <jsp:include page="../base.jsp" />
+    <jsp:include page="../base.jsp"/>
     <title>Cart</title>
 
 </head>
 <body>
-    <div class="header">
-        <h1>Shopping Cart</h1>
+
+<div id="back">
+
+    <div class="pic">
+        <h1 style="font-size:50px; color: white; font-family: 'Monserrat, sans-serif'">Shopping Cart</h1>
+
+
     </div>
+
+</div>
+
 <c:choose>
     <c:when test="${cart.getItems().size() > 0}">
-         <main class="container">
+        <main class="container">
 
-         
-              <div class="left-column">
-              
 
-        <table id="cart">
-            <tr>
-                <th>Product Name</th>
-                <th>Type</th>
-                <th>Quantity</th>
-                <th>Price/100g</th>
-                <th>Total</th>
-            </tr>
-            <c:forEach items="${cart.items}" var="item">
+            <div class="left-column">
 
-            <tr>
-                <td>${item.spice.name}</td>
-                <td>${item.spice.category}</td>
-                <td>
-                    <form action="increaseItem" method="post">
-                        <button class="btn btn-default btn-subtract3" onclick="decrement()">-</button>
-                            <input type="text" name="quantity" id="quantity" value="${item.quantity}" class="form-control no-padding text-center item-quantity3"/>
-                            <input type="text" name="itemId" value="${item.id}" hidden="true">
-                        <button class="btn btn-default btn-add" onclick="increment()">+</button>
-                    </form>
-                </td>
-                <td>${item.spice.price}</td>
-                <td>${item.price}</td>
 
-            </tr>
-            </c:forEach>
-            </table>
+                <table id="cart">
+                    <tr>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Quantity</th>
+                        <th>Price/100g</th>
+                        <th>Weight/Unit</th>
+                        <th>Total Price</th>
+                    </tr>
+                    <c:forEach items="${cart.items}" var="item">
 
-          </div>
-          
-              <div class="right-column">
-              <h1 style="text-align: center;">Summary</h1>
-               <div class ="summary">
-                  <p>Subtotal </p>
-                  <p>&pound${cart.price}</p>
-               </div>
-               
-                 <div class ="summary">
-                  <p>Shipping Fee </p>
-                  <p>&pound6.80</p>
-               </div>
+                        <tr>
+                            <td class="delete-row">
+                                <form action="/deleteItem" method="POST">
+                                    <input name="itemId" value="${item.id}" hidden>
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </td>
+                            <td><img src="${item.spice.picture}" alt=""></td>
+                            <td>${item.spice.name}</td>
+                            <td>${item.spice.category}</td>
+                            <td>
+                                <form action="increaseItem" method="post">
+                                    <button class="btn btn-default btn-subtract3" onclick="decrement(${item.id})">-
+                                    </button>
+                                    <input type="text" name="quantity" id="quantity${item.id}"
+                                           value="${item.quantity}"/>
+                                    <input type="text" name="itemId" value="${item.id}" hidden="true">
+                                    <button onclick="increment(${item.id})">+</button>
+                                </form>
+                            </td>
 
-                <div class="total">
-                  <p>Total </p>
-                  <p class="final-price"id="total"></p>
-               </div>
+                            <sec:authorize access="hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
+                                <td><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                                      minFractionDigits="2">${item.spice.getUserPrice()}</fmt:formatNumber></td>
+                                <td>${item.toString()}</td>
+                                <td><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                                      minFractionDigits="2">${item.getUserPrice()}</fmt:formatNumber></td>
+                            </sec:authorize>
+                            <sec:authorize access="!hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
+                                <td>&pound${item.spice.price}</td>
+                                <td>${item.toString()}</td>
+                                <td>&pound${item.price}</td>
+                            </sec:authorize>
 
-               <div class = "checkout">
-               <a href="/billing"><button>Checkout</button></a>
-                  
-              </div>
-              </div>
+                        </tr>
+                    </c:forEach>
+                </table>
 
-         </main>
-     </c:when>
-     <c:otherwise>
-     <h1>Shopping cart empty</h1>
-     </c:otherwise>
- </c:choose>
-         <script>
-            document.getElementById("total").innerHTML = "&pound" + Math.round(Number(${cart.price} + 6.8) * 100) / 100;
+            </div>
 
-            function increment() {
-                let val = Number(document.getElementById("quantity").value);
-                if (val == 10) return 0; //the button deactivates for values over 10 or below 0
-                document.getElementById("quantity").value = Number(document.getElementById("quantity").value) + 1;
-          }
+            <div class="right-column">
+                <h2 style="text-align: center;">Summary</h2>
+                <div class="summary">
+                    <p>Subtotal </p>
+                    <sec:authorize access="hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
+                        <p id="subtotal">${cart.getUserPrice()}</p>
+                    </sec:authorize>
+                    <sec:authorize access="!hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
+                        <p id="subtotal">${cart.price}</p>
+                    </sec:authorize>
+                </div>
 
-            function decrement() {
-                let val = Number(document.getElementById("quantity").value);
-                if (val == 1) return 0;
-                document.getElementById("quantity").value = document.getElementById("quantity").value - 1;
-          }
+                <div class="summary">
+                    <p>Shipping Fee </p>
+                    <p>&pound6.80</p>
+                </div>
 
-        </script>
-    </body>
+
+                <div class="summary" style="border-bottom:none;">
+                    <p style="font-size:36px;">Total</p>
+                    <p style="font-size:36px;" class="final-price" id="total"></p>
+                </div>
+
+                <div class="checkout">
+                    <a href="/billing">
+                        <button>Checkout</button>
+                    </a>
+
+                </div>
+            </div>
+
+        </main>
+    </c:when>
+    <c:otherwise>
+        <h1 style="text-align:center;">Shopping cart empty</h1>
+    </c:otherwise>
+</c:choose>
+<script>
+    <sec:authorize access="hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
+        document.getElementById("total").innerHTML = "&pound" + Number(${cart.getUserPrice()} +6.8).toFixed(2);
+        document.getElementById("subtotal").innerHTML = "&pound" + Number(${cart.getUserPrice()}).toFixed(2);
+    </sec:authorize>
+    <sec:authorize access="!hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
+        document.getElementById("total").innerHTML = "&pound" + Number(${cart.price} +6.8).toFixed(2);
+        document.getElementById("subtotal").innerHTML = "&pound" + Number(${cart.price}).toFixed(2);
+    </sec:authorize>
+
+
+
+    function increment(id) {
+        let val = Number(document.getElementById("quantity" + id).value);
+        if (val == 10) return 0; //the button deactivates for values over 10 or below 0
+        document.getElementById("quantity" + id).value = Number(document.getElementById("quantity" + id).value) + 1;
+    }
+
+    function decrement(id) {
+        let val = Number(document.getElementById("quantity" + id).value);
+        if (val == 1) return 0;
+        document.getElementById("quantity" + id).value = Number(document.getElementById("quantity" + id).value) - 1;
+    }
+
+</script>
+</body>
 </html>

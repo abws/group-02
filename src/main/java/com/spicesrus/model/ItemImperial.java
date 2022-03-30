@@ -5,12 +5,12 @@ import javax.persistence.Transient;
 
 /**
  * Child class of Item
- * Represents items in pound format
+ * Represents items in imperial format
  * @author Abdiwahab
  *
  */
 @Entity
-public class ItemPounds extends Item{
+public class ItemImperial extends Item{
 	private int pounds;
 	private int ounces;
 	@Transient //"don't persist this value, we'll calculate it on the server-side as needed"
@@ -45,9 +45,9 @@ public class ItemPounds extends Item{
 	@Override
 	public String toString() {
 		if (this.pounds == 0)
-			return getSpice().getName() + ":" + this.ounces + " lb";
+			return this.ounces + " lb";
 		else
-			return getSpice().getName() + ":" + this.pounds + " lb " + this.pounds + " oz.";
+			return this.pounds + " lb " + this.pounds + " oz.";
 	}
 	
 	@Override

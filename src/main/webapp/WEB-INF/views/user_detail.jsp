@@ -12,79 +12,247 @@
     <jsp:include page="base.jsp"/>
 
 
-    <script>
-        function toggle() {
-            x = document.getElementById("password1").type === "password";
-            if (x) {
-                document.getElementById("password1").type = "text";
-                document.getElementById("password2").type = "text";
-                document.getElementById("password1button").textContent = "Hide";
-                document.getElementById("password2button").textContent = "Hide";
-            } else {
-                document.getElementById("password1").type = "password";
-                document.getElementById("password2").type = "password";
-                document.getElementById("password1button").textContent = "Show";
-                document.getElementById("password2button").textContent = "Show";
-            }
+  
+<script>
+    function toggle() {
+        x = document.getElementById("password1").type === "password";
+        if (x) {
+            document.getElementById("password1").type = "text";
+            document.getElementById("password2").type = "text";
+            document.getElementById("password1button").innerHTML = "<i class='fa-solid fa-eye-slash'></i>";
+            document.getElementById("password2button").innerHTML = "<i class='fa-solid fa-eye-slash'></i>";
+            
+       
+        } else {
+            document.getElementById("password1").type = "password";
+            document.getElementById("password2").type = "password";
+            document.getElementById("password1button").innerHTML = "<i class='fa-solid fa-eye'></i>";
+            document.getElementById("password2button").innerHTML = "<i class='fa-solid fa-eye'></i>";
         }
-    </script>
+    }
+</script>
+
 
 
     <style>
+    
+    .hero-nav {
+   		 background-color: rgb(255, 136, 0);
+   		 
+   		}
+      
+      .navigation ul {
+	    list-style-type: none;
+	    margin: 0;
+	    padding: 0;
+	    overflow: hidden;
+	    font-size: 18px;
+	    font-family:"Monserrat", sans-serif;
+	    font-weight: 900;
+	    background-color: rgb(255, 136, 0);
+	    
+	  }
         * {
             box-sizing: border-box;
         }
 
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+        html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        font-family: "Monserrat", sans-serif;
+      }
 
-        /* Style the side navigation */
-        .sidenav {
-            height: 100%;
-            width: 200px;
-            position: fixed;
-            z-index: 1;
+  
+        
+    .container1{
+ 	width: 80%;
+   
+    border-radius: 10px;
+    margin-top: 5%;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    
+}
 
-            left: 0;
-            background-color: #FB9350;
-            overflow-x: hidden;
-        }
+.left{
+    width: 60%;
+    background: url("../../images/userdetails2.webp") no-repeat;
+    padding: 20px;
+    border-radius: 10px;
+    background-size: cover;
+    height: 500px;
+
+ 
+  
+}
+
+.right{
+
+    width: 40%;
+    background: #ffffffe8;
+    padding: 20px;
+    border-radius: 10px;
+
+  
+}
+
+.error{
+
+	font-size: 16px;
+    color: red;
+}
+
+.registerform{
+
+	height:auto;
+
+}
 
 
-        /* Side navigation links */
-        .sidenav a {
-            color: white;
-            padding: 16px;
-            text-decoration: none;
-            display: block;
-        }
+.input1{
+     display: block;
+    font-size: 0.5em;
+    font-weight: 600;
+    padding-left: 0.5em;
+    text-transform: uppercase;
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+    width:50%;
+    
+}
 
-        /* Change color on hover */
-        .sidenav a:hover {
-            background-color: #F28123;
-            color: white;
-        }
+input:focus{
+    outline: none;
+}
 
-        /* Style the content */
-        .content {
-            margin-left: 200px;
-            padding-left: 20px;
-            margin-top: 5vh;
-        }
+.input2{
+    background: none;
+    border: none;
+    line-height: 1em;
+    font-weight: 300;
+    padding: 0.125em 0.25em;
+    width: 100%;
+
+}
+
+.label1{
+     border-bottom: 1px solid #333;
+    display: block;
+    font-size: 1.25em;
+    margin-bottom: 0.5em;
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+    display:flex;
+    
+}
+
+.input3{
+    background: none;
+    border: none;
+    line-height: 1em;
+    font-weight: 300;
+    padding: 0.125em 0.25em;
+    width: 80%;
+
+}
+
+.buttonsubimit{
+    
+    border: 1px solid #333;
+    line-height: 1em;
+    padding: 0.5em 0.5em;
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+    margin-top:10px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.buttonsubimit:hover{
+
+    background: black;
+    color:white;
+    cursor:pointer;
+}
+
+.button{
+
+
+    border: none;
+    font-size: 16px;
+    float: right;
+    background: transparent;
+  
+}
+
+.button:hover{
+	cursor:pointer;
+}
+
+
+.submit{
+	width:100%;
+	text-align: center;
+}
+
+
+.sidebar {
+margin-top: 6%;
+    overflow: hidden;
+    background-color: white;
+    text-align: center;
+    margin-left: 18%;
+}
+
+
+
+.sidebar a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  border-bottom:1px solid black;
+
+}
+
+.sidebar a:hover {
+  color: white;
+  background:black;
+  cursor:pointer;
+}
+
     </style>
 </head>
 <body>
-<div class="sidenav">
-    <a href="#">My Details</a>
+
+   
+<div class="sidebar">
+    <a style="background:black; color: white;" href="#">My Details</a>
     <a href="#">My Address</a>
     <a href="#">My Orders</a>
     <a href="#">My Preference</a>
 </div>
 
-<div class="content">
-    <h2 class="text-center">User Profile Details</h2>
+
+<div class="container1">
+
+
+
+<div class="left">
+
+
+
+</div>
+
+<div class="right">
+
+    <h1 style="text-align:center;margin-bottom: 0px;">User Profile Details</h1>
 
     <div class="d-flex justify-content-center">
         <br>
@@ -93,53 +261,63 @@
 
             <form:form modelAttribute="user" action="/user" method="post">
 
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Username:</span>
-                    <form:input cssClass="form-control" readonly="true" path="username"/>
-                        <%--                <form:errors cssClass="helpBlock" path="username"/><br>--%>
+                <div class="label1">
+                    <p class="input1">Username:</p>
+                    <form:input cssClass="input2" readonly="true" path="username"/>
+                        <%-- <form:errors cssClass="error" path="username"/><br>--%>
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Email:</span>
-                    <form:input cssClass="form-control" path="email"/>
-                    <form:errors cssClass="helpBlock" path="email"/><br>
+                <div class="label1">
+                     <form:errors cssClass="error" path="email"/>
+                    <p class="input1">Email:</p>
+                    <form:input cssClass="input2" path="email"/>
+               
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">First Name:</span>
-                    <form:input cssClass="form-control" path="firstName"/>
-                    <form:errors cssClass="helpBlock" path="firstName"/> <br>
+                <div class="label1">
+                 <form:errors cssClass="error" path="firstName"/>
+                    <p class="input1">First Name:</p>
+                    <form:input cssClass="input2" path="firstName"/>
+                   
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Last Name:</span>
-                    <form:input cssClass="form-control" path="lastName"/>
-                    <form:errors cssClass="helpBlock" path="lastName"/><br>
-                </div>
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Password:</span>
-                    <form:password cssClass="form-control" id="password1" path="password" placeholder="****"/>
-                    <form:errors cssClass="helpBlock" path="password"/><br>
-                    <button class="btn btn-primary input-group-append" type="button" id="password1button"
-                            onclick="toggle()">View
-                    </button>
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Confirm Password:</span>
-                    <form:password cssClass="form-control" id="password2" path="confirmedPassword" placeholder="****"/>
-                    <form:errors cssClass="helpBlock" path="confirmedPassword"/><br>
-                    <button class="btn btn-primary input-group-append" type="button" id="password2button"
-                            onclick="toggle()">View
-                    </button>
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">User Roles:</span>
-                    <input readonly value="${membership}">
+                <div class="label1">
+                  <form:errors cssClass="error" path="lastName"/>
+                    <p class="input1">Last Name:</p>
+                    <form:input cssClass="input2" path="lastName"/>
+                  
                 </div>
 
-                <input type="submit" value="Change Details">
+                <div class="label1">
+                    <form:errors cssClass="error" path="password"/>
+                    <p class="input1">Password:</p>
+                    <form:password cssClass="input3" id="password1" path="password" placeholder="****"/>
+                   
+                    <button class="button" type="button" id="password1button"
+                            onclick="toggle()"><i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                <div class="label1">
+                 <form:errors cssClass="error" path="confirmedPassword"/>
+                    <p class="input1">Confirm Password:</p>
+                    <form:password cssClass="input3" id="password2" path="confirmedPassword" placeholder="****"/>
+                   
+                    <button class="button" type="button" id="password2button"
+                            onclick="toggle()"><i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                <div class="label1">
+                    <p class="input1">User Roles:</p>
+                    <input class="input2" readonly value="${membership}">
+                </div>
+
+  				<div class="submit">
+                <input style="text-align:center;"class="buttonsubimit" type="submit" value="Change Details">
+            </div>
+                
             </form:form>
         </sec:authorize>
 
     </div>
+    </div>
+  </div>
 </body>
 
 </html>

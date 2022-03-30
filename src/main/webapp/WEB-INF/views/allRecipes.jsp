@@ -15,7 +15,8 @@
             margin-right: 20px;
             margin-bottom: 20px;
             text-align: center;
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
+
             flex: 0 1 33%;
             padding: 0 10px;
             float: left;
@@ -69,6 +70,8 @@
             display: flex;
             flex-wrap: wrap;
             width: 100%;
+            justify-content: space-between;
+            
 
         }
 
@@ -124,8 +127,9 @@
         }
 
         body {
-            background-color: #fae3cc;
-            font-family: arial;
+            background-color: #f9efe6;
+            font-family:"Monserrat", sans-serif;
+
             padding: 0;
             margin: 0;
         }
@@ -136,7 +140,8 @@
             font-size: 40px;
 
 
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
+
 
             color: #321800;
         }
@@ -157,8 +162,8 @@
             justify-content: center;
             display: flex;
             width: 100%;
-            height: 380px;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://oldworldspices.com/wp-content/uploads/2020/05/Old-World-Spices-and-Seasonings-Quality-Assurance.png");
+         	height: 400px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/recipeback.png");
 
 
         }
@@ -172,7 +177,6 @@
 
         form .searchTerm {
 
-            width: 120%;
             border: 4px solid white;
             border-right: none;
             border-top: none;
@@ -194,9 +198,25 @@
 
         ::placeholder {
             color: white;
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
+
             font-size: 30px;
 
+        }
+  
+        a{
+			text-decoration: none;
+			
+		}
+		
+		
+        .select{
+        	color:black;
+        	width: 20%;
+        }
+        
+        #sort{
+        	width:100px;
         }
 
         form .searchButton {
@@ -215,26 +235,25 @@
 
         form input.searchTerm {
             font-size: 35px;
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
+
             padding: 10px;
         }
 
         .box {
 
 
-            padding-right: 15px;
-            padding-left: 15px;
-            margin-right: auto;
-            margin-left: auto;
-            width: 1300px;
+           width: 1300px;
+   			margin-inline: auto;
 
-            display: flex;
+        }
+        
+        h1{
+        
+        	 font-weight: bold;
 
         }
 
-        .searchform {
-            display: flex;
-        }
 
 
     </style>
@@ -266,9 +285,10 @@
 <h2>Categories</h2>
 <div class="vertical-menu" style="text-align: center">
 
-    <a href="/recipes" class="cata">
-        <button>All</button>
+    <a href="/recipes" class="cata" >
+        <button >All</button>
     </a>
+        
     <a href="/recipes/Breakfast" class="cata">
         <button>Breakfast</button>
     </a>
@@ -278,7 +298,7 @@
     <a href="/recipes/Dinner" class="cata">
         <button>Dinner</button>
     </a>
-    <a href="/recipes/CakesAndPies" class="cata">
+    <a href="/recipes/Cakes_and_Pies" class="cata">
         <button>Cakes and Pies</button>
     </a>
     <a href="/recipes/Pastries" class="cata">
@@ -286,12 +306,14 @@
     </a>
 </div>
 
-<form name="sortby" class=select>
+
+<form name="sortby" class="select">
     <label for="sorting">Sort By:</label>
     <select name="sort" id="sort">
-        <option selected disabled>${path}</option>
+        <option id ="fixed_sort"selected disabled>Select</option>        
         <option id="sort_a-z" value="/recipes/a-z">A-Z</option>
         <option id="sort_z-a" value="/recipes/z-a">Z-A</option>
+    
     </select>
 
 </form>
@@ -301,6 +323,7 @@
     sortmenu.onchange = function () {
         window.open(this.options[this.selectedIndex].value, "_self");
     };
+    
 
 </script>
 

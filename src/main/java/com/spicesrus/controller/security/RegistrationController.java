@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.thymeleaf.context.Context;
 
+import java.security.Principal;
+
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 
@@ -44,7 +46,9 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/register")
-    public String register(Model model) {
+    public String register(Model model, Principal principal) {
+    	String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
         model.addAttribute("user", new UserDTO());
         return "security/register";
     }
@@ -71,7 +75,7 @@ public class RegistrationController {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-        return "redirect:/membership_overview";
+        return "redirect:/membership";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)

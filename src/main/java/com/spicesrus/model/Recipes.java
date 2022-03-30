@@ -2,6 +2,7 @@ package com.spicesrus.model;
 
 import com.spicesrus.dto.RecipeDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -19,10 +20,11 @@ public class Recipes {
 	private String description;
 	private String FullDescription;
 	private int timeRequired;
+	private String minimumRoleRequired;
 
 	@OneToMany
 	@JoinColumn
-	private List<Recipes> complimentaryRecipes;
+	private List<Recipes> complimentaryRecipes = new ArrayList<Recipes>();
 	private String picture;
 	
 	@OneToMany
@@ -35,8 +37,6 @@ public class Recipes {
 	private List<String> method;
 
 	private boolean restricted = false;
-
-
 
 	public List<Spices> getSpicesInvolved() {
 		return spicesInvolved;
@@ -130,5 +130,4 @@ public class Recipes {
 		dto.setComplimentarySpices(spicesInvolved);
 		return dto;
 	}
-
 }

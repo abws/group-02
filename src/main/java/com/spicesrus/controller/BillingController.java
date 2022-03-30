@@ -1,5 +1,7 @@
 package com.spicesrus.controller;
 
+import java.security.Principal;
+
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 
@@ -43,14 +45,18 @@ public class BillingController {
     }
 	
 	 @RequestMapping(value = "/billing")
-	  public String billing(Model model) {
+	  public String billing(Model model, Principal principal) {
+		 	String username = principal != null ? principal.getName() : null;
+			model.addAttribute("username", username);
 	        model.addAttribute("billing", new BillingDetails());
 	        return "billing";
 	    }
 	 
 	 @RequestMapping(value = "/billing", method = RequestMethod.POST)
-	    public String billing(@Valid @ModelAttribute("billing") BillingDetails details, BindingResult result) {
-	        if (result.hasErrors()) {
+	    public String billing(Principal principal, Model model, @Valid @ModelAttribute("billing") BillingDetails details, BindingResult result) {
+		 	String username = principal != null ? principal.getName() : null;
+			model.addAttribute("username", username);
+		 	if (result.hasErrors()) {
 	            return "billing";
 	        }
 	         

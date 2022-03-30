@@ -7,7 +7,9 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * A class to represent user cart
+ * A class to represent a shopping cart
+ * @author Abdiwahab
+ * @version 1
  *
  */
 @Entity
@@ -50,6 +52,16 @@ public class Cart  implements Serializable {
 		
 		for (Item i : items) {
 			total += i.getPrice();
+		}
+		this.price = total;
+		return price;
+	}
+
+	public double getUserPrice() {
+		double total = 0;
+
+		for (Item i : items) {
+			total += i.getUserPrice();
 		}
 		this.price = total;
 		return price;

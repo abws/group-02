@@ -5,12 +5,12 @@ import javax.persistence.Transient;
 
 /**
  * Child class of Item
- * Represents items in gram format
+ * Represents items in metric format
  * @author Abdiwahab
  *
  */
 @Entity
-public class ItemGrams extends Item{
+public class ItemMetric extends Item{
 	private int kilograms;
 	private int grams;
 	@Transient //transient annotation stops these fields from being persisted
@@ -43,9 +43,9 @@ public class ItemGrams extends Item{
 	@Override
 	public String toString() {
 		if (kilograms == 0)
-			return getSpice().getName() + ":" + this.grams + "grams";
+			return this.grams + "g";
 		else
-			return getSpice().getName() + ":" + this.kilograms + "kg " + this.grams + "g";
+			return this.kilograms + "kg " + this.grams + "g";
 	}
 
 	@Override

@@ -9,13 +9,38 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
 
-        html, body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            font-family: 'Arial';
-        }
+.hero-nav {
+   		 background-color: rgb(255, 136, 0);
+   		 
+   		}
+      
+      .navigation ul {
+	    list-style-type: none;
+	    margin: 0;
+	    padding: 0;
+	    overflow: hidden;
+	    font-size: 18px;
+	    font-family:"Monserrat", sans-serif;
+	    font-weight: 900;
+	    background-color: rgb(255, 136, 0);
+	    
+	  }
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        font-family: "Monserrat", sans-serif;
+      }
+    
 
+        .container1 {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+            display: flex;
+            margin-top: 10%;
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -346,6 +371,21 @@
 
 
         }
+	  
+        div button{
+		display: inline-block;
+            background-color: #fd8d0c;
+            border-radius: 10px;
+            font-size: 18px;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 12px 30px;
+            transition: all .5s;
+            border: none;
+            cursor: pointer;
+		float: right;
+
+	  }
 
 
     </style>
@@ -354,16 +394,43 @@
     <title>${recipe.name}</title>
 </head>
 
-<body>
-<main class="container">
+<body id="recipe">
+<main class="container1" >
 
     <!-- Left Column / Image -->
     <div>
-        <img src="${recipe.picture}" alt="${recipe.name}">
+        <img src="${recipe.picture}" height="500px" width="500px" alt="${recipe.name}">
     </div>
     <!-- Right Column -->
     <div class="right-column">
-
+	  
+	  <div>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
+	  <script>
+	  window.onload = function(){
+	  	document.getElementById("download").
+	  	addEventListener("click", ()=>{
+	  	const recipe = this.document.getElementById("recipe");
+	  	console.log(recipe);
+	  	console.log(window);
+	  	var opt = {
+  margin:       0,
+  filename:     'recipe.pdf',
+  image:        { type: 'jpeg', quality: 0.98 },
+  html2canvas:  { scale: 2, useCORS: true, allowTaint: true },
+  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+};
+	  	html2pdf().from(recipe).set(opt).save();
+	  	})
+	  }
+	  </script>
+		<button class="button" id="download"> Download</button>
+        </div>
+	  
+	  
+	  
+	   
+	  	
         <!-- Product Description -->
         <div class="recipe-description">
             <span>${recipe.category}</span>
@@ -391,35 +458,29 @@
     </div>
 </main>
 
-
-<h2 style="text-align:center;">Related Product</h2>
+<h2 style="text-align:center;">Buy Spices Needed</h2>
 <div class="product">
+	
+	<c:forEach var="ingredient" items="${recipe.getSpicesInvolved()}">
+		<div>
+        	<a href="/spice?spice=${ingredient.name}">
+        	<img src="${ingredient.getPicture()}" alt="${ingredient.getName()}" width="304" height="236">
+             ${ingredient.name}
+            </a>
+    	</div>
+    </c:forEach>
+</div>
 
-
-    <div>
-        <img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/paprika1.jpeg" alt="Sweet Paprika"
+<h2 style="text-align:center;">Related Recipe</h2>
+<div class="product">
+	
+	<c:forEach var="ingredient" items="${recipe.getComplimentaryRecipes()}">
+		<div>
+        	<img src="${ingredient.getPicture()}" alt="${ingredient.getName()}"
              width="304" height="236">
-        <p>Sweet Paprika</p>
-    </div>
-
-    <div>
-        <img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/cumin-seed.jpg" alt="Cumin Seeds"
-             width="304" height="236">
-        <p>Cumin Seeds</p>
-    </div>
-
-    <div>
-        <img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/cayenne-pepper_1422925949-scaled.jpg"
-             alt="Cayenne Pepper" width="304" height="236">
-        <p>Cayenne Pepper</p>
-    </div>
-
-    <div>
-        <img src="https://www.spicemountain.co.uk/wp-content/uploads/2019/10/20161123_131905.jpg" alt="Carway Seeds"
-             width="304" height="236">
-        <p>Carway Seeds</p>
-    </div>
-
+        	<p>${ingredient.getName()}</p>
+    	</div>
+    </c:forEach>
 </div>
 
 </body>
