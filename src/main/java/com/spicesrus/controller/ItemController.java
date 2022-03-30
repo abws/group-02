@@ -56,7 +56,7 @@ public class ItemController {
         Spices s = sRepo.findByName(spice); //same as finding by id since the name is the id
         model.addAttribute("spice", s);
         model.addAttribute("itemPound", new ItemImperial()); //CANNOT INSTANTIATE AN ITEM OBJECT!, whatever happened to that whole polymorphism stuff they were bragging about (would be nice if i could create a general object that gets specified after form is filled)
-        model.addAttribute("itemGram", new ItemMetric());
+        model.addAttribute("itemMetric", new ItemMetric());
 
         //user privileges
         String level;
