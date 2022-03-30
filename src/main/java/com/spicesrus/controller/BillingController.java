@@ -79,7 +79,10 @@ public class BillingController {
 	            handler.dispatchEmail(details.getCustomerEmail(), "Billing Confirmation", "billing_template.html", context);
 	        }catch (MessagingException e) {
 	            e.printStackTrace();
-	        } 
+	        }
+	        
+	        CartHelper.createAndReplaceCart(request);
+	        CartHelper.setCartSize(0);
 	        return "order-complete";
 	    }
 	

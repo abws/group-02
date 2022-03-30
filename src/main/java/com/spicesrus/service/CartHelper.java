@@ -43,6 +43,16 @@ public class CartHelper {
 		return cart;	
 	}
 	
+	public static Cart createAndReplaceCart(HttpServletRequest request) {
+		Cart cart = (Cart) request.getSession().getAttribute("cart");
+		cart = cRepo.findById(cart.getId()).get();
+		cart = cRepo.save(new Cart());
+		request.getSession().setAttribute("cart", cart);
+
+		return cart;	
+	}
+	
+	
 	public static int getCartSize() {
 		return cartSize;
 	}

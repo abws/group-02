@@ -64,8 +64,9 @@ public class ItemController {
 		User userDetails = null;
 		String level;
 		
-		if (user == null)
+		if (user == null) {
 			level = "none";
+		}
 		else {
 			userDetails = uRepo.findByUsername(user.getName()).get();
 			level = userDetails.getAuthorities().get(userDetails.getAuthorities().size() - 1);

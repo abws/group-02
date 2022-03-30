@@ -94,18 +94,6 @@ public class SpicesController {
 		}
 		model.addAttribute("spices", displayed);
 		
-		Cart cart = (Cart) request.getSession().getAttribute("cart");
-		if (cart == null) {
-			cart = cRepo.save(new Cart());
-			request.setAttribute("cart", cart);
-		}
-		else {
-			cart = cRepo.findById(cart.getId()).get();
-		}
-		
-		System.out.println(cart.getId());
-		model.addAttribute("cart", cart);
-		
 		return "allSpices";
 	}
 	
