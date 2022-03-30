@@ -87,6 +87,7 @@ public class AdminManageRecipes {
         newRecipe.setRestricted(dto.isRestricted());
         newRecipe.setName(dto.getName());
         List<String> method = new ArrayList<>(Arrays.asList(dto.getMethod().split("\n")));
+
         List<String> ingredients = new ArrayList<>(Arrays.asList(dto.getIngredients().split("\n")));
         newRecipe.setMethod(method);
         newRecipe.setIngredients(ingredients);
