@@ -65,6 +65,10 @@ public abstract class Item implements Serializable{
 
 	public abstract double getPrice();
 
+	public double getUserPrice() {
+		return getPrice() * 0.8; // implement 20% discount
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}

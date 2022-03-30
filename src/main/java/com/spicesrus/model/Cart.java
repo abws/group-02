@@ -57,4 +57,14 @@ public class Cart  implements Serializable {
 		return price;
 	}
 
+	public double getUserPrice() {
+		double total = 0;
+
+		for (Item i : items) {
+			total += i.getUserPrice();
+		}
+		this.price = total;
+		return price;
+	}
+
 }
