@@ -127,7 +127,7 @@ public class ItemController {
 	 */
 	@PostMapping("addItemImperial")
 		public String addItemImperial(@ModelAttribute ItemImperial item, HttpServletRequest request) {
-			
+		
 		Cart cart = CartHelper.createOrRetrieveCart(request);
 		
 		for(Item i : cart.getItems()) {
@@ -136,12 +136,13 @@ public class ItemController {
 					i.setQuantity(10);
 				else 
 					i.setQuantity(item.getQuantity() + i.getQuantity());
+				
 				return "redirect:/spices";
 			}
 		}
 		
 		item.setCart(cart);
-	
+
 		cart.getItems().add(item);
 		request.getSession().setAttribute("cart", cart);
 		
