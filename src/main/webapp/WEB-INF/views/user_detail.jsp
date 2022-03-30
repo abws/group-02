@@ -232,14 +232,6 @@ margin-top: 6%;
 <body>
 
    
-<div class="sidebar">
-    <a style="background:black; color: white;" href="#">My Details</a>
-    <a href="#">My Address</a>
-    <a href="#">My Orders</a>
-    <a href="#">My Preference</a>
-</div>
-
-
 <div class="container1">
 
 

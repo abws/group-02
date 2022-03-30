@@ -498,22 +498,13 @@
 <!--Temporary Placeholder Recipes (Hardcoded)-->
 <h2 style="text-align:center;">Related Recipes</h2>
 <div class="recipe">
-    <div>
-        <img src="https://selfproclaimedfoodie.com/wp-content/uploads/new-york-strip-steak-square-3.jpg"
-             alt="Black pepper" width="304" height="236">
-        <p> Angus Steak</p>
-    </div>
-    <div>
-        <img src="https://www.connoisseurusveg.com/wp-content/uploads/2017/04/black-pepper-tofu.jpg" alt="Black pepper"
-             width="304" height="236">
-        <p>Black Pepper Tofu</p>
-    </div>
-
-    <div>
-        <img src="https://huntercattle.com/wp-content/uploads/2020/11/istockphoto-541851706-612x612-1.jpg"
-             alt="Black pepper" width="304" height="236">
-        <p>Sirloin Steak</p>
-    </div>
+    <c:forEach var="ingredient" items="${related}">
+        <div>
+            <a href="/recipe?recipe=${ingredient.name}">
+                <img src="${ingredient.getPicture()}" alt="${ingredient.getName()}" width="304" height="236"> </a>
+            <p>${ingredient.name}</p>
+        </div>
+    </c:forEach>
 </div>
 
 <!--JAVASCRIPT-->
