@@ -1,10 +1,22 @@
 # SpicesRUS Website
+    
+##Group Members
+Callie Lewis (cl480), Commits Under: 'C Lewis'
 
+Connor Johncock (cj202), Commits Under: 'C N Johncock' and 'Connor'
+
+Abdiwahab Salah (as1270), Commits Under: 'A Salah' and 'Abdiwahab Salah'
+
+Jan K. Kaliszuk (jkk21), Commits Under: 'jano' and 'Jan Kaliszuk'
+
+Haleem Hussain (hh277), Commits Under: 'Haleem', 'halee' and 'H Hussain' 
+
+Jianan Lin (jl784), Commits Under: 'Amy Lin' and 'J Lin'
 ### Installation Instructions
 
 1.) Navigate to https://dev.mysql.com/doc/mysql-getting-started/en/ and follow the instructions to install a MySQL server.
 
-2.) Using the same guide createa a database and user account for this system to access.
+2.) Using the same guide create a database and user account for this system to access.
 
 3.) Clone this repository and execute `gradlew bootrun` inside of the directory
 
