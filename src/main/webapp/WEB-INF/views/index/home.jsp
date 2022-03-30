@@ -90,7 +90,7 @@ input[type=submit]:hover {
             
             <ul>
            
-                <li style="font-family:Bradley Hand; font-size: 28px;border-right:none; font: weight 900px;;text-decoration: none;" > <a href="/home">Spices R Us</a> </li>
+                <li style="font-family:Bradley Hand; font-size: 28px;border-right:none; font: weight 900px;;text-decoration: none;" > <a href="/">Spices R Us</a> </li>
                 <li><a href="/home"><i class="fa fa-home"></i>Home</a></li>
                
                 <li><a href="/spices"><i class="fa-solid fa-store"></i>Shop</a></li>

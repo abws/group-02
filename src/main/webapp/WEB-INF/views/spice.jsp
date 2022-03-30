@@ -427,11 +427,11 @@
                             <div class="product-price">
                                 <sec:authorize access="hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
                                     <span><p id="price-"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
-                                                                           minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber><span> per 100g</span></p></span>
+                                                                           minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber><span>&nbsp;per 100g</span></p></span>
                                 </sec:authorize>
                                 <sec:authorize access="!hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
                                     <span><p id="price-"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
-                                                                           minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber><span> per 100g</span></p></span>
+                                                                           minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber><span>&nbsp;per 100g</span></p></span>
                                 </sec:authorize>
                             </div>
                             <input type="submit" class="cart-btn" value="Add to Cart" id="submit" disabled>
@@ -476,14 +476,15 @@
 
                             <div class="product-price">
                                 <sec:authorize access="hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
-                                    <span><p id="price-">&pound${spice.getUserPrice()} <span>per 100g</span></p></span>
+                                    <span><p id="price-"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                                                           minFractionDigits="2">${spice.getUserPrice()}</fmt:formatNumber><span>&nbsp;per 100g</span></p></span>
                                 </sec:authorize>
                                 <sec:authorize access="!hasAnyAuthority('NOVICE', 'EXPERT', 'ADMIN')">
-                                    <span><p id="price-">&pound${spice.price} <span>per 100g</span></p></span>
+                                    <span><p id="price-"><fmt:formatNumber type="currency" currencySymbol="£" maxFractionDigits="2"
+                                                                           minFractionDigits="2">${spice.getPrice()}</fmt:formatNumber><span>&nbsp;per 100g</span></p></span>
                                 </sec:authorize>
                             </div>
                             <input type="submit" class="cart-btn" value="Add to Cart" id="submit" disabled>
-
                         </form:form>
                     </div>
                 </div>

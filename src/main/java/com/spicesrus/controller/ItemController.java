@@ -125,7 +125,7 @@ public class ItemController {
 	 * @return "spice" jsp page
 	 */
 	@PostMapping("addItemImperial")
-		public String addItemPounds(@ModelAttribute ItemImperial item, HttpServletRequest request) {
+		public String addItemImperial(@ModelAttribute ItemImperial item, HttpServletRequest request) {
 			
 		Cart cart = CartHelper.createOrRetrieveCart(request);
 		
