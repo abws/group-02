@@ -476,11 +476,12 @@
 
         <c:forEach var="ingredient" items="${recipe.getComplimentaryRecipes()}">
             <div>
-                <img src="${ingredient.getPicture()}" alt="${ingredient.getName()}"
-                     width="304" height="236">
-                <p>${ingredient.getName()}</p>
+                <a href="/recipe?recipe=${ingredient.name}">
+                    <img src="${ingredient.getPicture()}" alt="${ingredient.getName()}" width="304" height="236"> </a>
+                <p>${ingredient.name}</p>
             </div>
         </c:forEach>
+
     </div>
 </div>
 
