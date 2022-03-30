@@ -549,6 +549,9 @@
             document.getElementById("input-small").setAttribute('path', 'ounces');
             document.getElementById("input-large").setAttribute('name', 'pounds');
             document.getElementById("input-small").setAttribute('name', 'ounces');
+            document.getElementById("input-small").max = 15;
+            document.getElementById("input-large").value = 0;
+            document.getElementById("input-small").value = 0;
 
             document.getElementById("label-large").innerHTML = "lb";
             document.getElementById("label-small").innerHTML = "oz.";
@@ -562,8 +565,11 @@
 
             document.getElementById("input-large").setAttribute('path', "kilograms");
             document.getElementById("input-small").setAttribute('path', "grams");
-            document.getElementById("input-large").setAttribute('name', 'kilgrams');
+            document.getElementById("input-large").setAttribute('name', 'kilograms');
             document.getElementById("input-small").setAttribute('name', 'grams');
+            document.getElementById("input-small").max = 999;
+            document.getElementById("input-large").value = 0;
+            document.getElementById("input-small").value = 0;
 
             document.getElementById("label-large").innerHTML = "kg";
             document.getElementById("label-small").innerHTML = "g";

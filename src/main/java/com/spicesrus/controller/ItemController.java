@@ -124,7 +124,7 @@ public class ItemController {
 	 * @return "spice" jsp page
 	 */
 	@PostMapping("addItemImperial")
-	public String addItemImperial(@ModelAttribute ItemImperial item, HttpServletRequest request) {
+		public String addItemImperial(@ModelAttribute ItemImperial item, HttpServletRequest request) {
 
 		Cart cart = CartHelper.createOrRetrieveCart(request);
 
@@ -134,6 +134,7 @@ public class ItemController {
 					i.setQuantity(10);
 				else
 					i.setQuantity(item.getQuantity() + i.getQuantity());
+
 				return "redirect:/spices";
 			}
 		}

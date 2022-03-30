@@ -4,9 +4,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.spicesrus.service.CartHelper;
-/**The cart controller advice  manage to have multiple items in the cart .
-*
-*/
+
+/**
+ * Adds a model attribute 'cartSize' for every request.
+ * @author
+ */
 @ControllerAdvice
 public class CartControllerAdvice {
 
