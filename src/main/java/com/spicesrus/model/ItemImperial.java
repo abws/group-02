@@ -35,10 +35,8 @@ public class ItemImperial extends Item{
 	public double getPrice() {
 		//convert pounds and ounces to grams and then multiply by standard per gram
 		this.price = (((this.pounds * 16) + this.ounces) * 28.3495) * (getSpice().getPrice() / 100);
-		System.out.println(this.ounces);
 		this.price = this.price * this.getQuantity();
 		this.price = Math.round(this.price * 100.0) / 100.0; //round to 2 decimal places
-		//System.out.println(price);
 		return price;
 	}
 
@@ -47,7 +45,7 @@ public class ItemImperial extends Item{
 		if (this.pounds == 0)
 			return this.ounces + " lb";
 		else
-			return this.pounds + " lb " + this.pounds + " oz.";
+			return this.pounds + " lb " + this.ounces + " oz.";
 	}
 	
 	@Override

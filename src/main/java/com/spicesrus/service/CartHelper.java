@@ -9,6 +9,11 @@ import org.springframework.ui.Model;
 import com.spicesrus.model.Cart;
 import com.spicesrus.repository.CartRepository;
 
+/**
+ * Central class to create, retrieve and add cart objects to model
+ * @author Abdiwahab
+ *
+ */
 @Component
 public class CartHelper {
 	private static CartRepository cRepo;

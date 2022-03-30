@@ -129,7 +129,7 @@ public class ItemController {
 		public String addItemImperial(@ModelAttribute ItemImperial item, HttpServletRequest request) {
 		
 		Cart cart = CartHelper.createOrRetrieveCart(request);
-		
+
 		for(Item i : cart.getItems()) {
 			if (item.getWeight().equals(i.getWeight()) && item.getSpice().getName().equals(i.getSpice().getName())) {
 				if (item.getQuantity() + i.getQuantity() > 10) 

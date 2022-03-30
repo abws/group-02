@@ -5,6 +5,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.spicesrus.service.CartHelper;
 
+/**
+ * Adds a model attribute 'cartSize' for every request.
+ * @author Abdiwahab
+ *
+ */
 @ControllerAdvice
 public class CartControllerAdvice {
 	
