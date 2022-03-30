@@ -111,7 +111,7 @@
         font-size: 14px;
         font-weight: 400;
         color: #000000;
-        margin-bottom: 20px;
+  
         display: inline-block;
       }
 
@@ -122,6 +122,12 @@
         margin: 20px 0px;
         padding-bottom: 10px;
         border-bottom: 1px solid #E1E8EE;
+
+      }
+      
+      .type {
+        margin: 20px 0px;
+        padding-bottom: 10px;
 
       }
 
@@ -135,10 +141,28 @@
         cursor: pointer;
         transition: all .5s;
       }
+      
+      .type button {
+        border: 2px solid #eee7e1;
+        border-radius: 6px;
+        padding: 13px 20px;
+        font-size: 14px;
+        color: #5E6977;
+        background-color: #fff;
+        cursor: pointer;
+        transition: all .5s;
+      }
 
       .type-choose button:hover,
       .type-choose button:active,
       .type-choose button:focus {
+        border: 2px solid #9e9386;
+        outline: none;
+      }
+      
+      .type button:hover,
+      .type button:active,
+      .type button:focus {
         border: 2px solid #9e9386;
         outline: none;
       }
@@ -178,13 +202,14 @@
         display: flex;
         align-items: center;
       }
+      
 
 
       .product-price span {
         font-size: 30px;
         font-weight: 400;
         color: black;
-        margin-right: 20px;
+        margin-right: 10px;
       }
 
       .cart-btn {
@@ -314,6 +339,14 @@
 		
 			font-size: 20px;
 		}
+		form{
+		        border-bottom: none;
+		
+		}
+		.type .cart-btn{
+		
+		float:right;
+		}
 
       </style>
       <jsp:include page="nav.jsp" />
@@ -363,7 +396,7 @@
 
               <!--Hidden Form for Server-Side-->
               <div class="quantity-config">            
-                <div class="type-choose">
+                <div class="type">
                   <form:form id="form" action="addItemMetric" modelAttribute="itemMetric">
                     <form:hidden path="spice" value="${spice.name}"/>
                     <form:hidden id="input-large" class="unit_input" path="kilograms"/>
@@ -378,9 +411,9 @@
                     </div>
 
                     <div class="product-price">
-                      <span><p id="price-">&pound${spice.price} per 100g</p></span>
-                      <input type="submit" class="cart-btn" value="Add to Cart" id="submit" disabled> 
-                    </div>     
+                      <span><p id="price-">&pound${spice.price} per 100g</p></span>                    
+                    </div> 
+                    <input type="submit" class="cart-btn" value="Add to Cart" id="submit" disabled>     
                   </form:form>
                 </div>
               </div>
@@ -392,7 +425,7 @@
 
               <!-- Weight Selection -->
               <div class="quantity-config">            
-                <div class="type-choose">
+                <div class="type">
                   <span>Select Weight</span> 
 
                   <!--form action and model attribute will change onclick via js-->
@@ -417,8 +450,9 @@
 
                     <div class="product-price">
                       <span><p id="price-">&pound${spice.price} per 100g</p></span>
-                      <input type="submit" class="cart-btn" value="Add to Cart" id="submit" disabled> 
-                    </div>     
+                    </div>   
+                    <input type="submit" class="cart-btn" value="Add to Cart" id="submit" disabled> 
+                      
                   </form:form>
                 </div>
               </div>
@@ -631,16 +665,15 @@
             var pricePerUnit = (rate / 100) * (Number(smallWeight) + (Number(largeWeight) * 1000));
             if (largeWeight == 0) {
               document.getElementById("price-").innerHTML = "&pound" + 
-                                                            pricePerUnit.toFixed(2) +
-                                                            " per " + smallWeight + 
-                                                             "g jar";
+                                                            pricePerUnit.toFixed(2) +                                                      
+                                                            " <span> per " + smallWeight + 
+                                                            "g jar</span>";
             }
             else {
               document.getElementById("price-").innerHTML = "&pound" + 
                                                             pricePerUnit.toFixed(2) +
-                                                            " per " + largeWeight + "kg " + 
-                                                            smallWeight + "g " +
-                                                            "unit";
+                                                            " <span> per " + largeWeight + "kg " + 
+                                                            smallWeight + "g unit</span>";
             }
           }
 
@@ -650,16 +683,15 @@
             if (largeWeight == 0) { 
               document.getElementById("price-").innerHTML = "&pound" + 
                                                             pricePerUnit.toFixed(2) +
-                                                            " per " + smallWeight + 
-                                                             "oz. jar";
+                                                            " <span> per " + smallWeight + 
+                                                             "oz. jar</span>";
             }
 
             else {
               document.getElementById("price-").innerHTML = "&pound" + 
                                                             pricePerUnit.toFixed(2) +
-                                                            " per " + largeWeight + "lb " + 
-                                                            smallWeight + "oz. " +
-                                                            "unit";
+                                                            " <span> per " + largeWeight + "lb " + 
+                                                            smallWeight + "oz. unit </span>";
             }
           }
         }

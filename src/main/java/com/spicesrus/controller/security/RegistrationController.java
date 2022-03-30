@@ -71,7 +71,7 @@ public class RegistrationController {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-        return "redirect:/membership_overview";
+        return "redirect:/membership";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)

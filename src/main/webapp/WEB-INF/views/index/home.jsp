@@ -98,7 +98,7 @@ input[type=submit]:hover {
                 
    
                 
-                <li style="float:right; border-right:none;"><a href="/cart"><i class="fa-solid fa-cart-shopping"></i>Cart</a></li>
+                <li style="float:right; border-right:none;"><a href="/cart"><i class="fa-solid fa-cart-shopping"></i>Cart(${cartSize})</a></li>
 				<div class="user">
                     <c:choose>
                         <c:when test="${username == null}">

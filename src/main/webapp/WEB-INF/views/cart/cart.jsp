@@ -5,10 +5,20 @@
 <head>
     <style>
 
+
+
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        font-family: "Monserrat", sans-serif;
+      }
+    
 #cart {
-  font-family: Arial;
+  font-family: 'Monserrat, sans-serif';
   border-collapse: collapse;
-  width: 60%;
+  width: 100%;
+
 }
 
 #cart td, #cart th {
@@ -16,14 +26,12 @@
     border-top: none;
     border-left: none;
     border-right: none;
-    padding: 40px;
     text-align: center;
     font-size:16px;
+    width: 900px;
 }
 
-#cart tr:nth-child(even){background-color: #f2f2f2;}
-
-#cart tr:hover {background-color: #ddd;}
+#cart tr:hover {background-color: #ece8e8;}
 
 #cart th {
   padding-top: 12px;
@@ -63,29 +71,29 @@ button:hover {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 25px;
   display: flex;
-  border-top: 1px solid black;
+  
 }
 
 /* Columns */
 .left-column {
   width: 80%;
   position: relative;
+  margin-top: 20px;
 }
 
 .right-column {
-  width: 60%;
+  width: 28%;
   margin-top: 30px;
-
+  height: 30%;
   background-color: #ffe1ca;;
   border-radius: 35px;
-  font-family: 'Helvetica';
-
-
+  font-family: 'Monserrat, sans-serif';
   -webkit-box-shadow: 10px 10px 5px #d9d9d9;
+  margin-left:20px;
 }
 
 .checkout{
@@ -112,35 +120,41 @@ button:hover {
 }
 
 .summary{
-display: flex; 
-justify-content: space-between; 
-padding: 0 50 0 50;
-margin-top: 10px;
-box-shadow: 0px 10px 10px -10px grey;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-bottom: solid 1px #808080;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .summary p{
     color: black;
-        font-size: 16px;
+    font-size: 16px;
     font-weight: 800;
 
 }
 
 .total {
-    margin-top: 15px;
+  	margin-top: 15px;
     display:flex;
     justify-content: space-between;
     font-size: 2em; 
+    font-family: 'Monserrat, sans-serif';
+    
 }
 
 .total .final-price {
     margin-top: 20px;
-    font-size: 2.5em;
+    margin-right:20px;
+    font-family: 'Monserrat, sans-serif';
 }
 
 .right-column h1{
     color: black;
+    margin-top: 20px;
 }
+
 
 .header{
     width:100%;
@@ -148,7 +162,7 @@ box-shadow: 0px 10px 10px -10px grey;
 }
 
 img {
-    width: 150%;
+    width: 100%;
 }
 
 .delete-row {
@@ -158,6 +172,21 @@ img {
 .delete-row input[value] {
     color: red;
     width: 100%;
+}
+
+.delete-row input[value]:hover {
+    cursor:pointer;
+}
+
+.pic {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    height: 400px;
+ 	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.etimg.com/thumb/width-1200,height-900,imgsize-1587026,resizemode-1,msid-67344360/markets/commodities/news/india-looks-to-maintain-lead-in-spices-this-year.jpg");
+
+
 }
 
 </style>
@@ -170,9 +199,17 @@ img {
 
 </head>
 <body>
-    <div class="header">
-        <h1>Shopping Cart</h1>
+
+   <div id="back">
+
+    <div class="pic">
+	    <h1 style="font-size:50px; color: white; font-family: 'Monserrat, sans-serif'">Shopping Cart</h1>
+  
+
     </div>
+    
+</div>
+
 <c:choose>
     <c:when test="${cart.getItems().size() > 0}">
          <main class="container">
@@ -185,7 +222,7 @@ img {
             <tr>
                 <th></th>
                 <th>Product</th>
-                <th>Product Name</th>
+                <th>Name</th>
                 <th>Type</th>
                 <th>Quantity</th>
                 <th>Price/100g</th>
@@ -223,7 +260,7 @@ img {
           </div>
           
               <div class="right-column">
-              <h1 style="text-align: center;">Summary</h1>
+              <h2 style="text-align: center;">Summary</h2>
                <div class ="summary">
                   <p>Subtotal </p>
                   <p id="subtotal">${cart.price}</p>
@@ -234,9 +271,10 @@ img {
                   <p>&pound6.80</p>
                </div>
 
-                <div class="total">
-                  <p>Total </p>
-                  <p class="final-price"id="total"></p>
+      
+               <div class ="summary" style="border-bottom:none;"> 
+				<p style="font-size:36px;">Total</p>                 
+                  <p  style="font-size:36px;" class="final-price"id="total"></p>
                </div>
 
                <div class = "checkout">
