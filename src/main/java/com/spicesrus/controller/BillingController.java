@@ -52,7 +52,7 @@ public class BillingController {
 		 	String username = principal != null ? principal.getName() : null;
 			model.addAttribute("username", username);
 	        model.addAttribute("billing", new BillingDetails());
-	        return "billing";
+	        return "billing_form";
 	    }
 	 
 	 @RequestMapping(value = "/billing", method = RequestMethod.POST)
@@ -61,7 +61,7 @@ public class BillingController {
 		 	String username = principal != null ? principal.getName() : null;
 			model.addAttribute("username", username);
 		 	if (result.hasErrors()) {
-	            return "billing";
+	            return "billing_form";
 	        }
 	         
 	        // encode all sensitive billing information 
@@ -83,7 +83,7 @@ public class BillingController {
 	        
 	        CartHelper.createAndReplaceCart(request);
 	        CartHelper.setCartSize(0);
-	        return "order-complete";
+	        return "order_overview";
 	    }
 	
 }

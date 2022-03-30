@@ -499,7 +499,6 @@
     </div>
 </main>
 
-<!--Temporary Placeholder Recipes (Hardcoded)-->
 <h2 style="text-align:center;">Related Recipes</h2>
 <div class="recipe">
     <c:forEach var="ingredient" items="${related}">

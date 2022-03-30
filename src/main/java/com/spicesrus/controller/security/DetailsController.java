@@ -54,7 +54,7 @@ public class DetailsController {
 
         model.addAttribute("user", dto);
         model.addAttribute("membership", Arrays.toString(actual.getAuthorities().toArray()));
-        return "user_detail";
+        return "user_overview";
     }
 
     @PostMapping("/user")
@@ -67,7 +67,7 @@ public class DetailsController {
 
         if (!principal.getName().equals(user.getUsername())) {
             result.reject("username", "You are not allowed to change your username"); // Prevents username being chnaged (Primary Key)
-            return "user_details";
+            return "user_overview";
         }
 
         /*
@@ -102,7 +102,7 @@ public class DetailsController {
         // If there are any non-excluded errors
         if (tmp.hasErrors()) {
             model.addAttribute(BindingResult.MODEL_KEY_PREFIX + "user", tmp); // Override the existing errors added to the model
-            return "user_detail"; // return the form to the user
+            return "user_overview"; // return the form to the user
         }
 
         actual.setEmail(user.getEmail());

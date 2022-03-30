@@ -56,7 +56,7 @@ public class RecipesController {
 		model.addAttribute("path", "Relevant");
 		model.addAttribute("recipes", output);
 
-		return "allRecipes";
+		return "recipe_overview";
 	}
 
 	@GetMapping("/recipes/Lunch")
@@ -73,7 +73,7 @@ public class RecipesController {
 		model.addAttribute("path", "Relevant");
 		model.addAttribute("recipes", output);
 
-		return "allRecipes";
+		return "recipe_overview";
 	}
 
 	@GetMapping("/recipes/Dinner")
@@ -90,7 +90,7 @@ public class RecipesController {
 		model.addAttribute("path", "Relevant");
 		model.addAttribute("recipes", output);
 
-		return "allRecipes";
+		return "recipe_overview";
 	}
 
 	@GetMapping("/recipes/Cakes_and_Pies")
@@ -107,7 +107,7 @@ public class RecipesController {
 		model.addAttribute("path", "Relevant");
 		model.addAttribute("recipes", output);
 
-		return "allRecipes";
+		return "recipe_overview";
 	}
 
 	@GetMapping("/recipes/Pastries")
@@ -124,7 +124,7 @@ public class RecipesController {
 		model.addAttribute("path", "Relevant");
 		model.addAttribute("recipes", output);
 
-		return "allRecipes";
+		return "recipe_overview";
 	}
 
 	@GetMapping("/recipes/a-z")
@@ -147,7 +147,7 @@ public class RecipesController {
 		}
 		model.addAttribute("recipes", output);
 		model.addAttribute("path", "A-Z");
-		return "allRecipes";
+		return "recipe_overview";
 	}
 
 	@GetMapping("/recipes/z-a")
@@ -171,7 +171,7 @@ public class RecipesController {
 
 		model.addAttribute("recipes", output);
 		model.addAttribute("path", "Z-A");
-		return "allRecipes";
+		return "recipe_overview";
 	}
 
 	@GetMapping("/recipesearch")
@@ -180,7 +180,7 @@ public class RecipesController {
 		model.addAttribute("username", username);
 		List<Recipes> recipes = recipesRepo.findByNameContainingIgnoreCase(recipe);
 		model.addAttribute("recipes", recipes);
-		return "allRecipes";
+		return "recipe_overview";
 
 	}
 
@@ -201,7 +201,7 @@ public class RecipesController {
 			recipesToAdd.addAll(recipesContainingSpice);
 		}
 		model.addAttribute("recipes", recipesToAdd);
-		return "allRecipes";
+		return "recipe_overview";
 	}
 
 	/**
