@@ -15,7 +15,8 @@
             margin-right: 20px;
             margin-bottom: 20px;
             text-align: center;
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
+
             flex: 0 1 33%;
             padding: 0 10px;
             float: left;
@@ -125,7 +126,8 @@
 
         body {
             background-color: #fae3cc;
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
+
             padding: 0;
             margin: 0;
         }
@@ -136,7 +138,8 @@
             font-size: 40px;
 
 
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
+
 
             color: #321800;
         }
@@ -193,7 +196,8 @@
 
         ::placeholder {
             color: white;
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
+
             font-size: 30px;
 
         }
@@ -229,7 +233,8 @@
 
         form input.searchTerm {
             font-size: 35px;
-            font-family: arial;
+            font-family:"Monserrat", sans-serif;
+
             padding: 10px;
         }
 
@@ -243,6 +248,12 @@
             width: 1300px;
 
             display: flex;
+
+        }
+        
+        h1{
+        
+        	 font-weight: bold;
 
         }
 
