@@ -77,6 +77,7 @@
             display: flex;
             flex-wrap: wrap;
             width: 100%;
+            justify-content: space-between;
 
         }
 
@@ -136,7 +137,7 @@
         }
 
         body {
-            background-color: #fae3cc;
+            background-color: #f9efe6;
             font-family:"Monserrat", sans-serif;
             padding: 0;
             margin: 0;
@@ -233,12 +234,9 @@
    
 
         .box {
-            padding-right: 15px;
-            padding-left: 15px;
-            margin-right: auto;
-            margin-left: auto;
-            width: 1300px;
-            display: flex;
+           width: 1300px;
+   			margin-inline: auto;
+            
         }
         
         .select{
