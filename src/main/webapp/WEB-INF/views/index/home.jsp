@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -94,10 +95,13 @@ input[type=submit]:hover {
                
                 <li><a href="/spices"><i class="fa-solid fa-store"></i>Shop</a></li>
                 <li><a href="/recipes" ><i class="fa-solid fa-receipt"></i>Recipe</a></li>
-                <li style="border-right:none;"><a href="/membership"><i class="fa-solid fa-bookmark"></i>Membership</a></li>
-                
-   
-                
+                <li><a href="/membership"><i class="fa-solid fa-bookmark"></i>Membership</a></li>
+                <sec:authorize access="hasAuthority('ADMIN')">
+                    <li><a href="/admin"><i class="fa-solid fa-user"></i>Admin Panel</a></li>
+                </sec:authorize>
+
+
+
                 <li style="float:right; border-right:none;"><a href="/cart"><i class="fa-solid fa-cart-shopping"></i>Cart(${cartSize})</a></li>
 				<div class="user">
                     <c:choose>
