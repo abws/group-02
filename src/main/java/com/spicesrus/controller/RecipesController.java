@@ -33,15 +33,18 @@ public class RecipesController {
     private SpicesRepository spicesRepo;
 
     @RequestMapping("/recipes")
-    public String Recipes(Model model) {
+    public String Recipes(Model model, Principal principal) {
+    	String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
         Iterable<Recipes> recipeListFromDatabase = recipesRepo.findAll();
         model.addAttribute("recipes", recipeListFromDatabase);
         return "allRecipes";
     }
 
     @GetMapping("/recipes/Breakfast")
-    public String showCategory_B(Model model) {
-
+    public String showCategory_B(Model model, Principal principal) {
+    	String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
         List<Recipes> recipes = SpicesrusApplication.recipes;
         List<Recipes> output = new ArrayList<Recipes>();
         for (Recipes r : recipes) {
@@ -56,8 +59,9 @@ public class RecipesController {
     }
 
     @GetMapping("/recipes/Lunch")
-    public String showCategory_L(Model model) {
-
+    public String showCategory_L(Model model, Principal principal) {
+    	String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
         List<Recipes> recipes = SpicesrusApplication.recipes;
         List<Recipes> output = new ArrayList<Recipes>();
         for (Recipes r : recipes) {
@@ -72,8 +76,9 @@ public class RecipesController {
     }
 
     @GetMapping("/recipes/Dinner")
-    public String showCategory_D(Model model) {
-
+    public String showCategory_D(Model model, Principal principal) {
+    	String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
         List<Recipes> recipes = SpicesrusApplication.recipes;
         List<Recipes> output = new ArrayList<Recipes>();
         for (Recipes r : recipes) {
@@ -87,9 +92,10 @@ public class RecipesController {
         return "allRecipes";
     }
 
-    @GetMapping("/recipes/Cakes and Pies")
-    public String showCategory_CaP(Model model) {
-
+    @GetMapping("/recipes/Cakes_and_Pies")
+    public String showCategory_CaP(Model model, Principal principal) {
+    	String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
         List<Recipes> recipes = SpicesrusApplication.recipes;
         List<Recipes> output = new ArrayList<Recipes>();
         for (Recipes r : recipes) {
@@ -104,8 +110,9 @@ public class RecipesController {
     }
 
     @GetMapping("/recipes/Pastries")
-    public String showCategory_P(Model model) {
-
+    public String showCategory_P(Model model, Principal principal) {
+    	String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
         List<Recipes> recipes = SpicesrusApplication.recipes;
         List<Recipes> output = new ArrayList<Recipes>();
         for (Recipes r : recipes) {
@@ -120,8 +127,9 @@ public class RecipesController {
     }
 
     @GetMapping("/recipes/a-z")
-    public String sort_a(Model model) {
-
+    public String sort_a(Model model, Principal principal) {
+    	String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
         List<Recipes> recipes = SpicesrusApplication.recipes;
         List<String> names = new ArrayList<String>();
         List<Recipes> output = new ArrayList<Recipes>();
@@ -142,8 +150,9 @@ public class RecipesController {
     }
 
     @GetMapping("/recipes/z-a")
-    public String sort_z(Model model) {
-
+    public String sort_z(Model model, Principal principal) {
+    	String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
         List<Recipes> recipes = SpicesrusApplication.recipes;
         List<String> names = new ArrayList<String>();
         List<Recipes> output = new ArrayList<Recipes>();
@@ -166,7 +175,9 @@ public class RecipesController {
 
 
     @GetMapping("/recipesearch")
-    public String search(Model model, @RequestParam String recipe) {
+    public String search(Model model, @RequestParam String recipe, Principal principal) {
+    	String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
         List<Recipes> recipes = recipesRepo.findByNameContainingIgnoreCase(recipe);
         model.addAttribute("recipes", recipes);
         return "allRecipes";
@@ -174,7 +185,9 @@ public class RecipesController {
     }
     
     @GetMapping("/userspicesearch")
-    public String searchspice(Model model, @RequestParam String spices) {
+    public String searchspice(Model model, @RequestParam String spices, Principal principal) {
+    	String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
     	String[] items = spices.split(",");
         List<String> itemList = Arrays.asList(items);
         ArrayList<Spices> spiceList = new ArrayList<Spices>();
@@ -202,6 +215,8 @@ public class RecipesController {
      */
     @RequestMapping("/recipe") //by default manages get requests
     public String showRecipe(@RequestParam String recipe, Model model, Principal principal) {
+    	String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
         Recipes r = recipesRepo.findByName(recipe); //same as finding by id since the name is the id
         model.addAttribute("recipe", r);
 

@@ -8,10 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Londrina+Solid&display=swap"
           rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <jsp:include page="base.jsp"/>
+     <jsp:include page="base.jsp" />
     <title>Membership</title>
 
 </head>
+   
 
 <style>
 

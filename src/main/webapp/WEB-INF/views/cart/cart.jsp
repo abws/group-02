@@ -184,7 +184,7 @@ img {
     display: flex;
     width: 100%;
     height: 400px;
- 	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.etimg.com/thumb/width-1200,height-900,imgsize-1587026,resizemode-1,msid-67344360/markets/commodities/news/india-looks-to-maintain-lead-in-spices-this-year.jpg");
+ 	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../images/cartback.webp");
 
 
 }

@@ -158,7 +158,7 @@
             display: flex;
             width: 100%;
          	height: 400px;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://oldworldspices.com/wp-content/uploads/2020/05/Old-World-Spices-and-Seasonings-Quality-Assurance.png");
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/recipeback.png");
 
 
         }
@@ -290,7 +290,7 @@
     <a href="/recipes/Dinner" class="cata">
         <button>Dinner</button>
     </a>
-    <a href="/recipes/CakesAndPies" class="cata">
+    <a href="/recipes/Cakes_and_Pies" class="cata">
         <button>Cakes and Pies</button>
     </a>
     <a href="/recipes/Pastries" class="cata">

@@ -38,7 +38,8 @@ public class DetailsController {
 
     @GetMapping("/user")
     public String User(Model model, Principal principal) {
-
+    	String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
         if (principal == null) {
             return "redirect:/login"; // If there is no available user data redirect to login.
         }

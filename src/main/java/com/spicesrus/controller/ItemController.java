@@ -52,7 +52,8 @@ public class ItemController {
 	 */
 	@RequestMapping("/spice") //by default manages get requests
 	public String showSpice(@RequestParam String spice, Model model, HttpServletRequest request, Principal user) {
-		
+		String username = user != null ? user.getName() : null;
+		model.addAttribute("username", username);
 		//get spice to view and item ready 
 		Spices s = sRepo.findByName(spice); //same as finding by id since the name is the id
 		model.addAttribute("spice", s);

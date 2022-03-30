@@ -1,5 +1,7 @@
 package com.spicesrus.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,9 @@ public class CartController {
 	
 	
 	@GetMapping("/cart")
-	public String showCart(HttpServletRequest request, Model model) {
+	public String showCart(HttpServletRequest request, Principal principal, Model model) {
+		String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
 		CartHelper.createOrRetrieveCart(model, request);
 		return "cart/cart";
 	}

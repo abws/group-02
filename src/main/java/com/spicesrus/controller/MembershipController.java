@@ -25,6 +25,8 @@ public class MembershipController {
 
     @GetMapping("/membership")
     public String membership(Principal principal, Model model) {
+    	String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
         String membership;
         if (principal == null) {
             membership = "NONE";

@@ -37,6 +37,8 @@ public class SpicesController {
 
 	@RequestMapping("/spices")
 	public String Spices(Principal principal, Model model, @RequestParam(name = "sort", required = false, defaultValue = "a-z") String sortType, HttpServletRequest request) {
+		String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
 		Iterable<Spices> spiceListFromDatabase = spicesRepo.findAll();
 		if (principal != null) {
 			User user = userRepository.findByUsername(principal.getName());
@@ -110,7 +112,9 @@ public class SpicesController {
 	}
 	
 	@GetMapping("/spicesearch")
-	public String search(Model model, @RequestParam String spice) {
+	public String search(Model model, @RequestParam String spice, Principal principal) {
+		String username = principal != null ? principal.getName() : null;
+		model.addAttribute("username", username);
 		List<Spices> spices = spicesRepo.findByNameContainingIgnoreCase(spice);
 		model.addAttribute("spices", spices);	
 		return "allSpices";

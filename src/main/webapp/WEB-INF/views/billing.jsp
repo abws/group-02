@@ -38,7 +38,7 @@ body{
     border-radius:10px;
     margin: 0;
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
   
@@ -55,7 +55,6 @@ body{
 }
 
 .right{
-    margin-top: 8%;
     width: 50%;
     background: #ffffffe8;
     padding: 20px;
@@ -117,7 +116,7 @@ display: table;
 
 <div class="container1">
 
-<img src="../../images/checkout.webp" style="margin-top: 10%;" width="600" height="400">
+<img src="../../images/checkout.webp" width="600" height="400">
 <form:form align="center" class="right" modelAttribute="billing" action="/billing" method="post">
 
 <div class="left">
