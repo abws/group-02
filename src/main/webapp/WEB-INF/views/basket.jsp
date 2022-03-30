@@ -50,7 +50,7 @@
 
     </style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <jsp:include page="base.jsp" />
+    <jsp:include page="base.jsp"/>
     <title>Spices</title>
 
 </head>
@@ -63,7 +63,7 @@
             <p class="price">�${spice.getPrice()} per 100g</p>
 
             <p>
-            	<a href="/Basket/Remove/${spice.getName()}" class="btn btn-primary">Remove from Cart</a>
+                <a href="/Basket/Remove/${spice.getName()}" class="btn btn-primary">Remove from Cart</a>
             </p>
         </div>
     </c:forEach>

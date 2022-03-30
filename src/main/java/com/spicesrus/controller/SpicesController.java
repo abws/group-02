@@ -107,7 +107,7 @@ public class SpicesController {
 		}
 		model.addAttribute("spices", displayed);
 
-		return "allSpices";
+		return "spice_overview";
 	}
 
 	@GetMapping("/spicesearch")
@@ -116,7 +116,7 @@ public class SpicesController {
 		model.addAttribute("username", username);
 		List<Spices> spices = spicesRepo.findByNameContainingIgnoreCase(spice);
 		model.addAttribute("spices", spices);
-		return "allSpices";
+		return "spice_overview";
 
 	}
 

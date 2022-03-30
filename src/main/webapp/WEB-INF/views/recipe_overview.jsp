@@ -5,7 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://kit.fontawesome.com/2f306254e3.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/2f306254e3.js" crossorigin="anonymous"></script>
+
     <style>
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -15,7 +16,7 @@
             margin-right: 20px;
             margin-bottom: 20px;
             text-align: center;
-            font-family:"Monserrat", sans-serif;
+            font-family: "Monserrat", sans-serif;
 
             flex: 0 1 33%;
             padding: 0 10px;
@@ -70,8 +71,7 @@
             display: flex;
             flex-wrap: wrap;
             width: 100%;
-            justify-content: space-between;
-            
+
 
         }
 
@@ -128,7 +128,7 @@
 
         body {
             background-color: #f9efe6;
-            font-family:"Monserrat", sans-serif;
+            font-family: "Monserrat", sans-serif;
 
             padding: 0;
             margin: 0;
@@ -140,7 +140,7 @@
             font-size: 40px;
 
 
-            font-family:"Monserrat", sans-serif;
+            font-family: "Monserrat", sans-serif;
 
 
             color: #321800;
@@ -162,7 +162,7 @@
             justify-content: center;
             display: flex;
             width: 100%;
-         	height: 400px;
+            height: 400px;
             background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/recipeback.png");
 
 
@@ -198,25 +198,26 @@
 
         ::placeholder {
             color: white;
-            font-family:"Monserrat", sans-serif;
+            font-family: "Monserrat", sans-serif;
 
             font-size: 30px;
 
         }
-  
-        a{
-			text-decoration: none;
-			
-		}
-		
-		
-        .select{
-        	color:black;
-        	width: 20%;
+
+        a {
+
+            text-decoration: none;
+
         }
-        
-        #sort{
-        	width:100px;
+
+
+        .select {
+            color: black;
+            width: 20%;
+        }
+
+        #sort {
+            width: 100px;
         }
 
         form .searchButton {
@@ -235,7 +236,7 @@
 
         form input.searchTerm {
             font-size: 35px;
-            font-family:"Monserrat", sans-serif;
+            font-family: "Monserrat", sans-serif;
 
             padding: 10px;
         }
@@ -243,17 +244,16 @@
         .box {
 
 
-           width: 1300px;
-   			margin-inline: auto;
-
-        }
-        
-        h1{
-        
-        	 font-weight: bold;
+            width: 1300px;
+            margin-inline: auto;
 
         }
 
+        h1 {
+
+            font-weight: bold;
+
+        }
 
 
     </style>
@@ -269,26 +269,26 @@
 
     <div class="pic">
 
-    <form action="/recipesearch" class="searchform" method="GET">
-        <input name="recipe" type="text" class="searchTerm" placeholder="What are you looking for?">
-          <button type="submit" class="searchButton">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
+        <form action="/recipesearch" class="searchform" method="GET">
+            <input name="recipe" type="text" class="searchTerm" placeholder="What are you looking for?">
+            <button type="submit" class="searchButton">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
     </div>
 
     </form>
 
-    </div>
+</div>
 </div>
 
 
 <h2>Categories</h2>
 <div class="vertical-menu" style="text-align: center">
 
-    <a href="/recipes" class="cata" >
-        <button >All</button>
+    <a href="/recipes" class="cata">
+        <button>All</button>
     </a>
-        
+
     <a href="/recipes/Breakfast" class="cata">
         <button>Breakfast</button>
     </a>
@@ -310,10 +310,10 @@
 <form name="sortby" class="select">
     <label for="sorting">Sort By:</label>
     <select name="sort" id="sort">
-        <option id ="fixed_sort"selected disabled>Select</option>        
+        <option id="fixed_sort" selected disabled>Select</option>
         <option id="sort_a-z" value="/recipes/a-z">A-Z</option>
         <option id="sort_z-a" value="/recipes/z-a">Z-A</option>
-    
+
     </select>
 
 </form>
@@ -323,29 +323,30 @@
     sortmenu.onchange = function () {
         window.open(this.options[this.selectedIndex].value, "_self");
     };
-    
+
 
 </script>
 
 
-
-
 <div class="box">
-<div class="row">
-    
-    <c:forEach items="${recipes}" var="recipe">
-        <div class="card">
-            <a href="/recipe?recipe=${recipe.name}"><img src="${recipe.getPicture()}" alt="${recipe.getName()}" width="500"
-                                                          height="300" style="width:100%"></a>
-            <h1> ${recipe.getName()}</h1>
-            <p> Category: ${recipe.getCategory()}</p>
-            <p>${recipe.description}</p>
-            <p>
-                <a href="/recipe?recipe=${recipe.name}"><button>View Details</button></a>
-            </p>
-        </div>
-    </c:forEach>
-</div>
+    <div class="row">
+
+        <c:forEach items="${recipes}" var="recipe">
+            <div class="card">
+                <a href="/recipe?recipe=${recipe.name}"><img src="${recipe.getPicture()}" alt="${recipe.getName()}"
+                                                             width="500"
+                                                             height="300" style="width:100%"></a>
+                <h1> ${recipe.getName()}</h1>
+                <p> Category: ${recipe.getCategory()}</p>
+                <p>${recipe.description}</p>
+                <p>
+                    <a href="/recipe?recipe=${recipe.name}">
+                        <button>View Details</button>
+                    </a>
+                </p>
+            </div>
+        </c:forEach>
+    </div>
 </div>
 <div class="center">
     <div class="pagination">
