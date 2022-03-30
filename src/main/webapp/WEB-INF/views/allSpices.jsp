@@ -317,7 +317,7 @@
 
     <c:forEach items="${spices}" var="spice">
         <div class="card">
-            <a href="/spice?spice=${spice.name}">
+                <a href="/spice?spice=${spice.name}">
                 <img src="${spice.getPicture()}" alt="${spice.getName()}" width="500"
                                                       height="300" style="width:100%">
             </a>

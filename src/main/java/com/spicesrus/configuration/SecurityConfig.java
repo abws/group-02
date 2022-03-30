@@ -33,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().rememberMe().key("spicesrus").and().authorizeRequests()
                 .antMatchers("/restricted/**").authenticated()
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/recipe/novice/**").hasAnyAuthority("NOVICE", "EXPERT")
                 .antMatchers("/recipe/expert/**").hasAnyAuthority("EXPERT")
                 .anyRequest().permitAll()

@@ -39,7 +39,7 @@
 </nav>
 <div class="container-fluid">
     <div class="card bg-dark text-white">
-        <img class="card-img" src="../../images/spice_hero.pngg" alt="Card image" height="105" width="360">
+        <img class="card-img" src="../../images/spice_hero.png" alt="Card image" height="105" width="360">
         <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
             <form class="mx-auto" method="get">
                 <input class="mx-auto" type="text" id="query" name="query" placeholder="Search recipes...">
@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-3" for="price">Ingredients:</label>
+                    <label class="col-sm-3" for="ingredients">Ingredients:</label>
                     <div class="col-sm-9">
                         <form:textarea class="form-control col-sm-9" type="text" id="ingredients" path="ingredients"/>
                     </div>
@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-3" for="spiceRoles">Complimentary Recipes:</label>
+                    <label class="col-sm-3" for="recipeComp">Complimentary Recipes:</label>
                     <div class="col-sm-9">
                         <form:select class="form-control col-sm-9" path="complimentaryRecipes" items="${allRecipes}" multiple="true" id="recipeComp">
                             <c:forEach var="recipe" items="compRecipe">
@@ -124,7 +124,7 @@
                 <div class="form-group row">
                     <label class="col-sm-3" for="name">Restricted:</label>
                     <div class="col-sm-9">
-                        <form:checkbox class="form-control col-sm-9" id="restricted" path="restricted"/>
+                        <form:checkbox cssStyle="float:left;" class="form-control col-sm-9" id="restricted" path="restricted"/>
                     </div>
                 </div>
 
