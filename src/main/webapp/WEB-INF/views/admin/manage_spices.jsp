@@ -104,7 +104,7 @@
         </div>
     </c:when>
     <c:when test="${not searched}">
-        <h2 class="text-center">Spice - New User</h2>
+        <h2 class="text-center">Spices - New Spice</h2>
         <div class="content col-sm-4 mx-auto">
             <form:form class="text-center" modelAttribute="spiceDTO" action="spices/create" method="post">
 

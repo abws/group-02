@@ -9,29 +9,30 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
 
-.hero-nav {
-   		 background-color: rgb(255, 136, 0);
-   		 
-   		}
-      
-      .navigation ul {
-	    list-style-type: none;
-	    margin: 0;
-	    padding: 0;
-	    overflow: hidden;
-	    font-size: 18px;
-	    font-family:"Monserrat", sans-serif;
-	    font-weight: 900;
-	    background-color: rgb(255, 136, 0);
-	    
-	  }
-    html, body {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        font-family: "Monserrat", sans-serif;
-      }
-    
+        .hero-nav {
+            background-color: rgb(255, 136, 0);
+
+        }
+
+        .navigation ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-size: 18px;
+            font-family: "Monserrat", sans-serif;
+            font-weight: 900;
+            background-color: rgb(255, 136, 0);
+
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            font-family: "Monserrat", sans-serif;
+        }
+
 
         .container1 {
             max-width: 1200px;
@@ -40,7 +41,7 @@
             display: flex;
             margin-top: 10%;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -371,9 +372,9 @@
 
 
         }
-	  
-        div button{
-		display: inline-block;
+
+        div button {
+            display: inline-block;
             background-color: #fd8d0c;
             border-radius: 10px;
             font-size: 18px;
@@ -383,9 +384,9 @@
             transition: all .5s;
             border: none;
             cursor: pointer;
-		float: right;
+            float: right;
 
-	  }
+        }
 
 
     </style>
@@ -394,94 +395,93 @@
     <title>${recipe.name}</title>
 </head>
 
-<body id="recipe">
-<main class="container1" >
+<body>
+<div id="recipe">
+    <main class="container1">
 
-    <!-- Left Column / Image -->
-    <div>
-        <img src="${recipe.picture}" height="500px" width="500px" alt="${recipe.name}">
-    </div>
-    <!-- Right Column -->
-    <div class="right-column">
-	  
-	  <div>
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
-	  <script>
-	  window.onload = function(){
-	  	document.getElementById("download").
-	  	addEventListener("click", ()=>{
-	  	const recipe = this.document.getElementById("recipe");
-	  	console.log(recipe);
-	  	console.log(window);
-	  	var opt = {
-  margin:       0,
-  filename:     'recipe.pdf',
-  image:        { type: 'jpeg', quality: 0.98 },
-  html2canvas:  { scale: 2, useCORS: true, allowTaint: true },
-  pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
-  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-};
-	  	html2pdf().from(recipe).set(opt).save();
-	  	})
-	  }
-	  </script>
-		<button class="button" id="download"> Download</button>
+        <!-- Left Column / Image -->
+        <div>
+            <img src="${recipe.picture}" height="500px" width="500px" alt="${recipe.name}">
         </div>
-	  
-	  
-	  
-	   
-	  	
-        <!-- Product Description -->
-        <div class="recipe-description">
-            <span>${recipe.category}</span>
-            <h1 class="name">${recipe.name}</h1>
-            <p>${recipe.description}</p>
+        <!-- Right Column -->
+        <div class="right-column">
+
+            <div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
+                <script>
+                    window.onload = function () {
+                        document.getElementById("download").addEventListener("click", () => {
+                            const recipe = this.document.getElementById("recipe");
+                            console.log(recipe);
+                            console.log(window);
+                            var opt = {
+                                margin: 0,
+                                useCORS: true,
+                                filename: 'recipe.pdf',
+                                image: {type: 'jpeg', quality: 0.98},
+                                html2canvas: {scale: 2, useCORS: true, allowTaint: true},
+                                pagebreak: {mode: ['avoid-all', 'css', 'legacy']},
+                                jsPDF: {unit: 'in', format: 'letter', orientation: 'portrait'}
+                            };
+                            html2pdf().from(recipe).set(opt).save();
+                        })
+                    }
+                </script>
+                <button class="button" id="download"> Download</button>
+            </div>
+
+
+            <!-- Product Description -->
+            <div class="recipe-description">
+                <span>${recipe.category}</span>
+                <h1 class="name">${recipe.name}</h1>
+                <p>${recipe.getFullDescription()}</p>
+            </div>
         </div>
+    </main>
+    <main class="container">
+        <!--Ingredients and Method below the photo-->
+        <div class="recipe-ingredients">
+            <h1 class="Ingredients">Ingredients</h1>
+
+            <ul>
+                <c:forEach var="ingredient" items="${recipe.getIngredients()}">
+                    <li>${ingredient}</li>
+                </c:forEach>
+            </ul>
+            <h1 class="Method">Method</h1>
+            <ol>
+                <c:forEach var="ingredient" items="${recipe.getMethod()}">
+                    <li>${ingredient}</li>
+                </c:forEach>
+            </ol>
+        </div>
+    </main>
+
+    <h2 style="text-align:center;">Buy Spices Needed</h2>
+    <div class="product">
+
+        <c:forEach var="ingredient" items="${recipe.getSpicesInvolved()}">
+            <div>
+                <a href="/spice?spice=${ingredient.name}">
+                    <img src="${ingredient.getPicture()}" alt="${ingredient.getName()}" width="304" height="236">
+                        ${ingredient.name}
+                </a>
+            </div>
+        </c:forEach>
     </div>
-</main>
-<main class="container">
-    <!--Ingredients and Method below the photo-->
-    <div class="recipe-ingredients">
-        <h1 class="Ingredients">Ingredients</h1>
 
-        <ul>
-            <c:forEach var="ingredient" items="${recipe.getIngredients()}">
-                <li>${ingredient}</li>
-            </c:forEach>
-        </ul>
-        <h1 class="Method">Method</h1>
-        <ol>
-            <c:forEach var="ingredient" items="${recipe.getMethod()}">
-                <li>${ingredient}</li>
-            </c:forEach>
-        </ol>
+    <h2 style="text-align:center;">Related Recipe</h2>
+    <div class="product">
+
+        <c:forEach var="ingredient" items="${recipe.getComplimentaryRecipes()}">
+            <div>
+                <img src="${ingredient.getPicture()}" alt="${ingredient.getName()}"
+                     width="304" height="236">
+                <p>${ingredient.getName()}</p>
+            </div>
+        </c:forEach>
     </div>
-</main>
-
-<h2 style="text-align:center;">Buy Spices Needed</h2>
-<div class="product">
-	
-	<c:forEach var="ingredient" items="${recipe.getSpicesInvolved()}">
-		<div>
-        	<a href="/spice?spice=${ingredient.name}">
-        	<img src="${ingredient.getPicture()}" alt="${ingredient.getName()}" width="304" height="236">
-             ${ingredient.name}
-            </a>
-    	</div>
-    </c:forEach>
-</div>
-
-<h2 style="text-align:center;">Related Recipe</h2>
-<div class="product">
-	
-	<c:forEach var="ingredient" items="${recipe.getComplimentaryRecipes()}">
-		<div>
-        	<img src="${ingredient.getPicture()}" alt="${ingredient.getName()}"
-             width="304" height="236">
-        	<p>${ingredient.getName()}</p>
-    	</div>
-    </c:forEach>
 </div>
 
 </body>
