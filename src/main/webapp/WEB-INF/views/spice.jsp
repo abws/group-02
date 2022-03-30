@@ -659,7 +659,10 @@
 
         document.getElementById('submit').setAttribute('disabled', 'disabled');
         var priceElement = document.getElementById("total-price");
-        if (priceElement != null) priceElement.remove();
+        if (priceElement != null) {
+            priceElement.remove();
+            document.getElementById("price-").innerHTML = "&pound" + ${spice.getUserPrice()}.toFixed(2) + " per 100g";
+          }
         return false;
     }
 
