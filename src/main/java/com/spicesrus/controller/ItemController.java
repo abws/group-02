@@ -93,7 +93,18 @@ public class ItemController {
 	public String addItemMetric(@ModelAttribute ItemMetric item, HttpServletRequest request) {
 		
 		Cart cart = CartHelper.createOrRetrieveCart(request);
-
+		
+		for(Item i : cart.getItems()) {
+			if (item.getWeight().equals(i.getWeight()) && item.getSpice().getName().equals(i.getSpice().getName())) {
+				if (item.getQuantity() + i.getQuantity() > 10) 
+					i.setQuantity(10);
+				else 
+					i.setQuantity(item.getQuantity() + i.getQuantity());
+				
+				return "redirect:/spices";
+			}
+		}
+		
 		item.setCart(cart);
 
 		cart.getItems().add(item);
@@ -117,6 +128,16 @@ public class ItemController {
 		public String addItemPounds(@ModelAttribute ItemImperial item, HttpServletRequest request) {
 			
 		Cart cart = CartHelper.createOrRetrieveCart(request);
+		
+		for(Item i : cart.getItems()) {
+			if (item.getWeight().equals(i.getWeight()) && item.getSpice().getName().equals(i.getSpice().getName())) {
+				if (item.getQuantity() + i.getQuantity() > 10) 
+					i.setQuantity(10);
+				else 
+					i.setQuantity(item.getQuantity() + i.getQuantity());
+				return "redirect:/spices";
+			}
+		}
 		
 		item.setCart(cart);
 	
