@@ -21,6 +21,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+/**
+ * Manages the recipes by searching with categories and sorting them.
+ * 
+ * 
+ */
 
 @Controller
 public class RecipesController {
@@ -33,6 +38,7 @@ public class RecipesController {
 	@Autowired
 	private SpicesRepository spicesRepo;
 
+	//searching for all recipes 
 	@RequestMapping("/recipes")
 	public String Recipes(Model model, Principal principal) {
 		String username = principal != null ? principal.getName() : null;
@@ -41,7 +47,8 @@ public class RecipesController {
 		model.addAttribute("recipes", recipeListFromDatabase);
 		return "allRecipes";
 	}
-
+	
+	//searching for the recipes in breakfast category 
 	@GetMapping("/recipes/Breakfast")
 	public String showCategory_B(Model model, Principal principal) {
 		String username = principal != null ? principal.getName() : null;
@@ -58,7 +65,7 @@ public class RecipesController {
 
 		return "recipe_overview";
 	}
-
+	//searching for the recipes in lunch category 
 	@GetMapping("/recipes/Lunch")
 	public String showCategory_L(Model model, Principal principal) {
 		String username = principal != null ? principal.getName() : null;
@@ -75,7 +82,7 @@ public class RecipesController {
 
 		return "recipe_overview";
 	}
-
+	//searching for the recipes in Dinner category 
 	@GetMapping("/recipes/Dinner")
 	public String showCategory_D(Model model, Principal principal) {
 		String username = principal != null ? principal.getName() : null;
@@ -92,7 +99,7 @@ public class RecipesController {
 
 		return "recipe_overview";
 	}
-
+	//searching for the recipes in Cakes and Pies category 
 	@GetMapping("/recipes/Cakes_and_Pies")
 	public String showCategory_CaP(Model model, Principal principal) {
 		String username = principal != null ? principal.getName() : null;
@@ -109,7 +116,7 @@ public class RecipesController {
 
 		return "recipe_overview";
 	}
-
+	//searching for the recipes in pastries category 
 	@GetMapping("/recipes/Pastries")
 	public String showCategory_P(Model model, Principal principal) {
 		String username = principal != null ? principal.getName() : null;
@@ -126,7 +133,7 @@ public class RecipesController {
 
 		return "recipe_overview";
 	}
-
+	//sorting the recipes by the names from a to z  
 	@GetMapping("/recipes/a-z")
 	public String sort_a(Model model, Principal principal) {
 		String username = principal != null ? principal.getName() : null;
@@ -149,7 +156,7 @@ public class RecipesController {
 		model.addAttribute("path", "A-Z");
 		return "recipe_overview";
 	}
-
+	//sorting the recipes by the names from z to a 
 	@GetMapping("/recipes/z-a")
 	public String sort_z(Model model, Principal principal) {
 		String username = principal != null ? principal.getName() : null;

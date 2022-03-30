@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
+/**The error page controller give the error if the item can not be found.
+*
+*/
 @Controller
 public class ErrorPageController implements ErrorController {
 

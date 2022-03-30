@@ -16,7 +16,9 @@ import com.spicesrus.repository.CartRepository;
 import com.spicesrus.repository.ItemRepository;
 import com.spicesrus.repository.RecipesRepository;
 import com.spicesrus.service.CartHelper;
-
+/**The cart controller manages the items in the cart.
+ *
+ */
 @Controller
 public class CartController {
 	@Autowired
@@ -36,6 +38,7 @@ public class CartController {
 		return "cart/cart";
 	}
 
+	//user can manage the quantity of the item in the cart
 	@PostMapping("increaseItem")
 	public String increaseItem(@RequestParam int itemId, @RequestParam int quantity) {
 		System.out.println(quantity);
@@ -52,6 +55,7 @@ public class CartController {
 		return "redirect:cart";
 	}
 
+	//user can delete the item in the cart 
 	@PostMapping("deleteItem")
 	public String deleteItem(@RequestParam int itemId, HttpServletRequest request) {
 		Cart cart = CartHelper.createOrRetrieveCart(request);
