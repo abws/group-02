@@ -145,7 +145,7 @@ public class    SpicesrusApplication implements ApplicationRunner {
         r4.setPicture("https://img.freepik.com/darmowe-zdjecie/pyszny-hummus_144627-19472.jpg?t=st=1647339211~exp=1647339811~hmac=7acf2f4c66577fc8170c8d045d58c18130f442687f5dcbd5d8284b22fe5b40e2&w=740");
         r4.setFullDescription("A long-term favourite for picking up from the deli counter, there are as many recipes for hummus as there are chickpeas in a sack, but we make no apology for stating that this recipe is the best! "
         		+ "The reason for the variety in recipes is that hummus is a staple in most of the countries surrounding the eastern Mediterranean and into the Middle East, all of which have their own little foibles when it comes to seasoning the hummus. "
-        		+ "Our take is based on the Israeli version, which is always served with a blob of harissa-style hot sauce in the middle – this procedure is highly recommended. Tinned chickpeas are far and away the easiest (and fortunately the best) to use for the recipe.");
+        		+ "Our take is based on the Israeli version, which is always served with a blob of harissa-style hot sauce in the middle, this procedure is highly recommended. Tinned chickpeas are far and away the easiest (and fortunately the best) to use for the recipe.");
         r4.setIngredients(List.of("2 Tins Chickpeas", "1tbs olive oil", "1tbs tahini paste", "1tsp garlic powder or granules" ,"1tbs lemon juice", "salt and pepper","1tsp ground cumin", "1tsp cayenne pepper"));
     			
         r4.setMethod(List.of("Drain the chickpeas and blend with other dry ingredients and the tahini", "Pour in the oliver oil and lemon jucice while blending", "Whizz together, pour in the olive oil then the lemon juice.", 
