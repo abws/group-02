@@ -45,7 +45,7 @@ public class RecipesController {
 		model.addAttribute("username", username);
 		Iterable<Recipes> recipeListFromDatabase = recipesRepo.findAll();
 		model.addAttribute("recipes", recipeListFromDatabase);
-		return "allRecipes";
+		return "recipe_overview";
 	}
 	
 	//searching for the recipes in breakfast category 
